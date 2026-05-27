@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>04 移調樂器 — 樂理教學</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f0f9ff;--sky:#0ea5e9;--mint:#10b981;--lav:#8b5cf6;--coral:#f43f5e;--peach:#f59e0b;--text:#0c1a2e;--text2:#3a5a7a;--text3:#90aac0;--card:#fff;--border:rgba(0,0,0,.08);--r:18px;--rs:10px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:"Noto Sans TC",sans-serif;min-height:100vh;}
+.hero{background:linear-gradient(135deg,#f0f9ff,#f0fff8 50%,#f5f0ff);padding:52px 28px 40px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:"🎺 🎷 📯";position:absolute;font-size:5rem;opacity:.05;top:10px;left:0;pointer-events:none;letter-spacing:40px;}
+.htag{display:inline-block;background:linear-gradient(135deg,var(--sky),var(--mint));color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.15em;padding:4px 14px;border-radius:20px;margin-bottom:12px;}
+.hero h1{font-family:"DM Serif Display",serif;font-size:2.6rem;line-height:1.2;margin-bottom:8px;}
+.hero h1 em{color:var(--sky);font-style:normal;}
+.hero p{color:var(--text2);font-size:.88rem;}
+.layout{display:flex;max-width:1100px;margin:0 auto;padding:0 20px 80px;gap:24px;min-height:80vh;}
+.sidebar{width:200px;flex-shrink:0;position:sticky;top:20px;align-self:flex-start;margin-top:28px;}
+.main-content{flex:1;min-width:0;padding-top:28px;}
+.side-nav{background:var(--card);border-radius:var(--r);border:1.5px solid var(--border);overflow:hidden;box-shadow:0 3px 20px rgba(14,165,233,.06);}
+.side-nav-title{padding:14px 16px 10px;font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--text3);text-transform:uppercase;border-bottom:1px solid var(--border);}
+.side-btn{display:flex;align-items:center;gap:8px;width:100%;padding:11px 16px;font-size:.8rem;color:var(--text2);background:transparent;border:none;text-align:left;cursor:pointer;font-family:"Noto Sans TC",sans-serif;transition:all .2s;border-left:3px solid transparent;}
+.side-btn:hover{background:rgba(14,165,233,.05);color:var(--text);}
+.side-btn.act{background:rgba(14,165,233,.08);color:var(--sky);border-left-color:var(--sky);font-weight:700;}
+.sb-icon{font-size:1rem;flex-shrink:0;width:20px;text-align:center;}
+.panel{display:none;animation:fu .35s ease;}
+.panel.act{display:block;}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.card{background:var(--card);border-radius:var(--r);border:1.5px solid var(--border);padding:24px;margin-bottom:18px;box-shadow:0 3px 20px rgba(14,165,233,.06);}
+.ctitle{font-family:"DM Serif Display",serif;font-size:1.1rem;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.ctitle::before{content:"";display:inline-block;width:4px;height:18px;border-radius:2px;background:var(--sky);}
+.progress-bar{height:3px;background:rgba(14,165,233,.12);border-radius:2px;margin-bottom:20px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--sky),var(--mint));border-radius:2px;transition:width .4s ease;}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.cb{border-radius:var(--rs);padding:18px;}
+.cb-w{background:rgba(14,165,233,.08);border:1.5px solid rgba(14,165,233,.2);}
+.cb-s{background:rgba(16,185,129,.08);border:1.5px solid rgba(16,185,129,.2);}
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.filter-btn{padding:6px 16px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--text2);font-size:.78rem;cursor:pointer;transition:all .2s;font-family:"Noto Sans TC",sans-serif;}
+.filter-btn:hover{border-color:var(--sky);color:var(--sky);}
+.filter-btn.act{background:var(--sky);color:#fff;border-color:var(--sky);}
+.inst-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;}
+.inst-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--rs);padding:16px;transition:all .25s;cursor:pointer;position:relative;overflow:hidden;}
+.inst-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;}
+.inst-card.bb::before{background:var(--sky);}
+.inst-card.eb::before{background:var(--mint);}
+.inst-card.f::before{background:var(--lav);}
+.inst-card.c::before{background:var(--peach);}
+.inst-card.oct::before{background:var(--coral);}
+.inst-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(14,165,233,.12);}
+.inst-top{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.inst-emoji{font-size:1.6rem;flex-shrink:0;}
+.inst-name{font-weight:700;font-size:.88rem;}
+.inst-key{font-size:.7rem;color:var(--sky);font-weight:600;margin-top:2px;}
+.inst-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.inst-note{background:#f0f9ff;border:1.5px solid rgba(14,165,233,.2);border-radius:8px;padding:7px 12px;text-align:center;min-width:76px;}
+.inst-note .lbl{font-size:.6rem;color:var(--text3);margin-bottom:2px;}
+.inst-note .nt{font-family:"DM Serif Display",serif;font-size:1.2rem;}
+.inst-note.snd .nt{color:var(--sky);}
+.inst-interval{font-size:.7rem;color:var(--text2);background:rgba(14,165,233,.08);padding:4px 10px;border-radius:20px;}
+.inst-detail{display:none;margin-top:10px;border-top:1px solid var(--border);padding-top:10px;font-size:.76rem;color:var(--text2);line-height:1.7;}
+.inst-detail.show{display:block;animation:fu .3s ease;}
+.ibadge{display:inline-block;padding:2px 8px;border-radius:8px;font-size:.6rem;font-weight:700;margin-left:6px;}
+.bb-b{background:rgba(14,165,233,.12);color:var(--sky);}
+.eb-b{background:rgba(16,185,129,.12);color:var(--mint);}
+.f-b{background:rgba(139,92,246,.12);color:var(--lav);}
+.c-b{background:rgba(245,158,11,.12);color:var(--peach);}
+.oct-b{background:rgba(244,63,94,.12);color:var(--coral);}
+.calc-section{background:linear-gradient(135deg,#f0f9ff,#f0fff8);border-radius:var(--r);padding:22px;border:1.5px solid rgba(14,165,233,.15);}
+.calc-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:end;}
+.calc-lbl{font-size:.76rem;color:var(--text2);font-weight:600;margin-bottom:5px;}
+.calc-sel{background:var(--card);border:1.5px solid var(--border);border-radius:var(--rs);padding:9px 12px;font-size:.82rem;color:var(--text);font-family:"Noto Sans TC",sans-serif;width:100%;cursor:pointer;}
+.calc-btn{background:var(--sky);color:#fff;border:none;border-radius:var(--rs);padding:10px 24px;font-size:.85rem;font-weight:700;cursor:pointer;font-family:"Noto Sans TC",sans-serif;margin-top:14px;transition:all .2s;}
+.calc-btn:hover{opacity:.85;}
+.calc-result{margin-top:14px;background:var(--card);border-radius:var(--rs);padding:14px 18px;border:1.5px solid rgba(14,165,233,.2);display:none;}
+.calc-result.show{display:block;animation:fu .3s ease;}
+.cr-main{font-family:"DM Serif Display",serif;font-size:1.4rem;color:var(--sky);margin-bottom:5px;}
+.qtable{width:100%;border-collapse:collapse;font-size:.82rem;}
+.qtable th{background:linear-gradient(135deg,var(--sky),var(--mint));color:#fff;padding:9px 14px;text-align:left;font-size:.74rem;}
+.qtable th:first-child{border-radius:10px 0 0 0;}
+.qtable th:last-child{border-radius:0 10px 0 0;}
+.qtable td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text2);}
+.qtable tr:hover td{background:rgba(14,165,233,.03);}
+.qtable .written{color:var(--text);font-weight:600;}
+.qtable .sounding{color:var(--sky);font-weight:700;}
+.info{background:rgba(16,185,129,.08);border-left:4px solid var(--mint);border-radius:0 var(--rs) var(--rs) 0;padding:13px 16px;margin:12px 0;font-size:.82rem;color:var(--text2);line-height:1.7;}
+.info strong{color:var(--mint);}
+.warn{background:rgba(14,165,233,.08);border-left:4px solid var(--sky);border-radius:0 var(--rs) var(--rs) 0;padding:13px 16px;margin:12px 0;font-size:.82rem;color:var(--text2);line-height:1.7;}
+.warn strong{color:var(--sky);}
+.quiz-wrap{background:linear-gradient(135deg,#f0f9ff,#f0fff8);border-radius:var(--r);padding:26px;border:1.5px solid rgba(14,165,233,.15);}
+.qnum{font-size:.72rem;color:var(--text3);margin-bottom:8px;}
+.qq{font-weight:700;font-size:.95rem;margin-bottom:16px;line-height:1.5;}
+.qopts{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.qopt{padding:11px 16px;border-radius:var(--rs);border:1.5px solid var(--border);background:var(--card);font-size:.82rem;color:var(--text);cursor:pointer;text-align:left;transition:all .2s;font-family:"Noto Sans TC",sans-serif;}
+.qopt:hover:not(:disabled){border-color:var(--sky);background:rgba(14,165,233,.04);}
+.qopt.ok{border-color:var(--mint);background:rgba(16,185,129,.1);color:var(--mint);}
+.qopt.ng{border-color:var(--coral);background:rgba(244,63,94,.1);color:var(--coral);}
+.qexp{margin-top:12px;padding:12px 16px;border-radius:var(--rs);background:rgba(14,165,233,.06);font-size:.79rem;color:var(--text2);display:none;line-height:1.7;}
+.qexp.show{display:block;animation:fu .3s ease;}
+.qnav{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap;}
+.qbtn{padding:8px 20px;border-radius:20px;border:none;font-size:.8rem;font-weight:700;cursor:pointer;font-family:"Noto Sans TC",sans-serif;transition:all .2s;}
+.qbtn.p{background:var(--sky);color:#fff;}
+.qbtn.s{background:rgba(14,165,233,.08);color:var(--text2);border:1.5px solid var(--border);}
+.qprog{font-size:.74rem;color:var(--text3);margin-left:auto;}
+.qsc{font-size:.82rem;font-weight:700;color:var(--sky);}
+@media(max-width:750px){.layout{flex-direction:column;}.sidebar{width:100%;position:static;}.side-nav{display:flex;flex-wrap:nowrap;overflow-x:auto;border-radius:var(--rs);}.side-btn{border-left:none;border-bottom:3px solid transparent;white-space:nowrap;padding:10px 12px;}.side-btn.act{border-left:none;border-bottom-color:var(--sky);}.concept-grid,.calc-row,.qopts{grid-template-columns:1fr;}}
+</style>
+
+<link rel="stylesheet" href="../assets/css/shared.css">
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="../index.html" class="nav-logo"><span>🎵</span>莊敬音樂科</a>
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link home">首頁</a>
+    <a href="../history/index.html" class="nav-link">音樂史</a>
+    <a href="index.html" class="nav-link active-t">樂理</a>
+    <a href="teacher-resources.html" class="nav-link">教師資源</a>
+  </div>
+
+  <div id="nav-auth" style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+    <button id="login-btn" onclick="teacherLogin()" style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;border:1.5px solid var(--border,rgba(0,0,0,.12));background:#fff;cursor:pointer;font-size:.78rem;font-weight:700;font-family:inherit;">👤 教師登入</button>
+    <div id="user-info" style="display:none;align-items:center;gap:8px;">
+      <span style="font-size:.78rem;font-weight:700;">👋 <span id="user-name"></span></span>
+      <button onclick="teacherLogout()" style="padding:4px 10px;border-radius:12px;border:1.5px solid rgba(0,0,0,.12);background:transparent;cursor:pointer;font-size:.7rem;font-family:inherit;">登出</button>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumb" style="padding:8px 16px;font-size:.76rem;color:#888;display:flex;gap:5px;align-items:center;"><a href="../index.html" style="color:#666;text-decoration:none;">首頁</a><span>/</span><a href="index.html" style="color:#666;text-decoration:none;">樂理</a><span>/</span>移調樂器</span></div>
+<div class="hero">
+  <div class="htag">UNIT 04</div>
+  <h1><em>移調</em>樂器</h1>
+  <p>Transposing Instruments — 記譜音 ↔ 實際音換算</p>
+</div>
+<div class="layout">
+  <div class="sidebar">
+    <div class="side-nav">
+      <div class="side-nav-title">單元目錄</div>
+      <button class="side-btn act" onclick="showPanel('concept',this)"><span class="sb-icon">📖</span>基本概念</button>
+      <button class="side-btn" onclick="showPanel('inst',this)"><span class="sb-icon">🎺</span>樂器列表</button>
+      <button class="side-btn" onclick="showPanel('calc',this)"><span class="sb-icon">🔄</span>換算計算器</button>
+      <button class="side-btn" onclick="showPanel('table',this)"><span class="sb-icon">📊</span>快速對照表</button>
+      <button class="side-btn" onclick="showPanel('quiz',this)"><span class="sb-icon">🧠</span>隨堂測驗</button>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="progress-bar"><div class="progress-fill" id="prog" style="width:20%"></div></div>
+
+    <!-- 概念 -->
+    <div class="panel act" id="panel-concept">
+      <div class="card">
+        <div class="ctitle">記譜音 vs 實際音</div>
+        <div class="concept-grid">
+          <div class="cb cb-w">
+            <div style="font-weight:700;font-size:.9rem;color:var(--sky);margin-bottom:8px;">記譜音 Written Pitch</div>
+            <p style="font-size:.82rem;color:var(--text2);">樂譜上寫的音符，演奏者直接依譜演奏。</p>
+            <div style="font-family:'DM Serif Display',serif;font-size:2rem;color:var(--sky);margin:8px 0;">C（寫 Do）</div>
+            <p style="font-size:.72rem;color:var(--text3);">樂手看到什麼就吹什麼</p>
+          </div>
+          <div class="cb cb-s">
+            <div style="font-weight:700;font-size:.9rem;color:var(--mint);margin-bottom:8px;">實際音 Sounding Pitch</div>
+            <p style="font-size:.82rem;color:var(--text2);">實際發出的音高，依樂器調性而異。</p>
+            <div style="font-family:'DM Serif Display',serif;font-size:2rem;color:var(--mint);margin:8px 0;">B♭（實際發出）</div>
+            <p style="font-size:.72rem;color:var(--text3);">降B調樂器吹C→發出B♭</p>
+          </div>
+        </div>
+        <div class="warn"><strong>標注「in B♭」：</strong>記譜C → 實際B♭（低大二度）。<br><strong>換算：</strong>實際音 = 記譜音 − 移調音程 ｜ 記譜音 = 實際音 + 移調音程</div>
+        <div class="info"><strong>為何有移調樂器？</strong>同族樂器（如薩氏管）有多種規格，統一用C記譜，演奏者換樂器時指法不變。</div>
+      </div>
+    </div>
+
+    <!-- 樂器 -->
+    <div class="panel" id="panel-inst">
+      <div class="card">
+        <div class="ctitle">常見移調樂器 — 點擊展開說明</div>
+        <div class="filter-bar">
+          <button class="filter-btn act" onclick="filterInst(this,'all')">全部</button>
+          <button class="filter-btn" onclick="filterInst(this,'bb')">B♭調</button>
+          <button class="filter-btn" onclick="filterInst(this,'eb')">E♭調</button>
+          <button class="filter-btn" onclick="filterInst(this,'f')">F調</button>
+          <button class="filter-btn" onclick="filterInst(this,'oct')">八度移調</button>
+          <button class="filter-btn" onclick="filterInst(this,'c')">非移調</button>
+        </div>
+        <div class="inst-grid" id="inst-grid"></div>
+      </div>
+    </div>
+
+    <!-- 計算器 -->
+    <div class="panel" id="panel-calc">
+      <div class="card">
+        <div class="ctitle">互動換算計算器</div>
+        <div class="calc-section">
+          <div class="calc-row">
+            <div>
+              <div class="calc-lbl">選擇樂器</div>
+              <select class="calc-sel" id="calc-inst">
+                <option value="-2">降B調（低大二度）— 小號、B♭單簧管</option>
+                <option value="-8">降E調（低小六度）— 中音薩氏管</option>
+                <option value="-7">F調（低完全五度）— 法國號、英國管</option>
+                <option value="3">降E調（高小三度）— 降E調單簧管</option>
+                <option value="-14">降B調（低大九度）— 次中音薩氏管</option>
+                <option value="10">降D調短笛（高小七度）</option>
+                <option value="-12">八度移調（低八度）— 低音提琴</option>
+              </select>
+            </div>
+            <div>
+              <div class="calc-lbl">換算方向</div>
+              <select class="calc-sel" id="calc-dir">
+                <option value="ws">記譜音 → 實際音</option>
+                <option value="sw">實際音 → 記譜音</option>
+              </select>
+            </div>
+            <div>
+              <div class="calc-lbl" id="in-lbl">輸入記譜音</div>
+              <select class="calc-sel" id="calc-note">
+                <option value="0">C（Do）</option><option value="1">C♯/D♭</option>
+                <option value="2">D（Re）</option><option value="3">D♯/E♭</option>
+                <option value="4">E（Mi）</option><option value="5">F（Fa）</option>
+                <option value="6">F♯/G♭</option><option value="7">G（Sol）</option>
+                <option value="8">G♯/A♭</option><option value="9">A（La）</option>
+                <option value="10">A♯/B♭</option><option value="11">B（Si）</option>
+              </select>
+            </div>
+          </div>
+          <div><button class="calc-btn" onclick="doCalc()">🔄 換算</button></div>
+          <div class="calc-result" id="calc-result">
+            <div class="cr-main" id="cr-main"></div>
+            <div id="cr-sub" style="font-size:.8rem;color:var(--text2);line-height:1.7;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 對照表 -->
+    <div class="panel" id="panel-table">
+      <div class="card">
+        <div class="ctitle">B♭調樂器 — 12音快速對照（記譜→實際）</div>
+        <p style="font-size:.82rem;color:var(--text2);margin-bottom:14px;">適用：B♭小號、B♭單簧管、B♭高音薩氏管</p>
+        <div style="overflow-x:auto;">
+        <table class="qtable">
+          <tr><th>記譜音</th><th>實際音（低大二度）</th><th>記譜音</th><th>實際音（低大二度）</th></tr>
+          <tr><td class="written">C</td><td class="sounding">B♭</td><td class="written">G</td><td class="sounding">F</td></tr>
+          <tr><td class="written">D</td><td class="sounding">C</td><td class="written">A</td><td class="sounding">G</td></tr>
+          <tr><td class="written">E</td><td class="sounding">D</td><td class="written">B</td><td class="sounding">A</td></tr>
+          <tr><td class="written">F</td><td class="sounding">E♭</td><td class="written">C♯/D♭</td><td class="sounding">B/C♭</td></tr>
+          <tr><td class="written">F♯/G♭</td><td class="sounding">E</td><td class="written">G♯/A♭</td><td class="sounding">F♯/G♭</td></tr>
+          <tr><td class="written">D♯/E♭</td><td class="sounding">D♭</td><td class="written">A♯/B♭</td><td class="sounding">G♯/A♭</td></tr>
+        </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 測驗 -->
+    <div class="panel" id="panel-quiz">
+      <div class="quiz-wrap" id="quiz-wrap"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const panelOrder=['concept','inst','calc','table','quiz'];
+function showPanel(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('act'));
+  document.querySelectorAll('.side-btn').forEach(b=>b.classList.remove('act'));
+  document.getElementById('panel-'+id).classList.add('act');
+  if(btn)btn.classList.add('act');
+  const idx=panelOrder.indexOf(id);
+  document.getElementById('prog').style.width=((idx+1)/panelOrder.length*100)+'%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+const instruments=[
+  {emoji:"🎺",name:"小號 Trumpet",key:"降B調（B♭）",type:"bb",written:"C",sounding:"B♭",interval:"低大二度",badge:"bb-b",detail:"最常見的管樂移調樂器。交響樂、爵士樂都使用。作曲家需將實際音升高大二度記譜。"},
+  {emoji:"🎷",name:"降B調單簧管 Clarinet in B♭",key:"降B調（B♭）",type:"bb",written:"C",sounding:"B♭",interval:"低大二度",badge:"bb-b",detail:"最常用的單簧管規格。比A調單簧管稍亮，常用於升號調性樂曲。"},
+  {emoji:"🎷",name:"A調單簧管 Clarinet in A",key:"A調",type:"bb",written:"C",sounding:"A",interval:"低小三度",badge:"bb-b",detail:"記譜C→實際A（低小三度）。音色較B♭管略暗，常用於降號調性樂曲。"},
+  {emoji:"🎷",name:"降E調單簧管 Clarinet in E♭",key:"降E調（E♭）",type:"eb",written:"C",sounding:"E♭（高）",interval:"高小三度",badge:"eb-b",detail:"小單簧管，記譜C→實際E♭（高3半音）。音色高亮透徹。"},
+  {emoji:"🎷",name:"高音薩氏管 Soprano Sax B♭",key:"降B調（B♭）",type:"bb",written:"C",sounding:"B♭",interval:"低大二度",badge:"bb-b",detail:"與B♭單簧管同調。記譜C→實際B♭。直管造型，音色明亮。"},
+  {emoji:"🎷",name:"中音薩氏管 Alto Sax E♭",key:"降E調（E♭）",type:"eb",written:"C",sounding:"E♭",interval:"低小六度",badge:"eb-b",detail:"最普及的薩氏管，記譜C→實際E♭（低8半音）。爵士、流行、管樂隊主力。"},
+  {emoji:"🎷",name:"次中音薩氏管 Tenor Sax B♭",key:"降B調（B♭）低八度",type:"bb",written:"C",sounding:"B♭（低九度）",interval:"低大九度",badge:"bb-b",detail:"記譜C→實際B♭低九度。爵士樂最具代表性，音色渾厚有力。"},
+  {emoji:"🎷",name:"上低音薩氏管 Bari Sax E♭",key:"降E調低八度",type:"eb",written:"C",sounding:"E♭（低十三度）",interval:"低小十三度",badge:"eb-b",detail:"比中音薩氏管低八度，音色厚重低沉，管樂隊和聲基礎。"},
+  {emoji:"📯",name:"法國號 French Horn in F",key:"F調",type:"f",written:"C",sounding:"F",interval:"低完全五度",badge:"f-b",detail:"記譜C→實際F（低7半音）。管弦樂最重要的和聲樂器，現代用高音譜號記譜。"},
+  {emoji:"🎼",name:"英國管 English Horn in F",key:"F調",type:"f",written:"C",sounding:"F",interval:"低完全五度",badge:"f-b",detail:"雙簧管族移調樂器。記譜C→實際F。音色豐厚帶異國情調。"},
+  {emoji:"🎵",name:"降D調短笛 Piccolo in D♭",key:"降D調高音",type:"c",written:"C",sounding:"D♭（高）",interval:"高小七度",badge:"c-b",detail:"軍樂隊傳統短笛，記譜C→實際D♭（高小七度）。現代較少見。"},
+  {emoji:"🎻",name:"低音提琴 Double Bass",key:"八度移調",type:"oct",written:"記譜音",sounding:"低八度",interval:"低八度",badge:"oct-b",detail:"讀高音譜號記譜，實際音低八度。男高音使用的八度高音譜號同理。"},
+  {emoji:"🎻",name:"小提琴 Violin",key:"C調（不移調）",type:"c",written:"C",sounding:"C",interval:"同音",badge:"c-b",detail:"非移調樂器，記譜音=實際音。音域 g～e³。"},
+  {emoji:"🎻",name:"大提琴 Cello",key:"C調（不移調）",type:"c",written:"C",sounding:"C",interval:"同音",badge:"c-b",detail:"非移調樂器，記譜=實際。低音/次中音/高音譜號交替使用。"},
+  {emoji:"🎹",name:"鋼琴 Piano",key:"C調（不移調）",type:"c",written:"C",sounding:"C",interval:"同音",badge:"c-b",detail:"非移調，記譜=實際。大譜表：高音譜號（右手）+ 低音譜號（左手）。"},
+];
+
+function buildInst(filter){
+  const grid=document.getElementById('inst-grid');
+  grid.innerHTML='';
+  instruments.filter(i=>filter==='all'||i.type===filter).forEach(inst=>{
+    const card=document.createElement('div');card.className='inst-card '+inst.type;
+    card.innerHTML=`<div class="inst-top"><div class="inst-emoji">${inst.emoji}</div>
+      <div><div class="inst-name">${inst.name} <span class="ibadge ${inst.badge}">${inst.key}</span></div></div></div>
+      <div class="inst-row">
+        <div class="inst-note"><div class="lbl">記譜音</div><div class="nt">${inst.written}</div></div>
+        <div style="color:var(--text3);font-size:1.2rem;">⟹</div>
+        <div class="inst-note snd"><div class="lbl">實際音</div><div class="nt">${inst.sounding}</div></div>
+        <div class="inst-interval">${inst.interval}</div>
+      </div>
+      <div class="inst-detail">${inst.detail}</div>`;
+    card.onclick=()=>card.querySelector('.inst-detail').classList.toggle('show');
+    grid.appendChild(card);
+  });
+}
+buildInst('all');
+function filterInst(btn,type){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('act'));btn.classList.add('act');
+  buildInst(type);
+}
+
+const noteNames=["C","C♯/D♭","D","D♯/E♭","E","F","F♯/G♭","G","G♯/A♭","A","A♯/B♭","B"];
+function doCalc(){
+  const semis=parseInt(document.getElementById('calc-inst').value);
+  const dir=document.getElementById('calc-dir').value;
+  const ni=parseInt(document.getElementById('calc-note').value);
+  const shift=dir==='ws'?semis:-semis;
+  const ri=((ni+shift)%12+12)%12;
+  const res=document.getElementById('calc-result');
+  res.classList.add('show');res.style.animation='none';res.offsetHeight;res.style.animation='fu .3s ease';
+  const inL=dir==='ws'?'記譜音':'實際音',outL=dir==='ws'?'實際音':'記譜音';
+  document.getElementById('cr-main').innerHTML=`${inL}：<span style="color:var(--text)">${noteNames[ni]}</span>　→　${outL}：<span style="color:var(--sky)">${noteNames[ri]}</span>`;
+  document.getElementById('cr-sub').innerHTML=`移調量：${Math.abs(semis)} 半音（${semis<0?'降低':'升高'}）`;
+}
+document.getElementById('calc-dir').onchange=()=>{
+  document.getElementById('in-lbl').textContent=document.getElementById('calc-dir').value==='ws'?'輸入記譜音':'輸入實際音';
+};
+
+(function(){
+  const qs=[
+    {q:"B♭調小號演奏記譜C，實際發出？",opts:["A","B♭","B","A♭"],ans:1,exp:"降B調：記譜音比實際音高大二度（2半音），記C→實際B♭。"},
+    {q:"中音薩氏管（Alto Sax）是幾調？",opts:["B♭調","F調","E♭調","A調"],ans:2,exp:"中音薩氏管 = E♭調，記C→實際E♭（低小六度，8半音）。"},
+    {q:"法國號是幾調？",opts:["B♭調","F調","E♭調","D調"],ans:1,exp:"法國號 = F調，記C→實際F（低完全五度，7半音）。"},
+    {q:"讓B♭調單簧管發出「C」，樂譜需寫？",opts:["A","B♭","D","B"],ans:2,exp:"B♭調記譜比實際高大二度，要發C需寫D（C上方大二度）。"},
+    {q:"低音提琴是哪種移調？",opts:["高小三度","低大二度","低八度","不移調"],ans:2,exp:"低音提琴讀高音譜號，實際音低八度（12半音）。"},
+    {q:"降E調單簧管演奏記譜C，實際音？",opts:["E♭（低小三度）","E♭（高小三度）","B♭","A"],ans:1,exp:"降E調單簧管比B♭管小，記C→實際E♭（高小三度，+3半音）。注意是「高」。"},
+    {q:"英國管與法國號調性相同，記C實際音？",opts:["F","E♭","B♭","D"],ans:0,exp:"英國管也是F調，記C→實際F（低完全五度）。"},
+    {q:"次中音薩氏管記C的實際音？",opts:["B♭（低大二度）","B♭（低大九度）","E♭（低小六度）","F（低五度）"],ans:1,exp:"次中音薩氏管是B♭調但比高音薩氏管低八度，記C→實際B♭低九度。"},
+  ];
+  let cur=0,score=0,answered=false;
+  const wrap=document.getElementById('quiz-wrap');
+  function render(){
+    const q=qs[cur];
+    wrap.innerHTML=`<div class="qnum">第 ${cur+1} / ${qs.length} 題　<span class="qsc">✓ ${score}</span></div>
+      <div class="qq">${q.q}</div>
+      <div class="qopts">${q.opts.map((o,i)=>`<button class="qopt" onclick="ansQ(${i})">${o}</button>`).join('')}</div>
+      <div class="qexp" id="qexp">${q.exp}</div>
+      <div class="qnav"><button class="qbtn s" onclick="prevQ()" ${cur===0?'disabled':''}>← 上一題</button>
+      <button class="qbtn p" id="qnext" style="display:none" onclick="nextQ()">下一題 →</button>
+      <span class="qprog">${cur+1} / ${qs.length}</span></div>`;
+    answered=false;
+  }
+  window.ansQ=function(i){if(answered)return;answered=true;const q=qs[cur];document.querySelectorAll('.qopt').forEach((o,j)=>{o.disabled=true;if(j===q.ans)o.classList.add('ok');else if(j===i&&i!==q.ans)o.classList.add('ng');});if(i===q.ans)score++;document.getElementById('qexp').classList.add('show');const nb=document.getElementById('qnext');if(cur<qs.length-1){nb.style.display='inline-block';}else{nb.textContent='成績';nb.style.display='inline-block';nb.onclick=()=>{wrap.innerHTML=`<div style="text-align:center;padding:28px;"><div style="font-size:3rem;font-weight:900;color:var(--sky);">${score}/${qs.length}</div><div style="color:var(--text2);margin:10px 0 22px;">${score===qs.length?'🎉 全對！':'📖 再複習！'}</div><button class="qbtn p" onclick="restartQ()">再練一次</button></div>`;};}};
+  window.nextQ=function(){if(cur<qs.length-1){cur++;render();}};
+  window.prevQ=function(){if(cur>0){cur--;render();}};
+  window.restartQ=function(){cur=0;score=0;render();};
+  render();
+})();
+</script>
+
+<div id="ai-messages"></div>
+    
+    
+  </div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="../assets/js/shared.js"></script>
+<script>window.UNIT_CONTEXT="樂理 — 移調樂器";</script>
+</body>
+</html>

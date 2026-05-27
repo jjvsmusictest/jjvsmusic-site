@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>教師資料庫 · 音樂史 · 莊敬音樂科學習互動平台</title>
+<link rel="stylesheet" href="../assets/css/shared.css">
+<style>
+.page-hero{background:radial-gradient(ellipse at 30% 60%,rgba(30,122,74,.08) 0,transparent 55%);}
+.page-hero h1{color:#1E7A4A;}
+.admin-bar{background:linear-gradient(135deg,#1E7A4A,#2E9D5A);padding:12px 20px;display:flex;align-items:center;gap:12px;font-size:.82rem;color:#fff;flex-wrap:wrap;}
+.admin-bar strong{font-size:.88rem;}
+.admin-btn{padding:6px 14px;border-radius:12px;background:rgba(255,255,255,.2);color:#fff;border:1.5px solid rgba(255,255,255,.4);cursor:pointer;font-size:.76rem;font-weight:700;font-family:inherit;transition:all .15s;}
+.admin-btn:hover{background:rgba(255,255,255,.35);}
+.admin-btn.pri{background:#fff;color:#1E7A4A;}
+.empty-wrap{text-align:center;padding:80px 20px 60px;}
+.empty-icon{font-size:4rem;margin-bottom:16px;opacity:.5;}
+.empty-title{font-family:'Noto Serif TC',serif;font-size:1.1rem;font-weight:700;color:var(--text2);margin-bottom:8px;}
+.empty-desc{font-size:.84rem;color:var(--text3);line-height:1.8;}
+.empty-hint{display:inline-block;margin-top:16px;padding:8px 20px;border-radius:20px;background:rgba(30,122,74,.08);border:1.5px solid rgba(30,122,74,.2);color:#1E7A4A;font-size:.8rem;font-weight:700;}
+.sections-wrap{padding:0 20px 60px;max-width:900px;margin:0 auto;}
+.section-block{margin-bottom:24px;background:var(--bg-card);border-radius:var(--radius);border:1.5px solid var(--border);overflow:hidden;box-shadow:var(--shadow);}
+.section-hd{display:flex;align-items:center;gap:12px;padding:14px 18px;background:linear-gradient(135deg,rgba(30,122,74,.06),transparent);border-bottom:1.5px solid var(--border);}
+.section-icon{font-size:1.4rem;}
+.section-name{font-family:'Noto Serif TC',serif;font-weight:700;font-size:1rem;flex:1;}
+.section-count{font-size:.72rem;color:var(--text3);background:rgba(0,0,0,.05);padding:2px 8px;border-radius:10px;}
+.section-edit-btns{display:none;gap:6px;}
+.teacher-mode .section-edit-btns{display:flex;}
+.sec-btn{padding:4px 10px;border-radius:8px;font-size:.72rem;font-weight:700;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-family:inherit;color:var(--text2);transition:all .15s;}
+.sec-btn:hover{border-color:#1E7A4A;color:#1E7A4A;}
+.sec-btn.danger{border-color:rgba(192,57,43,.3);color:var(--accent-history);}
+.sec-btn.danger:hover{background:rgba(192,57,43,.08);}
+.res-list{padding:12px 14px;}
+.res-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius-sm);border:1.5px solid var(--border);margin-bottom:8px;background:#fff;transition:all .15s;}
+.res-item:last-child{margin-bottom:0;}
+.res-item:hover{border-color:#1E7A4A;}
+.res-ico{font-size:1.4rem;flex-shrink:0;width:36px;text-align:center;}
+.res-info{flex:1;min-width:0;}
+.res-title{font-weight:700;font-size:.88rem;color:var(--text);}
+.res-desc{font-size:.73rem;color:var(--text2);margin-top:2px;line-height:1.5;}
+.res-date{font-size:.68rem;color:var(--text3);flex-shrink:0;}
+.res-actions{display:flex;gap:6px;flex-shrink:0;align-items:center;}
+.res-link{padding:5px 12px;border-radius:10px;background:#1E7A4A;color:#fff !important;text-decoration:none;font-size:.72rem;font-weight:700;transition:all .15s;}
+.res-link:hover{opacity:.85;}
+.res-del{padding:5px 10px;border-radius:10px;background:transparent;border:1.5px solid rgba(192,57,43,.3);color:var(--accent-history);font-size:.72rem;font-weight:700;cursor:pointer;font-family:inherit;display:none;}
+.teacher-mode .res-del{display:block;}
+.res-del:hover{background:rgba(192,57,43,.08);}
+.add-item-row{display:none;padding:8px 0 2px;}
+.teacher-mode .add-item-row{display:block;}
+.add-item-btn{display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:var(--radius-sm);border:1.5px dashed var(--border);background:transparent;cursor:pointer;font-size:.8rem;color:var(--text2);font-family:inherit;width:100%;transition:all .15s;}
+.add-item-btn:hover{border-color:#1E7A4A;color:#1E7A4A;background:rgba(30,122,74,.03);}
+.add-section-wrap{padding:0 20px 24px;max-width:900px;margin:0 auto;display:none;}
+.teacher-mode .add-section-wrap{display:block;}
+.add-section-btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px;border-radius:var(--radius);border:2px dashed rgba(30,122,74,.3);background:rgba(30,122,74,.03);cursor:pointer;font-size:.88rem;font-weight:700;color:#1E7A4A;font-family:inherit;width:100%;transition:all .15s;}
+.add-section-btn:hover{border-color:#1E7A4A;background:rgba(30,122,74,.07);}
+.modal-overlay{display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.5);align-items:center;justify-content:center;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:#fff;border-radius:var(--radius);padding:26px;width:min(500px,92vw);max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.2);}
+.modal-title{font-family:'Noto Serif TC',serif;font-size:1.1rem;font-weight:900;margin-bottom:18px;}
+.form-row{margin-bottom:14px;}
+.form-label{font-size:.78rem;font-weight:700;color:var(--text2);margin-bottom:5px;display:block;}
+.form-input,.form-select,.form-textarea{width:100%;padding:9px 12px;border-radius:var(--radius-sm);border:1.5px solid var(--border);font-size:.84rem;font-family:'Noto Sans TC',sans-serif;outline:none;transition:border-color .15s;background:#fff;color:var(--text);}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:#1E7A4A;}
+.form-textarea{min-height:70px;resize:vertical;}
+.upload-area{border:2px dashed var(--border);border-radius:var(--radius-sm);padding:20px;text-align:center;cursor:pointer;transition:all .15s;background:#f9faf8;}
+.upload-area:hover{border-color:#1E7A4A;background:rgba(30,122,74,.04);}
+.upload-area input{display:none;}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;}
+.btn-cancel{padding:9px 20px;border-radius:20px;border:1.5px solid var(--border);background:transparent;cursor:pointer;font-size:.82rem;font-weight:700;font-family:inherit;}
+.btn-submit{padding:9px 24px;border-radius:20px;background:#1E7A4A;color:#fff;border:none;cursor:pointer;font-size:.82rem;font-weight:700;font-family:inherit;}
+.btn-submit:hover{background:#166c3e;}
+</style>
+</head>
+<body>
+<nav class="top-nav">
+  <a href="../index.html" class="nav-logo"><span>🎵</span>莊敬音樂科</a>
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link home">首頁</a>
+    <a href="index.html" class="nav-link active-h">音樂史</a>
+    <a href="../theory/index.html" class="nav-link">樂理</a>
+    <a href="teacher-resources.html" class="nav-link active-h">教師資源</a>
+  </div>
+  <div id="nav-auth" style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+    <button id="login-btn" onclick="teacherLogin()" style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;border:1.5px solid rgba(0,0,0,.12);background:#fff;cursor:pointer;font-size:.78rem;font-weight:700;font-family:inherit;">👤 教師登入</button>
+    <div id="user-info" style="display:none;align-items:center;gap:8px;">
+      <span style="font-size:.78rem;font-weight:700;">👋 <span id="user-name"></span></span>
+      <button onclick="teacherLogout()" style="padding:4px 10px;border-radius:12px;border:1.5px solid rgba(0,0,0,.12);background:transparent;cursor:pointer;font-size:.7rem;font-family:inherit;">登出</button>
+    </div>
+  </div>
+</nav>
+<div class="admin-bar" id="admin-bar" style="display:none;">
+  <span>👩‍🏫</span><strong>教師模式</strong><span style="opacity:.7;font-size:.76rem;">可新增、刪除單元與資料</span>
+  <button class="admin-btn pri" onclick="openAddSection()">＋ 新增單元</button>
+</div>
+<div class="breadcrumb"><a href="../index.html">首頁</a><span>/</span><a href="index.html">音樂史</a><span>/</span>教師資料庫</div>
+<div class="page-hero">
+  <div class="hero-tag history">TEACHER RESOURCES</div>
+  <h1>音樂史教師資料庫</h1>
+  <p>老師上傳的補充資料，隨時更新，同學可直接查閱</p>
+</div>
+<div class="sections-wrap" id="sections-wrap"></div>
+<div class="add-section-wrap"><button class="add-section-btn" onclick="openAddSection()">＋ 新增資料單元</button></div>
+<div class="empty-wrap" id="empty-state" style="display:none;">
+  <div class="empty-icon">📭</div>
+  <div class="empty-title">目前還沒有資料</div>
+  <div class="empty-desc">老師登入後可以自行建立單元並上傳資料<br>同學請耐心等候，內容更新後會立即出現在這裡</div>
+  <span class="empty-hint">📌 老師點右上角「教師登入」開始新增</span>
+</div>
+<!-- ADD SECTION MODAL -->
+<div class="modal-overlay" id="section-modal">
+  <div class="modal-box">
+    <div class="modal-title">📁 新增資料單元</div>
+    <div class="form-row"><label class="form-label">單元名稱 *</label><input class="form-input" id="sec-name" type="text" placeholder="例：巴洛克時期補充、考試重點整理…"></div>
+    <div class="form-row"><label class="form-label">圖示（選填，貼一個 emoji）</label><input class="form-input" id="sec-icon" type="text" placeholder="📄 🎵 📝 🎼" maxlength="4"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal('section-modal')">取消</button>
+      <button class="btn-submit" onclick="submitSection()">建立單元</button>
+    </div>
+  </div>
+</div>
+<!-- ADD ITEM MODAL -->
+<div class="modal-overlay" id="item-modal">
+  <div class="modal-box">
+    <div class="modal-title" id="item-modal-title">＋ 新增資料</div>
+    <div class="form-row"><label class="form-label">標題 *</label><input class="form-input" id="item-title" type="text" placeholder="例：西洋音樂史時間軸講義"></div>
+    <div class="form-row"><label class="form-label">說明（選填）</label><textarea class="form-textarea" id="item-desc" placeholder="這份資料的說明…"></textarea></div>
+    <div class="form-row"><label class="form-label">類型</label>
+      <select class="form-select" id="item-type" onchange="toggleItemInput()">
+        <option value="link">🔗 網頁／YouTube 連結</option>
+        <option value="file">📄 上傳檔案（PDF、Word、圖片）</option>
+      </select>
+    </div>
+    <div id="link-row" class="form-row"><label class="form-label">連結網址</label><input class="form-input" id="item-url" type="url" placeholder="https://..."></div>
+    <div id="file-row" class="form-row" style="display:none;">
+      <label class="form-label">選擇檔案</label>
+      <div class="upload-area" onclick="document.getElementById('item-file').click()">
+        <input type="file" id="item-file" onchange="fileChosen(this)">
+        <div style="font-size:1.8rem;margin-bottom:6px;">📎</div>
+        <div id="file-hint" style="font-size:.78rem;color:var(--text2);">點擊選擇檔案</div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal('item-modal')">取消</button>
+      <button class="btn-submit" id="item-submit-btn" onclick="submitItem()">新增資料</button>
+    </div>
+  </div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+<script>window.UNIT_CONTEXT="音樂史教師資料庫";</script>
+<script src="../assets/js/shared.js"></script>
+<script>
+let sections=[], currentSectionId=null, isTeacher=false;
+const STORE_KEY='jjvs_history_resources_v2';
+
+function saveLocal(){
+  localStorage.setItem(STORE_KEY,JSON.stringify(sections));
+  if(window.db){db.collection('teacher_resources').doc('history').set({sections,updated:new Date().toISOString()}).catch(()=>{});}
+}
+async function loadData(){
+  if(window.db){try{const doc=await db.collection('teacher_resources').doc('history').get();if(doc.exists&&doc.data().sections?.length){sections=doc.data().sections;render();return;}}catch(e){}}
+  try{sections=JSON.parse(localStorage.getItem(STORE_KEY)||'[]');}catch{sections=[];}
+  render();
+}
+function getIcon(type,url=''){
+  if(type==='file')return'📄';
+  if(url.includes('youtube')||url.includes('youtu.be'))return'▶️';
+  return'🔗';
+}
+function render(){
+  const wrap=document.getElementById('sections-wrap');
+  const empty=document.getElementById('empty-state');
+  if(isTeacher)document.body.classList.add('teacher-mode');
+  else document.body.classList.remove('teacher-mode');
+  if(!sections.length){wrap.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  wrap.innerHTML=sections.map(sec=>`
+    <div class="section-block">
+      <div class="section-hd">
+        <div class="section-icon">${sec.icon||'📁'}</div>
+        <div class="section-name">${sec.name}</div>
+        <span class="section-count">${sec.items?.length||0} 份資料</span>
+        <div class="section-edit-btns">
+          <button class="sec-btn" onclick="openAddItem('${sec.id}')">＋ 新增資料</button>
+          <button class="sec-btn danger" onclick="deleteSection('${sec.id}')">刪除單元</button>
+        </div>
+      </div>
+      <div class="res-list">
+        ${(sec.items||[]).map(item=>`
+          <div class="res-item">
+            <div class="res-ico">${getIcon(item.type,item.url||'')}</div>
+            <div class="res-info">
+              <div class="res-title">${item.title}</div>
+              ${item.desc?`<div class="res-desc">${item.desc}</div>`:''}
+            </div>
+            <span class="res-date">${item.date||''}</span>
+            <div class="res-actions">
+              ${item.url?`<a href="${item.url}" target="_blank" class="res-link">${item.type==='file'?'⬇ 下載':'🔗 開啟'}</a>`:''}
+              <button class="res-del" onclick="deleteItem('${sec.id}','${item.id}')">刪除</button>
+            </div>
+          </div>`).join('')}
+        <div class="add-item-row"><button class="add-item-btn" onclick="openAddItem('${sec.id}')">＋ 新增資料到這個單元</button></div>
+      </div>
+    </div>`).join('');
+}
+function openAddSection(){document.getElementById('section-modal').classList.add('open');setTimeout(()=>document.getElementById('sec-name').focus(),100);}
+function submitSection(){
+  const name=document.getElementById('sec-name').value.trim();
+  const icon=document.getElementById('sec-icon').value.trim();
+  if(!name){alert('請輸入單元名稱');return;}
+  sections.push({id:Date.now()+'',name,icon:icon||'📁',items:[]});
+  saveLocal();closeModal('section-modal');
+  document.getElementById('sec-name').value='';document.getElementById('sec-icon').value='';
+  render();
+}
+function deleteSection(secId){
+  if(!confirm('確定要刪除這個單元及所有資料嗎？'))return;
+  sections=sections.filter(s=>s.id!==secId);saveLocal();render();
+}
+function openAddItem(secId){
+  currentSectionId=secId;
+  const sec=sections.find(s=>s.id===secId);
+  document.getElementById('item-modal-title').textContent=`＋ 新增資料到「${sec?.name||''}」`;
+  document.getElementById('item-modal').classList.add('open');
+  setTimeout(()=>document.getElementById('item-title').focus(),100);
+}
+function toggleItemInput(){
+  const type=document.getElementById('item-type').value;
+  document.getElementById('link-row').style.display=type==='link'?'block':'none';
+  document.getElementById('file-row').style.display=type==='file'?'block':'none';
+}
+function fileChosen(input){if(input.files[0])document.getElementById('file-hint').textContent='✓ '+input.files[0].name;}
+async function submitItem(){
+  const title=document.getElementById('item-title').value.trim();
+  const desc=document.getElementById('item-desc').value.trim();
+  const type=document.getElementById('item-type').value;
+  const url=document.getElementById('item-url').value.trim();
+  const fileInput=document.getElementById('item-file');
+  if(!title){alert('請輸入標題');return;}
+  let finalUrl=url;
+  if(type==='file'&&fileInput.files[0]&&window.firebase?.storage){
+    const btn=document.getElementById('item-submit-btn');
+    btn.textContent='上傳中…';btn.disabled=true;
+    try{
+      const storage=firebase.storage();
+      const ref=storage.ref(`resources/history/${Date.now()}_${fileInput.files[0].name}`);
+      await ref.put(fileInput.files[0]);finalUrl=await ref.getDownloadURL();
+    }catch(e){alert('檔案上傳失敗，請改用連結方式');btn.textContent='新增資料';btn.disabled=false;return;}
+    btn.textContent='新增資料';btn.disabled=false;
+  }
+  const sec=sections.find(s=>s.id===currentSectionId);if(!sec)return;
+  if(!sec.items)sec.items=[];
+  sec.items.push({id:Date.now()+'',title,desc,type,url:finalUrl,date:new Date().toLocaleDateString('zh-TW')});
+  saveLocal();closeModal('item-modal');
+  document.getElementById('item-title').value='';document.getElementById('item-desc').value='';
+  document.getElementById('item-url').value='';document.getElementById('file-hint').textContent='點擊選擇檔案';
+  fileInput.value='';render();
+}
+function deleteItem(secId,itemId){
+  if(!confirm('確定要刪除？'))return;
+  const sec=sections.find(s=>s.id===secId);if(sec)sec.items=sec.items.filter(i=>i.id!==itemId);
+  saveLocal();render();
+}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.modal-overlay').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');});});
+document.addEventListener('DOMContentLoaded',()=>{
+  isTeacher=sessionStorage.getItem('isTeacher')==='1';
+  if(isTeacher){document.getElementById('admin-bar').style.display='flex';document.body.classList.add('teacher-mode');updateTeacherUI(true);}
+  loadData();
+});
+</script>
+</body>
+</html>

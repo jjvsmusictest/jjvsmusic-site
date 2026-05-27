@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中國樂器概述 · 互動學習</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+
+:root{
+  --ink:#1C1008;
+  --rice:#FAF6EE;
+  --parch:#F0E8D4;
+  --red:#B5272B;
+  --darkred:#8A1A1E;
+  --gold:#C9920A;
+  --dkgold:#9A6F08;
+  --jade:#2A6B5A;
+  --indigo:#2D3A6B;
+  --shadow:rgba(0,0,0,0.18);
+  --brush:rgba(28,16,8,0.08);
+}
+
+body{
+  background:var(--rice);
+  background-image:
+    radial-gradient(ellipse at 0% 0%, rgba(181,39,43,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse at 100% 100%, rgba(201,146,10,0.05) 0%, transparent 55%),
+    repeating-linear-gradient(90deg, transparent 0, transparent 59px, var(--brush) 59px, var(--brush) 60px),
+    repeating-linear-gradient(0deg, transparent 0, transparent 59px, var(--brush) 59px, var(--brush) 60px);
+  font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;
+  color:var(--ink);
+  padding:16px;
+  min-height:100vh;
+  font-weight:500;
+  max-width:800px;
+  margin:0 auto;
+}
+
+/* ── HEADER ── */
+.hd{text-align:center;padding:22px 0 14px;margin-bottom:18px;position:relative}
+.hd::after{content:'';display:block;height:3px;
+  background:linear-gradient(90deg,transparent,var(--red),var(--gold),var(--red),transparent);
+  margin-top:14px;border-radius:2px}
+.hd-stamp{display:inline-block;background:var(--red);color:#fff;
+  font-family:'Noto Serif TC',serif;font-size:.68rem;font-weight:900;
+  padding:4px 14px;border-radius:0;border:2px solid var(--darkred);
+  box-shadow:3px 3px 0 var(--darkred);margin-bottom:10px;letter-spacing:.15em;
+  transform:rotate(-1deg)}
+h1{font-family:'Noto Serif TC',serif;font-size:2rem;font-weight:900;color:var(--ink);
+  line-height:1.25;letter-spacing:.05em}
+h1 span{color:var(--red)}
+.hd-sub{font-size:.75rem;color:#888;font-weight:600;letter-spacing:.1em;margin-top:6px}
+
+/* ── CATEGORY NAV ── */
+.cat-nav{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:20px}
+.cat-btn{padding:16px 10px;border-radius:4px;cursor:pointer;text-align:center;
+  background:var(--ec,#888);border:2.5px solid var(--ink);
+  box-shadow:4px 4px 0 var(--ink);transition:all .12s;color:#fff;
+  position:relative;overflow:hidden}
+.cat-btn::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.12) 0%,transparent 60%)}
+.cat-btn:nth-child(odd){transform:rotate(-.6deg)}
+.cat-btn:nth-child(even){transform:rotate(.6deg)}
+.cat-btn:hover{transform:translate(-2px,-3px) rotate(0)!important;box-shadow:6px 7px 0 var(--ink)}
+.cat-btn:active{transform:translate(3px,3px) rotate(0)!important;box-shadow:1px 1px 0 var(--ink)}
+.c-icon{font-size:2rem;margin-bottom:6px;filter:drop-shadow(2px 2px 0 rgba(0,0,0,.35))}
+.c-name{font-family:'Noto Serif TC',serif;font-weight:900;font-size:1rem;
+  text-shadow:2px 2px 0 rgba(0,0,0,.3);margin-bottom:3px}
+.c-sub{font-size:.64rem;background:rgba(0,0,0,.55);padding:2px 8px;
+  border-radius:2px;font-weight:700;display:inline-block}
+
+/* ── OVERVIEW CARD ── */
+.ov-card{background:#fff;border:2.5px solid var(--ink);border-radius:4px;padding:16px;
+  box-shadow:5px 5px 0 var(--ink);margin-bottom:18px;position:relative}
+.ov-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--red),var(--gold))}
+.ov-title{font-family:'Noto Serif TC',serif;font-weight:900;font-size:.95rem;
+  color:var(--red);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.ov-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--red),transparent)}
+.ov-2col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ov-box{background:var(--parch);border:1.5px solid rgba(0,0,0,.2);border-radius:3px;padding:10px 12px}
+.ov-h{font-weight:900;font-size:.78rem;color:var(--red);margin-bottom:6px;
+  font-family:'Noto Serif TC',serif}
+.ov-list{list-style:none;padding:0}
+.ov-list li{font-size:.74rem;line-height:1.75;color:#333;padding-left:12px;position:relative}
+.ov-list li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:.55rem;top:3px}
+
+/* ── QUICK TABLE ── */
+.qtable-wrap{overflow-x:auto;margin-top:10px}
+.qtable{width:100%;border-collapse:collapse;font-size:.72rem}
+.qtable th{background:var(--red);color:#fff;padding:7px 10px;
+  border:1.5px solid var(--darkred);font-weight:900;text-align:center;
+  font-family:'Noto Serif TC',serif;letter-spacing:.05em;white-space:nowrap}
+.qtable td{padding:6px 10px;border:1px solid rgba(0,0,0,.2);vertical-align:top;line-height:1.6}
+.qtable tr:nth-child(even) td{background:var(--parch)}
+.qtable tr:hover td{background:rgba(181,39,43,.06)}
+
+/* ── TOP BAR ── */
+.top-bar{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.back-btn{padding:7px 15px;border-radius:3px;cursor:pointer;font-size:.76rem;
+  background:#fff;border:2px solid var(--ink);color:var(--ink);
+  font-family:inherit;font-weight:800;box-shadow:3px 3px 0 var(--ink);transition:all .1s}
+.back-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.back-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.mode-badge{font-weight:900;font-size:.88rem;color:#fff;background:var(--red);
+  padding:5px 14px;border:2px solid var(--darkred);border-radius:3px;
+  box-shadow:3px 3px 0 var(--darkred);font-family:'Noto Serif TC',serif;
+  text-shadow:1px 1px 0 rgba(0,0,0,.4);letter-spacing:.04em}
+
+/* ── CATEGORY BANNER ── */
+.cat-banner{padding:16px;border-radius:4px;margin-bottom:14px;background:var(--ec);
+  border:2.5px solid var(--ink);color:#fff;box-shadow:6px 6px 0 var(--ink);
+  position:relative;overflow:hidden}
+.cat-banner::after{content:'';position:absolute;top:-30px;right:-30px;
+  width:120px;height:120px;border:3px solid rgba(255,255,255,.15);border-radius:50%}
+.cat-banner h2{font-family:'Noto Serif TC',serif;font-size:1.35rem;
+  font-weight:900;margin-bottom:4px;text-shadow:2px 2px 0 rgba(0,0,0,.3)}
+.cat-banner .c-tag{display:inline-block;background:rgba(0,0,0,.6);
+  padding:2px 10px;border-radius:2px;font-size:.7rem;font-weight:700;margin-bottom:8px}
+.cat-banner .c-intro{font-size:.8rem;line-height:1.7;font-weight:600;
+  background:rgba(0,0,0,.2);border-radius:4px;padding:8px 12px;margin-top:6px}
+
+/* ── MODE GRID ── */
+.mode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:10px;margin-bottom:14px}
+.mode-btn{padding:13px 8px;border-radius:3px;cursor:pointer;text-align:center;
+  background:#fff;border:2.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+  transition:all .12s;font-family:inherit}
+.mode-btn:hover{transform:translate(-1px,-2px);box-shadow:5px 6px 0 var(--ink)}
+.mode-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.m-icon{font-size:1.6rem;margin-bottom:5px}
+.m-label{font-weight:900;font-size:.85rem;color:var(--ink);margin-bottom:3px;font-family:'Noto Serif TC',serif}
+.m-desc{color:#888;font-size:.65rem;font-weight:600}
+
+/* ── INSTRUMENT SECTIONS ── */
+.inst-sec{background:#fff;border:2.5px solid var(--ink);border-radius:4px;
+  margin-bottom:12px;overflow:hidden;box-shadow:4px 4px 0 var(--ink)}
+.inst-hd{padding:10px 16px;font-weight:900;font-size:.88rem;color:#fff;
+  background:var(--ec,var(--red));font-family:'Noto Serif TC',serif;
+  text-shadow:1px 1px 0 rgba(0,0,0,.3);display:flex;align-items:center;gap:8px}
+.inst-body{padding:14px 16px}
+
+.inst-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;padding:12px}
+.inst-card{background:var(--parch);border:1.5px solid rgba(0,0,0,.2);
+  border-radius:3px;padding:10px 12px;cursor:pointer;transition:all .15s}
+.inst-card:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--ink);border-color:var(--red)}
+.ic-name{font-family:'Noto Serif TC',serif;font-weight:900;font-size:.92rem;
+  color:var(--red);margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.ic-tag{font-size:.6rem;background:var(--red);color:#fff;padding:1px 6px;border-radius:2px;font-weight:700}
+.ic-desc{font-size:.73rem;color:#555;line-height:1.65}
+
+/* ── INSTRUMENT DETAIL ── */
+.detail-box{background:var(--parch);border:1.5px solid rgba(0,0,0,.2);
+  border-radius:3px;padding:12px 14px;margin:10px 0;font-size:.8rem;line-height:1.8;color:#333}
+.detail-section{margin-bottom:10px}
+.detail-h{font-weight:900;color:var(--red);font-size:.82rem;
+  font-family:'Noto Serif TC',serif;margin-bottom:5px;
+  display:flex;align-items:center;gap:6px}
+.detail-h::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--red),transparent)}
+.works-table{width:100%;border-collapse:collapse;font-size:.74rem;margin-top:6px}
+.works-table th{background:var(--gold);color:#fff;padding:5px 9px;
+  border:1px solid var(--dkgold);font-weight:900;text-align:left}
+.works-table td{padding:5px 9px;border:1px solid rgba(0,0,0,.15);vertical-align:top;line-height:1.5}
+.works-table tr:nth-child(even) td{background:rgba(0,0,0,.04)}
+
+/* ── LISTEN ── */
+.listen-item{padding:10px 16px;border-bottom:1px solid rgba(0,0,0,.12);
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.listen-item:last-child{border-bottom:none}
+.li-info{flex:1;min-width:150px}
+.li-title{font-weight:900;font-size:.85rem;margin-bottom:2px;
+  font-family:'Noto Serif TC',serif;color:var(--ink)}
+.li-detail{font-size:.7rem;color:#777;line-height:1.5}
+.yt-btn{display:inline-flex;align-items:center;gap:5px;padding:6px 13px;
+  border-radius:3px;background:#c4302b;color:#fff;font-size:.7rem;font-weight:900;
+  text-decoration:none;border:2px solid #8a1a1e;box-shadow:3px 3px 0 #8a1a1e;
+  transition:all .1s;white-space:nowrap;flex-shrink:0;font-family:inherit}
+.yt-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #8a1a1e}
+
+/* ── REF ACCORDION ── */
+.ref-item{border-bottom:1px solid rgba(0,0,0,.12)}
+.ref-item:last-child{border-bottom:none}
+.ref-head{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;
+  transition:background .15s;border-radius:3px}
+.ref-head:hover{background:var(--parch)}
+.ref-av{width:36px;height:36px;border-radius:3px;display:flex;align-items:center;
+  justify-content:center;font-size:1rem;font-weight:900;color:#fff;
+  border:2px solid var(--ink);flex-shrink:0;font-family:'Noto Serif TC',serif}
+.ref-name{font-weight:900;font-size:.88rem;font-family:'Noto Serif TC',serif}
+.ref-sub{font-size:.68rem;color:#888;margin-top:1px}
+.ref-badge{padding:3px 10px;border-radius:2px;font-size:.64rem;font-weight:900;color:#fff;
+  margin-left:auto;border:1.5px solid rgba(0,0,0,.3);white-space:nowrap;flex-shrink:0}
+.ref-arr{font-size:.8rem;color:#aaa;flex-shrink:0}
+.ref-body{padding:0 14px 12px 56px}
+.ref-body li{font-size:.77rem;line-height:1.8;color:#333;list-style:none;
+  padding-left:14px;position:relative}
+.ref-body li::before{content:'♩';position:absolute;left:0;color:var(--gold);font-size:.7rem}
+
+/* ── QUIZ ── */
+.q-box{background:var(--parch);border:2.5px solid var(--ink);border-radius:4px;
+  padding:14px 17px;font-size:.88rem;color:var(--ink);line-height:1.75;
+  margin-bottom:14px;font-weight:600;box-shadow:3px 3px 0 var(--ink);
+  position:relative}
+.q-box::before{content:'問';position:absolute;top:-14px;left:14px;
+  background:var(--red);color:#fff;width:28px;height:28px;border:2px solid var(--darkred);
+  border-radius:3px;font-weight:900;font-size:.9rem;font-family:'Noto Serif TC',serif;
+  display:flex;align-items:center;justify-content:center;box-shadow:2px 2px 0 var(--darkred)}
+.tf-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tf-btn{padding:13px;border-radius:3px;border:2.5px solid var(--ink);background:#fff;
+  color:var(--ink);font-size:.95rem;cursor:pointer;font-family:inherit;font-weight:900;
+  transition:all .1s;box-shadow:4px 4px 0 var(--ink)}
+.tf-btn:hover:not(:disabled){transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+.tf-btn:active:not(:disabled){transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.tc{background:#2ED573!important;color:#fff!important;border-color:#1aA350!important}
+.tw{background:#E84040!important;color:#fff!important;border-color:#B52020!important}
+.mc-btn{display:flex;align-items:center;gap:10px;width:100%;padding:10px 13px;
+  border-radius:3px;margin-bottom:8px;border:2.5px solid var(--ink);background:#fff;
+  color:var(--ink);font-size:.83rem;cursor:pointer;font-family:inherit;text-align:left;
+  transition:all .1s;font-weight:700;box-shadow:3px 3px 0 var(--ink)}
+.mc-btn:hover:not(:disabled){transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.mc{background:#2ED573!important;color:#fff!important;border-color:#1aA350!important}
+.mw{background:#E84040!important;color:#fff!important;border-color:#B52020!important}
+.abadge{width:25px;height:25px;border-radius:3px;background:var(--gold);border:1.5px solid var(--dkgold);
+  display:inline-flex;align-items:center;justify-content:center;font-size:.76rem;
+  font-weight:900;flex-shrink:0;color:#fff;font-family:'Noto Serif TC',serif}
+.mc .abadge,.mw .abadge{background:rgba(255,255,255,.3);border-color:rgba(255,255,255,.4)}
+.explain{margin-top:12px;padding:13px 15px;border-radius:4px;font-size:.79rem;
+  line-height:1.65;font-weight:600;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.eo{background:#D6FFE6}.en{background:#FFE0E3}
+.eho,.ehn{font-weight:900;display:block;margin-bottom:5px;font-size:.88rem}
+.eho{color:#0F8C40}.ehn{color:#C8243A}
+.next-btn{margin-top:10px;padding:7px 20px;border-radius:3px;cursor:pointer;
+  background:var(--gold);border:2px solid var(--dkgold);color:#fff;font-size:.82rem;
+  font-family:inherit;font-weight:900;box-shadow:3px 3px 0 var(--dkgold);transition:all .1s;
+  text-shadow:1px 1px 0 rgba(0,0,0,.3);font-family:'Noto Serif TC',serif}
+.next-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--dkgold)}
+.next-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--dkgold)}
+.prog-bar{display:flex;gap:3px;margin-bottom:12px;background:#fff;padding:5px;
+  border:2px solid var(--ink);border-radius:3px;box-shadow:3px 3px 0 var(--ink)}
+.prog-seg{flex:1;height:8px;border-radius:2px;background:#ddd;border:1px solid rgba(0,0,0,.15);transition:background .3s}
+.pd{background:#2ED573!important}.pc{background:var(--gold)!important}
+.stat-row{display:flex;justify-content:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.chip{background:#fff;border:2px solid var(--ink);border-radius:3px;padding:4px 12px;
+  font-size:.76rem;color:var(--ink);font-weight:800;box-shadow:2px 2px 0 var(--ink)}
+.chip strong{color:var(--red)}
+
+/* ── MATCH GAME ── */
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.match-hdr{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;
+  text-align:center;font-size:.76rem;font-weight:900;color:#fff}
+.match-hdr div{background:var(--jade);border:1.5px solid var(--ink);border-radius:3px;
+  padding:5px;box-shadow:2px 2px 0 var(--ink);font-family:'Noto Serif TC',serif}
+.mi{padding:9px;border-radius:3px;border:2px solid var(--ink);background:#fff;
+  cursor:pointer;font-size:.76rem;font-weight:700;text-align:center;transition:all .15s;
+  box-shadow:3px 3px 0 var(--ink);line-height:1.4;min-height:42px;
+  display:flex;align-items:center;justify-content:center}
+.mi:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.mi-s{background:var(--gold)!important;color:#fff!important;text-shadow:1px 1px 0 rgba(0,0,0,.3)}
+.mi-m{background:#2ED573!important;color:#fff!important;cursor:default;box-shadow:none;transform:none}
+.mi-w{background:#E84040!important;color:#fff!important}
+.done-msg{text-align:center;padding:14px;font-weight:900;font-size:.95rem;color:var(--jade);
+  background:#D6FFE6;border:2px solid var(--ink);border-radius:3px;margin-top:10px;
+  font-family:'Noto Serif TC',serif}
+
+/* ── RESULT ── */
+.card{background:#fff;border:2.5px solid var(--ink);border-radius:4px;padding:14px;
+  box-shadow:4px 4px 0 var(--ink)}
+.result-box{text-align:center;padding:20px}
+.ri{font-size:3.5rem;margin-bottom:8px}
+.rs{font-family:'Noto Serif TC',serif;font-size:1.4rem;font-weight:900;margin-bottom:4px}
+.rsc{font-size:1rem;font-weight:700;color:var(--red);margin-bottom:4px}
+.rp{font-size:.82rem;color:#888;font-weight:600}
+
+/* ── TIP ── */
+.tip{background:#fff;border:2.5px solid var(--ink);border-radius:4px;padding:14px 18px;
+  font-size:.79rem;color:var(--ink);line-height:1.75;font-weight:600;
+  box-shadow:4px 4px 0 var(--ink);margin-top:10px;position:relative}
+.tip::before{content:"📜 學習提示";position:absolute;top:-13px;left:18px;
+  background:var(--gold);color:#fff;padding:2px 12px;border:2px solid var(--dkgold);
+  border-radius:2px;font-size:.7rem;font-weight:900;text-shadow:1px 1px 0 rgba(0,0,0,.3);
+  font-family:'Noto Serif TC',serif}
+
+.scroll-top{position:fixed;bottom:20px;right:20px;background:var(--red);color:#fff;
+  border:2px solid var(--darkred);border-radius:3px;width:42px;height:42px;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  font-size:1.1rem;box-shadow:3px 3px 0 var(--darkred);transition:all .1s;z-index:100;
+  font-family:'Noto Serif TC',serif;font-weight:900}
+.scroll-top:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--darkred)}
+
+@media(max-width:500px){
+  h1{font-size:1.55rem}
+  .cat-nav{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
+  .ov-2col{grid-template-columns:1fr}
+}
+</style>
+
+<link rel="stylesheet" href="../assets/css/shared.css">
+<style>
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="../index.html" class="nav-logo"><span>🎵</span>莊敬音樂科</a>
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link home">首頁</a>
+    <a href="index.html" class="nav-link active-h">音樂史</a>
+    <a href="../theory/index.html" class="nav-link">樂理</a>
+    <a href="teacher-resources.html" class="nav-link">教師資源</a>
+  </div>
+
+  <div id="nav-auth" style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+    <button id="login-btn" onclick="teacherLogin()" style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;border:1.5px solid var(--border,rgba(0,0,0,.12));background:#fff;cursor:pointer;font-size:.78rem;font-weight:700;font-family:inherit;">👤 教師登入</button>
+    <div id="user-info" style="display:none;align-items:center;gap:8px;">
+      <span style="font-size:.78rem;font-weight:700;">👋 <span id="user-name"></span></span>
+      <button onclick="teacherLogout()" style="padding:4px 10px;border-radius:12px;border:1.5px solid rgba(0,0,0,.12);background:transparent;cursor:pointer;font-size:.7rem;font-family:inherit;">登出</button>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumb" style="padding:8px 16px;font-size:.76rem;color:#888;display:flex;gap:5px;align-items:center;"><a href="../index.html" style="color:#666;text-decoration:none;">首頁</a><span>/</span><a href="index.html" style="color:#666;text-decoration:none;">音樂史</a><span>/</span>中國樂器概論</span></div>
+<div id="app"></div>
+<div class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+<script>
+// ================================================================
+//  DATA
+// ================================================================
+const CATS = [
+  {
+    id:'chuiq', name:'吹管樂器', icon:'🎶', color:'#2D3A6B',
+    tag:'吹奏類',
+    intro:'吹管樂器多為木管家族，分為有簧與無簧兩類。包括笛、簫、管、笙、嗩吶等，音色各異，從明亮高亢到柔和幽深，是中國傳統音樂的重要組成。',
+    instruments:[
+      {
+        name:'梆笛', alias:'', tag:'有膜孔',
+        desc:'音色高亢、遼闊而明亮，相傳中國至元代因戲曲之盛行，以梆笛為伴奏樂器的屬北方梆子戲曲，故稱「梆笛」。笛身由一根竹管做成，裡面去節中空成內腔。現今常用 G 調梆笛，音域為 d²—e⁴。',
+        tuning:'G調，音域 d²—e⁴',
+        features:['在吹孔上端管內有笛塞（軟質木材製成）','膜孔在左端第二孔，用來貼笛膜（蘆葦膜製成）','經過氣流振動後發出清脆響亮的聲音'],
+        works:[{c:'董榕森',w:'陽明春曉'},{c:'馬水龍',w:'梆笛協奏曲'},{c:'劉管樂',w:'蔭中鳥'}],
+        listen:[{t:'馬水龍 梆笛協奏曲',d:'台灣作曲家馬水龍結合梆笛與管弦樂的傑作',q:'馬水龍 梆笛協奏曲'},{t:'梆笛 陽明春曉',d:'董榕森作曲，描寫陽明山春日清晨景色',q:'梆笛 陽明春曉 董榕森'},{t:'劉管樂 蔭中鳥',d:'以梆笛模擬鳥鳴的炫技名曲',q:'梆笛 蔭中鳥'}]
+      },
+      {
+        name:'曲笛', alias:'中笛、市笛、蘇笛', tag:'江南絲竹',
+        desc:'現因其音域而稱「中笛」，在古代又稱為「市笛」或「扎線笛」，因盛產於蘇州，又有「蘇笛」之稱。此種笛子較梆笛長且粗，廣泛流行在南方地區，長音寬廣、柔和。曲笛是江南絲竹樂與崑曲的最主要樂器之一。現今常用的曲笛為 D 調笛，其音域從 a¹—b³。',
+        tuning:'D調，音域 a¹—b³',
+        features:['較梆笛長且粗','構造、吹奏姿勢及技巧與梆笛完全相同','外觀像放大後的梆笛','崑曲伴奏樂器之一（另有簫、笙、三絃、琵琶、阮、箏、鼓、板、鑼等）'],
+        works:[{c:'陸春齡',w:'鷓鴣飛（改編自湖南民謠）'}],
+        listen:[{t:'陸春齡 鷓鴣飛',d:'曲笛名曲，改編自湖南民謠，旋律婉轉悠揚',q:'陸春齡 鷓鴣飛 曲笛'},{t:'江南絲竹 歡樂歌',d:'江南絲竹合奏，曲笛為主奏樂器',q:'江南絲竹 歡樂歌'}]
+      },
+      {
+        name:'洞簫', alias:'尺八、簫', tag:'直吹·古老',
+        desc:'亦名尺八，是流傳自中國的古老樂器，尺八為一尺八寸（約 54.5 公分）。簫和笛最大的不同在於最上的一孔是在管身後面，而且是直吹。沒有膜孔，吸孔和普孔的距離比笛子長。音域為 d¹—e³，音量較小，音色柔和，甘美而幽雅。',
+        tuning:'音域 d¹—e³',
+        features:['直吹，吹口在上端邊緣成 V 形或 U 形','沒有膜孔（無笛膜）','管身有六個普孔和兩個底孔（前五孔、後一孔）','音量較小，音色柔和幽雅','大陸為紫竹製，臺灣以箭竹為材料（九節箭為標準）'],
+        works:[],
+        listen:[{t:'洞簫 梅花三弄',d:'洞簫演奏古琴名曲梅花三弄，清靜悠遠',q:'洞簫 梅花三弄'},{t:'洞簫獨奏 相思',d:'洞簫音色柔和幽雅的代表演奏',q:'洞簫 獨奏'}]
+      },
+      {
+        name:'排簫', alias:'', tag:'多管組合',
+        desc:'由長短不一的竹製律管組成，每一管一音，最少的 3 管，一般為 16 管，最大的有 24 管，音域大致上由 a2 至 g3 左右。1956 年 8 月，全國第一屆音樂週在北京舉行時，確定以排簫的圖案作為「樂徽」，用以代表我國悠久的文化和豐富多彩的民族音樂藝術。',
+        tuning:'音域 a2—g3',
+        features:['由不同距離的孔產生不同音高','排簫從 4 孔增至 6 孔，變成了現今單管數孔簫','1956年確定為中國「樂徽」（國家音樂標誌）'],
+        works:[],
+        listen:[{t:'排簫 鳳凰展翅',d:'排簫清亮純淨的音色演奏',q:'排簫 演奏'},{t:'排簫古典音樂',d:'排簫演奏中國古典名曲',q:'排簫 古典'}]
+      },
+      {
+        name:'笙', alias:'', tag:'和聲·特殊',
+        desc:'屬於我國古代匏類樂器。匏，是植物葫蘆、椰子等之乾殼，用來作樂器的共鳴箱。笙是中國傳統吹奏樂器中，唯一以表現和聲為特長的樂器。傳統式的和聲固定吹奏法（四、五、八度）配合曲調演奏，相當靈活。音域為 a1—d3。',
+        tuning:'音域 a1—d3',
+        features:['唯一以表現和聲為特長的吹奏樂器','傳統和聲固定吹奏法：四、五、八度','近代改良的 21 簧笙更適合複雜的樂曲','「竽」是古代類似笙的樂器，有三十六管，戰國時齊宣王特別喜愛竽'],
+        works:[],
+        listen:[{t:'笙 鳳凰展翅',d:'笙演奏代表曲目，展示和聲特色',q:'笙 鳳凰展翅'},{t:'笙 獨奏',d:'笙的獨特和聲音色展示',q:'笙 獨奏 中國'}]
+      },
+      {
+        name:'嗩吶', alias:'瑣吶、琐奈、蘇爾奈', tag:'雙簧·高亢',
+        desc:'又稱瑣吶、琐奈、蘇爾奈。至今已有四五百年的歷史，原來是波斯、阿拉伯一帶的樂器。金元時傳入我國，明朝正德年間（1506 年~1521 年）普遍流傳於我國各地。它的發音器與西方樂器的雙簧管同源，音域從 b1 到 b3，古代多用於鼓吹軍樂。',
+        tuning:'音域 b1—b3',
+        features:['原為波斯、阿拉伯樂器，金元時傳入中國','發音器與西方雙簧管同源','古代多用於鼓吹軍樂','今日民間的禮喪喜慶、迎神祭祀與地方戲曲有著重要的地位'],
+        works:[{c:'佚名',w:'百鳥朝鳳'}],
+        listen:[{t:'嗩吶 百鳥朝鳳',d:'嗩吶名曲，以嗩吶模擬百鳥鳴叫，技巧高超',q:'嗩吶 百鳥朝鳳'},{t:'嗩吶 喜慶演奏',d:'嗩吶在喜慶場合的高亢音色',q:'嗩吶 喜慶'}]
+      },
+      {
+        name:'巴烏', alias:'', tag:'簧振類',
+        desc:'是一種氣鳴樂器簧振類，民間流傳的巴烏是在一根竹管上開八個音孔（前七後一），在吹口處裝一銅質簧片，其音色優雅、柔和動聽，具有濃厚的音響特色，但音域狹窄。改革後的巴烏由原始八個音孔發九個音擴大到十二個音孔發十五個音，即兩個完整的八度，音域在 b 到 e2 之間。',
+        tuning:'音域 b—e²',
+        features:['吹口處裝銅質簧片','音色優雅柔和，但原始音域狹窄','改革後擴展至兩個完整八度','管壁上增加了四個開管鍵子，簧片吹口處加上嘴托'],
+        works:[],
+        listen:[{t:'巴烏 月光下的鳳尾竹',d:'傣族民謠改編，巴烏柔和音色的代表曲目',q:'巴烏 月光下的鳳尾竹'},{t:'巴烏獨奏',d:'巴烏的典雅柔和音色',q:'巴烏 獨奏'}]
+      },
+      {
+        name:'塤', alias:'壎', tag:'最古老旋律樂器',
+        desc:'「據傳為伏義氏所創，為最古老的旋律樂器，目前發現最為古老的塤距今已有 7000 餘年。」狀如桃子，前四孔、後四孔，頂端一吹孔，可奏一全音階。最初只有一個吹口、數個音孔，而後慢慢增加演變為八孔塤、十孔塤和半音塤。',
+        tuning:'可奏一全音階',
+        features:['狀如桃子，頂端一吹孔','前四孔、後四孔','最古老旋律樂器，距今7000餘年','在古代主要用於宮廷雅樂','現代國樂團中也偶而見之'],
+        works:[],
+        listen:[{t:'塤的古樸音色',d:'中國最古老的樂器之一，音色深沉神秘',q:'塤 演奏 古樂器'},{t:'塤 古風音樂',d:'塤演奏古代雅樂',q:'塤 古風 獨奏'}]
+      },
+    ],
+    TF:[
+      {q:'梆笛現今常用 G 調，音域為 d²—e⁴。',ans:true,e:'正確。現今常用 G 調梆笛，音域為 d²—e⁴。'},
+      {q:'曲笛是以梆笛為外觀放大後的樂器，是江南絲竹的主要樂器之一。',ans:true,e:'正確。曲笛外觀像放大後的梆笛，是江南絲竹樂與崑曲的最主要樂器之一。'},
+      {q:'洞簫有膜孔，吹奏後發出清脆的聲音。',ans:false,e:'錯誤。洞簫沒有膜孔（無笛膜），音量較小，音色柔和，甘美而幽雅。'},
+      {q:'笙是中國傳統吹奏樂器中，唯一以表現和聲為特長的樂器。',ans:true,e:'正確。笙是中國傳統吹奏樂器中，唯一以表現和聲為特長的樂器，傳統和聲固定吹奏法為四、五、八度。'},
+      {q:'嗩吶是純粹的中國本土樂器，自古有之。',ans:false,e:'錯誤。嗩吶原來是波斯、阿拉伯一帶的樂器，金元時傳入中國，明朝正德年間才普遍流傳。'},
+      {q:'1956年以排簫圖案作為中國「樂徽」。',ans:true,e:'正確。1956年全國第一屆音樂週確定以排簫的圖案作為「樂徽」，代表中國悠久的民族音樂藝術。'},
+      {q:'曲笛也稱「蘇笛」，因盛產於蘇州而得名。',ans:true,e:'正確。曲笛因盛產於蘇州之故，又有「蘇笛」之稱。'},
+      {q:'嗩吶的發音器與西方樂器的單簧管同源。',ans:false,e:'錯誤。嗩吶的發音器與西方樂器的「雙簧管」同源，不是單簧管。'},
+    ],
+    MC:[
+      {q:'梆笛笛身上的「笛膜」貼在哪個孔？',opts:['吹孔','第一個普孔','左端第二孔（膜孔）','最後一個普孔'],ans:2,e:'梆笛的膜孔在左端第二孔，主要用來貼笛膜（蘆葦膜製成），氣流振動後發出清脆響亮的聲音。'},
+      {q:'下列哪首樂曲是馬水龍為梆笛創作的協奏曲？',opts:['陽明春曉','梆笛協奏曲','鷓鴣飛','蔭中鳥'],ans:1,e:'馬水龍的「梆笛協奏曲」是臺灣最著名的梆笛協奏曲之一，結合梆笛與管弦樂。'},
+      {q:'笙的和聲固定吹奏法中，使用哪些音程？',opts:['二度、三度、六度','三度、六度、七度','四度、五度、八度','二度、四度、七度'],ans:2,e:'笙的傳統和聲固定吹奏法是四、五、八度配合曲調演奏，相當靈活。'},
+      {q:'「竽」是古代類似什麼樂器的樂器？',opts:['笛','嗩吶','笙','塤'],ans:2,e:'竽是古代類似笙的樂器，有三十六管，戰國時齊宣王特別喜愛竽。'},
+      {q:'嗩吶傳入中國的朝代是？',opts:['秦朝','漢朝','唐朝','元朝'],ans:3,e:'嗩吶金元時傳入中國，明朝正德年間（1506年~1521年）普遍流傳於各地。'},
+    ],
+    MATCH:[{l:'梆笛',r:'G調，d²—e⁴'},{l:'曲笛',r:'D調，a¹—b³，江南絲竹'},{l:'洞簫',r:'直吹，無膜孔'},{l:'笙',r:'唯一和聲吹奏樂器'},{l:'嗩吶',r:'百鳥朝鳳，雙簧管同源'},{l:'排簫',r:'中國樂徽圖案'}],
+  },
+
+  {
+    id:'tanq', name:'彈絃樂器', icon:'🎵', color:'#8A1A1E',
+    tag:'彈撥類',
+    intro:'彈（撥）絃樂器又可分為橫彈、豎彈與攀絃三類，包括琵琶、古琴、箏、阮、三絃、揚琴、箜篌等，是中國傳統音樂中最富表現力的一類樂器。',
+    instruments:[
+      {
+        name:'古琴', alias:'七絃琴、琴', tag:'絲絃·文人',
+        desc:'絲絃樂器，定絃音由高至低為 d、c、A、G、F、D、C。古琴原稱為「琴」，是很古老的樂器，為區別其他的琴所以加上了個古字。古琴原只有五條絃，在周朝時增加為七條絃，所以又叫做「七絃琴」。古琴本體是用兩塊長方形的木板鑲合起來，構成一個大共鳴體。琴面上有十三個用螺鈕做成小圓點的「琴徽」，是用來標記琴的音位。音域寬廣，達四個多八度。',
+        tuning:'定絃 d c A G F D C（由高至低）',
+        features:['原只有五條絃，周朝增為七條絃（七絃琴）','琴面上有十三個「琴徽」標記音位','可以調音的小軸稱為「軫」','【俗字譜/旁譜】是特殊減字譜','音域寬廣，達四個多八度'],
+        works:[{c:'丘明',w:'幽蘭（最早文字譜，南朝丘明確石調幽蘭譜）'},{c:'蔡邕',w:'琴賦'},{c:'蔡文姬',w:'胡笳十八拍'},{c:'佚名',w:'廣陵散（南北朝，由嵇康演奏而知名）'},{c:'佚名',w:'鳳求凰（琴歌）'},{c:'佚名',w:'流水'},{c:'佚名',w:'關山月'},{c:'阮籍',w:'酒狂'},{c:'佚名',w:'梅花三弄'},{c:'佚名',w:'陽關三疊'},{c:'郭沔',w:'瀟湘水雲'},{c:'佚名',w:'古風操'}],
+        listen:[{t:'古琴 廣陵散',d:'嵇康代表曲，古琴十大名曲之一，磅礴大氣',q:'古琴 廣陵散'},{t:'古琴 流水',d:'古琴名曲，曾搭載旅行者號太空船送入太空',q:'古琴 流水'},{t:'古琴 梅花三弄',d:'古琴十大名曲之一，清雅高潔',q:'古琴 梅花三弄'},{t:'古琴 陽關三疊',d:'根據王維詩篇改編，送別之情',q:'古琴 陽關三疊'}]
+      },
+      {
+        name:'古箏', alias:'秦箏、小琵', tag:'民間最廣',
+        desc:'又名「小琵」，因春秋戰國時流行於秦國一帶，故又稱「秦箏」。定絃一般以 D 為最低音，其它絃按五聲音階的順序依次向上排列定絃。古箏的箏體是用梧桐木挖鑿成長方形音箱，面板呈弧形。上張有數目不一的絃（漢晉以前設 12 條絃，唐以後增至 13 條絃，明清時增至 15、16 條絃）。臺灣的專業國樂團使用的箏，則為 21、26 絃箏為主。現今已有 32 絃，至今仍為日本雅樂的重要樂器。',
+        tuning:'最低音D，五聲音階定絃',
+        features:['漢晉以前12絃，唐增為13絃，明清15-16絃','臺灣專業國樂團用21、26絃箏','現已發展至32絃','由「雁柱」依長短位置撐起','至今仍為日本雅樂的重要樂器'],
+        works:[{c:'佚名',w:'漁舟晚唱'},{c:'佚名',w:'寒鴨戲水'},{c:'佚名',w:'高山流水'},{c:'梁在平',w:'銀河'}],
+        listen:[{t:'古箏 漁舟晚唱',d:'古箏最著名的曲目之一，描繪傍晚漁舟歸來的景色',q:'古箏 漁舟晚唱'},{t:'古箏 高山流水',d:'古箏名曲，描繪高山與流水之境界',q:'古箏 高山流水'},{t:'古箏 寒鴨戲水',d:'潮州箏曲，描繪鴨子在水中嬉戲',q:'古箏 寒鴨戲水'}]
+      },
+      {
+        name:'琵琶', alias:'', tag:'彈撥·四絃',
+        desc:'定絃音由高至低為 a（子絃）、d（中絃）、e（老絃）、A（纏絃）。「琵」是右手向前彈、「琶」是右手向後彈。一直到唐代，琵琶二字多為彈撥樂器的總稱，直到宋朝，琵琶才專指有梨形音箱的曲頸琵琶。現代琵琶：半梨形音箱，共六相二十五品，十二個半音皆備，可轉十二個調。',
+        tuning:'定絃 a d e A（由高至低）',
+        features:['半梨形音箱，薄桐木板矇面','琴頸向後彎曲','四絃按四、五度關係定音','六相二十五品，可轉十二個調','「相」用象牙、牛角或紅木製作，「品」為竹製'],
+        works:[{c:'佚名',w:'十面埋伏（又名淮陰平楚）'},{c:'佚名',w:'陽春白雪'},{c:'佚名',w:'夕陽蕭鼓'},{c:'佚名',w:'長沙女引（敦煌琵琶曲第二十首）'},{c:'佚名',w:'春江花月夜'},{c:'佚名',w:'粧臺秋思'},{c:'佚名',w:'將軍令'}],
+        listen:[{t:'琵琶 十面埋伏',d:'琵琶最著名的武曲，描繪楚漢之戰的激烈場面',q:'琵琶 十面埋伏'},{t:'琵琶 春江花月夜',d:'琵琶文曲名作，描繪江南春夜美景',q:'琵琶 春江花月夜'},{t:'琵琶 陽春白雪',d:'琵琶文曲之冠，優美高雅',q:'琵琶 陽春白雪'}]
+      },
+      {
+        name:'阮', alias:'阮咸', tag:'彈絃·四絃',
+        desc:'「阮」是阮咸的簡稱，相傳是晉人阮咸所造。是四絃十二柱位的彈絃樂器。改良的阮咸大小不同，分為三種：大阮、中阮、小阮。中阮發音柔和，大阮發音柔和而低厚，目前樂團常用的是大阮和中阮。',
+        tuning:'小阮 e² a¹ d¹ g；中阮 e¹ a d G；大阮 a d G C',
+        features:['相傳晉人阮咸所造','琴頭是裝飾之用，琴頸上黏有紙皮','音品按十二平均律裝置','大阮發音低厚，中阮柔和','目前樂團常用大阮和中阮'],
+        works:[],
+        listen:[{t:'中阮獨奏 彝族舞曲',d:'阮的柔和音色展示，改編自彝族民間音樂',q:'中阮 彝族舞曲'},{t:'大阮獨奏',d:'大阮低厚音色的代表演奏',q:'大阮 獨奏'}]
+      },
+      {
+        name:'三絃', alias:'絃子', tag:'戲曲說唱',
+        desc:'由定絃音由高至低為 g、d、G。前身是秦朝的絃鼗，是我國傳統戲曲說唱中的重要樂器，直到元朝才有三絃之名。又稱「絃子」。鼓框橢圓形，兩面蒙蟒皮。三軸，分別張子絃、二絃、老絃。音域約三個八度。三絃的音色非常清脆而獨特，是中國傳統戲曲、說唱音樂及合奏音樂中的重要樂器。',
+        tuning:'定絃 g d G（由高至低）',
+        features:['前身是秦朝的絃鼗','元朝才有三絃之名','鼓框橢圓形，兩面蒙蟒皮','清小說《老殘遊記》描寫黑妞白妞演唱就用三絃','在說唱音樂和各種地方戲曲裡靠三絃挑大樑'],
+        works:[{c:'佚名',w:'十八板'},{c:'佚名',w:'大浪淘沙（原為琵琶曲，後改編為三絃獨奏）'}],
+        listen:[{t:'三絃 大浪淘沙',d:'原為琵琶曲，後改編為三絃獨奏，音色清脆獨特',q:'三絃 大浪淘沙'},{t:'三絃 說唱音樂',d:'三絃在說唱音樂中的運用',q:'三絃 說唱伴奏'}]
+      },
+      {
+        name:'揚琴', alias:'洋琴、蝴蝶琴', tag:'擊絃·竹槌',
+        desc:'又名「洋琴」、「蝴蝶琴」，是中國民族傳統音樂中，運用相當廣泛的樂器，相傳揚琴的前身是波斯（今伊朗）、阿拉伯一帶流傳的古樂器。於明末傳入中國。揚琴屬於音位固定的樂器，透過左方的琴馬將兩邊絃音分隔成相隔五度的音程，以竹製的小槌敲擊琴絃，音色清脆響亮。一般常用的揚琴多半只有十行，每一行設四根絃。',
+        tuning:'左右音位相差五度',
+        features:['又名洋琴、蝴蝶琴','前身為波斯、阿拉伯古樂器，明末傳入中國','以竹製小槌敲擊琴絃','左方琴馬將兩邊絃音分隔成相隔五度','民國二十四年，中央廣播電臺首度將揚琴納入國樂團','近年揚琴已增加到十四行'],
+        works:[{c:'佚名',w:'龍船'},{c:'佚名',w:'邊塞之歌'}],
+        listen:[{t:'揚琴獨奏 林沖夜奔',d:'揚琴名曲，描繪梁山好漢林沖夜晚出逃',q:'揚琴 林沖夜奔'},{t:'揚琴 龍船',d:'揚琴傳統名曲',q:'揚琴 龍船'}]
+      },
+    ],
+    TF:[
+      {q:'古琴原只有五條絃，在周朝時增加為七條絃，又叫做「七絃琴」。',ans:true,e:'正確。古琴原只有五條絃，在周朝時增加為七條絃，所以又叫做「七絃琴」。'},
+      {q:'古箏在唐代有12條絃，明清時增至21條。',ans:false,e:'錯誤。古箏漢晉以前設12條絃，唐以後增至13條絃，明清時增至15、16條絃。現代臺灣專業國樂團使用21或26絃箏。'},
+      {q:'琵琶「琵」是右手向後彈，「琶」是右手向前彈。',ans:false,e:'錯誤。「琵」是右手向前彈、「琶」是右手向後彈，方向正好相反。'},
+      {q:'嵇康是以演奏「廣陵散」而知名的古琴演奏家。',ans:true,e:'正確。廣陵散（南北朝）由嵇康演奏而知名，是古琴十大名曲之一。'},
+      {q:'揚琴的前身是波斯、阿拉伯一帶的古樂器，明末傳入中國。',ans:true,e:'正確。揚琴相傳前身是波斯（今伊朗）、阿拉伯一帶的古樂器，於明末傳入中國。'},
+      {q:'三絃在元朝才有三絃之名，前身是秦朝的絃鼗。',ans:true,e:'正確。三絃前身是秦朝的絃鼗，直到元朝才有三絃之名，又稱「絃子」。'},
+    ],
+    MC:[
+      {q:'古琴琴面上有幾個「琴徽」用來標記音位？',opts:['七個','十個','十三個','十六個'],ans:2,e:'古琴琴面上有十三個用螺鈕做成小圓點的「琴徽」，是用來標記琴的音位。'},
+      {q:'古箏的箏體主要用什麼木材挖鑿製成？',opts:['楓木','梧桐木','紫檀木','松木'],ans:1,e:'古箏的箏體是用梧桐木挖鑿成長方形音箱，面板呈弧形。'},
+      {q:'琵琶現代形制共有幾相幾品？',opts:['四相十品','六相二十品','六相二十五品','五相二十品'],ans:2,e:'現代琵琶共六相二十五品，十二個半音皆備，可轉十二個調。'},
+      {q:'阮咸相傳是哪個朝代的人所創造？',opts:['漢代','魏晉','唐代','宋代'],ans:1,e:'阮是阮咸的簡稱，相傳是晉人阮咸所造。'},
+      {q:'揚琴透過哪個裝置將兩邊絃音分隔成相隔五度的音程？',opts:['琴軫','琴馬','琴徽','雁柱'],ans:1,e:'揚琴透過左方的「琴馬」將兩邊絃音分隔成相隔五度的音程。'},
+    ],
+    MATCH:[{l:'古琴',r:'七絃，廣陵散'},{l:'古箏',r:'秦箏，21-26絃'},{l:'琵琶',r:'十面埋伏'},{l:'揚琴',r:'洋琴，竹槌敲擊'},{l:'三絃',r:'兩面蒙蟒皮，說唱'},{l:'阮咸',r:'晉人所造，大中小三種'}],
+  },
+
+  {
+    id:'laq', name:'拉絃樂器', icon:'🎻', color:'#2A6B5A',
+    tag:'擦絃類',
+    intro:'拉絃樂器（擦絃）是使用弓毛拉奏的絃鳴樂器，此類樂器擅長演奏旋律性強的音樂，與其他樂器的相容性強，使用相當廣泛。包括京胡、二胡、板胡、椰胡、革胡、馬頭琴等。',
+    instruments:[
+      {
+        name:'二胡', alias:'南胡、胡琴、嗡子、嗡子', tag:'最具代表',
+        desc:'宋代稱為「奚琴」，廣泛地流傳在長城內外，大江南北，以至珠江流域。二胡在現代國樂團裡的角色，相當於交響樂團裡的小提琴。自從劉天華先生改革二胡，統一二胡內外定絃音為 d¹、a¹，又寫了十大名曲之後，二胡逐漸成為獨奏樂器而登上舞臺。',
+        tuning:'定絃 d¹（外絃）a¹（內絃）',
+        features:['宋代稱「奚琴」','我國流傳最廣、最具代表性的拉絃樂器','劉天華統一定絃為 d¹、a¹，寫了十大名曲','現代國樂團中相當於交響樂團的小提琴','北方稱為「南胡」'],
+        works:[{c:'佚名',w:'二泉映月（中國盲人音樂家阿炳的成名曲）'},{c:'劉天華',w:'良宵'},{c:'劉天華',w:'空山鳥語'},{c:'劉天華',w:'光明行'},{c:'劉天華',w:'病中吟'},{c:'劉天華',w:'燭影搖紅'},{c:'劉天華',w:'苦悶之軀'},{c:'劉天華',w:'月夜'},{c:'劉天華',w:'悲歌'},{c:'劉天華',w:'閒居吟'},{c:'劉天華',w:'獨絃操'}],
+        listen:[{t:'阿炳 二泉映月',d:'中國最著名的二胡名曲，盲人音樂家阿炳的代表作，悲愴深沉',q:'二胡 二泉映月 阿炳'},{t:'劉天華 光明行',d:'二胡十大名曲之一，積極向上的旋律',q:'劉天華 光明行 二胡'},{t:'劉天華 空山鳥語',d:'二胡十大名曲，模仿鳥鳴的技巧',q:'劉天華 空山鳥語'}]
+      },
+      {
+        name:'京胡', alias:'', tag:'京戲主角',
+        desc:'內外定絃音 g1、d2。是京戲主要的伴奏樂器，在胡琴的基礎上改制而成，但形制要小的多。乾隆嘉慶年間，曾把京胡從戲曲中廢除，一直到晚清由於李四、樊三著名琴師出現，京胡再次崛起替代了笛子，成為京戲主要的伴奏樂器。',
+        tuning:'定絃 g¹（外絃）d²（內絃）',
+        features:['京戲主要伴奏樂器','在胡琴基礎上改制，形制較小','乾隆嘉慶年間曾廢除，後因李四、樊三名師再次崛起'],
+        works:[],
+        listen:[{t:'京胡演奏 西皮',d:'京胡是京戲的靈魂，西皮是京戲的重要唱腔',q:'京胡 西皮 京劇'},{t:'京劇 二黃慢板',d:'京胡伴奏的傳統京劇演唱',q:'京胡 二黃 京劇'}]
+      },
+      {
+        name:'高胡', alias:'粵胡', tag:'廣東音樂',
+        desc:'內外定絃音 g1、d2。為高音二胡的簡稱，即廣東音樂中的粵胡。民初時根據二胡改革而成，其常用定絃比二胡高一個完全四度，音色明亮清澈，是一件優異的獨奏樂器。',
+        tuning:'定絃比二胡高一個完全四度',
+        features:['又稱粵胡，廣東音樂代表樂器','音色明亮清澈，比二胡高四度'],
+        works:[{c:'佚名',w:'雙聲恨'}],
+        listen:[{t:'高胡 雙聲恨',d:'高胡代表名曲，廣東音樂精髓',q:'高胡 雙聲恨'},{t:'廣東音樂 雨打芭蕉',d:'廣東音樂名曲，高胡領奏',q:'高胡 廣東音樂 雨打芭蕉'}]
+      },
+      {
+        name:'板胡', alias:'梆胡、秦胡', tag:'戲曲伴奏',
+        desc:'又稱梆胡、秦胡。板胡大致和南胡相同，只是琴筒不蒙蟒皮而改以薄木板代替，因而得名。內外定絃音 d2、a2，音色明亮、高吭豪放。',
+        tuning:'定絃 d²（外）a²（內）',
+        features:['琴筒以薄木板代替蟒皮','音色明亮、高吭豪放','常用於戲曲伴奏'],
+        works:[{c:'佚名',w:'月芽五更（又稱相思五更）'}],
+        listen:[{t:'板胡獨奏 大起板',d:'板胡高亢豪放的代表演奏',q:'板胡 大起板 獨奏'},{t:'板胡月芽五更',d:'板胡傳統名曲',q:'板胡 月芽五更'}]
+      },
+      {
+        name:'椰胡', alias:'殼仔絃、頭手絃', tag:'臺灣傳統',
+        desc:'內外定絃音 g1、d2；又稱殼仔絃，是廣東戲曲、曲藝的伴奏樂器，更是臺灣傳統樂中的主角，俗稱頭手絃，形如板胡，音箱用椰子殼製成，蒙薄桐木板，背面開五個小孔，成金錢眼狀，用小貝殼做馬（也有用竹弓的），琴杆用硬木製作，音色柔和渾厚。',
+        tuning:'定絃 g¹ d²',
+        features:['臺灣傳統樂（南管、歌仔戲）的主角','俗稱頭手絃','音箱用椰子殼製成','背面開五個小孔成金錢眼狀'],
+        works:[],
+        listen:[{t:'椰胡 南管音樂',d:'椰胡是南管音樂的靈魂樂器',q:'南管 椰胡 殼仔絃'},{t:'臺灣傳統音樂 椰胡',d:'椰胡在臺灣傳統音樂中的演奏',q:'椰胡 臺灣傳統'}]
+      },
+      {
+        name:'革胡', alias:'', tag:'低音·改良',
+        desc:'定絃音由高至低為 a、d、G、C。革胡是一種音域寬廣的低音拉絃樂器，是由二胡的基礎上參考西洋的大提琴的演奏方式改革而成。張有四條絃，設有指板，琴筒橫置，由於有指板，按絃極為方便，不僅能拉奏，還能撥絃彈奏。主要用於合奏，也可擔任獨奏。',
+        tuning:'定絃 a d G C（由高至低）',
+        features:['由二胡基礎上參考大提琴改革','設有指板，按絃方便','可拉奏也可撥絃彈奏','主要用於合奏','尚有倍革胡'],
+        works:[],
+        listen:[{t:'革胡合奏',d:'革胡在國樂團中擔任低音角色',q:'革胡 國樂 低音'}]
+      },
+      {
+        name:'馬頭琴', alias:'莫林‧胡爾', tag:'蒙古族',
+        desc:'內外定絃與一般絃樂器不同，外絃低、內絃高，按傳統正四度的關係定為 e、a。馬頭琴是蒙古族民間拉絃樂器，蒙古語稱為「綽爾」。分大、中、小三種規格，獨奏和伴奏均可。音色圓闊，低迴宛轉，音量較弱，悠揚動聽。可奏雙音和泛音，是蒙古族最重要的獨奏、伴奏和合奏樂器。已列入聯合國世界文化遺產。',
+        tuning:'外絃低e、內絃高a（傳統正四度）',
+        features:['蒙古語稱「綽爾」','外絃低內絃高（與一般不同）','以馬尾弓在兩絃間拉奏','可奏雙音和泛音','已列入聯合國世界文化遺產'],
+        works:[],
+        listen:[{t:'馬頭琴 萬馬奔騰',d:'蒙古族馬頭琴經典曲目，模擬萬馬奔騰的氣勢',q:'馬頭琴 萬馬奔騰'},{t:'馬頭琴 草原上升起不落的太陽',d:'馬頭琴悠揚動聽的蒙古族民歌演奏',q:'馬頭琴 草原 蒙古'}]
+      },
+    ],
+    TF:[
+      {q:'二胡宋代稱為「奚琴」，在現代國樂團中的角色相當於交響樂團的小提琴。',ans:true,e:'正確。二胡宋代稱為「奚琴」，在現代國樂團中的角色，相當於交響樂團裡的小提琴。'},
+      {q:'劉天華統一了二胡定絃為 d¹、a¹，並寫了十大名曲。',ans:true,e:'正確。劉天華統一了二胡內外定絃音為 d¹、a¹，又寫了十大名曲，使二胡成為獨奏樂器。'},
+      {q:'高胡的定絃比二胡低一個完全四度。',ans:false,e:'錯誤。高胡是高音二胡，其常用定絃比二胡「高」一個完全四度（不是低）。'},
+      {q:'馬頭琴是蒙古族樂器，已列入聯合國世界文化遺產。',ans:true,e:'正確。馬頭琴是蒙古族最重要的民間拉絃樂器，已列入聯合國世界文化遺產。'},
+      {q:'「二泉映月」是阿炳（華彥鈞）的作品。',ans:true,e:'正確。「二泉映月」是中國盲人音樂家阿炳（華彥鈞）的成名曲，是最著名的二胡作品。'},
+      {q:'京胡從未在歷史上被廢除過。',ans:false,e:'錯誤。乾隆嘉慶年間，曾把京胡從戲曲中廢除，一直到晚清由李四、樊三著名琴師出現，才再次崛起。'},
+      {q:'板胡與南胡的主要區別是琴筒以薄木板代替蟒皮。',ans:true,e:'正確。板胡與南胡（二胡）大致相同，主要區別是琴筒不蒙蟒皮而改以薄木板代替，因而得名。'},
+    ],
+    MC:[
+      {q:'「二泉映月」的作者是？',opts:['劉天華','阿炳（華彥鈞）','華彥圖','彭修文'],ans:1,e:'「二泉映月」是中國盲人音樂家阿炳（華彥鈞）的成名曲，是最著名的二胡作品。'},
+      {q:'馬頭琴的定絃特色是？',opts:['外絃高、內絃低','外絃低、內絃高','兩絃同音高','按五度關係定絃'],ans:1,e:'馬頭琴的定絃與一般絃樂器不同，外絃低、內絃高，按傳統正四度的關係定為 e、a。'},
+      {q:'椰胡的音箱是用什麼材料製成？',opts:['木材','蟒皮','椰子殼','竹管'],ans:2,e:'椰胡的音箱用椰子殼製成，蒙薄桐木板，背面開五個小孔成金錢眼狀。'},
+      {q:'劉天華為二胡寫了多少首名曲？',opts:['五首','八首','十首','十二首'],ans:2,e:'劉天華統一二胡定絃後，寫了十大名曲，使二胡從戲曲伴奏提升為獨奏樂器。'},
+    ],
+    MATCH:[{l:'二胡',r:'二泉映月，劉天華十大名曲'},{l:'京胡',r:'京戲主要伴奏樂器'},{l:'高胡',r:'粵胡，廣東音樂'},{l:'板胡',r:'木板代替蟒皮'},{l:'馬頭琴',r:'蒙古族，聯合國文化遺產'},{l:'革胡',r:'參考大提琴改革'}],
+  },
+
+  {
+    id:'daiq', name:'打擊樂器', icon:'🥁', color:'#5C4A1E',
+    tag:'敲擊類',
+    intro:'打擊樂器種類繁多，可分為有音高與無音高兩類。包括編鐘、編磬、雲鑼、鼓、鈸等。為中國音樂提供節奏骨幹，在傳統戲曲中更是不可或缺。',
+    instruments:[
+      {
+        name:'編鐘', alias:'', tag:'固定音高',
+        desc:'固定音高的敲擊樂器，為歷朝祭祀典禮音樂的主要樂器。編鐘是將各種音高不同的鐘經選擇後，編集成一組各按一定方式懸吊在軒架上，以供合奏之用。',
+        tuning:'固定音高，多組',
+        features:['歷朝祭祀典禮音樂主要樂器','將各種音高不同的鐘編集成組','按一定方式懸吊在軒架上','曾侯乙編鐘（出土文物）是最著名的古代編鐘'],
+        works:[],
+        listen:[{t:'曾侯乙編鐘復原演奏',d:'2400年前的戰國編鐘，音域達五個八度，令人驚嘆',q:'曾侯乙編鐘 演奏'},{t:'編鐘古典音樂',d:'古代編鐘的磅礴音樂',q:'編鐘 古典 中國'}]
+      },
+      {
+        name:'編磬', alias:'', tag:'固定音高·石',
+        desc:'固定音高敲擊樂器。相傳為西元前 2356 年堯帝時所製。將音高不同的石磬，編成一組合奏用的樂器，與編鐘相同，按音律高低排列。',
+        tuning:'固定音高，石磬組合',
+        features:['相傳西元前2356年堯帝時所製','石磬編成一組合奏用','按音律高低排列，與編鐘相同'],
+        works:[],
+        listen:[{t:'編磬演奏',d:'古代石磬的音色，音質清脆獨特',q:'編磬 演奏 中國'}]
+      },
+      {
+        name:'雲鑼', alias:'九面鑼', tag:'無固定音高',
+        desc:'又稱「九面鑼」，元代已開始使用。是用九面以音階型態組合的小銅鑼懸吊在木架上編組而成。為了適應現代國樂的發展需求，及十二音的律動，國樂團中常使用以 36 面組成的半音階雲鑼。小鑼（手鑼）—民間稱為「鐺鑼」，中央有「心」的小平面，用於京劇及其他戲曲、民間吹打音樂之中。',
+        tuning:'無固定音高（可組成音階）',
+        features:['元代開始使用','九面銅鑼懸吊木架','現代國樂團用36面半音階雲鑼','小鑼又稱手鑼、鐺鑼，用於京劇戲曲'],
+        works:[],
+        listen:[{t:'雲鑼演奏',d:'雲鑼清脆的金屬音色',q:'雲鑼 演奏'}]
+      },
+      {
+        name:'鼓', alias:'', tag:'無固定音高',
+        desc:'無固定音高敲擊樂器，出現年代最早，遠古時代已經有了。鼓的獨奏樂段稱作「鼓段」。常見的有：大鼓（大堂鼓）、堂鼓、板鼓（單皮鼓）、鈴鼓、腰鼓、書鼓。台灣目前的知名團體：「優人神鼓」，2002年的作品「金剛心」獲得第一屆臺新藝術獎之表演藝術類首獎。',
+        tuning:'無固定音高',
+        features:['出現年代最早，遠古時代已有','板鼓（單皮鼓）在戲曲或合奏中擔任指揮和領奏','俗稱戲曲伴奏司板鼓的人為「打鼓佬」','書鼓—專用於北方各種大鼓書的伴奏','優人神鼓 2002年「金剛心」獲臺新藝術獎首獎'],
+        works:[],
+        listen:[{t:'優人神鼓 金剛心',d:'臺灣知名鼓樂團優人神鼓代表作，獲臺新藝術獎首獎',q:'優人神鼓 金剛心'},{t:'中國傳統鼓樂',d:'各式中國傳統鼓的精彩演奏',q:'中國傳統鼓樂 演奏'}]
+      },
+      {
+        name:'鈸', alias:'銅鈸', tag:'無固定音高',
+        desc:'無固定音高的敲擊樂器，西元四世紀隨天竺樂由印度傳入，唐代十部樂中的燕樂就用到鈸。宋代以後鈸在宮廷和民間普遍的使用，成為具有民族色彩而表現力又豐富的樂器。常見的有：小鈸（小水鈸，直徑大約四寸，發音清脆）、大鈸（雙光鈸，直徑多在八、九寸以上）、京鈸（水鈸，錙面厚且發音高，發出「采采」之聲）。',
+        tuning:'無固定音高',
+        features:['西元四世紀由印度傳入','唐代十部樂的燕樂就有鈸','小鈸（小水鈸）約四寸，發音清脆','大鈸（雙光鈸）直徑八九寸以上','京鈸（水鈸）發出「采采」之聲'],
+        works:[],
+        listen:[{t:'鈸 民間音樂',d:'鈸在民間音樂中的運用',q:'鈸 中國民間音樂'}]
+      },
+      {
+        name:'木魚', alias:'', tag:'佛教樂器',
+        desc:'原為佛家的法器，專供唸佛之用。其圓型及中心空的木身外面，刻有魚鱗的形狀，用小木槌敲擊而發聲。據謂魚畫夜常醒，所以刻木魚以警昏情。近代樂團中，多使用一套有不同大小的木魚。',
+        tuning:'無固定音高（有相對高低）',
+        features:['原為佛家法器','圓型中心空，刻有魚鱗形狀','用小木槌敲擊','近代樂團用一套不同大小的木魚'],
+        works:[],
+        listen:[{t:'木魚 佛曲',d:'木魚在佛教音樂中的傳統用法',q:'木魚 佛教音樂'},{t:'木魚 國樂演奏',d:'木魚在現代國樂中的運用',q:'木魚 國樂'}]
+      },
+    ],
+    TF:[
+      {q:'編鐘是無固定音高的敲擊樂器。',ans:false,e:'錯誤。編鐘是「固定音高」的敲擊樂器，為歷朝祭祀典禮音樂的主要樂器。'},
+      {q:'雲鑼又稱「九面鑼」，元代已開始使用。',ans:true,e:'正確。雲鑼又稱「九面鑼」，元代已開始使用，是用九面以音階型態組合的小銅鑼懸吊在木架上編組而成。'},
+      {q:'鈸是西元四世紀隨天竺樂由印度傳入中國的。',ans:true,e:'正確。鈸西元四世紀隨天竺樂由印度傳入，唐代十部樂中的燕樂就用到鈸。'},
+      {q:'優人神鼓的「金剛心」在2002年獲得臺新藝術獎首獎。',ans:true,e:'正確。台灣知名團體「優人神鼓」2002年的作品「金剛心」獲得第一屆臺新藝術獎之表演藝術類首獎。'},
+      {q:'木魚是原本用於道教祭祀的法器。',ans:false,e:'錯誤。木魚原為「佛家」的法器，專供唸佛之用，刻木魚以警昏情。'},
+    ],
+    MC:[
+      {q:'現代國樂團中常使用幾面組成的半音階雲鑼？',opts:['9面','18面','36面','48面'],ans:2,e:'為了適應現代國樂的發展需求及十二音的律動，國樂團中常使用以36面組成的半音階雲鑼。'},
+      {q:'俗稱戲曲伴奏司板鼓的人為？',opts:['打鼓師','打鼓佬','鼓師','鼓手'],ans:1,e:'俗稱戲曲伴奏司板鼓的人為「打鼓佬」，板鼓在戲曲或合奏中擔任指揮和領奏的地位。'},
+      {q:'大鈸又稱？',opts:['小水鈸','水鈸','雙光鈸','鐺鑼'],ans:2,e:'大鈸又名「雙光鈸」，直徑多在八、九寸以上，邊緣微向後翻起，發音渾厚而悠長。'},
+    ],
+    MATCH:[{l:'編鐘',r:'固定音高，祭祀典禮'},{l:'雲鑼',r:'九面鑼，元代起用'},{l:'鈸',r:'四世紀由印度傳入'},{l:'板鼓',r:'戲曲指揮兼領奏'},{l:'木魚',r:'佛家法器'},{l:'優人神鼓',r:'金剛心，臺新首獎'}],
+  },
+
+  {
+    id:'bayin', name:'八音分類', icon:'📜', color:'#4A3B6B',
+    tag:'古代分類法',
+    intro:'中國早期記載的樂器超過七十種，依材質可分為金、石、絲、竹、匏、土、革、木共八類，稱為「八音」。這是中國最古老的樂器分類系統，殷商時代就已具備。',
+    instruments:[
+      {
+        name:'金類', alias:'', tag:'金屬製',
+        desc:'以金屬製成的樂器。包括：鐘、鑼、編鐘、鏞（大鐘）、鉦（行軍用鐘）、鈸、鐃、錞（青銅樂器）、句鑼、碰鈴。',
+        features:['以金屬材質為主','鐘類是代表樂器','殷商時期已具備'],
+        works:[],listen:[]
+      },
+      {
+        name:'石類', alias:'', tag:'石製',
+        desc:'以石頭製成的樂器。包括：磬、編磬。磬是中國傳統祭祀音樂的重要樂器。',
+        features:['石磬是最典型的石類樂器','編磬是將多個音高不同的石磬組合演奏'],
+        works:[],listen:[]
+      },
+      {
+        name:'絲類', alias:'', tag:'絃樂器',
+        desc:'以絲絃為震動體的樂器。包括：古琴、南胡（二胡）、箏、琵琶、三絃、阮、柳葉琴、瑟、筑、箜篌、月琴、冬不拉、熱瓦音、揚琴、革胡。',
+        features:['以絲絃製成的絃鳴樂器','古琴是最具代表性的絲類樂器','現代多改用尼龍鋼絲絃'],
+        works:[],listen:[]
+      },
+      {
+        name:'竹類', alias:'', tag:'竹製管樂',
+        desc:'以竹製成的管樂器。包括：笛、簫、排簫、管、箎（篪）、笙、箾（㗒）、椰笛、曲笛、尺八。',
+        features:['以竹子製作的管樂器','笛和簫是最具代表性的竹類樂器'],
+        works:[],listen:[]
+      },
+      {
+        name:'匏類', alias:'', tag:'葫蘆製',
+        desc:'以植物葫蘆、椰子等乾殼作為共鳴箱的樂器。代表：笙、竽。',
+        features:['匏是植物葫蘆、椰子等之乾殼','笙是最具代表性的匏類樂器','唐代有人將笙斗改為木製，後逐漸恢復金屬笙斗'],
+        works:[],listen:[]
+      },
+      {
+        name:'土類', alias:'', tag:'陶製',
+        desc:'以陶土製成的樂器。包括：壎（塤）、缶（缻）、塤（同壎）、瓮（翁）。',
+        features:['以陶土製成','塤是最古老的旋律樂器之一，距今7000餘年','缶原是用來裝酒的瓦器，是古老的敲擊樂器之一'],
+        works:[],listen:[]
+      },
+      {
+        name:'革類', alias:'', tag:'皮革製',
+        desc:'以皮革製成的樂器。包括：鼓、鼗（撥浪鼓）、搏拊（扑）、鈴鼓、排鼓、板鼓（單皮鼓）、建鼓。',
+        features:['以動物皮革為振動膜','鼓是最具代表性的革類樂器','出現年代最早，遠古時代已有'],
+        works:[],listen:[]
+      },
+      {
+        name:'木類', alias:'', tag:'木製',
+        desc:'以木材製成的樂器。包括：拍板、柷（祝）、敔（圄）、響板、梆子、木魚、樂杵。',
+        features:['以木材製成的體鳴樂器','柷是表示起樂的信號','敔（圄）像一頭伏在地上的老虎，在其背上橫掃三次表示音樂停止'],
+        works:[],listen:[]
+      },
+    ],
+    TF:[
+      {q:'中國古代的「八音」分類法是依據樂器的材質來分類。',ans:true,e:'正確。中國早期記載的樂器超過七十種，依材質可分為金、石、絲、竹、匏、土、革、木共八類，稱為「八音」。'},
+      {q:'笙屬於「竹」類樂器。',ans:false,e:'錯誤。笙屬於「匏」類樂器（以植物葫蘆等乾殼作為共鳴箱），不是竹類。'},
+      {q:'鼓屬於「革」類樂器，以皮革製成振動膜。',ans:true,e:'正確。鼓屬於革類（以皮革製成），是以動物皮革為振動膜的打擊樂器。'},
+      {q:'塤（壎）屬於「土」類樂器，由陶土製成。',ans:true,e:'正確。塤（壎）是由陶土製成的樂器，屬於土類，是最古老的旋律樂器之一。'},
+      {q:'古琴屬於「竹」類樂器，因其以竹製成。',ans:false,e:'錯誤。古琴屬於「絲」類樂器（以絲絃為震動體），不是竹類。古琴的琴身是木製，但因絃而歸類為絲類。'},
+    ],
+    MC:[
+      {q:'「八音」中哪一類包含了「笙」和「竽」？',opts:['竹','匏','木','土'],ans:1,e:'笙和竽屬於「匏」類樂器，因為它們是以植物葫蘆等乾殼作為共鳴箱的樂器。'},
+      {q:'以下哪個樂器屬於「金」類？',opts:['塤','鼓','編鐘','笙'],ans:2,e:'編鐘屬於「金」類樂器，以金屬製成。塤屬土類，鼓屬革類，笙屬匏類。'},
+      {q:'「柷」和「敔」屬於哪類樂器？',opts:['金類','革類','木類','土類'],ans:2,e:'柷和敔屬於「木類」樂器，以木材製成。柷是表示起樂的信號，敔是表示音樂停止的信號。'},
+      {q:'「八音」中哪一類包含二胡（南胡）？',opts:['竹類','革類','絲類','金類'],ans:2,e:'二胡（南胡）屬於「絲」類樂器，因其以絲絃（現改為尼龍鋼絲絃）為振動體。'},
+    ],
+    MATCH:[{l:'金',r:'鐘、鑼、鈸'},{l:'石',r:'磬、編磬'},{l:'絲',r:'古琴、箏、琵琶'},{l:'竹',r:'笛、簫、排簫'},{l:'匏',r:'笙、竽'},{l:'土',r:'塤（壎）、缶'},{l:'革',r:'鼓、板鼓'},{l:'木',r:'木魚、柷、敔'}],
+  },
+
+  {
+    id:'hsf', name:'霍恩博斯特爾-薩克斯分類法', icon:'🔬', color:'#1F4E6B', 
+    tag:'現代分類法',
+    intro:'薩克斯（Curt Sachs, 1881-1959，德）與霍恩博斯特爾（C.Erich Moritz von Hornbostel, 1877-1935，奧地利）於西元1914年歸納整理出五種樂器分類法；簡稱為 Hornbostel-Sachs，簡稱 H-S 分類法。',
+    instruments:[
+      {
+        name:'體鳴樂器', alias:'', tag:'固體振動',
+        desc:'為自然發音材料製成的樂器，由樂器本身固體振動的發聲法，包括棒振動、板振動等。例如：板、鈸、磬、木魚、鑼、編鐘等。',
+        features:['樂器本身固體振動','棒振動、板振動等','中國樂器對應：板、鈸、磬、木魚、鑼、編鐘'],
+        works:[],listen:[{t:'體鳴樂器示範',d:'各種體鳴樂器的聲音特色',q:'體鳴樂器 中國 木魚 鑼'}]
+      },
+      {
+        name:'膜鳴樂器', alias:'', tag:'膜振動',
+        desc:'為有繃膜的樂器，聲音是由緊繃的膜發出。例如：鼓。',
+        features:['有繃膜的樂器','由緊繃的膜振動發聲','中國樂器對應：各式鼓'],
+        works:[],listen:[{t:'各式鼓膜鳴演奏',d:'鼓是最典型的膜鳴樂器',q:'中國鼓 大鼓 演奏'}]
+      },
+      {
+        name:'氣鳴樂器', alias:'', tag:'管樂器',
+        desc:'包括無簧管震動的樂器，管樂器多是此類。例如：笙。',
+        features:['無簧管震動的樂器','管樂器多屬此類','中國樂器對應：笙、笛、簫、嗩吶等'],
+        works:[],listen:[]
+      },
+      {
+        name:'弦鳴樂器', alias:'', tag:'絃樂器',
+        desc:'以弦發聲的樂器，包括弦樂器和部分鍵盤樂器。例如：三絃、古箏。',
+        features:['以弦振動發聲','包括彈撥、拉絃、擊絃樂器','中國樂器對應：古琴、箏、琵琶、二胡等'],
+        works:[],listen:[]
+      },
+      {
+        name:'電子樂器', alias:'', tag:'電子類',
+        desc:'以電子控制的操作、有電子放大器或以電子方式產生聲音者。在國樂器中沒有此類。',
+        features:['以電子方式控制或產生聲音','傳統中國國樂中沒有此類','為H-S分類法五類之一'],
+        works:[],listen:[]
+      },
+    ],
+    TF:[
+      {q:'H-S分類法是由薩克斯與霍恩博斯特爾在1914年歸納整理的。',ans:true,e:'正確。薩克斯（德）與霍恩博斯特爾（奧地利）於西元1914年歸納整理出五種樂器分類法，即H-S分類法。'},
+      {q:'鼓在H-S分類法中屬於「體鳴樂器」。',ans:false,e:'錯誤。鼓在H-S分類法中屬於「膜鳴樂器」，因為聲音是由緊繃的膜發出的。'},
+      {q:'笙在H-S分類法中屬於「氣鳴樂器」。',ans:true,e:'正確。笙屬於氣鳴樂器（包括無簧管震動的樂器，管樂器多是此類）。'},
+      {q:'在傳統中國國樂器中，有電子樂器這一類別。',ans:false,e:'錯誤。在國樂器中沒有電子樂器這一類別，這是H-S分類法五種中唯一在傳統國樂中沒有對應的類別。'},
+    ],
+    MC:[
+      {q:'木魚在H-S分類法中屬於哪一類？',opts:['膜鳴樂器','體鳴樂器','氣鳴樂器','弦鳴樂器'],ans:1,e:'木魚屬於「體鳴樂器」，因為它是由樂器本身固體（木材）振動發聲的，不需要繃膜或弦。'},
+      {q:'H-S分類法由哪兩位學者建立？',opts:['薩克斯（德）與霍恩博斯特爾（奧）','柯達伊（匈）與巴爾托克（匈）','德布西（法）與拉威爾（法）','韋伯恩（奧）與荀貝格（奧）'],ans:0,e:'H-S分類法由薩克斯（Curt Sachs，德，1881-1959）與霍恩博斯特爾（奧地利，1877-1935）建立，於1914年歸納整理。'},
+      {q:'古箏在H-S分類法中屬於？',opts:['體鳴樂器','膜鳴樂器','弦鳴樂器','氣鳴樂器'],ans:2,e:'古箏屬於「弦鳴樂器」，以弦振動發聲，是彈撥類絃鳴樂器。'},
+    ],
+    MATCH:[{l:'體鳴樂器',r:'鑼、鈸、磬、木魚'},{l:'膜鳴樂器',r:'鼓'},{l:'氣鳴樂器',r:'笙、笛、嗩吶'},{l:'弦鳴樂器',r:'古琴、箏、二胡'},{l:'薩克斯',r:'德，1881-1959'},{l:'霍恩博斯特爾',r:'奧地利，1877-1935'}],
+  },
+
+  {
+    id:'guoyue', name:'國樂團與傳統音樂', icon:'🏮', color:'#6B2A2A',
+    tag:'應用篇',
+    intro:'現代國樂團受西洋樂團編制影響，將樂器根據其發聲原理與演奏方式分為吹、拉、彈、打四類。國樂是「中國音樂」的簡稱，基本配器包含柳琴、琵琶、阮、古箏、揚琴、胡琴、笛、笙、嗩吶、木魚、鼓、鑼、鈸、定音鼓、木琴等。',
+    instruments:[
+      {
+        name:'京劇（文武場）', alias:'', tag:'戲曲伴奏',
+        desc:'文場：文場的樂器多為管樂器、絃樂器。例如：胡琴、二胡、月琴、三絃、琵琶。管樂器諸如笛子、簫、嗩吶。以胡琴為領奏樂器，大多伴唱而奏。武場：武場的樂器多為皮革製或金屬製敲擊樂器。例如：小鼓、小鑼、大鑼、雲鑼、鈸；以伴舞、伴戰鬥而生。在衆多樂器之下，最重要的是「板」及「小鼓」，兩者皆由樂隊的臺柱演奏。',
+        features:['文場：以胡琴為領奏，伴唱為主','武場：以敲擊樂器為主，伴舞、伴戰鬥','「板」及「小鼓」由臺柱演奏，最為重要','「小鼓」尚未擊鼓以前，任何樂器都不得演奏'],
+        works:[],
+        listen:[{t:'京劇《貴妃醉酒》',d:'京劇文場伴奏，胡琴領奏的典型範例',q:'京劇 貴妃醉酒'},{t:'京劇武場演奏',d:'鑼鼓喧天的武場音樂，氣勢磅礴',q:'京劇 武場 鑼鼓'}]
+      },
+      {
+        name:'南北管', alias:'', tag:'臺灣傳統',
+        desc:'南管：音樂較含蓄婉約，清麗典雅，充滿了古樂之風。以琵琶為主奏樂器，大部分稱為「絃管」。絃樂器：琵琶、三絃、二絃。管樂器：洞簫、小嗩吶、曲笛。打擊樂器：鑼、拍板。北管：南北管音樂最大的差異，就是北管有南管所無的鑼、鼓和鈸，多了這幾樣樂器，兩派音樂的效果便有了天壤之別，南管柔美溫婉、徐緩淡雅，北管則慷慨激昂、疾緊有力，外行人一聽，皆可分辨出來。',
+        features:['南管：以琵琶為主，又稱絃管，柔美婉約','北管：多鑼鼓鈸，慷慨激昂，疾緊有力','南管樂器：琵琶、三絃、二絃、洞簫、曲笛、鑼、拍板','北管樂器：椰胡（頭手）、二胡、三絃、嗩吶、班鼓、大小鑼等'],
+        works:[],
+        listen:[{t:'南管音樂 梅花操',d:'南管典雅婉約的代表，以琵琶為主奏',q:'南管音樂 梅花操 琵琶'},{t:'北管音樂',d:'北管激昂熱鬧，與南管形成強烈對比',q:'北管音樂 臺灣'}]
+      },
+      {
+        name:'崑曲場面', alias:'', tag:'戲曲',
+        desc:'崑曲伴奏舊稱「場面」，也稱「後場」。分文場和武場兩類。文場：曲笛、笙、簫、提胡、曲絃、阮咸。武場：板、鼓、大鑼、小鑼、鐃、鈸等。',
+        features:['伴奏舊稱「場面」或「後場」','文場：曲笛為主，笙、簫、提胡、曲絃、阮咸','武場：板、鼓、大鑼、小鑼、鐃、鈸'],
+        works:[],
+        listen:[{t:'崑曲 牡丹亭 驚夢',d:'崑曲最著名的折子，曲笛飄渺優美',q:'崑曲 牡丹亭 驚夢 曲笛'}]
+      },
+      {
+        name:'歌仔戲', alias:'', tag:'臺灣本土',
+        desc:'文場：絃樂器：殼仔絃、大廣絃、二胡、鼓吹絃（鐵絃）、月琴、三絃。管樂器：嗩吶、鴨母達叭（管）、洞簫、臺灣笛。武場：武場與京劇相似，敲擊樂器：有拍鼓、板鼓、通鼓（堂鼓），大小鑼、深仔、南梆子。',
+        features:['文場：殼仔絃（椰胡）為主要絃樂器','管樂器有嗩吶、洞簫、臺灣笛','武場與京劇相似，鑼鼓為主','是臺灣最具代表性的本土戲曲'],
+        works:[],
+        listen:[{t:'歌仔戲 七字調',d:'歌仔戲最基本的唱腔，殼仔絃伴奏',q:'歌仔戲 七字調 殼仔絃'},{t:'歌仔戲精華',d:'臺灣本土歌仔戲的精彩演出',q:'歌仔戲 臺灣'}]
+      },
+    ],
+    TF:[
+      {q:'南管音樂以琵琶為主奏樂器，大部分稱為「絃管」。',ans:true,e:'正確。南管音樂以琵琶為主奏樂器，大部分稱為「絃管」，音樂較含蓄婉約，清麗典雅。'},
+      {q:'北管音樂風格和南管相同，都是柔美婉約。',ans:false,e:'錯誤。南管柔美溫婉、徐緩淡雅；北管則慷慨激昂、疾緊有力，兩者風格有天壤之別，主要差異在北管多了鑼、鼓和鈸。'},
+      {q:'崑曲伴奏舊稱「場面」，文場以曲笛為主。',ans:true,e:'正確。崑曲伴奏舊稱「場面」（或「後場」），文場以曲笛為主，另有笙、簫、提胡、曲絃、阮咸等。'},
+      {q:'歌仔戲的主要絃樂器是殼仔絃（椰胡）。',ans:true,e:'正確。歌仔戲文場的主要絃樂器是殼仔絃（椰胡），是臺灣傳統音樂中的重要樂器。'},
+    ],
+    MC:[
+      {q:'京劇武場最重要的兩件樂器是？',opts:['胡琴和琵琶','笛子和簫','板和小鼓','大鑼和雲鑼'],ans:2,e:'在衆多樂器之下，最重要的是「板」及「小鼓」，兩者皆由樂隊的臺柱演奏。「小鼓」尚未擊鼓以前，任何樂器都不得演奏。'},
+      {q:'南管和北管最主要的差異是？',opts:['南管在北方，北管在南方','北管比南管多了鑼、鼓和鈸','南管音量大，北管音量小','南管用電音，北管用傳統'],ans:1,e:'南北管音樂最大的差異，就是北管有南管所無的鑼、鼓和鈸，多了這幾樣樂器，兩派音樂的效果便有了天壤之別。'},
+    ],
+    MATCH:[{l:'南管',r:'琵琶主奏，又稱絃管'},{l:'北管',r:'多鑼鼓鈸，激昂疾緊'},{l:'崑曲',r:'場面，曲笛為主'},{l:'歌仔戲',r:'殼仔絃，臺灣本土'},{l:'京劇文場',r:'胡琴領奏，伴唱'},{l:'京劇武場',r:'板與小鼓為最重要'}],
+  },
+];
+
+// ================================================================
+//  STATE
+// ================================================================
+let curCat=null, curInst=null, curMode=null, gs={};
+
+// ================================================================
+//  UTILS
+// ================================================================
+function sfl(a){return [...a].sort(()=>Math.random()-.5);}
+function pk(a,n){return sfl(a).slice(0,n);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function ytBtn(q){return`<a class="yt-btn" href="https://www.youtube.com/results?search_query=${encodeURIComponent(q)}" target="_blank">▶ YouTube</a>`;}
+function pb(t,i){
+  const segs=Array.from({length:t},(_,j)=>`<div class="prog-seg ${j<i?'pd':j===i?'pc':''}"></div>`).join('');
+  return`<div class="prog-bar">${segs}</div>`;
+}
+const $ = id => document.getElementById(id);
+const APP = () => document.getElementById('app');
+
+// ================================================================
+//  HOME
+// ================================================================
+function showHome(){
+  curCat=null;curInst=null;curMode=null;gs={};
+  const catGrid=CATS.map(c=>`<div class="cat-btn" style="--ec:${c.color}" onclick="enterCat('${c.id}')">
+    <div class="c-icon">${c.icon}</div>
+    <div class="c-name">${c.name}</div>
+    <div class="c-sub">${c.tag}</div>
+  </div>`).join('');
+
+  APP().innerHTML=`
+  <div class="hd">
+    <div class="hd-stamp">🎓 高職音樂科 · 互動學習</div>
+    <h1>中國<span>樂器</span>概述</h1>
+    <div class="hd-sub">第六章 · 中國樂器概述</div>
+  </div>
+
+  <div class="ov-card">
+    <div class="ov-title">📋 概論速查</div>
+    <div class="ov-2col">
+      <div class="ov-box">
+        <div class="ov-h">古代「八音」分類（依材質）</div>
+        <ul class="ov-list">
+          <li><strong>金</strong>：鐘、鑼、編鐘、鈸等</li>
+          <li><strong>石</strong>：磬、編磬</li>
+          <li><strong>絲</strong>：古琴、箏、琵琶、二胡等</li>
+          <li><strong>竹</strong>：笛、簫、排簫等</li>
+          <li><strong>匏</strong>：笙、竽（葫蘆殼共鳴）</li>
+          <li><strong>土</strong>：塤（壎）、缶</li>
+          <li><strong>革</strong>：鼓、板鼓等（皮革製）</li>
+          <li><strong>木</strong>：木魚、柷、敔</li>
+        </ul>
+      </div>
+      <div class="ov-box">
+        <div class="ov-h">現代國樂團分類（依演奏方式）</div>
+        <ul class="ov-list">
+          <li><strong>吹奏樂器</strong>：曲笛、梆笛、嗩吶、笙等</li>
+          <li><strong>拉絃樂器</strong>：二胡、京胡、板胡、高胡等</li>
+          <li><strong>彈（撥）絃</strong>：琵琶、古琴、箏、阮、揚琴</li>
+          <li><strong>打擊樂器</strong>：編鐘、鼓、鈸、鑼等</li>
+        </ul>
+      </div>
+      <div class="ov-box">
+        <div class="ov-h">H-S 分類法（霍恩博斯特爾-薩克斯）</div>
+        <ul class="ov-list">
+          <li><strong>體鳴樂器</strong>：固體振動（鑼、鈸、磬）</li>
+          <li><strong>膜鳴樂器</strong>：膜振動（鼓）</li>
+          <li><strong>氣鳴樂器</strong>：管樂（笙、笛）</li>
+          <li><strong>弦鳴樂器</strong>：絃振動（琵琶、箏）</li>
+          <li><strong>電子樂器</strong>：國樂中無此類</li>
+        </ul>
+      </div>
+      <div class="ov-box">
+        <div class="ov-h">重要知識點</div>
+        <ul class="ov-list">
+          <li>排簫圖案為中國「樂徽」（1956年）</li>
+          <li>笙是唯一以和聲為特長的吹奏樂器</li>
+          <li>二胡相當於交響樂團的小提琴</li>
+          <li>馬頭琴列入聯合國世界文化遺產</li>
+          <li>二泉映月：盲人阿炳的成名作</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:.92rem;
+    color:var(--red);margin-bottom:10px">↓ 選擇分類開始學習</div>
+  <div class="cat-nav">${catGrid}</div>
+
+  <div style="margin-top:18px">
+    <div class="ov-title" style="display:block;padding-bottom:8px;border-bottom:2px solid var(--red)">
+      📊 常見樂器速查對照表
+    </div>
+    <div class="qtable-wrap">
+      <table class="qtable" style="margin-top:10px">
+        <thead><tr><th>樂器</th><th>分類</th><th>音域/定絃</th><th>重要曲目</th><th>特色</th></tr></thead>
+        <tbody>
+          <tr><td>梆笛</td><td>吹奏·有膜孔</td><td>G調，d²—e⁴</td><td>梆笛協奏曲、蔭中鳥</td><td>音色高亢明亮</td></tr>
+          <tr><td>曲笛</td><td>吹奏·江南絲竹</td><td>D調，a¹—b³</td><td>鷓鴣飛</td><td>柔和，崑曲主奏</td></tr>
+          <tr><td>洞簫</td><td>吹奏·直吹</td><td>d¹—e³</td><td>—</td><td>無膜孔，幽雅</td></tr>
+          <tr><td>笙</td><td>吹奏·和聲</td><td>a1—d3</td><td>—</td><td>唯一和聲吹奏</td></tr>
+          <tr><td>嗩吶</td><td>吹奏·雙簧</td><td>b1—b3</td><td>百鳥朝鳳</td><td>高亢，雙簧管同源</td></tr>
+          <tr><td>古琴</td><td>彈絃·七絃</td><td>d c A G F D C</td><td>廣陵散、流水</td><td>文人樂器，4個多八度</td></tr>
+          <tr><td>古箏</td><td>彈絃</td><td>最低音D，五聲音階</td><td>漁舟晚唱</td><td>現21-26絃</td></tr>
+          <tr><td>琵琶</td><td>彈絃·四絃</td><td>a d e A</td><td>十面埋伏</td><td>六相二十五品</td></tr>
+          <tr><td>揚琴</td><td>擊絃</td><td>左右差五度</td><td>龍船</td><td>竹槌敲擊，明末傳入</td></tr>
+          <tr><td>二胡</td><td>拉絃</td><td>d¹ a¹</td><td>二泉映月（阿炳）</td><td>劉天華統一定絃</td></tr>
+          <tr><td>京胡</td><td>拉絃</td><td>g¹ d²</td><td>—</td><td>京戲主要伴奏</td></tr>
+          <tr><td>馬頭琴</td><td>拉絃·蒙古</td><td>外e 內a（四度）</td><td>—</td><td>UNESCO文化遺產</td></tr>
+          <tr><td>編鐘</td><td>打擊·固定音高</td><td>固定音高</td><td>—</td><td>歷朝祭祀典禮</td></tr>
+          <tr><td>雲鑼</td><td>打擊·九面鑼</td><td>可組音階</td><td>—</td><td>元代起用，現36面</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="tip">
+    本教材以課本內容為主，點擊各分類進入互動學習，包含各樂器詳細介紹、重要作品、YouTube連結、速查手冊及是非、選擇題練習。
+  </div>`;
+}
+
+// ================================================================
+//  CATEGORY HOME
+// ================================================================
+function enterCat(id){
+  curCat=id;curInst=null;curMode=null;gs={};
+  const c=CATS.find(x=>x.id===id);
+  const modes=[
+    {id:'inst',icon:'📖',label:'樂器導覽',desc:'詳細介紹各樂器'},
+    {id:'ref',icon:'📋',label:'速查手冊',desc:'重點整理懶人包'},
+    {id:'listen',icon:'🎬',label:'必聽曲目',desc:'YouTube連結'},
+    {id:'tf',icon:'⭕',label:'是非練習',desc:'鞏固知識'},
+    {id:'mc',icon:'📝',label:'選擇練習',desc:'深入測驗'},
+    {id:'match',icon:'🔗',label:'配對遊戲',desc:'趣味挑戰'},
+  ];
+  const mGrid=modes.map(m=>`<div class="mode-btn" onclick="enterMode('${m.id}')">
+    <div class="m-icon">${m.icon}</div>
+    <div class="m-label">${m.label}</div>
+    <div class="m-desc">${m.desc}</div>
+  </div>`).join('');
+  APP().innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="showHome()">← 返回總覽</button>
+    <span class="mode-badge">${c.icon} ${c.name}</span>
+  </div>
+  <div class="cat-banner" style="--ec:${c.color}">
+    <h2>${c.icon} ${c.name}</h2>
+    <div class="c-tag">${c.tag}</div>
+    <div class="c-intro">${c.intro}</div>
+  </div>
+  <div class="mode-grid">${mGrid}</div>`;
+}
+
+function enterMode(m){
+  curMode=m;
+  if(m==='inst') showInst();
+  else if(m==='ref') showRef();
+  else if(m==='listen') showAllListen();
+  else if(m==='tf') initTF();
+  else if(m==='mc') initMC();
+  else if(m==='match') initMatch();
+}
+
+// ================================================================
+//  INSTRUMENT LIST
+// ================================================================
+function showInst(){
+  const c=CATS.find(x=>x.id===curCat);
+  const cards=c.instruments.map((inst,i)=>`<div class="inst-card" onclick="showInstDetail(${i})">
+    <div class="ic-name">${inst.name} <span class="ic-tag">${inst.tag}</span>
+      ${inst.alias?`<span style="font-size:.65rem;color:#888;font-weight:500">又名${inst.alias}</span>`:''}
+    </div>
+    <div class="ic-desc">${inst.desc.slice(0,60)}…</div>
+  </div>`).join('');
+  APP().innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterCat('${curCat}')">← 返回</button>
+    <span class="mode-badge">📖 樂器導覽</span>
+  </div>
+  <div class="inst-sec">
+    <div class="inst-hd" style="--ec:${c.color}">${c.icon} ${c.name} — 各樂器介紹</div>
+    <div class="inst-grid">${cards}</div>
+  </div>`;
+}
+
+function showInstDetail(idx){
+  const c=CATS.find(x=>x.id===curCat);
+  const inst=c.instruments[idx];
+  const works=inst.works.length?`<div class="detail-section">
+    <div class="detail-h">🎼 重要作品</div>
+    <table class="works-table">
+      <thead><tr><th>作曲者</th><th>作品</th></tr></thead>
+      <tbody>${inst.works.map(w=>`<tr><td>${w.c}</td><td>${w.w}</td></tr>`).join('')}</tbody>
+    </table>
+  </div>`:'';
+  const features=inst.features.length?`<div class="detail-section">
+    <div class="detail-h">⭐ 構造與特色</div>
+    <ul class="ov-list" style="padding:0">${inst.features.map(f=>`<li>${f}</li>`).join('')}</ul>
+  </div>`:'';
+  const tuning=inst.tuning?`<div class="detail-section">
+    <div class="detail-h">🎵 音域/定絃</div>
+    <div style="font-size:.82rem;color:#333;padding:4px 0;font-weight:700">${inst.tuning}</div>
+  </div>`:'';
+  const listen=inst.listen.length?`<div class="detail-section">
+    <div class="detail-h">🎬 必聽曲目</div>
+    ${inst.listen.map(l=>`<div class="listen-item" style="padding:8px 0;border-bottom:1px solid rgba(0,0,0,.1)">
+      <div class="li-info"><div class="li-title">${l.t}</div><div class="li-detail">${l.d}</div></div>
+      ${ytBtn(l.q)}
+    </div>`).join('')}
+  </div>`:'';
+  APP().innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="showInst()">← 返回列表</button>
+    <span class="mode-badge" style="background:${c.color}">${inst.name}</span>
+  </div>
+  <div class="inst-sec">
+    <div class="inst-hd" style="--ec:${c.color}">
+      ${inst.name} ${inst.alias?`（${inst.alias}）`:''} <span style="font-size:.7rem;background:rgba(0,0,0,.3);padding:2px 8px;border-radius:2px;margin-left:6px">${inst.tag}</span>
+    </div>
+    <div class="inst-body">
+      <div class="detail-box">${inst.desc}</div>
+      ${tuning}${features}${works}${listen}
+    </div>
+  </div>`;
+}
+
+// ================================================================
+//  QUICK REF
+// ================================================================
+function showRef(){
+  const c=CATS.find(x=>x.id===curCat);
+  const items=c.instruments.map((inst,i)=>`<div class="ref-item">
+    <div class="ref-head" onclick="tgRef(${i})">
+      <div class="ref-av" style="background:${c.color}">${inst.name[0]}</div>
+      <div style="flex:1">
+        <div class="ref-name">${inst.name}${inst.alias?` ／ ${inst.alias}`:''}</div>
+        <div class="ref-sub">${inst.tag}${inst.tuning?' · '+inst.tuning:''}</div>
+      </div>
+      <div class="ref-badge" style="background:${c.color}">${inst.tag}</div>
+      <div class="ref-arr" id="ra${i}">▼</div>
+    </div>
+    <div id="rb${i}" style="display:none">
+      <ul class="ref-body">
+        <li>${inst.desc.slice(0,120)}…</li>
+        ${inst.features.map(f=>`<li>${f}</li>`).join('')}
+        ${inst.works.length?`<li>重要作品：${inst.works.map(w=>`${w.c}《${w.w}》`).join('、')}</li>`:''}
+      </ul>
+    </div>
+  </div>`).join('');
+  APP().innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterCat('${curCat}')">← 返回</button>
+    <span class="mode-badge">📋 速查手冊</span>
+  </div>
+  <div class="card">
+    <div style="font-size:.75rem;color:#999;margin-bottom:10px;font-weight:600">點擊樂器名稱展開重點</div>
+    ${items}
+  </div>`;
+}
+function tgRef(i){
+  const b=$('rb'+i),a=$('ra'+i);
+  if(!b)return;
+  const o=b.style.display!=='none';
+  b.style.display=o?'none':'block';
+  if(a)a.textContent=o?'▼':'▲';
+}
+
+// ================================================================
+//  ALL LISTEN
+// ================================================================
+function showAllListen(){
+  const c=CATS.find(x=>x.id===curCat);
+  const items=c.instruments.flatMap(inst=>
+    inst.listen.map(l=>`<div class="listen-item">
+      <div class="li-info">
+        <div class="li-title">🎵 ${l.t}</div>
+        <div class="li-detail"><span style="color:var(--red);font-weight:700">${inst.name}</span> · ${l.d}</div>
+      </div>
+      ${ytBtn(l.q)}
+    </div>`)
+  ).join('') || '<div style="padding:20px;color:#999;text-align:center">此分類暫無影音連結</div>';
+  APP().innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterCat('${curCat}')">← 返回</button>
+    <span class="mode-badge">🎬 必聽曲目</span>
+  </div>
+  <div class="card">
+    <div style="font-size:.74rem;color:#999;margin-bottom:10px;font-weight:600">點擊 ▶ YouTube 在新視窗觀看</div>
+    ${items}
+  </div>`;
+}
+
+// ================================================================
+//  TF
+// ================================================================
+function initTF(){
+  const c=CATS.find(x=>x.id===curCat);
+  gs={qs:sfl(c.TF).slice(0,Math.min(8,c.TF.length)),i:0,s:0,a:null};
+  renderTF();
+}
+function renderTF(){
+  const{qs,i,s,a}=gs;
+  if(i>=qs.length){showResult(s,qs.length);return;}
+  const q=qs[i];
+  let t0='',t1='';
+  if(a!==null){t0=q.ans===true?'tc':(a===true?'tw':'');t1=q.ans===false?'tc':(a===false?'tw':'');}
+  const ex=a!==null?`<div class="explain ${a===q.ans?'eo':'en'}">
+    <span class="${a===q.ans?'eho':'ehn'}">${a===q.ans?'✅ 答對！':'❌ 答錯了'}</span>${q.e}
+    <br><button class="next-btn" onclick="nextTF()">${i+1<qs.length?'下一題 →':'查看結果 ✨'}</button>
+  </div>`:'';
+  APP().innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterCat('${curCat}')">← 返回</button>
+    <span class="mode-badge">⭕ 是非練習</span>
+    <button class="back-btn" onclick="initTF()" style="margin-left:auto;background:var(--parch)">↺ 重來</button>
+  </div>
+  ${pb(qs.length,i)}
+  <div class="stat-row"><div class="chip">第 <strong>${i+1}</strong>/${qs.length} 題</div><div class="chip">答對 <strong>${s}</strong></div></div>
+  <div class="card">
+    <div class="q-box">${q.q}</div>
+    <div class="tf-btns">
+      <button class="tf-btn ${t0}" ${a!==null?'disabled':''} onclick="ansTF(true)">○ 正確</button>
+      <button class="tf-btn ${t1}" ${a!==null?'disabled':''} onclick="ansTF(false)">✗ 錯誤</button>
+    </div>${ex}
+  </div>`;
+}
+function ansTF(v){if(gs.a!==null)return;const ok=v===gs.qs[gs.i].ans;gs.a=v;if(ok)gs.s++;renderTF();}
+function nextTF(){gs.i++;gs.a=null;renderTF();}
+
+// ================================================================
+//  MC
+// ================================================================
+function initMC(){
+  const c=CATS.find(x=>x.id===curCat);
+  gs={qs:sfl(c.MC).slice(0,Math.min(8,c.MC.length)),i:0,s:0,c:null};
+  renderMC();
+}
+function renderMC(){
+  const{qs,i,s,c}=gs;
+  if(i>=qs.length){showResult(s,qs.length);return;}
+  const q=qs[i];
+  const opts=q.opts.map((o,j)=>{
+    let cl='';if(c!==null){cl=j===q.ans?'mc':(j===c?'mw':'');}
+    return`<button class="mc-btn ${cl}" ${c!==null?'disabled':''} onclick="ansMC(${j})">
+      <span class="abadge">${['A','B','C','D'][j]}</span>${o}
+    </button>`;
+  }).join('');
+  const ex=c!==null?`<div class="explain ${c===q.ans?'eo':'en'}">
+    <span class="${c===q.ans?'eho':'ehn'}">${c===q.ans?'✅ 答對！':'❌ 答錯了'}</span>${q.e}
+    <br><button class="next-btn" onclick="nextMC()">${i+1<qs.length?'下一題 →':'查看結果 ✨'}</button>
+  </div>`:'';
+  APP().innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterCat('${curCat}')">← 返回</button>
+    <span class="mode-badge">📝 選擇練習</span>
+    <button class="back-btn" onclick="initMC()" style="margin-left:auto;background:var(--parch)">↺ 重來</button>
+  </div>
+  ${pb(qs.length,i)}
+  <div class="stat-row"><div class="chip">第 <strong>${i+1}</strong>/${qs.length} 題</div><div class="chip">答對 <strong>${s}</strong></div></div>
+  <div class="card"><div class="q-box">${q.q}</div>${opts}${ex}</div>`;
+}
+function ansMC(j){if(gs.c!==null)return;gs.c=j;if(j===gs.qs[gs.i].ans)gs.s++;renderMC();}
+function nextMC(){gs.i++;gs.c=null;renderMC();}
+
+// ================================================================
+//  MATCH
+// ================================================================
+function initMatch(){
+  const c=CATS.find(x=>x.id===curCat);
+  const pairs=pk(c.MATCH,Math.min(6,c.MATCH.length));
+  gs={pairs,L:sfl(pairs.map(p=>p.l)),R:sfl(pairs.map(p=>p.r)),lS:null,rS:null,M:{},W:{},s:0,at:0};
+  renderMatch();
+}
+function renderMatch(){
+  const{pairs,L,R,lS,rS,M,W,s,at}=gs;
+  function mi(v,sd,idx){
+    const isSel=sd==='L'?lS===v:rS===v;
+    const isM=M[v],isW=W[v];
+    let cl='mi';
+    if(isM)cl+=' mi-m';else if(isW)cl+=' mi-w';else if(isSel)cl+=' mi-s';
+    const oc=isM?'':` onclick="selMatch('${sd}',${idx})"`;
+    return`<div class="${cl}"${oc}>${esc(v)}</div>`;
+  }
+  const n=Math.max(L.length,R.length);
+  let cells='';
+  for(let i=0;i<n;i++){
+    if(L[i])cells+=mi(L[i],'L',i);
+    if(R[i])cells+=mi(R[i],'R',i);
+  }
+  const dm=s===pairs.length?`<div class="done-msg">🎉 全部配對完成！共嘗試 ${at} 次</div>`:'';
+  APP().innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterCat('${curCat}')">← 返回</button>
+    <span class="mode-badge">🔗 配對遊戲</span>
+    <button class="back-btn" onclick="initMatch()" style="margin-left:auto;background:var(--parch)">↺ 重來</button>
+  </div>
+  <div class="stat-row"><div class="chip">已配對 <strong>${s}</strong>/${pairs.length}</div><div class="chip">嘗試 <strong>${at}</strong> 次</div></div>
+  <div class="card">
+    <div class="match-hdr"><div>詞彙</div><div>說明</div></div>
+    <div class="match-grid">${cells}</div>${dm}
+  </div>`;
+}
+function selMatch(sd,idx){
+  const g=gs;
+  const v=sd==='L'?g.L[idx]:g.R[idx];
+  if(!v||g.M[v])return;
+  if(sd==='L')g.lS=g.lS===v?null:v;
+  else g.rS=g.rS===v?null:v;
+  if(g.lS&&g.rS){
+    const p=g.pairs.find(x=>x.l===g.lS);
+    const ok=p&&p.r===g.rS;
+    g.at++;
+    if(ok){g.M[g.lS]=true;g.M[g.rS]=true;g.s++;g.lS=null;g.rS=null;g.W={};}
+    else{g.W={[g.lS]:true,[g.rS]:true};setTimeout(()=>{g.W={};g.lS=null;g.rS=null;renderMatch();},700);}
+  }
+  renderMatch();
+}
+
+// ================================================================
+//  RESULT
+// ================================================================
+function showResult(s,t){
+  const p=Math.round(s/t*100);
+  const ic=p>=90?'🏆':p>=70?'⭐':p>=50?'🎵':'📖';
+  const st=p>=90?'完美！全對達成！':p>=70?'很不錯！繼續加油！':p>=50?'還可以，多複習！':'加油！重新挑戰！';
+  APP().innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterCat('${curCat}')">← 返回分類</button>
+  </div>
+  <div class="card">
+    <div class="result-box">
+      <div class="ri">${ic}</div>
+      <div class="rs">${st}</div>
+      <div class="rsc">得分 ${s} / ${t}</div>
+      <div class="rp">正確率 ${p}%</div><br>
+      <button class="next-btn" onclick="enterMode('${curMode}')">↺ 再練習一次</button>
+      <button class="next-btn" onclick="enterMode('ref')" style="margin-left:8px;background:var(--jade)">📋 速查手冊</button>
+    </div>
+  </div>`;
+}
+
+showHome();
+</script>
+
+<div id="ai-messages"></div>
+    
+    
+  </div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="../assets/js/shared.js"></script>
+<script>window.UNIT_CONTEXT="中國樂器概述";</script>
+</body>
+</html>

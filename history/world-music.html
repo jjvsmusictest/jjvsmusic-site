@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>世界音樂簡介 · 互動學習</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+
+:root{
+  --bg:#0D1117;--surface:#161B22;--card:#1C2128;--border:#30363D;
+  --text:#E6EDF3;--muted:#8B949E;--dim:#656D76;
+  --r1:#FF6B35;--r2:#F7C59F;
+  --east:#3B82F6;--sea:#10B981;--europe:#8B5CF6;
+  --africa:#F59E0B;--america:#EC4899;--world:#06B6D4;
+}
+
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC','PingFang TC',sans-serif;
+  padding:14px;min-height:100vh;font-weight:500;max-width:820px;margin:0 auto;}
+
+/* HEADER */
+.hd{text-align:center;padding:24px 0 16px;margin-bottom:20px;position:relative}
+.hd::after{content:'';display:block;height:2px;margin-top:16px;
+  background:linear-gradient(90deg,transparent,var(--east),var(--sea),var(--europe),var(--africa),var(--america),transparent)}
+.hd-chip{display:inline-block;background:linear-gradient(135deg,var(--r1),var(--r2));
+  color:#000;font-size:.65rem;font-weight:900;padding:3px 14px;border-radius:20px;
+  margin-bottom:10px;letter-spacing:.12em;transform:rotate(-1deg)}
+h1{font-family:'Noto Serif TC',serif;font-size:2rem;font-weight:900;
+  background:linear-gradient(135deg,var(--east) 0%,var(--sea) 40%,var(--europe) 70%,var(--america) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1.25;letter-spacing:.04em}
+.hd-sub{font-size:.73rem;color:var(--muted);letter-spacing:.1em;margin-top:6px}
+
+/* REGION GRID */
+.region-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:12px;margin-bottom:22px}
+.reg-btn{padding:16px 10px;border-radius:12px;cursor:pointer;text-align:center;
+  background:var(--surface);border:1.5px solid var(--ec,#444);
+  box-shadow:0 0 16px rgba(0,0,0,.4);transition:all .15s;position:relative;overflow:hidden}
+.reg-btn::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,transparent 60%);
+  opacity:0;transition:opacity .2s}
+.reg-btn:hover::before{opacity:1}
+.reg-btn:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.5),0 0 0 1px var(--ec)}
+.reg-btn:active{transform:translateY(1px)}
+.r-icon{font-size:2.2rem;margin-bottom:7px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+.r-name{font-family:'Noto Serif TC',serif;font-weight:900;font-size:.95rem;
+  color:var(--ec);margin-bottom:3px;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.r-sub{font-size:.62rem;color:var(--muted);font-weight:600;letter-spacing:.05em}
+
+/* OVERVIEW */
+.ov-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;
+  padding:16px;margin-bottom:20px;position:relative;overflow:hidden}
+.ov-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--east),var(--sea),var(--europe),var(--africa),var(--america))}
+.ov-title{font-family:'Noto Serif TC',serif;font-weight:900;font-size:.92rem;
+  color:var(--r1);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.ov-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--r1),transparent)}
+.ov-2col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ov-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 12px}
+.ov-h{font-weight:900;font-size:.76rem;margin-bottom:6px;letter-spacing:.05em}
+.ov-list{list-style:none;padding:0}
+.ov-list li{font-size:.72rem;line-height:1.75;color:var(--muted);padding-left:14px;position:relative}
+.ov-list li::before{content:'›';position:absolute;left:0;color:var(--r1);font-weight:900}
+.ov-list li strong{color:var(--text)}
+
+/* QUICK TABLE */
+.qtbl-wrap{overflow-x:auto;margin-top:10px}
+.qtbl{width:100%;border-collapse:collapse;font-size:.7rem}
+.qtbl th{background:var(--card);color:var(--r1);padding:7px 10px;border:1px solid var(--border);
+  font-weight:900;text-align:center;font-family:'Noto Serif TC',serif;white-space:nowrap}
+.qtbl td{padding:6px 10px;border:1px solid var(--border);vertical-align:top;
+  line-height:1.6;color:var(--muted)}
+.qtbl td:first-child{color:var(--text);font-weight:700}
+.qtbl tr:hover td{background:rgba(255,255,255,.03)}
+
+/* TOP BAR */
+.top-bar{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.back-btn{padding:7px 14px;border-radius:8px;cursor:pointer;font-size:.75rem;
+  background:var(--card);border:1px solid var(--border);color:var(--text);
+  font-family:inherit;font-weight:800;transition:all .12s}
+.back-btn:hover{border-color:var(--r1);color:var(--r1)}
+.mode-badge{font-weight:900;font-size:.85rem;color:#000;
+  background:linear-gradient(135deg,var(--ec,var(--r1)),var(--ec2,var(--r2)));
+  padding:5px 14px;border-radius:8px;font-family:'Noto Serif TC',serif;letter-spacing:.04em}
+
+/* REGION BANNER */
+.reg-banner{padding:18px;border-radius:12px;margin-bottom:14px;
+  background:linear-gradient(135deg,var(--ec) 0%,rgba(0,0,0,.6) 100%);
+  border:1.5px solid var(--ec);position:relative;overflow:hidden}
+.reg-banner::before{content:'';position:absolute;top:-40px;right:-40px;width:150px;height:150px;
+  border:2px solid rgba(255,255,255,.1);border-radius:50%}
+.reg-banner h2{font-family:'Noto Serif TC',serif;font-size:1.4rem;font-weight:900;
+  margin-bottom:4px;text-shadow:0 2px 8px rgba(0,0,0,.5)}
+.reg-banner .r-tag{display:inline-block;background:rgba(0,0,0,.5);padding:2px 10px;
+  border-radius:6px;font-size:.68rem;font-weight:700;margin-bottom:8px;letter-spacing:.06em}
+.reg-banner .r-intro{font-size:.8rem;line-height:1.7;font-weight:600;
+  background:rgba(0,0,0,.3);border-radius:8px;padding:8px 12px;margin-top:6px}
+
+/* MODE GRID */
+.mode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:10px;margin-bottom:14px}
+.mode-btn{padding:13px 8px;border-radius:10px;cursor:pointer;text-align:center;
+  background:var(--surface);border:1.5px solid var(--border);transition:all .12s;font-family:inherit}
+.mode-btn:hover{transform:translateY(-2px);border-color:var(--ec,var(--r1));
+  box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.m-icon{font-size:1.6rem;margin-bottom:5px}
+.m-label{font-weight:900;font-size:.82rem;color:var(--text);margin-bottom:3px;font-family:'Noto Serif TC',serif}
+.m-desc{color:var(--muted);font-size:.63rem;font-weight:600}
+
+/* COUNTRY/TOPIC CARDS */
+.country-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;padding:12px}
+.c-card{background:var(--card);border:1px solid var(--border);border-radius:8px;
+  padding:10px 12px;cursor:pointer;transition:all .15s}
+.c-card:hover{border-color:var(--ec,var(--r1));transform:translateY(-1px)}
+.c-name{font-family:'Noto Serif TC',serif;font-weight:900;font-size:.9rem;
+  color:var(--ec,var(--r1));margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.c-flag{font-size:1.1rem}
+.c-desc{font-size:.71rem;color:var(--muted);line-height:1.6}
+
+/* DETAIL */
+.detail-sec{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;
+  margin-bottom:12px;overflow:hidden}
+.detail-hd{padding:10px 16px;font-weight:900;font-size:.86rem;color:var(--text);
+  background:var(--card);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:8px;font-family:'Noto Serif TC',serif}
+.detail-body{padding:14px 16px;font-size:.8rem;line-height:1.8;color:var(--muted)}
+.detail-body strong{color:var(--text)}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;padding:10px 12px}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 11px}
+.fc-title{font-weight:900;font-size:.82rem;color:var(--ec,var(--r1));margin-bottom:4px}
+.fc-desc{font-size:.71rem;color:var(--muted);line-height:1.65}
+
+.listen-item{padding:10px 16px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.listen-item:last-child{border-bottom:none}
+.li-info{flex:1;min-width:140px}
+.li-title{font-weight:900;font-size:.83rem;margin-bottom:2px;color:var(--text)}
+.li-detail{font-size:.68rem;color:var(--muted);line-height:1.5}
+.yt-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 12px;
+  border-radius:6px;background:#c4302b;color:#fff;font-size:.68rem;font-weight:900;
+  text-decoration:none;border:1px solid #8a1a1e;transition:all .1s;white-space:nowrap;flex-shrink:0}
+.yt-btn:hover{background:#e03030;transform:translateY(-1px)}
+
+/* REF ACCORDION */
+.ref-item{border-bottom:1px solid var(--border)}
+.ref-item:last-child{border-bottom:none}
+.ref-head{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;
+  transition:background .15s;border-radius:4px}
+.ref-head:hover{background:var(--card)}
+.ref-av{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;
+  justify-content:center;font-size:1.2rem;font-weight:900;flex-shrink:0;
+  background:var(--card);border:1px solid var(--border)}
+.ref-name{font-weight:900;font-size:.87rem;color:var(--text);font-family:'Noto Serif TC',serif}
+.ref-sub{font-size:.68rem;color:var(--muted);margin-top:1px}
+.ref-badge{padding:3px 9px;border-radius:6px;font-size:.63rem;font-weight:900;
+  margin-left:auto;white-space:nowrap;flex-shrink:0}
+.ref-arr{font-size:.8rem;color:var(--dim);flex-shrink:0}
+.ref-body{padding:0 14px 12px 56px}
+.ref-body li{font-size:.76rem;line-height:1.8;color:var(--muted);list-style:none;
+  padding-left:12px;position:relative}
+.ref-body li::before{content:'›';position:absolute;left:0;color:var(--r1);font-weight:900}
+.ref-body li strong{color:var(--text)}
+
+/* QUIZ */
+.q-box{background:var(--card);border:1.5px solid var(--border);border-radius:10px;
+  padding:14px 16px;font-size:.87rem;color:var(--text);line-height:1.75;
+  margin-bottom:14px;font-weight:600}
+.tf-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tf-btn{padding:13px;border-radius:8px;border:1.5px solid var(--border);background:var(--surface);
+  color:var(--text);font-size:.95rem;cursor:pointer;font-family:inherit;font-weight:900;
+  transition:all .12s}
+.tf-btn:hover:not(:disabled){border-color:var(--r1);color:var(--r1)}
+.tc{background:#0F4A2A!important;color:#2ED573!important;border-color:#2ED573!important}
+.tw{background:#4A0F0F!important;color:#FF6B6B!important;border-color:#FF6B6B!important}
+.mc-btn{display:flex;align-items:center;gap:10px;width:100%;padding:10px 13px;
+  border-radius:8px;margin-bottom:8px;border:1.5px solid var(--border);background:var(--surface);
+  color:var(--text);font-size:.82rem;cursor:pointer;font-family:inherit;text-align:left;
+  transition:all .12s;font-weight:700}
+.mc-btn:hover:not(:disabled){border-color:var(--ec,var(--r1))}
+.mc{background:#0F4A2A!important;color:#2ED573!important;border-color:#2ED573!important}
+.mw{background:#4A0F0F!important;color:#FF6B6B!important;border-color:#FF6B6B!important}
+.abadge{width:25px;height:25px;border-radius:6px;background:var(--ec,var(--r1));
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:.73rem;font-weight:900;flex-shrink:0;color:#000}
+.mc .abadge,.mw .abadge{background:rgba(255,255,255,.2);color:inherit}
+.explain{margin-top:12px;padding:12px 14px;border-radius:8px;font-size:.78rem;
+  line-height:1.65;font-weight:600;border:1.5px solid var(--border)}
+.eo{background:#0A2A18;border-color:#2ED573}.en{background:#2A0A0A;border-color:#FF6B6B}
+.eho,.ehn{font-weight:900;display:block;margin-bottom:5px;font-size:.85rem}
+.eho{color:#2ED573}.ehn{color:#FF6B6B}
+.next-btn{margin-top:10px;padding:7px 18px;border-radius:8px;cursor:pointer;
+  background:linear-gradient(135deg,var(--ec,var(--r1)),var(--ec2,var(--r2)));
+  border:none;color:#000;font-size:.8rem;font-family:inherit;font-weight:900;transition:all .1s}
+.next-btn:hover{opacity:.9;transform:translateY(-1px)}
+.prog-bar{display:flex;gap:3px;margin-bottom:12px;background:var(--card);padding:5px;
+  border:1px solid var(--border);border-radius:8px}
+.prog-seg{flex:1;height:7px;border-radius:3px;background:var(--border);transition:background .3s}
+.pd{background:#2ED573!important}.pc{background:var(--r1)!important}
+.stat-row{display:flex;justify-content:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.chip{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:4px 12px;
+  font-size:.74rem;color:var(--text);font-weight:800}
+.chip strong{color:var(--r1)}
+
+/* MATCH */
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.match-hdr{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;
+  text-align:center;font-size:.74rem;font-weight:900}
+.match-hdr div{background:var(--card);border:1px solid var(--border);border-radius:6px;
+  padding:5px;color:var(--muted)}
+.mi{padding:9px;border-radius:6px;border:1.5px solid var(--border);background:var(--surface);
+  cursor:pointer;font-size:.74rem;font-weight:700;text-align:center;transition:all .15s;
+  line-height:1.4;min-height:42px;display:flex;align-items:center;justify-content:center;
+  color:var(--text)}
+.mi:hover{border-color:var(--ec,var(--r1));color:var(--ec,var(--r1))}
+.mi-s{background:rgba(255,107,53,.15)!important;border-color:var(--r1)!important;color:var(--r1)!important}
+.mi-m{background:#0F4A2A!important;color:#2ED573!important;cursor:default;border-color:#2ED573!important}
+.mi-w{background:#4A0F0F!important;color:#FF6B6B!important;border-color:#FF6B6B!important}
+.done-msg{text-align:center;padding:14px;font-weight:900;font-size:.92rem;color:#2ED573;
+  background:#0A2A18;border:1px solid #2ED573;border-radius:8px;margin-top:10px;
+  font-family:'Noto Serif TC',serif}
+
+/* RESULT */
+.card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px}
+.result-box{text-align:center;padding:20px}
+.ri{font-size:3.5rem;margin-bottom:8px}
+.rs{font-family:'Noto Serif TC',serif;font-size:1.35rem;font-weight:900;margin-bottom:4px}
+.rsc{font-size:.95rem;font-weight:700;color:var(--r1);margin-bottom:4px}
+.rp{font-size:.8rem;color:var(--muted);font-weight:600}
+
+.tip{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;
+  padding:12px 16px;font-size:.77rem;color:var(--muted);line-height:1.75;font-weight:600;
+  margin-top:10px;position:relative}
+.tip::before{content:"💡 學習提示";position:absolute;top:-11px;left:16px;
+  background:var(--r1);color:#000;padding:1px 10px;border-radius:6px;
+  font-size:.68rem;font-weight:900;letter-spacing:.06em}
+
+.scroll-top{position:fixed;bottom:20px;right:20px;
+  background:linear-gradient(135deg,var(--r1),var(--r2));color:#000;
+  border:none;border-radius:10px;width:42px;height:42px;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  font-size:1.1rem;box-shadow:0 4px 16px rgba(255,107,53,.4);transition:all .1s;z-index:100}
+.scroll-top:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,107,53,.5)}
+
+/* UNESCO TABLE */
+.unesco-table{width:100%;border-collapse:collapse;font-size:.7rem}
+.unesco-table th{background:var(--card);color:var(--r1);padding:6px 10px;
+  border:1px solid var(--border);font-weight:900;text-align:center}
+.unesco-table td{padding:5px 10px;border:1px solid var(--border);line-height:1.5;color:var(--muted)}
+.unesco-table td:first-child{color:var(--east);font-weight:700}
+.unesco-table tr:hover td{background:rgba(255,255,255,.02)}
+
+@media(max-width:500px){
+  h1{font-size:1.5rem}
+  .region-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+  .ov-2col{grid-template-columns:1fr}
+}
+</style>
+
+<link rel="stylesheet" href="../assets/css/shared.css">
+<style>
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="../index.html" class="nav-logo"><span>🎵</span>莊敬音樂科</a>
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link home">首頁</a>
+    <a href="index.html" class="nav-link active-h">音樂史</a>
+    <a href="../theory/index.html" class="nav-link">樂理</a>
+    <a href="teacher-resources.html" class="nav-link">教師資源</a>
+  </div>
+
+  <div id="nav-auth" style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+    <button id="login-btn" onclick="teacherLogin()" style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;border:1.5px solid var(--border,rgba(0,0,0,.12));background:#fff;cursor:pointer;font-size:.78rem;font-weight:700;font-family:inherit;">👤 教師登入</button>
+    <div id="user-info" style="display:none;align-items:center;gap:8px;">
+      <span style="font-size:.78rem;font-weight:700;">👋 <span id="user-name"></span></span>
+      <button onclick="teacherLogout()" style="padding:4px 10px;border-radius:12px;border:1.5px solid rgba(0,0,0,.12);background:transparent;cursor:pointer;font-size:.7rem;font-family:inherit;">登出</button>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumb" style="padding:8px 16px;font-size:.76rem;color:#888;display:flex;gap:5px;align-items:center;"><a href="../index.html" style="color:#666;text-decoration:none;">首頁</a><span>/</span><a href="index.html" style="color:#666;text-decoration:none;">音樂史</a><span>/</span>世界音樂</span></div>
+<div id="app"></div>
+<div class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+<script>
+// ================================================================
+//  DATA
+// ================================================================
+const REGIONS = [
+  {
+    id:'east', name:'東亞地區', icon:'🗾', color:'#3B82F6',color2:'#93C5FD',
+    tag:'朝鮮半島 · 日本',
+    intro:'東亞音樂深受中國文化影響，同時發展出各自獨特的傳統。朝鮮半島宮廷音樂受中國雅樂影響，日本傳統音樂稱「邦樂」，與西洋「洋樂」相對。',
+    countries:[
+      {
+        name:'朝鮮半島', flag:'🇰🇷', color:'#3B82F6',
+        music:[
+          {title:'宮廷音樂',desc:'受中國雅樂影響，都有祭孔音樂；歷經變革後，在管弦合奏中加入玄琴，成為具有樂歌舞的綜合藝術。'},
+          {title:'民俗音樂',desc:'宮廷音樂以外的音樂，大致上分為器樂曲和說唱曲。許多民謠使用三拍子，共同特色為速度常由慢轉快。'},
+          {title:'農樂',desc:'農民的音樂。農樂團行進時，通常旗手在前，樂隊和舞蹈在後，樂隊由擊樂和管樂器所組成。使用於民間慶典，曲風熱鬧。'},
+          {title:'散調',desc:'獨奏樂器（如伽倻琴、玄琴）按照杖鼓伴奏的獨奏音樂，具較強的即興性。'},
+          {title:'盤索里',desc:'由一位歌手及一位鼓手組合，具有獨特的聲音、節奏及演唱技巧。經典曲目有〈春香歌〉。'},
+        ],
+        instruments:[
+          {name:'四物鼓樂團',desc:'鼓樂團，通常包含大鑼、小鑼、沙漏鼓、圓鼓。'},
+          {name:'伽倻琴（gayag）',desc:'十二條弦，彈法類似古箏使用右手彈左手按，音階排列有五聲和七聲兩種。'},
+          {name:'杖鼓',desc:'又名長鼓，文化意涵中代表大地的聲音。'},
+        ],
+        arts:[{name:'盤索里',desc:'朝鮮傳統曲藝形式，由兩人合作演出，一人坐以擊鼓、一人站以說唱，以說唱為主，敘述故事。2003年列入UNESCO。'}],
+        listen:[
+          {t:'盤索里 春香歌',d:'朝鮮最著名的盤索里，敘述春香與李夢龍的愛情故事',q:'판소리 춘향가 Pansori'},
+          {t:'伽倻琴 散調',d:'伽倻琴即興獨奏，速度由慢至快的獨特結構',q:'가야금 산조 kayagum'},
+          {t:'農樂 四物打擊',d:'韓國傳統農樂，四物鼓樂熱鬧奔放',q:'Korean samulnori 사물놀이'},
+        ],
+        TF:[
+          {q:'朝鮮半島宮廷音樂受中國雅樂影響，都有祭孔音樂。',ans:true,e:'正確。朝鮮半島宮廷音樂受中國雅樂影響，都有祭孔音樂；歷經變革後在管弦合奏中加入玄琴。'},
+          {q:'盤索里是由一位歌手及三位鼓手組合演出的藝術形式。',ans:false,e:'錯誤。盤索里是由「一位歌手及一位鼓手」組合，具有獨特的聲音、節奏及演唱技巧。'},
+          {q:'伽倻琴有十二條弦，彈法類似古箏。',ans:true,e:'正確。伽倻琴有十二條弦，彈法類似古箏使用右手彈左手按，音階排列有五聲和七聲兩種。'},
+          {q:'朝鮮民俗音樂的速度特色是由快轉慢。',ans:false,e:'錯誤。朝鮮民俗音樂（包括民謠使用三拍子）共同特色為速度常由「慢轉快」，不是由快轉慢。'},
+        ],
+        MC:[
+          {q:'盤索里的演出形式是？',opts:['一位歌手獨唱','一位歌手+一位鼓手','多人合唱+樂隊','四物打擊樂'],ans:1,e:'盤索里是由一位歌手及一位鼓手組合，具有獨特的聲音、節奏及演唱技巧，經典曲目有〈春香歌〉。'},
+          {q:'朝鮮半島農樂的樂隊組成是？',opts:['管樂器為主','弦樂器為主','擊樂和管樂器','純粹打擊樂'],ans:2,e:'農樂的樂隊由擊樂和管樂器所組成，農樂團行進時旗手在前、樂隊和舞蹈在後。'},
+        ],
+        MATCH:[{l:'盤索里',r:'歌手+鼓手，春香歌'},{l:'伽倻琴',r:'十二條弦，散調'},{l:'農樂',r:'擊樂+管樂器'},{l:'杖鼓',r:'又名長鼓'}],
+      },
+      {
+        name:'日本', flag:'🇯🇵', color:'#EF4444',
+        music:[
+          {title:'邦樂 vs 洋樂',desc:'日本傳統音樂在日語稱為「邦樂」，與西洋傳入的「洋樂」做對比。'},
+          {title:'音樂特色',desc:'多為五聲音階、拍子多為偶數如二或四拍、和聲常為四度、旋律常有短小動機反覆，結束樂段常重複開始樂段。'},
+          {title:'音階差異',desc:'樂器不使用統一的音高與音階，例如尺八使用陰音階（D Eb G A Bb）、三味線使用陽音階（D E G A B）。'},
+          {title:'傳統歌謠',desc:'傳統歌謠有祝唱、遊唱、盆踊唱、童唱等。盆踊是每年夏天舉辦的器樂與舞蹈結合，樂器有尺八、三味線，演唱者也是舞蹈者。'},
+          {title:'二部合唱',desc:'瀧廉太郎的〈花〉是日本的第一首二部合唱曲。'},
+        ],
+        instruments:[
+          {name:'琵琶（biwa）',desc:'短頸，四或五條弦，不彈奏主旋律，僧侶講述佛陀故事時會以撥子彈奏琵琶。'},
+          {name:'古箏（kato）',desc:'十三弦，約七、八世紀由中國傳入，最初使用於雅樂，後來由演奏家八橋何彥改良演奏法，使手型較小的女性也方便彈奏，在日本已成為一項女性樂器。'},
+          {name:'三味線（shamisen）',desc:'三條弦的彈撥樂器，由中國傳入，吉田兄弟早期樂曲〈萌芽〉成為電影《藝妓回憶錄》的宣傳音樂，揉合傳統鄉謠民樂及爵士、搖滾、科技音樂等元素。'},
+          {name:'尺八（shakuhachi）',desc:'隋唐傳進日本，雅樂尺八有六個音孔，現在則為五孔，正面四孔、反面一孔。'},
+          {name:'太鼓（taiko）',desc:'字面上來說為大鼓，約兩千年前由中國傳入，常用於節慶，可獨奏或合奏。'},
+        ],
+        arts:[
+          {name:'能樂',desc:'佩戴面具演出的一種傳統歌舞劇。2001年列入UNESCO。'},
+          {name:'歌舞伎',desc:'日本傳統戲劇，特色為佈景精緻、舞臺機關複雜、服裝化妝華麗；演員為男性，以明星才華為主體；伴奏樂器為三味線、笛和擊樂器。2005年列入UNESCO。'},
+          {name:'淨琉璃文樂木偶戲',desc:'說唱藝術，木偶戲加上三味線伴奏。2003年列入UNESCO。'},
+        ],
+        listen:[
+          {t:'三味線 吉田兄弟 萌芽',d:'電影《藝妓回憶錄》宣傳音樂，融合傳統與現代',q:'吉田兄弟 津軽三味線'},
+          {t:'尺八 古典演奏',d:'尺八深沉空靈的音色，日本傳統樂器之美',q:'shakuhachi 尺八 演奏'},
+          {t:'太鼓 和太鼓演奏',d:'日本太鼓震撼人心的節奏',q:'taiko 和太鼓 演奏'},
+          {t:'瀧廉太郎 花',d:'日本第一首二部合唱曲',q:'瀧廉太郎 花 合唱'},
+          {t:'日本能樂',d:'UNESCO非物質文化遺產，佩戴面具的傳統歌舞劇',q:'日本 能樂 Noh'},
+        ],
+        TF:[
+          {q:'日本傳統音樂稱為「邦樂」，與西洋傳入的「洋樂」做對比。',ans:true,e:'正確。日本傳統音樂在日語稱為「邦樂」，與西洋傳入的「洋樂」做對比。'},
+          {q:'瀧廉太郎的〈花〉是日本的第一首三部合唱曲。',ans:false,e:'錯誤。瀧廉太郎的〈花〉是日本的第一首「二部」合唱曲，不是三部。'},
+          {q:'日本三味線由中國傳入，有四條弦。',ans:false,e:'錯誤。三味線是三條弦的彈撥樂器，由中國傳入，不是四條弦。'},
+          {q:'日本古箏（kato）有十三弦，約七、八世紀由中國傳入。',ans:true,e:'正確。日本古箏（kato）有十三弦，約七、八世紀由中國傳入，最初使用於雅樂。'},
+          {q:'日本歌舞伎的演員以女性為主體。',ans:false,e:'錯誤。歌舞伎的演員為男性，以明星才華為主體，伴奏樂器為三味線、笛和擊樂器。'},
+        ],
+        MC:[
+          {q:'日本尺八（shakuhachi）現在有幾個音孔？',opts:['四孔','五孔','六孔','八孔'],ans:1,e:'尺八現在為五孔，正面四孔、反面一孔。隋唐時傳進日本的雅樂尺八有六個音孔。'},
+          {q:'吉田兄弟的〈萌芽〉成為哪部電影的宣傳音樂？',opts:['臥虎藏龍','花樣年華','藝妓回憶錄','英雄'],ans:2,e:'吉田兄弟早期樂曲〈萌芽〉成為電影《藝妓回憶錄》的宣傳音樂，揉合傳統鄉謠民樂及爵士、搖滾、科技音樂等元素。'},
+        ],
+        MATCH:[{l:'邦樂',r:'日本傳統音樂'},{l:'三味線',r:'三條弦，藝妓回憶錄'},{l:'尺八',r:'五孔，陰音階'},{l:'能樂',r:'佩戴面具，UNESCO'},{l:'瀧廉太郎〈花〉',r:'日本第一首二部合唱'}],
+      },
+    ],
+    TF:[
+      {q:'朝鮮半島宮廷音樂受中國雅樂影響。',ans:true,e:'正確。朝鮮半島宮廷音樂受中國雅樂影響，都有祭孔音樂，歷經變革後成為具有樂歌舞的綜合藝術。'},
+      {q:'日本傳統音樂稱為「洋樂」。',ans:false,e:'錯誤。日本傳統音樂稱為「邦樂」，與西洋傳入的「洋樂」做對比。'},
+      {q:'伽倻琴有十二條弦。',ans:true,e:'正確。伽倻琴有十二條弦，彈法類似古箏使用右手彈左手按。'},
+      {q:'日本古箏（kato）在日本已成為一項男性樂器。',ans:false,e:'錯誤。日本古箏由演奏家八橋何彥改良演奏法，使女性也方便彈奏，在日本已成為一項「女性」樂器。'},
+    ],
+    MC:[
+      {q:'盤索里的經典曲目是？',opts:['農樂','散調','春香歌','伽倻琴'],ans:2,e:'盤索里的經典曲目有〈春香歌〉，由一位歌手及一位鼓手組合演出。'},
+      {q:'日本尺八使用哪種音階？',opts:['五聲音階','陰音階（D Eb G A Bb）','陽音階（D E G A B）','十二平均律'],ans:1,e:'尺八使用陰音階（D Eb G A Bb），而三味線使用陽音階（D E G A B）。'},
+    ],
+    MATCH:[{l:'盤索里',r:'朝鮮，歌手+鼓手'},{l:'伽倻琴',r:'朝鮮，十二弦'},{l:'邦樂',r:'日本傳統音樂'},{l:'尺八',r:'日本，五孔直吹'},{l:'太鼓',r:'日本，由中國傳入'}],
+  },
+
+  {
+    id:'sea', name:'東南亞地區', icon:'🌴', color:'#10B981',color2:'#6EE7B7',
+    tag:'越南 · 泰國 · 緬甸 · 印尼 · 菲律賓',
+    intro:'東南亞傳統樂器材質多是竹製的管樂，與青銅製的擊樂；五、七聲音階並存；以二、四拍為基本拍，注重橫向旋律，織體以單音音樂為主。',
+    countries:[
+      {
+        name:'越南', flag:'🇻🇳', color:'#10B981',
+        music:[
+          {title:'音樂特色',desc:'以合奏為主。不論是宮廷合奏或戲劇伴奏音樂，受到中國很大的影響。除中國文化，與古印度的占婆王朝（Champa）亦有密切往來。中越與北越仍保有傳統民歌。'},
+        ],
+        instruments:[
+          {name:'越南樂器合奏',desc:'稱為「完美」樂器的合奏團，有六弦越南箏、胡琴、月琴、琵琶、三弦琴（或單弦琴），其中三弦琴和單弦琴是越南獨有的樂器。'},
+        ],
+        arts:[{name:'水傀儡',desc:'越南傳統的文藝表演，約有一千年歷史；表演方式是在水池上搭起舞臺，由隱藏在後臺的演員用長線或竹竿操縱木偶，使之演出各式各樣的動作及戲份。現今此藝術受到越南社會上的重視，並在國際文化交流上作為越南文化表演發揮重要作用。'}],
+        listen:[
+          {t:'越南水傀儡 表演',d:'越南千年傳統水上木偶戲，聯合國非物質文化遺產',q:'Vietnamese water puppet show'},
+          {t:'越南單弦琴（獨弦琴）',d:'越南獨有的彈撥樂器，音色獨特',q:'Vietnamese monochord đàn bầu'},
+        ],
+        TF:[{q:'越南水傀儡是在水池上搭起舞臺演出的。',ans:true,e:'正確。水傀儡表演方式是在水池上搭起舞臺，由隱藏在後臺的演員用長線或竹竿操縱木偶。'}],
+        MC:[{q:'越南「完美」樂器合奏團中，哪個是越南獨有的？',opts:['胡琴','月琴','單弦琴','三弦'],ans:2,e:'單弦琴（及三弦琴）是越南獨有的樂器，其他如胡琴、月琴、琵琶都是從中國傳入的。'}],
+        MATCH:[{l:'水傀儡',r:'越南千年水上木偶戲'},{l:'單弦琴',r:'越南獨有的彈撥樂器'}],
+      },
+      {
+        name:'泰國', flag:'🇹🇭', color:'#F59E0B',
+        music:[
+          {title:'音樂特色',desc:'以皇家宮廷音樂、民族音樂為主，皆受到印度與伊斯蘭教文化影響，並加入自己的元素。器樂合奏以凸心鑼群（乳鑼）與皮鼓樂為主。'},
+          {title:'三種傳統器樂合奏',desc:'皮帕特樂團（Piphat）—為傳統戲劇及宗教儀式伴奏，必備樂器為兩組鑼群、兩架木琴、一把雙簧管及數種大型鼓類樂器；克魯昂賽樂團（Khrueng Sai）—以弦樂為主；馬荷里樂團（Mahori）—為結合弦樂及皮帕特樂團的合奏樂團，如木琴（ranat）、排鑼（gong wong）等。'},
+          {title:'普密蓬阿杜德國王',desc:'普密蓬阿杜德（Bhumibol Adulyadej）擁有奧地利音樂學院學位，能演奏八種樂器、作曲填詞，並經常與管弦樂團同臺演出。'},
+          {title:'笠舞',desc:'是泰國傳統宮廷舞劇，有六百多年歷史。故事取材自《羅摩見》（印度史詩《羅摩衍那》的泰國版）；角色分為男人、女人、惡魔及猴子，兩者須戴上面具；角色臺詞由旁述者讀出，整個演出為舞者、伴奏和旁述者三者的高度藝術合作。'},
+        ],
+        instruments:[{name:'民間樂器',desc:'民間常見樂器有口簧、鼻笛、鼓及各種竹樂器。'}],
+        arts:[{name:'笠舞',desc:'泰國傳統宮廷舞劇，有六百多年歷史，角色分男人、女人、惡魔及猴子，整個演出為舞者、伴奏和旁述者三者的高度藝術合作。'}],
+        listen:[
+          {t:'泰國皮帕特樂團',d:'泰國傳統宮廷合奏，木琴與鑼群為核心',q:'Thai Piphat ensemble'},
+          {t:'泰國笠舞',d:'泰國宮廷舞劇，六百年歷史，故事來自羅摩衍那',q:'Thai Khon dance performance'},
+        ],
+        TF:[
+          {q:'泰國皮帕特樂團（Piphat）以弦樂為主。',ans:false,e:'錯誤。皮帕特樂團以兩組鑼群、兩架木琴、一把雙簧管及大型鼓類樂器為必備樂器，不是以弦樂為主。以弦樂為主的是克魯昂賽樂團（Khrueng Sai）。'},
+          {q:'泰國笠舞故事取材自印度史詩《羅摩衍那》的泰國版。',ans:true,e:'正確。笠舞故事取材自《羅摩見》，即印度史詩《羅摩衍那》的泰國版，角色分為男人、女人、惡魔及猴子。'},
+        ],
+        MC:[
+          {q:'泰國馬荷里樂團（Mahori）的特色是？',opts:['純弦樂','純打擊樂','結合弦樂及皮帕特樂團的合奏','只有木管樂'],ans:2,e:'馬荷里樂團（Mahori）是結合弦樂及皮帕特樂團的合奏樂團，如木琴（ranat）、排鑼（gong wong）等。'},
+        ],
+        MATCH:[{l:'皮帕特',r:'鑼群+木琴，儀式伴奏'},{l:'克魯昂賽',r:'弦樂為主'},{l:'馬荷里',r:'弦樂+皮帕特結合'},{l:'笠舞',r:'泰國宮廷舞劇，羅摩衍那'}],
+      },
+      {
+        name:'緬甸', flag:'🇲🇲', color:'#8B5CF6',
+        music:[
+          {title:'桑灣樂團（代表性戶外合奏）',desc:'以排鼓、排鑼、嗩吶及金竹木擊樂器組成，相當喧嘩響亮，用於行進、戲曲、宗教儀式中。'},
+          {title:'音樂理論',desc:'音樂理論建立在豎琴上，以五聲音階（C D F G B）調弦，獨奏常由鈸及響板搭配節奏，有時亦與聲樂配合形成室內樂；或與笛子作二重奏，或與笛及木琴作三重奏。大多口傳心受，沒有明確的記譜。'},
+          {title:'電影典故',desc:'電影《緬甸的豎琴》敘述二戰一位士兵帶著豎琴到戰俘營外彈奏〈甜蜜的家庭〉，打破敵我心靈之藩籬。'},
+        ],
+        instruments:[{name:'鳳首箜篌（緬式豎琴）',desc:'緬式「鳳首箜篌」在柔美的室內樂中，占最重要的地位，大部分都會加入一些簡單的及樂器，也為聲樂伴奏。'}],
+        arts:[{name:'東埔寨皇家舞劇',desc:'也叫高棉古典舞，與高棉宮廷緊密相連，有一千多年的歷史；舞蹈以其優雅的手勢和色彩艷麗的服飾而著稱。2008年被列入世界文化遺產。'}],
+        listen:[
+          {t:'緬甸豎琴（鳳首箜篌）',d:'緬甸最具代表性的樂器，音色柔美',q:'Burmese harp saung gauk'},
+          {t:'緬甸傳統音樂',d:'緬甸宮廷音樂，以五聲音階為基礎',q:'Myanmar traditional music'},
+        ],
+        TF:[{q:'緬甸音樂理論建立在豎琴上，以五聲音階（C D F G B）調弦。',ans:true,e:'正確。緬甸音樂理論建立在豎琴上，以五聲音階（C D F G B）調弦，大多口傳心受，沒有明確的記譜。'}],
+        MC:[{q:'電影《緬甸的豎琴》中士兵彈奏的曲目是？',opts:['茉莉花','甜蜜的家庭','春香歌','花'],ans:1,e:'電影《緬甸的豎琴》敘述二戰一位士兵帶著豎琴到戰俘營外彈奏〈甜蜜的家庭〉，打破敵我心靈之藩籬。'}],
+        MATCH:[{l:'桑灣樂團',r:'排鼓+排鑼+嗩吶'},{l:'鳳首箜篌',r:'緬甸室內樂核心'},{l:'五聲音階CDFGB',r:'緬甸豎琴調弦'}],
+      },
+      {
+        name:'印尼', flag:'🇮🇩', color:'#EF4444',
+        music:[
+          {title:'甘美朗（gamelan）',desc:'印尼爪哇、峇里島傳統鼓鑼合奏團之統稱。使用於重要宗教儀式、特殊慶典、皮影戲、宮廷舞蹈和戲劇伴奏，屬功能性合奏性質，而非為音樂會而演奏。其音樂多以反覆手法變化旋律。'},
+          {title:'德布西的影響',desc:'法國象徵派作曲家德布西於廿世紀初巴黎世界博覽會接觸到印尼甘美朗，將其五聲音階、全音音階、循環式主題，與層次性的節奏融入自身創作，使甘美朗享譽國際。'},
+          {title:'兩種音階',desc:'斯蘭朵（slendro）—將一個八度等分為五個等距的五音音階；沛洛（pelog）—將一個八度分成七個不等距的七音音階。'},
+          {title:'船歌「星星索」',desc:'「星星索」是指頑固低音，翻唱後的版本成為中國民俗風情節目《八千里路雲和月》主題曲。'},
+        ],
+        instruments:[{name:'甘美朗樂器分工',desc:'掛鑼負責畫分樂句、銅片琴負責核心旋律、雙排凸形鑼負責裝飾渲染旋律，中央皮鼓手有類似指揮的功能。'}],
+        arts:[{name:'哇揚皮影偶戲',desc:'常見於爪哇島與巴厘島的一種獨特戲劇型式。2003年列入UNESCO。'}],
+        listen:[
+          {t:'甘美朗 印尼爪哇',d:'印尼傳統鼓鑼合奏，層次豐富的音樂',q:'Gamelan Java Indonesia'},
+          {t:'峇里島甘美朗',d:'峇里島風格的甘美朗，節奏更加複雜精彩',q:'Balinese gamelan 峇里島'},
+          {t:'印尼哇揚皮影戲',d:'UNESCO非物質文化遺產，精彩的皮影藝術',q:'Wayang kulit shadow puppet'},
+        ],
+        TF:[
+          {q:'甘美朗是屬於功能性合奏，非為音樂會而演奏。',ans:true,e:'正確。甘美朗屬功能性合奏性質，使用於宗教儀式、特殊慶典、皮影戲、宮廷舞蹈等，而非為音樂會而演奏。'},
+          {q:'印尼甘美朗的斯蘭朵（slendro）是七音音階。',ans:false,e:'錯誤。斯蘭朵（slendro）是將一個八度等分為五個等距的「五音音階」；七音音階是沛洛（pelog）。'},
+          {q:'德布西曾在巴黎世界博覽會接觸到甘美朗。',ans:true,e:'正確。法國象徵派作曲家德布西於廿世紀初巴黎世界博覽會接觸到印尼甘美朗，並將其元素融入自身創作。'},
+        ],
+        MC:[
+          {q:'印尼甘美朗中，誰負責核心旋律？',opts:['掛鑼','銅片琴','雙排凸形鑼','中央皮鼓'],ans:1,e:'銅片琴負責核心旋律；掛鑼負責畫分樂句；雙排凸形鑼負責裝飾渲染旋律；中央皮鼓手有類似指揮的功能。'},
+          {q:'印尼船歌「星星索」的「星星索」指的是？',opts:['星星的聲音','頑固低音','一種舞蹈','樂器名稱'],ans:1,e:'「星星索」是指頑固低音，翻唱後的版本成為中國民俗風情節目《八千里路雲和月》主題曲。'},
+        ],
+        MATCH:[{l:'甘美朗',r:'印尼鼓鑼合奏團'},{l:'斯蘭朵',r:'五音等距音階'},{l:'沛洛',r:'七音不等距音階'},{l:'德布西',r:'將甘美朗融入創作'}],
+      },
+      {
+        name:'菲律賓', flag:'🇵🇭', color:'#3B82F6',
+        music:[
+          {title:'隆達拉（rondalle）合奏',desc:'菲律賓最典型的器樂合奏型態，於西班牙殖民初期傳入。早期曲目多來自歐洲交響樂或歌劇曲調、西班牙民間歌調，後加入菲律賓傳統旋律，使得此合奏更深植於菲律賓。'},
+          {title:'北部地區（呂宋島）',desc:'呈現原始宗教的民俗音樂風格，器樂以竹製樂器與平面銅鑼為主，南島語族傳統音樂仍在呂宋島、民答那峨島、巴拉望島的北部高山地區繼續傳唱。'},
+          {title:'中部地區（維沙揚群島）',desc:'十六世紀西班牙殖民時期，將天主教音樂帶入。歌樂以宗教的合唱與西班牙民間歌舞音樂為主；器樂為菲律賓傳統樂器與西方樂器並用的現象。'},
+          {title:'南部地區（民答那峨島）',desc:'多信奉伊斯蘭教，與印尼、馬來西亞等伊斯蘭教文化相似。最主要器樂合奏稱為排式座鑼（gong-chimes），盛行於民答那峨島上馬京答瑙人（Magindanao）與馬拉瑙人（Maranao）間。'},
+        ],
+        instruments:[{name:'排式座鑼（gong-chimes）',desc:'重要的社會財產，樂器可當嫁妝的傳家之寶，擁有該項樂器帶表有較高的社會地位。盛行於菲律賓南部民答那峨島。'}],
+        arts:[],
+        listen:[
+          {t:'菲律賓隆達拉合奏',d:'菲律賓典型器樂合奏，融合歐洲與本土風格',q:'Philippine rondalla ensemble'},
+          {t:'菲律賓排鑼（kulintang）',d:'菲律賓南部排式座鑼演奏',q:'Kulintang gong chimes Philippines'},
+        ],
+        TF:[{q:'排式座鑼（gong-chimes）盛行於菲律賓南部民答那峨島。',ans:true,e:'正確。排式座鑼（gong-chimes）盛行於民答那峨島上馬京答瑙人與馬拉瑙人間，多出現於婚禮、受洗、治療的儀式中。'}],
+        MC:[{q:'菲律賓最典型的器樂合奏型態是？',opts:['甘美朗','隆達拉（rondalle）合奏','皮帕特','桑灣樂團'],ans:1,e:'隆達拉（rondalle）合奏是菲律賓最典型的器樂合奏型態，於西班牙殖民初期傳入，融合歐洲與菲律賓傳統旋律。'}],
+        MATCH:[{l:'隆達拉',r:'菲律賓最典型合奏'},{l:'排式座鑼',r:'gong-chimes，社會財產'},{l:'呂宋島',r:'竹製樂器+銅鑼'},{l:'民答那峨島',r:'伊斯蘭教，排鑼'}],
+      },
+    ],
+    TF:[
+      {q:'東南亞傳統樂器材質多是竹製的管樂，與青銅製的擊樂。',ans:true,e:'正確。東南亞傳統樂器材質多是竹製的管樂，與青銅製的擊樂；五、七聲音階並存；以二、四拍為基本拍。'},
+      {q:'甘美朗是印尼最具代表性的管弦合奏樂團。',ans:false,e:'錯誤。甘美朗是鼓鑼合奏團（不是管弦），屬功能性合奏性質，使用於宗教儀式、慶典等。'},
+      {q:'越南水傀儡有約一千年歷史。',ans:true,e:'正確。越南水傀儡是一種越南傳統的文藝表演，約有一千年歷史。'},
+    ],
+    MC:[
+      {q:'印尼甘美朗使用的兩種音階是？',opts:['大調和小調','五聲音階和七聲音階（斯蘭朵和沛洛）','陰音階和陽音階','十二平均律和純律'],ans:1,e:'甘美朗使用斯蘭朵（slendro，五音等距）和沛洛（pelog，七音不等距）兩種音階。'},
+      {q:'緬甸電影《緬甸的豎琴》的主角士兵彈奏的是什麼樂器？',opts:['三味線','豎琴（鳳首箜篌）','伽倻琴','古箏'],ans:1,e:'電影《緬甸的豎琴》中，一位士兵帶著緬甸豎琴（鳳首箜篌）到戰俘營外彈奏〈甜蜜的家庭〉。'},
+    ],
+    MATCH:[{l:'甘美朗',r:'印尼鼓鑼合奏'},{l:'水傀儡',r:'越南水上木偶戲'},{l:'笠舞',r:'泰國宮廷舞劇'},{l:'鳳首箜篌',r:'緬甸室內樂核心'},{l:'排式座鑼',r:'菲律賓南部社會財產'}],
+  },
+
+  {
+    id:'south_asia', name:'南亞 · 印度', icon:'🎶', color:'#F97316',color2:'#FED7AA',
+    tag:'印度音樂 · 拉格 · 塔拉',
+    intro:'印度音樂擁有數千年歷史，旋律系統稱「拉格」（Raga），節奏系統稱「塔拉」（Tala）。西塔琴是代表性樂器，寶萊塢電影是印度流行文化的重要輸出。',
+    countries:[
+      {
+        name:'印度', flag:'🇮🇳', color:'#F97316',
+        music:[
+          {title:'拉格（Raga）',desc:'旋律系統稱為「拉格」（Raga），係將一個八度細分為廿二個音程，演唱（奏）者經常做即興演唱（奏）。'},
+          {title:'塔拉（Tala）',desc:'節奏系統稱為「塔拉」（Tala）。'},
+          {title:'寶萊塢（Bollywood）',desc:'歌舞片之傳統電影至少有一段以古典的印度舞蹈配合傳統樂器編排的歌舞，近年來亦加入現代舞元素，及教育問題及本質，例如電影《三個傻瓜》（3 Idiots）。'},
+        ],
+        instruments:[
+          {name:'西塔琴',desc:'為代表，除使用於伊斯蘭教及宮廷音樂，亦出現於流行音樂，例如搖滾樂團披頭四（The Beatles）歌曲〈Within You Without You〉。'},
+          {name:'拉維·香卡（Ravi Shankar）',desc:'當代大師拉維·香卡（Ravi Shankar, 1920~2012）是西塔琴作曲家、演奏家；被稱為「地球上最著名的印度音樂家」。'},
+        ],
+        arts:[{name:'寶萊塢歌舞',desc:'印度電影音樂結合傳統古典舞蹈與現代元素，是印度文化的重要代表。'}],
+        listen:[
+          {t:'拉維·香卡 西塔琴演奏',d:'印度最著名的音樂家，西塔琴大師拉維·香卡',q:'Ravi Shankar sitar'},
+          {t:'印度拉格 即興演奏',d:'拉格即興演奏，展現印度音樂的即興精神',q:'Indian raga improvisation'},
+          {t:'披頭四 Within You Without You',d:'披頭四使用西塔琴的名曲',q:'Beatles Within You Without You sitar'},
+          {t:'寶萊塢 舞蹈音樂',d:'印度寶萊塢電影歌舞片代表',q:'Bollywood dance music'},
+        ],
+        TF:[
+          {q:'印度旋律系統稱為「拉格」（Raga），是將一個八度細分為廿二個音程。',ans:true,e:'正確。印度旋律系統稱為「拉格」（Raga），係將一個八度細分為廿二個音程，演唱（奏）者經常做即興演唱（奏）。'},
+          {q:'拉維·香卡被稱為「地球上最著名的印度音樂家」。',ans:true,e:'正確。拉維·香卡（1920~2012）是西塔琴作曲家、演奏家，被稱為「地球上最著名的印度音樂家」。'},
+          {q:'披頭四的歌曲中從未使用過西塔琴。',ans:false,e:'錯誤。披頭四的歌曲〈Within You Without You〉就使用了西塔琴，是印度音樂影響西方流行音樂的重要例子。'},
+        ],
+        MC:[
+          {q:'印度的節奏系統稱為？',opts:['拉格（Raga）','塔拉（Tala）','甘美朗','曼波'],ans:1,e:'印度節奏系統稱為「塔拉」（Tala），旋律系統才是「拉格」（Raga）。'},
+          {q:'哪部電影是寶萊塢風格融合教育主題的典型例子？',opts:['臥虎藏龍','三個傻瓜（3 Idiots）','功夫熊貓','緬甸的豎琴'],ans:1,e:'電影《三個傻瓜》（3 Idiots）是寶萊塢電影近年加入現代舞元素及教育問題本質的典型例子。'},
+        ],
+        MATCH:[{l:'拉格（Raga）',r:'印度旋律系統，22音程'},{l:'塔拉（Tala）',r:'印度節奏系統'},{l:'拉維·香卡',r:'西塔琴大師，最著名印度音樂家'},{l:'西塔琴',r:'披頭四also用過'}],
+      },
+    ],
+    TF:[
+      {q:'印度拉格（Raga）演奏者經常做即興演奏。',ans:true,e:'正確。拉格係將一個八度細分為廿二個音程，演唱（奏）者經常做即興演唱（奏）。'},
+      {q:'西塔琴只出現在印度傳統宗教音樂中。',ans:false,e:'錯誤。西塔琴除使用於伊斯蘭教及宮廷音樂，亦出現於流行音樂，例如披頭四的〈Within You Without You〉。'},
+    ],
+    MC:[
+      {q:'拉維·香卡（Ravi Shankar）演奏的主要樂器是？',opts:['星達琴','西塔琴','三味線','伽倻琴'],ans:1,e:'拉維·香卡（1920~2012）是西塔琴作曲家、演奏家，被稱為「地球上最著名的印度音樂家」。'},
+    ],
+    MATCH:[{l:'拉格',r:'旋律系統'},{l:'塔拉',r:'節奏系統'},{l:'西塔琴',r:'印度代表樂器'},{l:'寶萊塢',r:'印度電影歌舞片'}],
+  },
+
+  {
+    id:'europe', name:'歐洲', icon:'🏰', color:'#8B5CF6',color2:'#C4B5FD',
+    tag:'佛朗明哥 · 風笛 · 踢踏舞',
+    intro:'歐洲民族音樂豐富多元，西班牙的佛朗明哥以吉他、舞蹈、歌唱三大靈魂著稱；蘇格蘭愛爾蘭的風笛聞名全球；瑞士阿爾卑斯山號是獨特的山地樂器。',
+    countries:[
+      {
+        name:'歐洲音樂', flag:'🇪🇸', color:'#8B5CF6',
+        music:[
+          {title:'佛朗明哥（Flamenco）',desc:'西班牙樂舞。三大靈魂為吉他（古典吉他，多為輪奏，不時以指節敲打琴身）、舞蹈及歌唱，現代時常加上木箱鼓（cajon，周杰倫在《稻香》宣傳片中出現過此樂器）作為打擊伴奏。〈羅莎瑪麗亞〉（Rosa Maria）為歌手卡麥隆（Camarón de la Isla, 1950~1992）所演唱的佛朗明哥情歌，曲首由吉他演奏兩小節為一單位的循環節奏（compas，一種重複的重音拍子），接著才各自在第三、六個循環節奏中加入擊掌與歌聲。'},
+          {title:'其他歐洲音樂',desc:'蘇格蘭風笛（bagpipe）、愛爾蘭踢踏舞（tap dance）。'},
+        ],
+        instruments:[
+          {name:'風笛（bagpipe）',desc:'出現於蘇格蘭與愛爾蘭北部、法國中部、義大利、西班牙及東歐等。重要構造有二—獸皮製的「風袋」（bag），儲存從吹管吹入的空氣，由左手擠壓送風；與產生音高的「簧管」（pipe），其又分為可吹奏旋律的「旋律管」，與只能演奏持續單音伴奏的三支「陪響管」。〈奇異恩典〉（Amazing Grace）亦有風笛演奏的版本。'},
+          {name:'阿爾卑斯山號（alphorn）',desc:'瑞士木製樂器，長三至四公尺圓錐管，除吹口與末端的喇叭口外沒有任何其他的氣孔、按鍵或簧片。'},
+        ],
+        arts:[{name:'佛朗明哥舞蹈',desc:'西班牙傳統舞蹈，融合吉他音樂、歌唱與熱情的舞蹈，是西班牙文化的象徵。'}],
+        listen:[
+          {t:'佛朗明哥 吉他演奏',d:'西班牙佛朗明哥吉他的熱情旋律',q:'Flamenco guitar Spain'},
+          {t:'風笛 奇異恩典',d:'蘇格蘭風笛版本的Amazing Grace',q:'Amazing Grace bagpipe Scottish'},
+          {t:'愛爾蘭踢踹舞 Riverdance',d:'著名的愛爾蘭踢踹舞表演',q:'Riverdance Irish tap dance'},
+          {t:'阿爾卑斯山號演奏',d:'瑞士傳統木管樂器，空曠山谷中的音色',q:'alphorn Switzerland'},
+        ],
+        TF:[
+          {q:'佛朗明哥的三大靈魂是吉他、舞蹈及歌唱。',ans:true,e:'正確。佛朗明哥三大靈魂為吉他（古典吉他）、舞蹈及歌唱。'},
+          {q:'風笛的「陪響管」可以吹奏各種旋律。',ans:false,e:'錯誤。「旋律管」才可吹奏旋律，三支「陪響管」只能演奏持續單音伴奏。'},
+          {q:'阿爾卑斯山號是奧地利的樂器。',ans:false,e:'錯誤。阿爾卑斯山號是瑞士木製樂器，長三至四公尺圓錐管。'},
+        ],
+        MC:[
+          {q:'佛朗明哥的循環節奏（compas）是幾小節為一單位？',opts:['一小節','兩小節','四小節','八小節'],ans:1,e:'佛朗明哥的compas是兩小節為一單位的循環節奏，是一種重複的重音拍子。'},
+          {q:'〈奇異恩典〉（Amazing Grace）有哪種樂器的演奏版本？',opts:['尺八','風笛（bagpipe）','甘美朗','三味線'],ans:1,e:'〈奇異恩典〉（Amazing Grace）亦有風笛演奏的版本，是蘇格蘭風笛的代表性曲目。'},
+        ],
+        MATCH:[{l:'佛朗明哥',r:'吉他+舞蹈+歌唱'},{l:'風笛',r:'風袋+旋律管+陪響管'},{l:'阿爾卑斯山號',r:'瑞士，圓錐木管'},{l:'踢踹舞',r:'愛爾蘭傳統'}],
+      },
+    ],
+    TF:[
+      {q:'佛朗明哥三大靈魂是吉他、鋼琴、歌唱。',ans:false,e:'錯誤。佛朗明哥三大靈魂是「吉他」、「舞蹈」及「歌唱」，不是鋼琴。'},
+      {q:'風笛出現於蘇格蘭與愛爾蘭北部等地區。',ans:true,e:'正確。風笛出現於蘇格蘭與愛爾蘭北部、法國中部、義大利、西班牙及東歐等。'},
+    ],
+    MC:[
+      {q:'卡麥隆（Camarón de la Isla）是哪個音樂類型的代表歌手？',opts:['探戈','佛朗明哥','森巴','爵士'],ans:1,e:'卡麥隆（1950~1992）是著名的佛朗明哥歌手，〈羅莎瑪麗亞〉是其代表性情歌。'},
+    ],
+    MATCH:[{l:'佛朗明哥',r:'西班牙，三大靈魂'},{l:'風笛',r:'蘇格蘭愛爾蘭'},{l:'阿爾卑斯山號',r:'瑞士圓錐木管'},{l:'踢踏舞',r:'愛爾蘭'}],
+  },
+
+  {
+    id:'africa', name:'非洲', icon:'🥁', color:'#F59E0B',color2:'#FDE68A',
+    tag:'社會功能 · 節奏為王',
+    intro:'非洲音樂社會機能相當重，功能有傳承歷史、進行儀式，與溝通工具（例如說話鼓）。重視節奏感更甚於曲調感，節奏音型複雜，除即興式的自由節奏，尚運用混合拍子、變化拍子，及複節奏等。',
+    countries:[
+      {
+        name:'非洲音樂', flag:'🌍', color:'#F59E0B',
+        music:[
+          {title:'社會功能',desc:'非洲音樂社會機能相當重，功能有傳承歷史、進行儀式，與溝通工具（例如說話鼓）。'},
+          {title:'節奏特色',desc:'重視節奏感更甚於曲調感，節奏音型複雜，除即興式的自由節奏，尚運用混合拍子、變化拍子，及複節奏等。'},
+          {title:'代表詩歌',desc:'〈道路與河流〉為非洲阿香堤語鼓詩。'},
+        ],
+        instruments:[
+          {name:'金貝鼓（djembe）',desc:'西非傳統手鼓，形狀如高腳杯，可產生多種不同的音色，是非洲最具代表性的樂器之一。'},
+          {name:'非洲木琴（balafon）',desc:'西非傳統木質打擊樂器，有葫蘆共鳴箱，被認為是木琴的前身。'},
+          {name:'科拉琴（kora）',desc:'西非彈撥樂器，結合了竪琴和魯特琴的特性，有21條弦。'},
+          {name:'姆指琴（mbira）',desc:'東非及南非的彈撥樂器，以金屬片或竹片安裝在木板上，用拇指彈撥發聲，又稱拇指鋼琴。'},
+        ],
+        arts:[],
+        listen:[
+          {t:'非洲金貝鼓 djembe',d:'西非最具代表性的傳統手鼓演奏',q:'djembe African drum'},
+          {t:'科拉琴演奏',d:'西非科拉琴21弦優美音色',q:'kora West African harp lute'},
+          {t:'姆指琴 mbira',d:'非洲拇指鋼琴，神聖的民間音樂',q:'mbira thumb piano Zimbabwe'},
+          {t:'非洲木琴 balafon',d:'西非傳統木琴演奏',q:'balafon West Africa'},
+        ],
+        TF:[
+          {q:'非洲音樂重視節奏感更甚於曲調感。',ans:true,e:'正確。非洲音樂重視節奏感更甚於曲調感，節奏音型複雜，除即興式的自由節奏，尚運用混合拍子、變化拍子，及複節奏等。'},
+          {q:'非洲音樂主要用於娛樂，沒有社會功能。',ans:false,e:'錯誤。非洲音樂社會機能相當重，功能有傳承歷史、進行儀式，與溝通工具（例如說話鼓）。'},
+          {q:'〈道路與河流〉是非洲阿香堤語鼓詩。',ans:true,e:'正確。〈道路與河流〉為非洲阿香堤語鼓詩。'},
+        ],
+        MC:[
+          {q:'非洲姆指琴（mbira）的演奏方式是？',opts:['用琴弓拉奏','用竹槌敲擊','用拇指彈撥金屬或竹片','用嘴吹奏'],ans:2,e:'姆指琴（mbira）是以金屬片或竹片安裝在木板上，用拇指彈撥發聲，又稱拇指鋼琴。'},
+          {q:'非洲音樂中，「說話鼓」的功能是？',opts:['純粹娛樂','儀式伴奏','溝通工具（傳遞訊息）','指揮合奏'],ans:2,e:'說話鼓是非洲音樂中的溝通工具，可以模擬語言傳遞訊息，是非洲音樂重要社會功能之一。'},
+        ],
+        MATCH:[{l:'金貝鼓',r:'djembe，西非手鼓'},{l:'科拉琴',r:'kora，21弦彈撥'},{l:'姆指琴',r:'mbira，拇指鋼琴'},{l:'非洲木琴',r:'balafon，葫蘆共鳴'}],
+      },
+    ],
+    TF:[
+      {q:'非洲金貝鼓（djembe）形狀如高腳杯。',ans:true,e:'正確。金貝鼓形狀如高腳杯，可產生多種不同的音色，是非洲最具代表性的樂器之一。'},
+    ],
+    MC:[
+      {q:'非洲科拉琴（kora）有幾條弦？',opts:['12條','16條','21條','28條'],ans:2,e:'科拉琴（kora）是西非彈撥樂器，結合了竪琴和魯特琴的特性，有21條弦。'},
+    ],
+    MATCH:[{l:'金貝鼓',r:'西非手鼓'},{l:'科拉琴',r:'西非21弦'},{l:'姆指琴',r:'拇指彈撥'},{l:'說話鼓',r:'溝通傳訊工具'}],
+  },
+
+  {
+    id:'america', name:'美洲', icon:'🎺', color:'#EC4899',color2:'#FBCFE8',
+    tag:'爵士 · 探戈 · 森巴 · 拉丁',
+    intro:'美洲音樂是世界最豐富多元的音樂寶庫之一，涵蓋北美的爵士樂和南美的探戈、森巴、巴薩諾瓦、倫巴、恰恰恰、曼波、騷莎等多彩多姿的音樂類型。',
+    countries:[
+      {
+        name:'北美洲·爵士樂', flag:'🇺🇸', color:'#EC4899',
+        music:[
+          {title:'爵士樂起源',desc:'十七至十九世紀，非洲黑人被賣到美國當奴隸，改信基督教，在教會演唱靈歌（spiritual），逐漸與藍調（blues，有特定的和聲與音階，降三五七音，稱為藍音 blue notes）及工作歌（work song，應答式）融合，並使用歐洲樂器表演，因此產生了爵士樂。'},
+          {title:'咆哮樂派',desc:'1940年左右，美國堪薩斯與紐約發展出來，音樂風格快速及尖銳，強調高度變化與層次，演出者須有高超的演奏與即興能力。代表小號大師迪吉·葛利斯比（Dizzy Gillespie）。'},
+          {title:'爵士樂編制',desc:'分為多聲部節奏組與單聲部獨奏樂器。多聲部節奏組：鋼琴、低音提琴與鼓。單聲部獨奏樂器：常由小號、長號、豎笛與薩克斯風家族擔任。'},
+          {title:'爵士名家',desc:'歌手納·京·高（Nat King Cole）、小號手阿姆斯壯（Louis Armstrong）。'},
+        ],
+        instruments:[{name:'爵士標準編制',desc:'節奏組：鋼琴、低音提琴、鼓；獨奏組：小號、長號、豎笛、薩克斯風家族。'}],
+        arts:[],
+        listen:[
+          {t:'路易·阿姆斯壯 What a Wonderful World',d:'爵士樂最著名的小號大師，溫暖感人的代表作',q:'Louis Armstrong What a Wonderful World'},
+          {t:'納·京·高 Unforgettable',d:'爵士歌手納·京·高最著名的歌曲',q:'Nat King Cole Unforgettable'},
+          {t:'迪吉·葛利斯比 咆哮爵士',d:'咆哮樂派代表小號大師',q:'Dizzy Gillespie bebop jazz'},
+        ],
+        TF:[
+          {q:'爵士樂是由非洲黑人音樂（靈歌、藍調）與歐洲音樂融合產生的。',ans:true,e:'正確。爵士樂是非洲黑人的靈歌、藍調（blues）及工作歌，融合使用歐洲樂器表演而產生的。'},
+          {q:'咆哮樂派（bebop）在1920年代由芝加哥發展出來。',ans:false,e:'錯誤。咆哮樂派是1940年左右，在美國「堪薩斯與紐約」發展出來的，不是1920年代在芝加哥。'},
+          {q:'爵士樂的藍音（blue notes）是指降三五七音。',ans:true,e:'正確。藍調（blues）有特定的和聲與音階，降三五七音稱為藍音（blue notes）。'},
+        ],
+        MC:[
+          {q:'咆哮樂派（bebop）的代表小號大師是？',opts:['納·京·高','路易·阿姆斯壯','迪吉·葛利斯比','邁爾士·戴維斯'],ans:2,e:'迪吉·葛利斯比（Dizzy Gillespie）是咆哮樂派的代表小號大師。'},
+          {q:'爵士樂多聲部節奏組由哪三種樂器組成？',opts:['吉他、貝斯、鼓','鋼琴、低音提琴與鼓','薩克斯風、小號、長號','小提琴、中提琴、大提琴'],ans:1,e:'爵士樂多聲部節奏組由鋼琴、低音提琴與鼓組成；單聲部獨奏樂器常由小號、長號、豎笛與薩克斯風家族擔任。'},
+        ],
+        MATCH:[{l:'靈歌+藍調',r:'爵士樂起源'},{l:'咆哮樂派',r:'迪吉·葛利斯比'},{l:'藍音',r:'降三五七音'},{l:'納·京·高',r:'爵士歌手'}],
+      },
+      {
+        name:'南美洲·拉丁音樂', flag:'🌎', color:'#F97316',
+        music:[
+          {title:'探戈（Tango）',desc:'源自阿根廷酒館音樂，早期被視為不入流，但從皮耶左拉（Astor Piazzolla, 1921-1992，阿根廷）將其與非洲節奏、爵士樂與古典音樂融合，產生新探戈（tango nuevo）後，提升其藝術價值。'},
+          {title:'皮亞佐拉',desc:'在阿根廷被稱為了不起的皮亞佐拉；作曲家及班多紐（Bandoneon）手風琴演奏家，曾跟隨探戈歌手加戴爾（Carlos Gardel, 1890-1935，法裔阿根廷）、阿根廷作曲家吉奈斯特拉（A.E. Ginastera, 1916-1983）及法國作曲家布蘭潔（Nadia Boulanger, 1887-1979）學習音樂。代表作：「一步之差」（Por una Cabeza）；室內樂作品：「再見，爸爸」（Adios Nonino）、「自由探戈」（Libertango）、「大探戈」（Le Grand Tango）等。'},
+          {title:'森巴（Samba）',desc:'由平民百姓日常生活文化發展出來。每年二至三月，巴西的嘉年華會。音樂為快速二拍子，重音常落在第二拍。融合歐洲波卡（polka）舞曲與黑人舞蹈，運用大量擊樂器與非正規節奏。'},
+          {title:'巴薩諾瓦（Bossa Nova）',desc:'由具古典背景的文藝青年及中產階級中產生。1950年代末期巴西興起。音樂元素結合巴西的森巴與美國的爵士樂，速度中庸，風格不似森巴強烈，並具有輕鬆隨興、慵懶柔和之感。代表音樂家有於巴西長大的日本歌手小野麗莎（Lisa Ono, 1962-，日裔巴西籍）。'},
+          {title:'倫巴（Rumba）',desc:'由非洲傳入古巴，以四四拍子為基礎，音樂風格慵懶，曲調哀傷。'},
+          {title:'恰恰恰（Cha Cha Cha）',desc:'起源於墨西哥、古巴等地，自倫巴演化而來的輕快舞蹈，和倫巴有姊妹舞之稱，以二四拍子或四四拍子為主，曲調的第二小節常伴隨三個重音。'},
+          {title:'曼波（Mambo）',desc:'起源於古巴，節奏與恰恰恰相似，但速度更快，融合倫巴與爵士樂中的搖擺樂而成，樂隊編制因大量使用沙鈴、響棒、康加鼓等打擊樂器，節奏感更為強烈。'},
+          {title:'騷莎（Salsa）',desc:'騷莎原指拉丁美洲的一種辣椒醬，起源於古巴，是一種不拘形式、自然隨興的風格，融合了倫巴、恰恰恰、曼波等舞步，在扭腰擺臀間展現男性的豪邁與女性的嫵媚。'},
+        ],
+        instruments:[{name:'探戈樂器',desc:'手風琴（bandoneon）、小提琴、鋼琴與低音提琴。'}],
+        arts:[],
+        listen:[
+          {t:'皮亞佐拉 自由探戈（Libertango）',d:'新探戈最著名的曲目，皮亞佐拉代表作',q:'Piazzolla Libertango'},
+          {t:'皮亞佐拉 一步之差（Por una Cabeza）',d:'電影《女人香》名曲，探戈最著名旋律之一',q:'Piazzolla Por una Cabeza'},
+          {t:'巴薩諾瓦 小野麗莎',d:'日裔巴西歌手小野麗莎的輕柔巴薩諾瓦',q:'Lisa Ono bossa nova'},
+          {t:'巴西森巴 嘉年華',d:'巴西森巴嘉年華，熱鬧非凡的拉丁節奏',q:'Brazil Samba Carnival'},
+          {t:'探戈舞蹈 阿根廷',d:'阿根廷傳統探戈舞蹈，激情熱烈',q:'Argentine tango dance'},
+        ],
+        TF:[
+          {q:'皮亞佐拉創作了「新探戈」（tango nuevo），提升了探戈的藝術價值。',ans:true,e:'正確。皮亞佐拉將探戈與非洲節奏、爵士樂與古典音樂融合，產生新探戈（tango nuevo），使傳統不入流的酒館音樂成為風靡世界的新型態音樂。'},
+          {q:'巴薩諾瓦（Bossa Nova）起源於1950年代末期的巴西，結合了森巴與爵士樂。',ans:true,e:'正確。巴薩諾瓦1950年代末期在巴西興起，音樂元素結合巴西的森巴與美國的爵士樂，速度中庸，風格輕鬆隨興。'},
+          {q:'倫巴（Rumba）起源於阿根廷，以三拍子為基礎。',ans:false,e:'錯誤。倫巴由非洲傳入「古巴」（不是阿根廷），以「四四拍子」為基礎（不是三拍子），音樂風格慵懶，曲調哀傷。'},
+          {q:'探戈的主要樂器包括班多紐手風琴、小提琴、鋼琴與低音提琴。',ans:true,e:'正確。探戈樂器為手風琴（bandoneon）、小提琴、鋼琴與低音提琴。'},
+        ],
+        MC:[
+          {q:'皮亞佐拉的代表作「一步之差」（Por una Cabeza）出現在哪部電影？',opts:['女人香','探戈教室','欲望都市','緬甸的豎琴'],ans:0,e:'「一步之差」（Por una Cabeza）是電影《女人香》的名曲，是探戈最著名的旋律之一。'},
+          {q:'小野麗莎（Lisa Ono）是哪個音樂風格的代表人物？',opts:['探戈','森巴','巴薩諾瓦','倫巴'],ans:2,e:'小野麗莎（Lisa Ono, 1962-）是於巴西長大的日本歌手（日裔巴西籍），是巴薩諾瓦的代表音樂家。'},
+          {q:'曼波（Mambo）起源於哪個國家？',opts:['阿根廷','巴西','古巴','墨西哥'],ans:2,e:'曼波起源於古巴，節奏與恰恰恰相似但速度更快，融合倫巴與爵士樂的搖擺樂而成。'},
+        ],
+        MATCH:[{l:'探戈',r:'阿根廷酒館，皮亞佐拉'},{l:'森巴',r:'巴西，快速二拍'},{l:'巴薩諾瓦',r:'森巴+爵士，小野麗莎'},{l:'倫巴',r:'古巴，四四拍哀傷'},{l:'騷莎',r:'古巴，辣椒醬'},{l:'班多紐',r:'探戈手風琴'}],
+      },
+    ],
+    TF:[
+      {q:'爵士樂的藍音（blue notes）是降三五七音。',ans:true,e:'正確。藍調（blues）有特定的和聲與音階，降三五七音稱為藍音（blue notes）。'},
+      {q:'探戈發源自巴西。',ans:false,e:'錯誤。探戈源自阿根廷酒館音樂，不是巴西。巴西的代表是森巴和巴薩諾瓦。'},
+    ],
+    MC:[
+      {q:'皮亞佐拉（Piazzolla）演奏的主要樂器是？',opts:['小提琴','班多紐手風琴','鋼琴','小號'],ans:1,e:'皮亞佐拉是作曲家及班多紐（Bandoneon）手風琴演奏家，是新探戈的創始人。'},
+    ],
+    MATCH:[{l:'爵士樂',r:'靈歌+藍調，美國'},{l:'探戈',r:'阿根廷'},{l:'森巴',r:'巴西嘉年華'},{l:'巴薩諾瓦',r:'森巴+爵士，輕鬆'},{l:'恰恰恰',r:'倫巴的輕快版'},{l:'咆哮樂派',r:'迪吉·葛利斯比'}],
+  },
+
+  {
+    id:'unesco', name:'UNESCO世界文化遺產', icon:'🏛️', color:'#06B6D4',color2:'#A5F3FC',
+    tag:'非物質文化遺產 · 世界記憶遺產',
+    intro:'1972年，聯合國教科文組織（UNESCO）通過《世界文化與自然遺產保護公約》。2003年10月通過《保護非物質文化遺產公約》。音樂類文物除了「瀕臨失傳的語言、戲曲、儀式等」歸屬於「非物質文化遺產」，也有部分「具有較高歷史文化與價值的文獻」屬於「世界記憶遺產」。',
+    countries:[
+      {
+        name:'UNESCO重點知識', flag:'🌐', color:'#06B6D4',
+        music:[
+          {title:'世界遺產分類（1972年）',desc:'世界遺產可分為「自然遺產」、「文化遺產」和「文化與自然雙重遺產」。1992年提出「文化景觀」（Cultural landscapes）概念。'},
+          {title:'非物質文化遺產（2003年）',desc:'非物質文化遺產（Intangible Cultural Heritage）是指「被各群體、團體、有時為個人視為其文化遺產的各種實踐、表演、表現形式、知識和技能及其有關的工具、實物、工藝品和文化場所」。非物質文化遺產包括5個方面：口頭傳說和表述、表演藝術、社會風俗和禮儀節慶、有關自然界和宇宙的知識和實踐、傳統的手工藝技能。'},
+          {title:'UNESCO的4個主要計劃',desc:'「宣布人類口述和非物質遺產名錄」（每兩年一次）、「活著的人類財富」（鼓勵傳承知識技巧）、「瀕危語言」（弘揚保護瀕危語言）、「世界傳統音樂」（傳統音樂和樂器體現各個文明的文化精神和美學價值）。'},
+          {title:'世界記憶遺產',desc:'「具有較高歷史文化與價值的文獻」屬於「世界記憶遺產」（Memory of the world），例如：布拉姆斯的樂譜、貝多芬第九號交響曲。'},
+          {title:'音樂類非物質文化遺產例子',desc:'日本能劇、中國崑曲、馬頭琴、新疆木卡姆與古琴。'},
+        ],
+        instruments:[],arts:[],
+        listen:[
+          {t:'崑曲 牡丹亭（UNESCO 2001）',d:'中國崑曲，有「百戲之母」之稱，2001年列入UNESCO',q:'崑曲 牡丹亭 UNESCO'},
+          {t:'馬頭琴 蒙古（UNESCO 2003）',d:'蒙古馬頭琴，2003年列入UNESCO非物質文化遺產',q:'馬頭琴 蒙古 UNESCO'},
+          {t:'貝多芬第九號交響曲（世界記憶遺產）',d:'貝多芬第九號交響曲樂譜是世界記憶遺產之一',q:'Beethoven Symphony No 9'},
+        ],
+        TF:[
+          {q:'1972年UNESCO通過《世界文化與自然遺產保護公約》。',ans:true,e:'正確。1972年，聯合國教科文組織（UNESCO）通過《世界文化與自然遺產保護公約》，世界遺產可分為自然遺產、文化遺產和文化與自然雙重遺產。'},
+          {q:'世界遺產包含非物質文化遺產。',ans:false,e:'錯誤。世界遺產並不包括非物質遺產，它們是UNESCO兩項不同的計劃。非物質文化遺產是2003年《保護非物質文化遺產公約》的計劃。'},
+          {q:'貝多芬第九號交響曲屬於「世界記憶遺產」。',ans:true,e:'正確。具有較高歷史文化與價值的文獻屬於「世界記憶遺產」（Memory of the world），例如布拉姆斯的樂譜和貝多芬第九號交響曲。'},
+          {q:'中國崑曲有「百戲之母」之稱，2001年列入UNESCO。',ans:true,e:'正確。崑曲起源於元末明初的蘇州崑山，有「百戲之母」之稱，2001年列入UNESCO非物質文化遺產。'},
+        ],
+        MC:[
+          {q:'非物質文化遺產（Intangible Cultural Heritage）包含幾個方面？',opts:['三個','四個','五個','六個'],ans:2,e:'根據《保護非物質文化遺產公約》，非物質文化遺產包括5個方面：口頭傳說和表述、表演藝術、社會風俗和禮儀節慶、有關自然界和宇宙的知識和實踐、傳統的手工藝技能。'},
+          {q:'「世界記憶遺產」的例子是？',opts:['崑曲','馬頭琴','貝多芬第九號交響曲','金貝鼓'],ans:2,e:'「具有較高歷史文化與價值的文獻」屬於「世界記憶遺產」，例如布拉姆斯的樂譜和貝多芬第九號交響曲（樂譜）。'},
+        ],
+        MATCH:[{l:'1972年',r:'世界遺產保護公約'},{l:'2003年',r:'非物質文化遺產公約'},{l:'崑曲',r:'百戲之母，2001年列入'},{l:'馬頭琴',r:'蒙古，2003年列入'},{l:'世界記憶遺產',r:'貝多芬第九號交響曲'}],
+      },
+    ],
+    TF:[
+      {q:'UNESCO「宣布人類口述和非物質遺產名錄」是每兩年一次。',ans:true,e:'正確。「宣布人類口述和非物質遺產名錄」評選從2001年開始，每兩年一次。'},
+      {q:'非物質文化遺產和世界遺產是同一個UNESCO計劃。',ans:false,e:'錯誤。世界遺產並不包括非物質遺產，它們是UNESCO兩項不同的計劃；世界遺產是1972年的公約，非物質文化遺產是2003年的公約。'},
+    ],
+    MC:[
+      {q:'以下哪個是中國非物質文化遺產（崑曲列入UNESCO的年份）？',opts:['1999年','2001年','2003年','2005年'],ans:1,e:'崑曲於2001年列入UNESCO人類口述和非物質遺產名錄，有「百戲之母」之稱。'},
+    ],
+    MATCH:[{l:'1972',r:'世界文化自然遺產公約'},{l:'2003',r:'非物質文化遺產公約'},{l:'2001',r:'崑曲，古琴藝術'},{l:'世界記憶遺產',r:'布拉姆斯樂譜'}],
+  },
+];
+
+let curReg=null,curCountry=null,curMode=null,gs={};
+
+function sfl(a){return[...a].sort(()=>Math.random()-.5);}
+function pk(a,n){return sfl(a).slice(0,n);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function ytBtn(q){return`<a class="yt-btn" href="https://www.youtube.com/results?search_query=${encodeURIComponent(q)}" target="_blank">▶ YT</a>`;}
+function pb(t,i){
+  const s=Array.from({length:t},(_,j)=>`<div class="prog-seg ${j<i?'pd':j===i?'pc':''}"></div>`).join('');
+  return`<div class="prog-bar">${s}</div>`;
+}
+const APP=()=>document.getElementById('app');
+const $=id=>document.getElementById(id);
+
+// ── HOME ──
+function showHome(){
+  curReg=null;curCountry=null;curMode=null;gs={};
+  const rGrid=REGIONS.map(r=>`<div class="reg-btn" style="--ec:${r.color}" onclick="enterReg('${r.id}')">
+    <div class="r-icon">${r.icon}</div>
+    <div class="r-name" style="color:${r.color}">${r.name}</div>
+    <div class="r-sub">${r.tag}</div>
+  </div>`).join('');
+
+  APP().innerHTML=`
+  <div class="hd">
+    <div class="hd-chip">🎓 高職音樂科 · 互動學習</div>
+    <h1>世界音樂簡介</h1>
+    <div class="hd-sub">第七章 · 東亞 · 東南亞 · 南亞 · 歐洲 · 非洲 · 美洲</div>
+  </div>
+
+  <div class="ov-card">
+    <div class="ov-title">📋 世界音樂速查</div>
+    <div class="ov-2col">
+      <div class="ov-box">
+        <div class="ov-h" style="color:#3B82F6">🗾 東亞</div>
+        <ul class="ov-list">
+          <li><strong>朝鮮：</strong>盤索里（歌手+鼓手）、伽倻琴12弦</li>
+          <li><strong>日本：</strong>邦樂 vs 洋樂，三味線、尺八</li>
+          <li><strong>日本：</strong>瀧廉太郎〈花〉第一首二部合唱</li>
+        </ul>
+      </div>
+      <div class="ov-box">
+        <div class="ov-h" style="color:#10B981">🌴 東南亞</div>
+        <ul class="ov-list">
+          <li><strong>印尼：</strong>甘美朗，斯蘭朵/沛洛音階</li>
+          <li><strong>越南：</strong>水傀儡，千年傳統</li>
+          <li><strong>泰國：</strong>笠舞，皮帕特/克魯昂賽/馬荷里</li>
+          <li><strong>緬甸：</strong>鳳首箜篌，五聲音階CDFGB</li>
+        </ul>
+      </div>
+      <div class="ov-box">
+        <div class="ov-h" style="color:#EC4899">🎺 美洲</div>
+        <ul class="ov-list">
+          <li><strong>爵士：</strong>藍音（降3-5-7），咆哮樂派</li>
+          <li><strong>探戈：</strong>阿根廷，皮亞佐拉，班多紐</li>
+          <li><strong>森巴：</strong>巴西，快速二拍，嘉年華</li>
+          <li><strong>巴薩諾瓦：</strong>森巴+爵士，小野麗莎</li>
+        </ul>
+      </div>
+      <div class="ov-box">
+        <div class="ov-h" style="color:#06B6D4">🏛️ UNESCO</div>
+        <ul class="ov-list">
+          <li>1972年：世界文化與自然遺產公約</li>
+          <li>2003年：非物質文化遺產公約（5方面）</li>
+          <li>崑曲2001，古琴藝術2003</li>
+          <li>世界記憶遺產：貝多芬第九交響曲</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:.9rem;
+    color:var(--r1);margin-bottom:10px">↓ 選擇地區開始學習</div>
+  <div class="region-grid">${rGrid}</div>
+
+  <div style="margin-top:18px">
+    <div class="ov-title" style="display:block;padding-bottom:8px;
+      border-bottom:2px solid var(--border);font-family:'Noto Serif TC',serif;
+      font-weight:900;font-size:.92rem;color:var(--r1)">
+      📊 亞洲各國UNESCO非物質文化遺產速查
+    </div>
+    <div class="qtbl-wrap">
+      <table class="qtbl" style="margin-top:10px">
+        <thead><tr><th>國家</th><th>項目</th><th>說明</th><th>列入年份</th></tr></thead>
+        <tbody>
+          <tr><td>中國</td><td>崑曲</td><td>百戲之母，蘇州崑山起源</td><td>2001</td></tr>
+          <tr><td>中國</td><td>古琴藝術</td><td>文人樂器，七絃琴</td><td>2003</td></tr>
+          <tr><td>中國</td><td>木卡姆藝術</td><td>新疆維吾爾族傳統音樂，12個套曲</td><td>2005</td></tr>
+          <tr><td>中國</td><td>南管</td><td>起源於福建，御前清音</td><td>2009</td></tr>
+          <tr><td>中國</td><td>呼麥唱法</td><td>又稱喉音唱法、多聲唱法，蒙古族</td><td>—</td></tr>
+          <tr><td>中國</td><td>京劇</td><td>—</td><td>2010</td></tr>
+          <tr><td>蒙古</td><td>馬頭琴藝術</td><td>—</td><td>2003</td></tr>
+          <tr><td>蒙古</td><td>長調民歌</td><td>旋律悠揚波折，字少腔長，音域跨度大</td><td>2005</td></tr>
+          <tr><td>印尼</td><td>哇揚皮影偶戲</td><td>爪哇島與巴厘島的獨特戲劇型式</td><td>2003</td></tr>
+          <tr><td>越南</td><td>雅樂</td><td>宮廷音樂</td><td>2003</td></tr>
+          <tr><td>韓國</td><td>盤索里</td><td>歌手+鼓手，敘述故事</td><td>2003</td></tr>
+          <tr><td>韓國</td><td>江陵端午祭</td><td>南韓江陵市慶祝端午節的習俗</td><td>2005</td></tr>
+          <tr><td>日本</td><td>能樂</td><td>佩戴面具演出的傳統歌舞劇</td><td>2001</td></tr>
+          <tr><td>日本</td><td>歌舞伎</td><td>演員為男性，三味線、笛和擊樂器伴奏</td><td>2005</td></tr>
+          <tr><td>東埔寨</td><td>皇家舞劇</td><td>高棉古典舞</td><td>2003</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="tip">
+    點擊各地區進入互動學習，包含各國音樂特色、傳統樂器、YouTube連結、速查手冊及是非、選擇題練習。
+  </div>`;
+}
+
+// ── REGION HOME ──
+function enterReg(id){
+  curReg=id;curCountry=null;curMode=null;gs={};
+  const r=REGIONS.find(x=>x.id===id);
+  const modes=[
+    {id:'country',icon:'🗺️',label:'各國導覽',desc:'深入各國音樂'},
+    {id:'ref',icon:'📋',label:'速查手冊',desc:'重點整理'},
+    {id:'listen',icon:'🎬',label:'必聽曲目',desc:'YouTube連結'},
+    {id:'tf',icon:'⭕',label:'是非練習',desc:'鞏固知識'},
+    {id:'mc',icon:'📝',label:'選擇練習',desc:'深入測驗'},
+    {id:'match',icon:'🔗',label:'配對遊戲',desc:'趣味挑戰'},
+  ];
+  const mGrid=modes.map(m=>`<div class="mode-btn" style="--ec:${r.color}" onclick="enterMode('${m.id}')">
+    <div class="m-icon">${m.icon}</div>
+    <div class="m-label">${m.label}</div>
+    <div class="m-desc">${m.desc}</div>
+  </div>`).join('');
+  APP().innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="showHome()">← 總覽</button>
+    <span class="mode-badge" style="--ec:${r.color};--ec2:${r.color2}">${r.icon} ${r.name}</span>
+  </div>
+  <div class="reg-banner" style="--ec:${r.color}">
+    <h2>${r.icon} ${r.name}</h2>
+    <div class="r-tag">${r.tag}</div>
+    <div class="r-intro">${r.intro}</div>
+  </div>
+  <div class="mode-grid">${mGrid}</div>`;
+}
+
+function enterMode(m){
+  curMode=m;
+  if(m==='country') showCountries();
+  else if(m==='ref') showRef();
+  else if(m==='listen') showAllListen();
+  else if(m==='tf') initTF();
+  else if(m==='mc') initMC();
+  else if(m==='match') initMatch();
+}
+
+// ── COUNTRIES ──
+function showCountries(){
+  const r=REGIONS.find(x=>x.id===curReg);
+  const cards=r.countries.map((c,i)=>`<div class="c-card" style="--ec:${c.color}" onclick="showCountryDetail(${i})">
+    <div class="c-name"><span class="c-flag">${c.flag}</span>${c.name}</div>
+    <div class="c-desc">${c.music[0]?.desc?.slice(0,60)||''}…</div>
+  </div>`).join('');
+  APP().innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterReg('${curReg}')">← 返回</button>
+    <span class="mode-badge" style="--ec:${r.color};--ec2:${r.color2}">🗺️ 各國導覽</span>
+  </div>
+  <div class="detail-sec">
+    <div class="detail-hd">${r.icon} ${r.name} — 各地區音樂</div>
+    <div class="country-grid">${cards}</div>
+  </div>`;
+}
+
+function showCountryDetail(idx){
+  const r=REGIONS.find(x=>x.id===curReg);
+  const c=r.countries[idx];
+  curCountry=idx;
+
+  const musicSec=c.music.length?`<div class="detail-sec">
+    <div class="detail-hd" style="color:${c.color}">🎵 音樂特色</div>
+    <div class="feat-grid">${c.music.map(m=>`<div class="feat-card" style="--ec:${c.color}">
+      <div class="fc-title" style="color:${c.color}">${m.title}</div>
+      <div class="fc-desc">${m.desc}</div>
+    </div>`).join('')}</div>
+  </div>`:'';
+
+  const instSec=c.instruments.length?`<div class="detail-sec">
+    <div class="detail-hd" style="color:${c.color}">🎼 傳統樂器</div>
+    <div class="feat-grid">${c.instruments.map(i=>`<div class="feat-card">
+      <div class="fc-title" style="color:${c.color}">${i.name}</div>
+      <div class="fc-desc">${i.desc}</div>
+    </div>`).join('')}</div>
+  </div>`:'';
+
+  const artsSec=c.arts&&c.arts.length?`<div class="detail-sec">
+    <div class="detail-hd" style="color:${c.color}">🎭 傳統藝術</div>
+    <div class="feat-grid">${c.arts.map(a=>`<div class="feat-card">
+      <div class="fc-title" style="color:${c.color}">${a.name}</div>
+      <div class="fc-desc">${a.desc}</div>
+    </div>`).join('')}</div>
+  </div>`:'';
+
+  const listenSec=c.listen&&c.listen.length?`<div class="detail-sec">
+    <div class="detail-hd" style="color:${c.color}">🎬 必聽曲目</div>
+    ${c.listen.map(l=>`<div class="listen-item">
+      <div class="li-info"><div class="li-title">${l.t}</div><div class="li-detail">${l.d}</div></div>
+      ${ytBtn(l.q)}
+    </div>`).join('')}
+  </div>`:'';
+
+  APP().innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="showCountries()">← 返回</button>
+    <span class="mode-badge" style="--ec:${c.color};--ec2:${c.color}">${c.flag} ${c.name}</span>
+  </div>
+  ${musicSec}${instSec}${artsSec}${listenSec}`;
+}
+
+// ── REF ──
+function showRef(){
+  const r=REGIONS.find(x=>x.id===curReg);
+  const items=r.countries.map((c,i)=>`<div class="ref-item">
+    <div class="ref-head" onclick="tgRef(${i})">
+      <div class="ref-av">${c.flag}</div>
+      <div style="flex:1">
+        <div class="ref-name">${c.name}</div>
+        <div class="ref-sub">${c.music.length}個音樂特色 · ${c.instruments.length}種樂器</div>
+      </div>
+      <div class="ref-badge" style="background:${c.color};color:#000">${c.flag} 展開</div>
+      <div class="ref-arr" id="ra${i}">▼</div>
+    </div>
+    <div id="rb${i}" style="display:none">
+      <ul class="ref-body">
+        ${c.music.map(m=>`<li><strong>${m.title}：</strong>${m.desc.slice(0,100)}${m.desc.length>100?'…':''}</li>`).join('')}
+        ${c.instruments.map(inst=>`<li>🎼 <strong>${inst.name}：</strong>${inst.desc.slice(0,80)}…</li>`).join('')}
+        ${c.listen&&c.listen.length?`<li>🎬 必聽：${c.listen.map(l=>l.t).join('、')}</li>`:''}
+      </ul>
+    </div>
+  </div>`).join('');
+  APP().innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterReg('${curReg}')">← 返回</button>
+    <span class="mode-badge" style="--ec:${r.color};--ec2:${r.color2}">📋 速查手冊</span>
+  </div>
+  <div class="card">
+    <div style="font-size:.73rem;color:var(--muted);margin-bottom:10px;font-weight:600">點擊展開重點整理</div>
+    ${items}
+  </div>`;
+}
+function tgRef(i){
+  const b=$('rb'+i),a=$('ra'+i);
+  if(!b)return;
+  const o=b.style.display!=='none';
+  b.style.display=o?'none':'block';
+  if(a)a.textContent=o?'▼':'▲';
+}
+
+// ── LISTEN ──
+function showAllListen(){
+  const r=REGIONS.find(x=>x.id===curReg);
+  const items=r.countries.flatMap(c=>
+    (c.listen||[]).map(l=>`<div class="listen-item">
+      <div class="li-info">
+        <div class="li-title">${l.t}</div>
+        <div class="li-detail"><span style="color:${c.color};font-weight:700">${c.flag}${c.name}</span> · ${l.d}</div>
+      </div>${ytBtn(l.q)}
+    </div>`)
+  ).join('')||'<div style="padding:20px;color:var(--muted);text-align:center">暫無影音連結</div>';
+  APP().innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterReg('${curReg}')">← 返回</button>
+    <span class="mode-badge" style="--ec:${r.color};--ec2:${r.color2}">🎬 必聽曲目</span>
+  </div>
+  <div class="detail-sec">
+    <div class="detail-hd">🎬 點擊 ▶ YT 在新視窗觀看</div>
+    ${items}
+  </div>`;
+}
+
+// ── TF ──
+function initTF(){
+  const r=REGIONS.find(x=>x.id===curReg);
+  gs={qs:sfl(r.TF).slice(0,Math.min(8,r.TF.length)),i:0,s:0,a:null};
+  renderTF();
+}
+function renderTF(){
+  const{qs,i,s,a}=gs;
+  if(i>=qs.length){showResult(s,qs.length);return;}
+  const q=qs[i];
+  let t0='',t1='';
+  if(a!==null){t0=q.ans===true?'tc':(a===true?'tw':'');t1=q.ans===false?'tc':(a===false?'tw':'');}
+  const ex=a!==null?`<div class="explain ${a===q.ans?'eo':'en'}">
+    <span class="${a===q.ans?'eho':'ehn'}">${a===q.ans?'✅ 答對！':'❌ 答錯了'}</span>${q.e}
+    <br><button class="next-btn" onclick="nextTF()">${i+1<qs.length?'下一題 →':'查看結果 ✨'}</button>
+  </div>`:'';
+  const r=REGIONS.find(x=>x.id===curReg);
+  APP().innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterReg('${curReg}')">← 返回</button>
+    <span class="mode-badge" style="--ec:${r.color};--ec2:${r.color2}">⭕ 是非練習</span>
+    <button class="back-btn" onclick="initTF()" style="margin-left:auto">↺ 重來</button>
+  </div>
+  ${pb(qs.length,i)}
+  <div class="stat-row"><div class="chip">第 <strong>${i+1}</strong>/${qs.length} 題</div><div class="chip">答對 <strong>${s}</strong></div></div>
+  <div class="card">
+    <div class="q-box">${q.q}</div>
+    <div class="tf-btns">
+      <button class="tf-btn ${t0}" ${a!==null?'disabled':''} onclick="ansTF(true)">○ 正確</button>
+      <button class="tf-btn ${t1}" ${a!==null?'disabled':''} onclick="ansTF(false)">✗ 錯誤</button>
+    </div>${ex}
+  </div>`;
+}
+function ansTF(v){if(gs.a!==null)return;const ok=v===gs.qs[gs.i].ans;gs.a=v;if(ok)gs.s++;renderTF();}
+function nextTF(){gs.i++;gs.a=null;renderTF();}
+
+// ── MC ──
+function initMC(){
+  const r=REGIONS.find(x=>x.id===curReg);
+  gs={qs:sfl(r.MC).slice(0,Math.min(8,r.MC.length)),i:0,s:0,c:null};
+  renderMC();
+}
+function renderMC(){
+  const{qs,i,s,c}=gs;
+  if(i>=qs.length){showResult(s,qs.length);return;}
+  const q=qs[i];
+  const reg=REGIONS.find(x=>x.id===curReg);
+  const opts=q.opts.map((o,j)=>{
+    let cl='';if(c!==null){cl=j===q.ans?'mc':(j===c?'mw':'');}
+    return`<button class="mc-btn ${cl}" ${c!==null?'disabled':''} onclick="ansMC(${j})">
+      <span class="abadge" style="background:${reg.color}">${['A','B','C','D'][j]}</span>${o}
+    </button>`;
+  }).join('');
+  const ex=c!==null?`<div class="explain ${c===q.ans?'eo':'en'}">
+    <span class="${c===q.ans?'eho':'ehn'}">${c===q.ans?'✅ 答對！':'❌ 答錯了'}</span>${q.e}
+    <br><button class="next-btn" onclick="nextMC()">${i+1<qs.length?'下一題 →':'查看結果 ✨'}</button>
+  </div>`:'';
+  APP().innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterReg('${curReg}')">← 返回</button>
+    <span class="mode-badge" style="--ec:${reg.color};--ec2:${reg.color2}">📝 選擇練習</span>
+    <button class="back-btn" onclick="initMC()" style="margin-left:auto">↺ 重來</button>
+  </div>
+  ${pb(qs.length,i)}
+  <div class="stat-row"><div class="chip">第 <strong>${i+1}</strong>/${qs.length} 題</div><div class="chip">答對 <strong>${s}</strong></div></div>
+  <div class="card"><div class="q-box">${q.q}</div>${opts}${ex}</div>`;
+}
+function ansMC(j){if(gs.c!==null)return;gs.c=j;if(j===gs.qs[gs.i].ans)gs.s++;renderMC();}
+function nextMC(){gs.i++;gs.c=null;renderMC();}
+
+// ── MATCH ──
+function initMatch(){
+  const r=REGIONS.find(x=>x.id===curReg);
+  const pairs=pk(r.MATCH,Math.min(6,r.MATCH.length));
+  gs={pairs,L:sfl(pairs.map(p=>p.l)),R:sfl(pairs.map(p=>p.r)),lS:null,rS:null,M:{},W:{},s:0,at:0};
+  renderMatch();
+}
+function renderMatch(){
+  const{pairs,L,R,lS,rS,M,W,s,at}=gs;
+  function mi(v,sd,idx){
+    const isSel=sd==='L'?lS===v:rS===v;
+    const isM=M[v],isW=W[v];
+    let cl='mi';
+    if(isM)cl+=' mi-m';else if(isW)cl+=' mi-w';else if(isSel)cl+=' mi-s';
+    const oc=isM?'':` onclick="selMatch('${sd}',${idx})"`;
+    return`<div class="${cl}"${oc}>${esc(v)}</div>`;
+  }
+  const n=Math.max(L.length,R.length);
+  let cells='';
+  for(let i=0;i<n;i++){if(L[i])cells+=mi(L[i],'L',i);if(R[i])cells+=mi(R[i],'R',i);}
+  const dm=s===pairs.length?`<div class="done-msg">🎉 全部配對完成！共嘗試 ${at} 次</div>`:'';
+  const r=REGIONS.find(x=>x.id===curReg);
+  APP().innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterReg('${curReg}')">← 返回</button>
+    <span class="mode-badge" style="--ec:${r.color};--ec2:${r.color2}">🔗 配對遊戲</span>
+    <button class="back-btn" onclick="initMatch()" style="margin-left:auto">↺ 重來</button>
+  </div>
+  <div class="stat-row"><div class="chip">已配對 <strong>${s}</strong>/${pairs.length}</div><div class="chip">嘗試 <strong>${at}</strong> 次</div></div>
+  <div class="card">
+    <div class="match-hdr"><div>詞彙</div><div>說明</div></div>
+    <div class="match-grid">${cells}</div>${dm}
+  </div>`;
+}
+function selMatch(sd,idx){
+  const g=gs;
+  const v=sd==='L'?g.L[idx]:g.R[idx];
+  if(!v||g.M[v])return;
+  if(sd==='L')g.lS=g.lS===v?null:v;
+  else g.rS=g.rS===v?null:v;
+  if(g.lS&&g.rS){
+    const p=g.pairs.find(x=>x.l===g.lS);
+    const ok=p&&p.r===g.rS;
+    g.at++;
+    if(ok){g.M[g.lS]=true;g.M[g.rS]=true;g.s++;g.lS=null;g.rS=null;g.W={};}
+    else{g.W={[g.lS]:true,[g.rS]:true};setTimeout(()=>{g.W={};g.lS=null;g.rS=null;renderMatch();},700);}
+  }
+  renderMatch();
+}
+
+// ── RESULT ──
+function showResult(s,t){
+  const p=Math.round(s/t*100);
+  const ic=p>=90?'🏆':p>=70?'⭐':p>=50?'🎵':'📖';
+  const st=p>=90?'完美！全對！':p>=70?'很不錯！':p>=50?'繼續加油！':'需要複習！';
+  const r=REGIONS.find(x=>x.id===curReg);
+  APP().innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterReg('${curReg}')">← 返回地區</button>
+  </div>
+  <div class="card">
+    <div class="result-box">
+      <div class="ri">${ic}</div>
+      <div class="rs">${st}</div>
+      <div class="rsc">得分 ${s} / ${t}</div>
+      <div class="rp">正確率 ${p}%</div><br>
+      <button class="next-btn" onclick="enterMode('${curMode}')">↺ 再練習</button>
+      <button class="next-btn" onclick="enterMode('ref')" style="margin-left:8px">📋 速查手冊</button>
+    </div>
+  </div>`;
+}
+
+showHome();
+</script>
+
+<div id="ai-messages"></div>
+    
+    
+  </div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="../assets/js/shared.js"></script>
+<script>window.UNIT_CONTEXT="世界音樂";</script>
+</body>
+</html>

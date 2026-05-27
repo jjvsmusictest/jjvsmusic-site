@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>05 記號與術語 — 樂理教學</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff5f8;--rose:#e11d48;--rosel:#fb7185;
+  --peach:#f59e0b;--mint:#10b981;--lav:#8b5cf6;--sky:#0ea5e9;
+  --text:#2d1020;--text2:#7a3050;--text3:#b090a0;
+  --card:#fff;--border:rgba(0,0,0,.08);--r:18px;--rs:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:"Noto Sans TC",sans-serif;min-height:100vh;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#fff0f5,#fff5f0 50%,#f5f0ff);padding:52px 28px 40px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:"✦ 𝄋 § ✦";position:absolute;font-size:5rem;opacity:.05;top:0;left:0;pointer-events:none;letter-spacing:40px;}
+.htag{display:inline-block;background:linear-gradient(135deg,var(--rose),var(--rosel));color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.15em;padding:4px 14px;border-radius:20px;margin-bottom:12px;}
+.hero h1{font-family:"DM Serif Display",serif;font-size:2.6rem;line-height:1.2;margin-bottom:8px;}
+.hero h1 em{color:var(--rose);font-style:normal;}
+.hero p{color:var(--text2);font-size:.88rem;}
+
+/* LAYOUT */
+.layout{display:flex;max-width:1100px;margin:0 auto;padding:0 20px 80px;gap:24px;min-height:80vh;}
+.sidebar{width:200px;flex-shrink:0;position:sticky;top:20px;align-self:flex-start;margin-top:28px;}
+.main-content{flex:1;min-width:0;padding-top:28px;}
+
+/* SIDEBAR */
+.side-nav{background:var(--card);border-radius:var(--r);border:1.5px solid var(--border);overflow:hidden;box-shadow:0 3px 20px rgba(225,29,72,.06);}
+.side-nav-title{padding:14px 16px 10px;font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--text3);text-transform:uppercase;border-bottom:1px solid var(--border);}
+.side-btn{display:flex;align-items:center;gap:8px;width:100%;padding:11px 16px;font-size:.8rem;color:var(--text2);background:transparent;border:none;text-align:left;cursor:pointer;font-family:"Noto Sans TC",sans-serif;transition:all .2s;border-left:3px solid transparent;}
+.side-btn:hover{background:rgba(225,29,72,.05);color:var(--text);}
+.side-btn.act{background:rgba(225,29,72,.08);color:var(--rose);border-left-color:var(--rose);font-weight:700;}
+.sb-icon{font-size:1rem;flex-shrink:0;width:20px;text-align:center;}
+
+/* PROGRESS */
+.progress-bar{height:3px;background:rgba(225,29,72,.12);border-radius:2px;margin-bottom:20px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--rosel));border-radius:2px;transition:width .4s ease;}
+
+/* PANELS */
+.panel{display:none;animation:fu .35s ease;}
+.panel.act{display:block;}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* CARD */
+.card{background:var(--card);border-radius:var(--r);border:1.5px solid var(--border);padding:24px;margin-bottom:18px;box-shadow:0 3px 20px rgba(225,29,72,.06);transition:box-shadow .2s;}
+.card:hover{box-shadow:0 6px 28px rgba(225,29,72,.1);}
+.ctitle{font-family:"DM Serif Display",serif;font-size:1.1rem;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.ctitle::before{content:"";display:inline-block;width:4px;height:18px;border-radius:2px;background:var(--rose);}
+
+/* SIGNS */
+.sign-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;}
+.sign-card{background:#fff5f7;border:1.5px solid rgba(225,29,72,.15);border-radius:var(--rs);padding:14px;text-align:center;cursor:pointer;transition:all .2s;}
+.sign-card:hover,.sign-card.sel{border-color:var(--rose);background:#ffe8ee;transform:translateY(-2px);box-shadow:0 4px 14px rgba(225,29,72,.12);}
+.sign-sym{font-size:1.8rem;color:var(--rose);line-height:1.3;margin-bottom:6px;font-family:"DM Serif Display",serif;}
+.sign-name{font-weight:700;font-size:.8rem;}
+.sign-sub{font-size:.68rem;color:var(--text2);margin-top:3px;}
+#sign-detail{margin-top:12px;background:#fff0f3;border-left:4px solid var(--rose);border-radius:0 var(--rs) var(--rs) 0;padding:13px 16px;font-size:.82rem;color:var(--text2);line-height:1.7;display:none;animation:fu .3s ease;}
+
+/* ORDER DIAGRAM */
+.order-box{background:linear-gradient(135deg,#fff0f5,#fff5f0);border-radius:var(--rs);padding:16px;margin:12px 0;}
+.order-title{font-size:.8rem;font-weight:700;color:var(--rose);margin-bottom:10px;}
+.order-steps{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.ob{background:var(--card);border:1.5px solid rgba(225,29,72,.2);border-radius:8px;padding:7px 12px;text-align:center;min-width:56px;}
+.ob-sym{font-family:"DM Serif Display",serif;font-size:.9rem;color:var(--rose);}
+.ob-nm{font-size:.6rem;color:var(--text3);}
+.ob.special{border-color:var(--peach);}.ob.special .ob-sym{color:var(--peach);}
+.ob.end{border-color:var(--mint);background:rgba(16,185,129,.06);}.ob.end .ob-sym{color:var(--mint);}
+.ob.seg{border-color:var(--lav);}.ob.seg .ob-sym{color:var(--lav);}
+
+/* TIME CALC */
+.time-calc{background:linear-gradient(135deg,#fff0f5,#fff5ee);border-radius:var(--r);padding:20px;border:1.5px solid rgba(225,29,72,.12);}
+.tc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.tc-lbl{font-size:.75rem;color:var(--text2);font-weight:600;margin-bottom:4px;}
+.tc-input{background:var(--card);border:1.5px solid var(--border);border-radius:var(--rs);padding:9px 12px;font-size:.88rem;color:var(--text);font-family:"Noto Sans TC",sans-serif;width:100%;}
+.tc-btn{background:var(--rose);color:#fff;border:none;border-radius:var(--rs);padding:10px 24px;font-size:.85rem;font-weight:700;cursor:pointer;font-family:"Noto Sans TC",sans-serif;margin-top:12px;transition:all .2s;}
+.tc-btn:hover{opacity:.85;}
+.tc-result{margin-top:12px;background:var(--card);border-radius:var(--rs);padding:14px 18px;border:1.5px solid rgba(225,29,72,.15);display:none;}
+.tc-result.show{display:block;animation:fu .3s ease;}
+.tc-big{font-family:"DM Serif Display",serif;font-size:1.7rem;color:var(--rose);}
+
+/* ORNAMENTS */
+.orn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:12px;}
+.orn-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--rs);padding:16px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;}
+.orn-card::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity .2s;background:linear-gradient(90deg,var(--rose),var(--rosel));}
+.orn-card:hover,.orn-card.sel{transform:translateY(-3px);box-shadow:0 8px 24px rgba(225,29,72,.1);}
+.orn-card:hover::after,.orn-card.sel::after{opacity:1;}
+.orn-sym{height:58px;display:flex;align-items:center;justify-content:center;}
+.orn-name{font-weight:700;font-size:.86rem;margin-top:6px;}
+.orn-en{font-size:.7rem;color:var(--text3);font-style:italic;margin-top:2px;}
+.orn-desc{font-size:.74rem;color:var(--text2);margin-top:6px;line-height:1.6;}
+.orn-expand{display:none;margin-top:8px;border-top:1px solid var(--border);padding-top:8px;font-size:.74rem;color:var(--text2);line-height:1.7;}
+.orn-expand.show{display:block;animation:fu .3s ease;}
+
+/* NCT TABS */
+.nct-tabs-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.nct-tab-btn{padding:7px 14px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--text2);font-size:.76rem;cursor:pointer;transition:all .2s;font-family:"Noto Sans TC",sans-serif;}
+.nct-tab-btn.act{background:var(--rose);color:#fff;border-color:var(--rose);}
+.nct-svg-wrap{background:#fffaf8;border-radius:var(--rs);padding:10px;overflow-x:auto;margin-bottom:10px;}
+.nct-info-box{background:rgba(225,29,72,.06);border-left:4px solid var(--rose);border-radius:0 var(--rs) var(--rs) 0;padding:12px 16px;font-size:.81rem;color:var(--text2);line-height:1.7;}
+.nct-info-box strong{color:var(--rose);}
+
+/* NCT TABLE */
+.nct-table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:14px;}
+.nct-table th{background:linear-gradient(135deg,var(--rose),var(--rosel));color:#fff;padding:9px 12px;text-align:left;}
+.nct-table th:first-child{border-radius:10px 0 0 0;}
+.nct-table th:last-child{border-radius:0 10px 0 0;}
+.nct-table td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--text2);}
+.nct-table tr:hover td{background:rgba(225,29,72,.02);}
+.nct-table .strong-beat{color:var(--rose);font-weight:700;}
+
+/* DYNAMICS */
+.dyn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(115px,1fr));gap:10px;}
+.dyn-card{background:#fff5f7;border:1.5px solid rgba(225,29,72,.12);border-radius:var(--rs);padding:12px;text-align:center;transition:all .2s;cursor:pointer;}
+.dyn-card:hover{border-color:var(--rose);background:#ffe8ee;transform:scale(1.05);}
+.dyn-sym{font-size:1.5rem;font-style:italic;color:var(--rose);font-family:"DM Serif Display",serif;line-height:1.2;}
+.dyn-name{font-size:.7rem;font-weight:700;margin-top:5px;}
+.dyn-zh{font-size:.63rem;color:var(--text2);margin-top:2px;}
+#dyn-detail{margin-top:14px;background:#fff0f3;border-left:4px solid var(--rose);border-radius:0 var(--rs) var(--rs) 0;padding:13px 16px;font-size:.82rem;color:var(--text2);line-height:1.7;display:none;animation:fu .3s ease;}
+
+/* TERMS */
+.term-cat-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+.term-cat-btn{padding:7px 16px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--text2);font-size:.78rem;cursor:pointer;transition:all .2s;font-family:"Noto Sans TC",sans-serif;}
+.term-cat-btn.act{background:var(--rose);color:#fff;border-color:var(--rose);}
+.term-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:10px;}
+.term-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--rs);padding:13px;position:relative;transition:all .2s;}
+.term-card:hover{border-color:var(--rose);box-shadow:0 4px 16px rgba(225,29,72,.08);transform:translateY(-1px);}
+.term-it{font-family:"DM Serif Display",serif;font-style:italic;font-size:1rem;color:var(--rose);}
+.term-zh{font-size:.76rem;color:var(--text);margin-top:3px;font-weight:600;}
+.term-bpm{font-size:.63rem;color:var(--text3);margin-top:2px;}
+.term-def{font-size:.68rem;color:var(--text2);margin-top:5px;line-height:1.5;}
+.play-btn{position:absolute;top:10px;right:10px;background:rgba(225,29,72,.1);border:1.5px solid rgba(225,29,72,.25);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.72rem;color:var(--rose);transition:all .2s;font-family:sans-serif;}
+.play-btn:hover{background:var(--rose);color:#fff;}
+.play-btn.playing{background:var(--rose);color:#fff;animation:pulse .5s infinite alternate;}
+@keyframes pulse{from{opacity:.7}to{opacity:1}}
+
+/* INFO / WARN */
+.info{background:rgba(16,185,129,.08);border-left:4px solid var(--mint);border-radius:0 var(--rs) var(--rs) 0;padding:13px 16px;margin:12px 0;font-size:.82rem;color:var(--text2);line-height:1.7;}
+.info strong{color:var(--mint);}
+.warn{background:rgba(225,29,72,.06);border-left:4px solid var(--rose);border-radius:0 var(--rs) var(--rs) 0;padding:13px 16px;margin:12px 0;font-size:.82rem;color:var(--text2);line-height:1.7;}
+.warn strong{color:var(--rose);}
+
+/* QUIZ */
+.quiz-wrap{background:linear-gradient(135deg,#fff0f5,#fff5f0);border-radius:var(--r);padding:26px;border:1.5px solid rgba(225,29,72,.15);}
+.qnum{font-size:.72rem;color:var(--text3);margin-bottom:8px;}
+.qq{font-weight:700;font-size:.95rem;margin-bottom:16px;line-height:1.5;}
+.qopts{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.qopt{padding:11px 16px;border-radius:var(--rs);border:1.5px solid var(--border);background:var(--card);font-size:.82rem;color:var(--text);cursor:pointer;text-align:left;transition:all .2s;font-family:"Noto Sans TC",sans-serif;}
+.qopt:hover:not(:disabled){border-color:var(--rose);background:rgba(225,29,72,.04);}
+.qopt.ok{border-color:var(--mint);background:rgba(16,185,129,.1);color:var(--mint);}
+.qopt.ng{border-color:var(--rose);background:rgba(225,29,72,.1);color:var(--rose);}
+.qexp{margin-top:12px;padding:12px 16px;border-radius:var(--rs);background:rgba(225,29,72,.05);font-size:.79rem;color:var(--text2);display:none;line-height:1.7;}
+.qexp.show{display:block;animation:fu .3s ease;}
+.qnav{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap;}
+.qbtn{padding:8px 20px;border-radius:20px;border:none;font-size:.8rem;font-weight:700;cursor:pointer;font-family:"Noto Sans TC",sans-serif;transition:all .2s;}
+.qbtn.p{background:var(--rose);color:#fff;}
+.qbtn.p:hover{opacity:.85;}
+.qbtn.s{background:rgba(225,29,72,.08);color:var(--text2);border:1.5px solid var(--border);}
+.qprog{font-size:.74rem;color:var(--text3);margin-left:auto;}
+.qsc{font-size:.82rem;font-weight:700;color:var(--rose);}
+
+/* RESPONSIVE */
+@media(max-width:750px){
+  .layout{flex-direction:column;}
+  .sidebar{width:100%;position:static;}
+  .side-nav{display:flex;flex-wrap:nowrap;overflow-x:auto;border-radius:var(--rs);}
+  .side-btn{border-left:none;border-bottom:3px solid transparent;white-space:nowrap;padding:10px 12px;font-size:.74rem;}
+  .side-btn.act{border-left:none;border-bottom-color:var(--rose);}
+  .qopts,.tc-grid{grid-template-columns:1fr;}
+}
+</style>
+
+<link rel="stylesheet" href="../assets/css/shared.css">
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="../index.html" class="nav-logo"><span>🎵</span>莊敬音樂科</a>
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link home">首頁</a>
+    <a href="../history/index.html" class="nav-link">音樂史</a>
+    <a href="index.html" class="nav-link active-t">樂理</a>
+    <a href="teacher-resources.html" class="nav-link">教師資源</a>
+  </div>
+
+  <div id="nav-auth" style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+    <button id="login-btn" onclick="teacherLogin()" style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;border:1.5px solid var(--border,rgba(0,0,0,.12));background:#fff;cursor:pointer;font-size:.78rem;font-weight:700;font-family:inherit;">👤 教師登入</button>
+    <div id="user-info" style="display:none;align-items:center;gap:8px;">
+      <span style="font-size:.78rem;font-weight:700;">👋 <span id="user-name"></span></span>
+      <button onclick="teacherLogout()" style="padding:4px 10px;border-radius:12px;border:1.5px solid rgba(0,0,0,.12);background:transparent;cursor:pointer;font-size:.7rem;font-family:inherit;">登出</button>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumb" style="padding:8px 16px;font-size:.76rem;color:#888;display:flex;gap:5px;align-items:center;"><a href="../index.html" style="color:#666;text-decoration:none;">首頁</a><span>/</span><a href="index.html" style="color:#666;text-decoration:none;">樂理</a><span>/</span>記號與術語</span></div>
+
+<div class="hero">
+  <div class="htag">UNIT 05</div>
+  <h1><em>記號</em>與<em>術語</em></h1>
+  <p>Notation Signs · Ornaments · Non-Chord Tones · Musical Terms</p>
+</div>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="side-nav">
+      <div class="side-nav-title">單元目錄</div>
+      <button class="side-btn act" onclick="showPanel('repeat',this)"><span class="sb-icon">🔁</span>反覆記號</button>
+      <button class="side-btn" onclick="showPanel('ornament',this)"><span class="sb-icon">✦</span>裝飾音</button>
+      <button class="side-btn" onclick="showPanel('nct',this)"><span class="sb-icon">🎵</span>和聲外音</button>
+      <button class="side-btn" onclick="showPanel('dynamics',this)"><span class="sb-icon">🔊</span>力度記號</button>
+      <button class="side-btn" onclick="showPanel('terms',this)"><span class="sb-icon">📖</span>音樂術語</button>
+      <button class="side-btn" onclick="showPanel('quiz',this)"><span class="sb-icon">🧠</span>隨堂測驗</button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main-content">
+    <div class="progress-bar"><div class="progress-fill" id="prog" style="width:16%"></div></div>
+
+    <!-- ① 反覆記號 -->
+    <div class="panel act" id="panel-repeat">
+      <div class="card">
+        <div class="ctitle">反覆記號 — 點擊卡片查看說明</div>
+        <div class="sign-grid" id="sign-grid"></div>
+        <div id="sign-detail"></div>
+      </div>
+      <div class="card">
+        <div class="ctitle">反覆演奏順序圖解</div>
+        <div class="order-box">
+          <div class="order-title">① D.C. al Fine（Da Capo al Fine）從頭反覆至 Fine 結束</div>
+          <div class="order-steps">
+            <div class="ob"><div class="ob-sym">A</div><div class="ob-nm">第1段</div></div>
+            <span style="color:var(--text3)">→</span>
+            <div class="ob"><div class="ob-sym">B</div><div class="ob-nm">第2段</div></div>
+            <span style="color:var(--text3)">→</span>
+            <div class="ob special"><div class="ob-sym">D.C.</div><div class="ob-nm">從頭</div></div>
+            <span style="color:var(--rose);font-size:1.2rem;font-weight:900">↩</span>
+            <div class="ob"><div class="ob-sym">A</div><div class="ob-nm">重複</div></div>
+            <span style="color:var(--text3)">→</span>
+            <div class="ob end"><div class="ob-sym">Fine</div><div class="ob-nm">結束</div></div>
+          </div>
+        </div>
+        <div class="order-box" style="margin-top:10px;">
+          <div class="order-title">② D.S. al Coda（Dal Segno al Coda）從§跳至 Coda 結尾</div>
+          <div class="order-steps">
+            <div class="ob"><div class="ob-sym">A</div></div>
+            <span style="color:var(--text3)">→</span>
+            <div class="ob seg"><div class="ob-sym">§B</div><div class="ob-nm">Segno</div></div>
+            <span style="color:var(--text3)">→</span>
+            <div class="ob"><div class="ob-sym">C</div></div>
+            <span style="color:var(--text3)">→</span>
+            <div class="ob special"><div class="ob-sym">D.S.</div></div>
+            <span style="color:var(--rose);font-size:1.2rem;font-weight:900">↩§</span>
+            <div class="ob seg"><div class="ob-sym">B</div></div>
+            <span style="color:var(--text3)">→</span>
+            <div class="ob end"><div class="ob-sym">𝄋</div><div class="ob-nm">Coda</div></div>
+          </div>
+        </div>
+        <div class="order-box" style="margin-top:10px;">
+          <div class="order-title">③ 第一房 / 第二房（1st & 2nd Endings）</div>
+          <div class="order-steps">
+            <div class="ob"><div class="ob-sym">主體</div></div>
+            <span style="color:var(--text3)">→</span>
+            <div class="ob" style="border-color:var(--sky)"><div class="ob-sym" style="color:var(--sky)">1.┐</div><div class="ob-nm">第一次</div></div>
+            <span style="color:var(--rose);font-size:1.2rem;font-weight:900">↩</span>
+            <div class="ob"><div class="ob-sym">主體</div></div>
+            <span style="color:var(--text3)">→</span>
+            <div class="ob end"><div class="ob-sym">2.┐</div><div class="ob-nm">第二次→結束</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ctitle">⏱ 演奏時間計算器</div>
+        <div class="time-calc">
+          <div class="tc-grid">
+            <div><div class="tc-lbl">每小節幾拍（分子）</div><input class="tc-input" type="number" id="tc-beats" value="4" min="1" max="32"></div>
+            <div><div class="tc-lbl">幾分音符一拍（分母）</div><select class="tc-input" id="tc-denom"><option value="4" selected>4（四分音符）</option><option value="2">2（二分音符）</option><option value="8">8（八分音符）</option></select></div>
+            <div><div class="tc-lbl">速度 BPM</div><input class="tc-input" type="number" id="tc-bpm" value="120" min="20" max="400"></div>
+            <div><div class="tc-lbl">總小節數</div><input class="tc-input" type="number" id="tc-bars" value="32" min="1"></div>
+          </div>
+          <button class="tc-btn" onclick="calcTime()">⏱ 計算演奏時間</button>
+          <div class="tc-result" id="tc-result">
+            <div class="tc-big" id="tc-main"></div>
+            <div id="tc-sub" style="margin-top:5px;font-size:.8rem;color:var(--text2);line-height:1.8;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② 裝飾音 -->
+    <div class="panel" id="panel-ornament">
+      <div class="card">
+        <div class="ctitle">裝飾音（Ornaments）— 點擊展開詳細演奏法</div>
+        <div class="orn-grid" id="orn-grid"></div>
+      </div>
+    </div>
+
+    <!-- ③ 和聲外音 -->
+    <div class="panel" id="panel-nct">
+      <div class="card">
+        <div class="ctitle">和聲外音 — 五線譜圖解（點擊切換種類）</div>
+        <div class="nct-tabs-bar" id="nct-tabs-bar"></div>
+        <div id="nct-content"></div>
+      </div>
+      <div class="card">
+        <div class="ctitle">和聲外音綜合對照表</div>
+        <div style="overflow-x:auto;">
+        <table class="nct-table">
+          <tr><th>名稱</th><th>英文</th><th>進入方式</th><th>強/弱拍</th><th>離開方式</th></tr>
+          <tr><td><strong>經過音</strong></td><td>Passing Tone</td><td>級進</td><td>弱（或強）</td><td>同向級進</td></tr>
+          <tr><td><strong>輔助音</strong></td><td>Neighbor Tone</td><td>級進</td><td>弱</td><td>反向回原音</td></tr>
+          <tr><td><strong>倚音</strong></td><td>Appoggiatura</td><td>跳進</td><td class="strong-beat">強拍</td><td>級進解決</td></tr>
+          <tr><td><strong>懸留音</strong></td><td>Suspension</td><td>同音延留</td><td class="strong-beat">強拍</td><td>下行級進</td></tr>
+          <tr><td><strong>預備音</strong></td><td>Anticipation</td><td>任何</td><td>弱拍</td><td>同音延留</td></tr>
+          <tr><td><strong>逸音</strong></td><td>Escape Tone</td><td>級進</td><td>弱拍</td><td>跳進（反向）</td></tr>
+        </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ 力度記號 -->
+    <div class="panel" id="panel-dynamics">
+      <div class="card">
+        <div class="ctitle">力度記號 — 點擊查看說明</div>
+        <div class="dyn-grid" id="dyn-grid"></div>
+        <div id="dyn-detail"></div>
+      </div>
+    </div>
+
+    <!-- ⑤ 音樂術語 -->
+    <div class="panel" id="panel-terms">
+      <div class="card">
+        <div class="ctitle">常用術語 — 點擊 ▶ 聆聽義大利文發音</div>
+        <div class="warn"><strong>📢 點擊右上角 ▶</strong> 播放義大利文發音（需瀏覽器支援語音合成 Web Speech API）</div>
+        <div class="term-cat-tabs" id="term-cat-tabs"></div>
+        <div class="term-grid" id="term-grid"></div>
+      </div>
+    </div>
+
+    <!-- ⑥ 隨堂測驗 -->
+    <div class="panel" id="panel-quiz">
+      <div class="quiz-wrap" id="quiz-wrap"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── PANEL SWITCH ─────────────────────────────────────
+const panelOrder = ['repeat','ornament','nct','dynamics','terms','quiz'];
+function showPanel(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('act'));
+  document.querySelectorAll('.side-btn').forEach(b => b.classList.remove('act'));
+  document.getElementById('panel-' + id).classList.add('act');
+  if (btn) btn.classList.add('act');
+  const idx = panelOrder.indexOf(id);
+  document.getElementById('prog').style.width = ((idx + 1) / panelOrder.length * 100) + '%';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── REPEAT SIGNS ─────────────────────────────────────
+(function() {
+  const signs = [
+    {sym:'𝄇',name:'反覆記號',sub:'Repeat Sign',detail:'從前方對應的 𝄆 處重複。若無 𝄆 則從曲首重複。第一、二房（volta bracket）決定不同反覆內容。'},
+    {sym:'D.C.',name:'Da Capo',sub:'從頭',detail:'回到樂曲最開頭重複演奏。常與 al Fine 或 al Coda 連用。D.C. 後通常不再重複反覆記號內的內容。'},
+    {sym:'D.S.',name:'Dal Segno',sub:'從§記號',detail:'跳回樂曲中 § 記號處重複演奏。常見：D.S. al Fine 或 D.S. al Coda。'},
+    {sym:'§',name:'Segno',sub:'D.S. 跳回目標',detail:'Dal Segno 的跳回目標，在此記號處重新開始演奏。'},
+    {sym:'𝄋',name:'Coda',sub:'尾奏記號',detail:'跳至此記號後的結尾段落演奏至結束。通常配合 D.C./D.S. al Coda 使用。'},
+    {sym:'Fine',name:'Fine',sub:'結束點',detail:'D.C./D.S. 反覆後，在此記號處停止演奏。第一次演奏時直接跳過 Fine 不停。'},
+    {sym:'1.┐',name:'第一房',sub:'1st Ending',detail:'第一次演奏進入方框內小節；反覆時跳過，直接進入第二房。'},
+    {sym:'2.┐',name:'第二房',sub:'2nd Ending',detail:'反覆後才演奏此方框內容，演奏後繼續往下不再反覆。'},
+    {sym:'Rit.',name:'Ritardando',sub:'漸慢',detail:'逐漸減慢速度。abbr. rit. 或 ritard.。與 rallentando（rall.）常互換，但 rit. 通常更急促。'},
+    {sym:'⌢',name:'延長號 Fermata',sub:'自由保持',detail:'超過本身時值自由保持，時間由指揮或演奏者決定，通常延長 1.5～3 倍時值。'},
+  ];
+  const grid = document.getElementById('sign-grid');
+  const detail = document.getElementById('sign-detail');
+  signs.forEach(s => {
+    const card = document.createElement('div');
+    card.className = 'sign-card';
+    card.innerHTML = `<div class="sign-sym">${s.sym}</div><div class="sign-name">${s.name}</div><div class="sign-sub">${s.sub}</div>`;
+    card.onclick = () => {
+      document.querySelectorAll('.sign-card').forEach(c => c.classList.remove('sel'));
+      card.classList.add('sel');
+      detail.style.display = 'block';
+      detail.innerHTML = `<strong style="color:var(--rose)">${s.name}（${s.sym}）：</strong>${s.detail}`;
+      detail.style.animation = 'none'; detail.offsetHeight; detail.style.animation = 'fu .3s ease';
+    };
+    grid.appendChild(card);
+  });
+})();
+
+// ── TIME CALCULATOR ──────────────────────────────────
+function calcTime() {
+  const beats = parseInt(document.getElementById('tc-beats').value) || 4;
+  const denom = parseInt(document.getElementById('tc-denom').value) || 4;
+  const bpm = parseInt(document.getElementById('tc-bpm').value) || 120;
+  const bars = parseInt(document.getElementById('tc-bars').value) || 32;
+  const beatSec = 60 / bpm * (4 / denom);
+  const barSec = beatSec * beats;
+  const total = barSec * bars;
+  const min = Math.floor(total / 60);
+  const sec = (total % 60).toFixed(1);
+  const res = document.getElementById('tc-result');
+  res.classList.add('show'); res.style.animation = 'none'; res.offsetHeight; res.style.animation = 'fu .3s ease';
+  document.getElementById('tc-main').textContent = (min > 0 ? min + ' 分 ' : '') + sec + ' 秒';
+  document.getElementById('tc-sub').innerHTML =
+    `拍號 ${beats}/${denom}　速度 ♩=${bpm} BPM　共 ${bars} 小節<br>
+     每小節 <strong>${barSec.toFixed(2)}</strong> 秒 × ${bars} = <strong>${total.toFixed(1)} 秒</strong>`;
+}
+
+// ── ORNAMENTS ────────────────────────────────────────
+(function() {
+  const orns = [
+    { name:'顫音 Trill', en:'Trill',
+      svg:`<svg viewBox="0 0 110 48" width="100"><text x="4" y="36" font-size="30" font-family="DM Serif Display,serif" fill="#e11d48">tr</text><text x="44" y="26" font-size="26" font-family="serif" fill="#e11d48">~~~~</text></svg>`,
+      desc:'主音與上鄰音快速交替振動。記號 tr 或 tr~~~~',
+      expand:'巴洛克通常從上鄰音開始；古典/浪漫從主音開始。速度由時值和速度決定，盡量快速均勻。結尾通常加 nachschlag（後奏小音符）收尾。' },
+    { name:'迴音 Turn', en:'Turn',
+      svg:`<svg viewBox="0 0 80 50" width="70"><text x="8" y="42" font-size="48" font-family="serif" fill="#e11d48">∞</text></svg>`,
+      desc:'上→主→下→主，共4音。符號「∞」。',
+      expand:'演奏順序：上鄰音→主音→下鄰音→主音。逆迴音（∞倒置）：下→主→上→主。記號在音符正上方則在該音上演奏；在兩音之間則在後一音前演奏。' },
+    { name:'前倚音', en:'Appoggiatura',
+      svg:`<svg viewBox="0 0 80 60" width="70"><text x="6" y="52" font-size="46" font-family="serif" fill="#e11d48">♩</text><text x="2" y="22" font-size="18" font-family="serif" fill="#f59e0b">♪</text><line x1="10" y1="27" x2="22" y2="10" stroke="#f59e0b" stroke-width="2"/></svg>`,
+      desc:'佔主音時值一半（或2/3），強拍演奏。',
+      expand:'前倚音（Long Appoggiatura）：帶斜線小音符，佔主音時值一半（二/四分音符）或2/3（附點音符）。情感張力大，強調在倚音上。' },
+    { name:'短倚音', en:'Acciaccatura',
+      svg:`<svg viewBox="0 0 80 60" width="70"><text x="22" y="52" font-size="46" font-family="serif" fill="#e11d48">♩</text><text x="2" y="22" font-size="16" font-family="serif" fill="#f59e0b">♪</text><line x1="8" y1="26" x2="24" y2="9" stroke="#f59e0b" stroke-width="2.5"/></svg>`,
+      desc:'極短幾乎無時值，快速帶過。符幹帶斜線。',
+      expand:'短倚音（Grace Note）：盡可能快速演奏後立即轉到主音。強拍在主音上（不在倚音上）。記號為帶斜線的小音符。' },
+    { name:'上波音', en:'Mordent (Upper)',
+      svg:`<svg viewBox="0 0 80 50" width="70"><text x="6" y="42" font-size="42" font-family="serif" fill="#e11d48">𝆐</text></svg>`,
+      desc:'主→上鄰→主，3音，波浪記號 𝆐',
+      expand:'主音→上鄰音→主音，快速演奏3個音。常見於巴洛克和古典時期旋律裝飾。' },
+    { name:'下波音', en:'Mordent (Lower)',
+      svg:`<svg viewBox="0 0 80 50" width="70"><text x="6" y="42" font-size="42" font-family="serif" fill="#10b981">𝆑</text></svg>`,
+      desc:'主→下鄰→主，3音，波浪加垂直線 𝆑',
+      expand:'主音→下鄰音→主音，快速3個音。記號波浪加垂直線。在某些時期記號意義與上波音相反，需依時期和地區判斷。' },
+    { name:'琶音', en:'Arpeggio',
+      svg:`<svg viewBox="0 0 50 70" width="42"><text x="8" y="64" font-size="62" font-family="serif" fill="#e11d48">𝆄</text></svg>`,
+      desc:'和弦音由下往上依次快速奏出，波浪垂直線。',
+      expand:'向上琶音最常見；向下琶音（上方加箭頭）較少。鋼琴作品大量使用，模仿豎琴效果。' },
+    { name:'滑音', en:'Glissando',
+      svg:`<svg viewBox="0 0 90 50" width="80"><text x="4" y="38" font-size="12" font-family="Noto Sans TC,sans-serif" fill="#8b5cf6">gliss.</text><line x1="4" y1="42" x2="80" y2="10" stroke="#8b5cf6" stroke-width="2"/></svg>`,
+      desc:'兩音之間快速滑行，連續音高變化。',
+      expand:'鋼琴用指甲滑行；弦樂用手指滑動；長號連續推拉。記號：兩音間畫斜線並標 gliss.。' },
+  ];
+  const grid = document.getElementById('orn-grid');
+  orns.forEach(o => {
+    const card = document.createElement('div'); card.className = 'orn-card';
+    card.innerHTML = `<div class="orn-sym">${o.svg}</div><div class="orn-name">${o.name}</div><div class="orn-en">${o.en}</div><div class="orn-desc">${o.desc}</div><div class="orn-expand">${o.expand}</div>`;
+    card.onclick = () => {
+      card.classList.toggle('sel');
+      card.querySelector('.orn-expand').classList.toggle('show');
+    };
+    grid.appendChild(card);
+  });
+})();
+
+// ── NCT (Non-Chord Tones) ─────────────────────────────
+(function() {
+  const ncts = [
+    { id:'pt', label:'經過音 PT',
+      info:'<strong>經過音 Passing Tone (PT)：</strong>以<em>級進</em>進入，同方向<em>級進</em>離開，填充兩個和弦音之間。弱拍為主，強拍亦有（Accented PT）。',
+      svg: makeStaff([
+        {x:90,y:55,col:'#e11d48',lbl:'c¹',sub:'和弦'},{x:170,y:47,col:'#f59e0b',lbl:'d¹',sub:'PT'},
+        {x:250,y:40,col:'#e11d48',lbl:'e¹',sub:'和弦'}
+      ],[{x1:90,y1:55,x2:170,y2:47},{x1:170,y1:47,x2:250,y2:40}],
+        [{x:90,label:'I和弦',col:'#e11d48'},{x:250,label:'I和弦',col:'#e11d48'}],
+        '→ 同向級進 →','#f59e0b') },
+    { id:'nt', label:'輔助音 NT',
+      info:'<strong>輔助音 Neighbor Tone (NT)：</strong>從和弦音<em>級進</em>離開，再<em>反向回到同一和弦音</em>。上輔音（UNT）往上再回；下輔音（LNT）往下再回。',
+      svg: makeStaff([
+        {x:80,y:55,col:'#e11d48',lbl:'e¹',sub:'和弦'},{x:155,y:47,col:'#10b981',lbl:'f¹',sub:'UNT'},
+        {x:230,y:55,col:'#e11d48',lbl:'e¹',sub:'回'},{x:340,y:55,col:'#e11d48',lbl:'e¹',sub:'和弦'},
+        {x:415,y:62,col:'#10b981',lbl:'d¹',sub:'LNT'}
+      ],[{x1:80,y1:55,x2:155,y2:47},{x1:155,y1:47,x2:230,y2:55},{x1:340,y1:55,x2:415,y2:62}],
+        [{x:80,label:'UNT示例',col:'#10b981'},{x:340,label:'LNT示例',col:'#10b981'}],
+        '上/下輔音後回原音','#10b981') },
+    { id:'app', label:'倚音 App',
+      info:'<strong>倚音 Appoggiatura (App)：</strong>以<em>跳進</em>進入（<strong>強拍</strong>），以<em>級進</em>解決。是和聲外音中情感張力最強的一種，強拍的重量在外音上。',
+      svg: makeStaff([
+        {x:80,y:70,col:'#888',lbl:'g',sub:'和弦'},{x:175,y:32,col:'#e11d48',lbl:'d¹',sub:'App★強',strong:true},
+        {x:280,y:47,col:'#10b981',lbl:'c¹',sub:'解決'}
+      ],[{x1:80,y1:70,x2:175,y2:32,dash:true},{x1:175,y1:32,x2:280,y2:47}],
+        [{x:80,label:'跳進進入（強）',col:'#e11d48'},{x:280,label:'級進解決',col:'#10b981'}],
+        '跳進到強拍→級進解決','#e11d48') },
+    { id:'sus', label:'懸留音 Sus',
+      info:'<strong>懸留音 Suspension (Sus)：</strong>前一和弦的音<em>延留</em>到下一和弦（<strong>強拍</strong>），再以<em>下行級進</em>解決。常見：4→3、7→6、9→8懸留。',
+      svg: makeStaff([
+        {x:90,y:40,col:'#888',lbl:'f¹',sub:'預備'},{x:220,y:40,col:'#e11d48',lbl:'f¹',sub:'Sus★強',strong:true},
+        {x:360,y:55,col:'#10b981',lbl:'e¹',sub:'解決'}
+      ],[{x1:90,y1:40,x2:220,y2:40,tie:true},{x1:220,y1:40,x2:360,y2:55}],
+        [{x:90,label:'I和弦(f¹在)',col:'#888'},{x:220,label:'V和弦(f¹留)',col:'#e11d48'},{x:360,label:'解決e¹',col:'#10b981'}],
+        '延留→強拍→下行解決','#e11d48') },
+    { id:'ant', label:'預備音 Ant',
+      info:'<strong>預備音 Anticipation (Ant)：</strong>下一和弦的音在<em>弱拍</em>提前出現，之後與下一和弦合為一（同音延留）。常見於樂句結尾。',
+      svg: makeStaff([
+        {x:80,y:40,col:'#888',lbl:'g¹',sub:''},{x:80,y:70,col:'#888',lbl:'G',sub:'V和弦'},
+        {x:200,y:55,col:'#e11d48',lbl:'c¹',sub:'Ant（弱）'},{x:310,y:55,col:'#10b981',lbl:'c¹',sub:''},
+        {x:310,y:40,col:'#10b981',lbl:'e¹',sub:'I和弦'}
+      ],[{x1:200,y1:55,x2:310,y2:55,tie:true}],
+        [{x:200,label:'提前出現c¹',col:'#e11d48'},{x:310,label:'I和弦到來',col:'#10b981'}],
+        '弱拍先現→同音延留','#e11d48') },
+    { id:'et', label:'逸音 ET',
+      info:'<strong>逸音 Escape Tone (ET)：</strong>以<em>級進</em>進入（弱拍），以<em>反向跳進</em>離開。進行方向在外音後突然反向跳走，如「逃跑」。',
+      svg: makeStaff([
+        {x:80,y:55,col:'#e11d48',lbl:'c¹',sub:'和弦'},{x:165,y:47,col:'#f59e0b',lbl:'d¹',sub:'ET'},
+        {x:275,y:70,col:'#10b981',lbl:'g',sub:'跳（反向）'}
+      ],[{x1:80,y1:55,x2:165,y2:47},{x1:165,y1:47,x2:275,y2:70,dash:true}],
+        [{x:80,label:'級進進入',col:'#999'},{x:220,label:'↗跳進反向↘',col:'#f59e0b'}],
+        '級進進入→反向跳進離開','#f59e0b') },
+  ];
+
+  function makeStaff(notes, arrows, labels, caption, capCol) {
+    const W=480, H=110, lines=[20,33,46,59,72];
+    let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px;background:#fffaf8;border-radius:8px;display:block;">`;
+    lines.forEach(y => s += `<line x1="20" y1="${y}" x2="${W-10}" y2="${y}" stroke="#ccc" stroke-width="1.2"/>`);
+    // barlines
+    [20, 160, 300, W-10].forEach(x => s += `<line x1="${x}" y1="${lines[0]}" x2="${x}" y2="${lines[4]}" stroke="#bbb" stroke-width="1.2"/>`);
+    // arrows
+    arrows.forEach(a => {
+      if(a.tie) {
+        const mx = (a.x1+a.x2)/2, my = Math.min(a.y1,a.y2)-12;
+        s += `<path d="M${a.x1},${a.y1} Q${mx},${my} ${a.x2},${a.y2}" fill="none" stroke="#e11d48" stroke-width="2"/>`;
+      } else {
+        s += `<line x1="${a.x1}" y1="${a.y1}" x2="${a.x2}" y2="${a.y2}" stroke="#ccc" stroke-width="1" ${a.dash?'stroke-dasharray="5,3"':''}/>`;
+      }
+    });
+    // notes
+    notes.forEach(n => {
+      if(n.y > lines[4]) s += `<line x1="${n.x-10}" y1="${n.y}" x2="${n.x+10}" y2="${n.y}" stroke="#aaa" stroke-width="1.2"/>`;
+      s += `<ellipse cx="${n.x}" cy="${n.y}" rx="9" ry="6" fill="${n.col}" opacity=".9"/>`;
+      if(n.lbl) s += `<text x="${n.x}" y="${n.y-9}" text-anchor="middle" font-size="9" fill="${n.col}" font-weight="bold" font-family="Noto Sans TC,sans-serif">${n.lbl}</text>`;
+      if(n.sub) s += `<text x="${n.x}" y="${n.y+20}" text-anchor="middle" font-size="8" fill="${n.col}" font-family="Noto Sans TC,sans-serif">${n.sub}</text>`;
+    });
+    // labels
+    labels.forEach(l => s += `<text x="${l.x}" y="${H-4}" text-anchor="middle" font-size="8.5" fill="${l.col}" font-family="Noto Sans TC,sans-serif">${l.label}</text>`);
+    s += `</svg>`;
+    return s;
+  }
+
+  // Build tab buttons
+  const tabBar = document.getElementById('nct-tabs-bar');
+  const content = document.getElementById('nct-content');
+  ncts.forEach((n, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nct-tab-btn' + (i === 0 ? ' act' : '');
+    btn.textContent = n.label;
+    btn.onclick = () => {
+      document.querySelectorAll('.nct-tab-btn').forEach(b => b.classList.remove('act'));
+      btn.classList.add('act');
+      renderNct(n);
+    };
+    tabBar.appendChild(btn);
+  });
+
+  function renderNct(n) {
+    content.innerHTML = `<div class="nct-svg-wrap">${n.svg}</div><div class="nct-info-box">${n.info}</div>`;
+    content.style.animation = 'none'; content.offsetHeight; content.style.animation = 'fu .3s ease';
+  }
+  renderNct(ncts[0]);
+})();
+
+// ── DYNAMICS ─────────────────────────────────────────
+(function() {
+  const dyns = [
+    {sym:'ppp',name:'pianississimo',zh:'極極弱',detail:'幾乎無聲，極限的柔弱演奏。'},
+    {sym:'pp',name:'pianissimo',zh:'極弱',detail:'非常柔弱，如遠方傳來的聲音。'},
+    {sym:'p',name:'piano',zh:'弱',detail:'柔和演奏，不突出但可清楚聽到。'},
+    {sym:'mp',name:'mezzo piano',zh:'中弱',detail:'中等偏弱，mezzo = 半、中間。'},
+    {sym:'mf',name:'mezzo forte',zh:'中強',detail:'中等偏強，日常對話的音量感。'},
+    {sym:'f',name:'forte',zh:'強',detail:'強奏，有力而突出。'},
+    {sym:'ff',name:'fortissimo',zh:'極強',detail:'非常強，充分的音量爆發。'},
+    {sym:'fff',name:'fortississimo',zh:'極極強',detail:'管弦樂最強，全體同時演奏最大音量。'},
+    {sym:'sfz',name:'sforzando',zh:'突強',detail:'在該音突然加強力度，之後恢復原力度。abbr. sfz 或 sf。'},
+    {sym:'fp',name:'forte-piano',zh:'強後即弱',detail:'該音強奏，立即轉為弱奏。常見於古典時期。'},
+    {sym:'<',name:'crescendo',zh:'漸強',detail:'逐漸增加音量。abbr. cresc. 或以「<」符號表示。'},
+    {sym:'>',name:'decrescendo',zh:'漸弱',detail:'逐漸減少音量。abbr. decresc. 或 dim.（diminuendo）。'},
+  ];
+  const grid = document.getElementById('dyn-grid');
+  const detail = document.getElementById('dyn-detail');
+  dyns.forEach(d => {
+    const card = document.createElement('div'); card.className = 'dyn-card';
+    card.innerHTML = `<div class="dyn-sym">${d.sym}</div><div class="dyn-name">${d.name}</div><div class="dyn-zh">${d.zh}</div>`;
+    card.onclick = () => {
+      document.querySelectorAll('.dyn-card').forEach(c => c.style.borderColor = '');
+      card.style.borderColor = 'var(--rose)';
+      detail.style.display = 'block';
+      detail.innerHTML = `<strong style="color:var(--rose)">${d.sym} — ${d.name}（${d.zh}）：</strong>${d.detail}`;
+      detail.style.animation = 'none'; detail.offsetHeight; detail.style.animation = 'fu .3s ease';
+    };
+    grid.appendChild(card);
+  });
+})();
+
+// ── TERMS ────────────────────────────────────────────
+(function() {
+  const cats = {
+    tempo: {
+      label: '速度 Tempo',
+      terms: [
+        {it:'Grave',zh:'極緩慢·莊重',bpm:'♩≈40',def:'最緩慢，極莊嚴'},
+        {it:'Largo',zh:'廣板',bpm:'♩≈46',def:'寬廣緩慢'},
+        {it:'Lento',zh:'緩板',bpm:'♩≈52',def:'緩慢'},
+        {it:'Adagio',zh:'慢板',bpm:'♩≈66',def:'悠緩，表情豐富'},
+        {it:'Andante',zh:'行板',bpm:'♩≈88',def:'行走的速度'},
+        {it:'Andantino',zh:'小行板',bpm:'♩≈96',def:'比Andante稍快'},
+        {it:'Moderato',zh:'中板',bpm:'♩≈112',def:'中等速度'},
+        {it:'Allegretto',zh:'小快板',bpm:'♩≈116',def:'較輕快'},
+        {it:'Allegro',zh:'快板',bpm:'♩≈132',def:'快速活潑'},
+        {it:'Vivace',zh:'活潑板',bpm:'♩≈168',def:'生動快速'},
+        {it:'Presto',zh:'急板',bpm:'♩≈184',def:'非常快'},
+        {it:'Prestissimo',zh:'最急板',bpm:'♩≥200',def:'盡可能最快'},
+        {it:'Accelerando',zh:'漸快',bpm:'accel.',def:'逐漸加快速度'},
+        {it:'Ritardando',zh:'漸慢',bpm:'rit.',def:'逐漸減慢'},
+        {it:'Rallentando',zh:'漸慢放寬',bpm:'rall.',def:'逐漸放慢'},
+        {it:'A tempo',zh:'回原速',bpm:'',def:'恢復前面的速度'},
+      ]
+    },
+    expr: {
+      label: '表情 Expression',
+      terms: [
+        {it:'cantabile',zh:'如歌地',bpm:'',def:'旋律性、歌唱式'},
+        {it:'dolce',zh:'甜美柔和地',bpm:'',def:'溫柔甜蜜'},
+        {it:'espressivo',zh:'有表情地',bpm:'espr.',def:'富有情感'},
+        {it:'grazioso',zh:'優雅地',bpm:'',def:'優美從容'},
+        {it:'maestoso',zh:'莊嚴地',bpm:'',def:'壯麗威嚴'},
+        {it:'con fuoco',zh:'熱情似火地',bpm:'',def:'充滿熱情'},
+        {it:'con brio',zh:'活力充沛地',bpm:'',def:'精神飽滿'},
+        {it:'leggiero',zh:'輕盈地',bpm:'',def:'輕快飄逸'},
+        {it:'tranquillo',zh:'寧靜地',bpm:'',def:'平靜安詳'},
+        {it:'agitato',zh:'激動地',bpm:'',def:'不安、激動'},
+        {it:'appassionato',zh:'充滿激情地',bpm:'',def:'熱情洋溢'},
+        {it:'scherzando',zh:'詼諧地',bpm:'',def:'活潑戲謔'},
+      ]
+    },
+    tech: {
+      label: '技法 Technique',
+      terms: [
+        {it:'staccato',zh:'斷音',bpm:'',def:'短促分離演奏，時值縮短'},
+        {it:'legato',zh:'連音',bpm:'',def:'圓滑流暢連接'},
+        {it:'marcato',zh:'明顯重音',bpm:'marc.',def:'強調每個音'},
+        {it:'tenuto',zh:'持音',bpm:'ten.',def:'保持完整時值'},
+        {it:'pizzicato',zh:'撥弦',bpm:'pizz.',def:'弦樂用手指撥'},
+        {it:'arco',zh:'用弓',bpm:'',def:'回到用弓演奏'},
+        {it:'con sordino',zh:'加弱音器',bpm:'con sord.',def:'加上弱音器演奏'},
+        {it:'senza sordino',zh:'去弱音器',bpm:'senza sord.',def:'移除弱音器'},
+        {it:'vibrato',zh:'顫音（音色）',bpm:'',def:'音高微小波動，增加溫暖感'},
+        {it:'glissando',zh:'滑音',bpm:'gliss.',def:'在兩音間滑行'},
+        {it:'col legno',zh:'用弓桿',bpm:'',def:'弦樂用木桿敲擊或拉奏'},
+        {it:'sul ponticello',zh:'近琴馬',bpm:'sul pont.',def:'靠近琴馬演奏，音色尖銳'},
+      ]
+    },
+    mod: {
+      label: '修飾詞',
+      terms: [
+        {it:'molto',zh:'非常·很',bpm:'',def:'加強修飾語，如 molto rit.'},
+        {it:'poco',zh:'稍微·一點',bpm:'',def:'輕微，如 poco cresc.'},
+        {it:'poco a poco',zh:'逐漸地',bpm:'',def:'一點一點地'},
+        {it:'sempre',zh:'始終·一直',bpm:'',def:'持續保持某狀態'},
+        {it:'subito',zh:'突然地',bpm:'sub.',def:'如 subito p（突弱）'},
+        {it:'più',zh:'更加',bpm:'',def:'如 più mosso（更有動感）'},
+        {it:'meno',zh:'較少',bpm:'',def:'如 meno mosso（較慢）'},
+        {it:'ma non troppo',zh:'但不要過分',bpm:'',def:'如 allegro ma non troppo'},
+        {it:'quasi',zh:'幾乎·好像',bpm:'',def:'如 quasi una fantasia'},
+        {it:'simile',zh:'同樣地',bpm:'',def:'繼續同樣的奏法'},
+        {it:'ossia',zh:'或者（替代版）',bpm:'',def:'提供另一種可接受的演奏方式'},
+        {it:'da capo',zh:'從頭',bpm:'D.C.',def:'從樂曲開頭重複'},
+      ]
+    }
+  };
+
+  const tabBar = document.getElementById('term-cat-tabs');
+  const grid = document.getElementById('term-grid');
+  let firstKey = Object.keys(cats)[0];
+
+  function renderTerms(key) {
+    grid.innerHTML = '';
+    cats[key].terms.forEach(t => {
+      const card = document.createElement('div'); card.className = 'term-card';
+      card.innerHTML = `
+        <button class="play-btn" onclick="speakTerm(this,'${t.it.replace(/'/g,"\\'")}')">▶</button>
+        <div class="term-it">${t.it}</div>
+        <div class="term-zh">${t.zh}</div>
+        ${t.bpm ? `<div class="term-bpm">${t.bpm}</div>` : ''}
+        <div class="term-def">${t.def}</div>`;
+      grid.appendChild(card);
+    });
+    grid.style.animation = 'none'; grid.offsetHeight; grid.style.animation = 'fu .3s ease';
+  }
+
+  Object.keys(cats).forEach((key, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'term-cat-btn' + (i === 0 ? ' act' : '');
+    btn.textContent = cats[key].label;
+    btn.onclick = () => {
+      document.querySelectorAll('.term-cat-btn').forEach(b => b.classList.remove('act'));
+      btn.classList.add('act');
+      renderTerms(key);
+    };
+    tabBar.appendChild(btn);
+  });
+  renderTerms(firstKey);
+})();
+
+// Web Speech API
+function speakTerm(btn, text) {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.play-btn.playing').forEach(b => { b.classList.remove('playing'); b.textContent = '▶'; });
+  btn.classList.add('playing'); btn.textContent = '♪';
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'it-IT'; u.rate = 0.8; u.pitch = 1;
+  const voices = window.speechSynthesis.getVoices();
+  const itV = voices.find(v => v.lang.startsWith('it'));
+  if (itV) u.voice = itV;
+  u.onend = () => { btn.classList.remove('playing'); btn.textContent = '▶'; };
+  window.speechSynthesis.speak(u);
+  setTimeout(() => { btn.classList.remove('playing'); btn.textContent = '▶'; }, 3500);
+}
+if (window.speechSynthesis) window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+
+// ── QUIZ ─────────────────────────────────────────────
+(function() {
+  const qs = [
+    {q:'「D.C. al Fine」的演奏順序？',opts:['從§跳至Fine','從頭重複至Fine停止','跳至Coda尾奏','從頭重複整首'],ans:1,exp:'D.C. = Da Capo（從頭）；al Fine = 至Fine停止。從樂曲開頭重複，在Fine記號處停止。'},
+    {q:'懸留音（Suspension）的正確描述？',opts:['跳進進入，強拍，級進解決','級進進入，弱拍，同向離開','延留進入，強拍，下行級進解決','提前出現，弱拍，同音延留'],ans:2,exp:'懸留音：前一和弦的音延留到下一和弦（強拍），再以下行級進解決。常見：4-3、7-6。'},
+    {q:'「sfz（sforzando）」代表？',opts:['漸強','漸弱','突強','極弱'],ans:2,exp:'sforzando = 突然加強（Sudden Force），在該音突然用力，之後恢復原力度。'},
+    {q:'上波音（Mordent）的演奏順序？',opts:['主→下→主','上→主→下→主','主→上→主','下→主→下'],ans:2,exp:'上波音：主音→上鄰音→主音，快速3個音（記號 𝆐）。下波音則是主→下鄰→主（記號 𝆑）。'},
+    {q:'倚音（Appoggiatura）的特徵？',opts:['弱拍跳進，弱拍級進','強拍跳進，弱拍級進解決','弱拍級進，強拍跳進','強拍延留，弱拍解決'],ans:1,exp:'倚音 = 強拍上的非和弦音，以跳進進入，再以級進解決。是張力最強的和聲外音。'},
+    {q:'「poco a poco crescendo」的意思？',opts:['突然漸強','非常緩慢漸強','一點一點地漸強','保持強度'],ans:2,exp:'poco a poco = 一點一點地；crescendo = 漸強。合起來 = 逐漸地漸強。'},
+    {q:'Allegro 的速度範圍大約是？',opts:['♩=60~80','♩=80~100','♩=120~156','♩=168~200'],ans:2,exp:'Allegro（快板）約 ♩=120~156 BPM。Andante≈88，Vivace≈168，Presto≈184。'},
+    {q:'逸音（Escape Tone）的離開方式？',opts:['反向回到原音','同向級進','跳進（反向）','同音延留'],ans:2,exp:'逸音：級進進入→反向跳進離開。與經過音相反：經過音同向級進離開。'},
+  ];
+  let cur = 0, score = 0, answered = false;
+  const wrap = document.getElementById('quiz-wrap');
+  function render() {
+    const q = qs[cur];
+    wrap.innerHTML = `<div class="qnum">第 ${cur+1} / ${qs.length} 題　<span class="qsc">✓ ${score}</span></div>
+      <div class="qq">${q.q}</div>
+      <div class="qopts">${q.opts.map((o,i) => `<button class="qopt" onclick="ansQ(${i})">${o}</button>`).join('')}</div>
+      <div class="qexp" id="qexp">${q.exp}</div>
+      <div class="qnav"><button class="qbtn s" onclick="prevQ()" ${cur===0?'disabled':''}>← 上一題</button>
+      <button class="qbtn p" id="qnext" style="display:none" onclick="nextQ()">下一題 →</button>
+      <span class="qprog">${cur+1} / ${qs.length}</span></div>`;
+    answered = false;
+  }
+  window.ansQ = function(i) {
+    if (answered) return; answered = true;
+    const q = qs[cur];
+    document.querySelectorAll('.qopt').forEach((o, j) => { o.disabled = true; if (j===q.ans) o.classList.add('ok'); else if (j===i && i!==q.ans) o.classList.add('ng'); });
+    if (i === q.ans) score++;
+    document.getElementById('qexp').classList.add('show');
+    const nb = document.getElementById('qnext');
+    if (cur < qs.length - 1) { nb.style.display = 'inline-block'; }
+    else { nb.textContent = '成績'; nb.style.display = 'inline-block'; nb.onclick = () => { wrap.innerHTML = `<div style="text-align:center;padding:28px;"><div style="font-size:3rem;font-weight:900;color:var(--rose);">${score}/${qs.length}</div><div style="color:var(--text2);margin:10px 0 22px;">${score===qs.length?'🎉 全對！音樂班高手！':score>=6?'👏 很棒！繼續加油！':'📖 再多複習幾次！'}</div><button class="qbtn p" onclick="restartQ()">再練一次</button></div>`; }; }
+  };
+  window.nextQ = function() { if (cur < qs.length-1) { cur++; render(); } };
+  window.prevQ = function() { if (cur > 0) { cur--; render(); } };
+  window.restartQ = function() { cur = 0; score = 0; render(); };
+  render();
+})();
+</script>
+
+<div id="ai-messages"></div>
+    
+    
+  </div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="../assets/js/shared.js"></script>
+<script>window.UNIT_CONTEXT="樂理 — 記號與術語";</script>
+</body>
+</html>

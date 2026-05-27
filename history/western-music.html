@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>西洋音樂史 · 莊敬音樂科學習互動平台</title>
+<link rel="stylesheet" href="../assets/css/shared.css">
+<style>
+body{background:#FFF6E5;background-image:radial-gradient(circle,rgba(0,0,0,.05) 1.5px,transparent 1.5px);background-size:18px 18px;}
+#app{max-width:820px;margin:0 auto;padding:0 16px 80px;}
+.era-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:13px;margin:18px 0 14px}
+.era-btn{padding:16px 10px;border-radius:14px;cursor:pointer;text-align:center;background:var(--ec);border:3px solid #000;box-shadow:5px 5px 0 #000;transition:all .12s;color:#fff;position:relative;overflow:hidden}
+.era-btn:nth-child(odd){transform:rotate(-.8deg)}.era-btn:nth-child(even){transform:rotate(.8deg)}
+.era-btn:hover{transform:translate(-2px,-2px) rotate(0)!important;box-shadow:7px 7px 0 #000}
+.era-btn:active{transform:translate(3px,3px) rotate(0)!important;box-shadow:1px 1px 0 #000}
+.eicon{font-size:2rem;margin-bottom:5px;filter:drop-shadow(2px 2px 0 rgba(0,0,0,.4))}
+.elabel{font-weight:900;font-size:.92rem;margin-bottom:4px;line-height:1.3;text-shadow:2px 2px 0 rgba(0,0,0,.35);font-family:'Noto Serif TC',serif}
+.eyrs{font-size:.64rem;background:rgba(0,0,0,.78);padding:2px 8px;border-radius:8px;display:inline-block;font-weight:700}
+.mode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:12px}
+.mode-btn{padding:13px 9px;border-radius:13px;cursor:pointer;text-align:center;background:#fff;border:3px solid #000;box-shadow:4px 4px 0 #000;transition:all .12s;font-weight:800;font-family:inherit}
+.mode-btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000}
+.mode-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #000}
+.micon{font-size:1.6rem;margin-bottom:5px}
+.mlabel{font-weight:900;font-size:.88rem;color:#1a1a1a;margin-bottom:2px;font-family:'Noto Serif TC',serif}
+.mdesc{color:#666;font-size:.65rem;font-weight:600}
+.tip{background:#fff;border:3px solid #000;border-radius:14px;padding:13px 16px;font-size:.8rem;color:#1a1a1a;line-height:1.7;font-weight:600;box-shadow:4px 4px 0 #000;position:relative;margin-top:8px}
+.tip::before{content:"💡 學習小提示";position:absolute;top:-12px;left:16px;background:#FFC234;color:#000;padding:2px 11px;border:2.5px solid #000;border-radius:9px;font-size:.7rem;font-weight:900}
+.card{background:#fff;border:3px solid #000;border-radius:14px;padding:14px;box-shadow:4px 4px 0 #000;margin-bottom:10px}
+.era-banner{padding:13px 15px;border-radius:14px;margin-bottom:13px;background:var(--ec);border:3px solid #000;color:#fff;box-shadow:5px 5px 0 #000;position:relative;overflow:hidden}
+.era-banner h2{font-size:1.2rem;margin-bottom:3px;font-weight:900;text-shadow:2px 2px 0 rgba(0,0,0,.35);line-height:1.3;font-family:'Noto Serif TC',serif}
+.era-banner .esub{display:inline-block;background:rgba(0,0,0,.78);padding:2px 10px;border-radius:8px;font-size:.7rem;font-weight:700;margin-bottom:7px}
+.era-banner .eintro{font-size:.8rem;line-height:1.65;font-weight:600}
+.top-bar{display:flex;align-items:center;gap:10px;margin-bottom:13px;flex-wrap:wrap}
+.back-btn,.restart-btn{padding:7px 15px;border-radius:20px;cursor:pointer;font-size:.76rem;background:#fff;border:2.5px solid #000;color:#1a1a1a;font-family:inherit;font-weight:800;box-shadow:3px 3px 0 #000;transition:all .1s}
+.back-btn:hover,.restart-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #000}
+.restart-btn{margin-left:auto;background:#FFC234}
+.mode-title{font-weight:900;font-size:.9rem;color:#1a1a1a;background:#FFC234;padding:5px 13px;border:2.5px solid #000;border-radius:11px;box-shadow:3px 3px 0 #000;font-family:'Noto Serif TC',serif}
+.prog-bar{display:flex;gap:4px;margin-bottom:13px;background:#fff;padding:4px;border:2.5px solid #000;border-radius:9px;box-shadow:3px 3px 0 #000}
+.prog-seg{flex:1;height:8px;border-radius:2px;background:#eee;border:1.5px solid #000;transition:background .3s}
+.pd{background:#2ED573!important}.pc{background:#FFC234!important}
+.stat-row{display:flex;justify-content:center;gap:9px;margin-bottom:12px;flex-wrap:wrap}
+.chip{background:#fff;border:2.5px solid #000;border-radius:12px;padding:4px 13px;font-size:.76rem;color:#1a1a1a;font-weight:800;box-shadow:2px 2px 0 #000}
+.chip strong{color:#FF4757}
+.q-box{background:#FFF6E5;border:3px solid #000;border-radius:12px;padding:13px 16px;font-size:.9rem;color:#1a1a1a;line-height:1.7;margin-bottom:13px;font-weight:600;box-shadow:3px 3px 0 #000;position:relative}
+.q-box::before{content:"Q";position:absolute;top:-14px;left:13px;background:#FF4757;color:#fff;width:28px;height:28px;border:2.5px solid #000;border-radius:50%;font-weight:900;font-size:.9rem;display:flex;align-items:center;justify-content:center;box-shadow:2px 2px 0 #000}
+.tf-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tf-btn{padding:13px;border-radius:12px;border:3px solid #000;background:#fff;color:#1a1a1a;font-size:1rem;cursor:pointer;font-family:inherit;font-weight:900;transition:all .1s;box-shadow:4px 4px 0 #000}
+.tf-btn:hover:not(:disabled){transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000}
+.tc{background:#2ED573!important;color:#fff!important}.tw{background:#FF4757!important;color:#fff!important}
+.mc-btn{display:flex;align-items:center;gap:9px;width:100%;padding:10px 13px;border-radius:11px;margin-bottom:8px;border:3px solid #000;background:#fff;color:#1a1a1a;font-size:.84rem;cursor:pointer;font-family:inherit;text-align:left;transition:all .1s;font-weight:700;box-shadow:3px 3px 0 #000}
+.mc-btn:hover:not(:disabled){transform:translate(-1px,-1px);box-shadow:4px 4px 0 #000}
+.mc{background:#2ED573!important;color:#fff!important}.mw{background:#FF4757!important;color:#fff!important}
+.abadge{width:25px;height:25px;border-radius:50%;background:#FFC234;border:2px solid #000;display:inline-flex;align-items:center;justify-content:center;font-size:.73rem;font-weight:900;flex-shrink:0;color:#000}
+.mc .abadge,.mw .abadge{background:#fff}
+.explain{margin-top:11px;padding:12px 14px;border-radius:11px;font-size:.8rem;line-height:1.65;font-weight:600;border:3px solid #000;box-shadow:3px 3px 0 #000}
+.eo{background:#D6FFE6}.en{background:#FFE0E3}
+.eho,.ehn{font-weight:900;display:block;margin-bottom:4px;font-size:.88rem}
+.eho{color:#0F8C40}.ehn{color:#C8243A}
+.next-btn{margin-top:9px;padding:7px 20px;border-radius:16px;cursor:pointer;background:#FFC234;border:2.5px solid #000;color:#000;font-size:.82rem;font-family:inherit;font-weight:900;box-shadow:3px 3px 0 #000;transition:all .1s}
+.next-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #000}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.match-hdr{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px;text-align:center;font-size:.76rem;font-weight:900}
+.match-hdr div{background:#FFC234;border:2.5px solid #000;border-radius:9px;padding:4px;color:#000;box-shadow:2px 2px 0 #000}
+.mi{padding:10px 8px;border-radius:10px;cursor:pointer;font-size:.79rem;background:#fff;border:2.5px solid #000;color:#1a1a1a;text-align:center;transition:all .12s;min-height:40px;display:flex;align-items:center;justify-content:center;word-break:break-all;font-weight:700;box-shadow:3px 3px 0 #000;line-height:1.3}
+.mi:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #000}
+.mi-s{background:#1a6fd4!important;color:#fff!important;box-shadow:4px 4px 0 #000!important;border-color:#1a6fd4!important}
+.mi-m{background:#2ED573!important;color:#fff!important;pointer-events:none;border-color:#20b85a!important}
+.mi-w{background:#FF4757!important;color:#fff!important;border-color:#d63148!important}
+.done-msg{text-align:center;margin-top:13px;padding:13px;border-radius:12px;background:#2ED573;border:3px solid #000;color:#fff;font-size:.95rem;font-weight:900;box-shadow:4px 4px 0 #000}
+.result-box{text-align:center;padding:28px 14px}
+.ri{font-size:3.8rem;margin-bottom:10px}
+.rs{display:inline-block;font-size:1.4rem;letter-spacing:.1em;color:#000;font-weight:900;background:#FFC234;padding:5px 16px;border:3px solid #000;border-radius:11px;box-shadow:4px 4px 0 #000;margin-bottom:12px}
+.rsc{color:#FF4757;font-size:1.3rem;font-weight:900;margin-bottom:5px}
+.rp{color:#666;font-size:.88rem;font-weight:700}
+.ref-item{margin-bottom:9px;border-radius:11px;overflow:hidden;border:2.5px solid #000;background:#fff;box-shadow:3px 3px 0 #000}
+.ref-head{display:flex;align-items:center;gap:9px;padding:10px 12px;background:#FFF6E5;cursor:pointer}
+.ref-head:hover{background:#fff}
+.ref-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.95rem;color:#fff;flex-shrink:0;border:2.5px solid #000}
+.ref-name{font-weight:900;font-size:.88rem;color:#1a1a1a;font-family:'Noto Serif TC',serif}
+.ref-sub{color:#666;font-size:.68rem;font-weight:600}
+.ref-badge{padding:2px 8px;border-radius:8px;font-size:.64rem;font-weight:900;margin-left:auto;white-space:nowrap;border:2px solid #000;color:#fff}
+.ref-arr{color:#000;font-size:.82rem;margin-left:5px;font-weight:900}
+.ref-body{padding:9px 14px 11px 28px;background:#fff;border-top:2.5px dashed #000}
+.ref-body li{color:#1a1a1a;font-size:.78rem;line-height:1.8;font-weight:600;margin-bottom:2px}
+.tl{position:relative;padding-left:24px;margin-top:8px}
+.tl::before{content:"";position:absolute;left:7px;top:0;bottom:0;width:3px;background:#000}
+.tl-item{position:relative;margin-bottom:11px;padding:9px 13px;border-radius:10px;background:#fff;border:2.5px solid #000;box-shadow:3px 3px 0 #000}
+.tl-item::before{content:"";position:absolute;left:-21px;top:13px;width:13px;height:13px;border-radius:50%;background:var(--ec,#FFC234);border:2.5px solid #000}
+.tl-yr{font-weight:900;font-size:.8rem;margin-bottom:3px;background:var(--ec,#FFC234);display:inline-block;padding:2px 9px;border:2px solid #000;border-radius:7px;color:#fff;text-shadow:1px 1px 0 rgba(0,0,0,.3)}
+.tl-tx{color:#1a1a1a;font-size:.8rem;line-height:1.6;font-weight:600;margin-top:3px}
+.ytlink{display:inline-block;background:#FF0000;color:#fff!important;padding:3px 10px;border:2px solid #000;border-radius:7px;font-size:.68rem;font-weight:800;text-decoration:none;box-shadow:2px 2px 0 #000;margin:3px 4px 2px 0;transition:all .1s}
+.ytlink:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 #000}
+.intro-sec{margin-bottom:13px}
+.intro-h{font-weight:900;background:var(--ec,#FFC234);color:#fff;padding:5px 13px;border:2.5px solid #000;border-radius:10px;display:inline-block;box-shadow:3px 3px 0 #000;font-size:.88rem;margin-bottom:8px;text-shadow:1px 1px 0 rgba(0,0,0,.3);font-family:'Noto Serif TC',serif}
+.intro-body{padding:11px 14px;background:#fff;border:2.5px solid #000;border-radius:11px;box-shadow:3px 3px 0 #000;font-size:.82rem;line-height:1.8;font-weight:600;color:#1a1a1a}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:8px}
+.feat-card{padding:9px 10px;background:#FFF6E5;border:2.5px solid #000;border-radius:9px;box-shadow:2px 2px 0 #000;font-size:.76rem}
+.feat-card .ft{font-weight:900;color:#FF4757;margin-bottom:3px;font-size:.84rem;line-height:1.3;font-family:'Noto Serif TC',serif}
+.feat-card .fd{font-weight:600;line-height:1.55;color:#333}
+.term-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:7px}
+.term-card{padding:8px 10px;background:#FFC234;border:2.5px solid #000;border-radius:9px;box-shadow:2px 2px 0 #000;font-size:.74rem;color:#000}
+.term-card .tt{font-weight:900;margin-bottom:2px;font-size:.82rem;font-family:'Noto Serif TC',serif}
+.term-card .tz{font-size:.7rem;font-weight:700;opacity:.88;line-height:1.5}
+.listen-item{padding:9px 12px;background:#fff;border:2.5px solid #000;border-radius:9px;margin-bottom:7px;box-shadow:2px 2px 0 #000;font-size:.8rem;font-weight:600}
+.listen-title{font-weight:900;line-height:1.35;color:#1a1a1a;margin-bottom:1px;font-family:'Noto Serif TC',serif}
+.listen-comp{color:#666;font-size:.68rem;font-weight:700;margin-bottom:4px}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="../index.html" class="nav-logo"><span>🎵</span>莊敬音樂科</a>
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link home">首頁</a>
+    <a href="index.html" class="nav-link active-h">音樂史</a>
+    <a href="../theory/index.html" class="nav-link">樂理</a>
+    <a href="teacher-resources.html" class="nav-link">教師資源</a>
+  </div>
+
+  <div id="nav-auth" style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+    <button id="login-btn" onclick="teacherLogin()" style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;border:1.5px solid var(--border,rgba(0,0,0,.12));background:#fff;cursor:pointer;font-size:.78rem;font-weight:700;font-family:inherit;">👤 教師登入</button>
+    <div id="user-info" style="display:none;align-items:center;gap:8px;">
+      <span style="font-size:.78rem;font-weight:700;">👋 <span id="user-name"></span></span>
+      <button onclick="teacherLogout()" style="padding:4px 10px;border-radius:12px;border:1.5px solid rgba(0,0,0,.12);background:transparent;cursor:pointer;font-size:.7rem;font-family:inherit;">登出</button>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb"><a href="../index.html">首頁</a><span>/</span><a href="index.html">音樂史</a><span>/</span>西洋音樂史</div>
+
+<div id="app"></div>
+
+<div id="ai-messages"></div>
+    
+    
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>window.UNIT_CONTEXT="西洋音樂史 — 八大樂派";</script>
+<script src="../assets/js/shared.js"></script>
+<script>
+const ERAS=[
+{id:"ancient",name:"古希臘與三大文明古國",sub:"Ancient · 上古時期",icon:"🏛️",color:"#FFA502",
+ intro:"古希臘哲人視音樂為教化心靈的力量；古埃及、兩河、印度、中國同期發展出豐富音樂文化。",
+ TIMELINE:[
+ {y:"約3000 B.C.",t:"蘇美人在烏爾遺址留下豎琴與里拉琴（Ur Lyre）"},
+ {y:"約2700 B.C.",t:"古埃及壁畫描繪豎琴、長笛、鼓的合奏場面"},
+ {y:"約1500 B.C.",t:"印度《吠陀經》以歌唱形式吟誦，孕育拉格（Raga）系統"},
+ {y:"約700 B.C.",t:"中國西周禮樂制度成形，編鐘禮器盛行"},
+ {y:"約550 B.C.",t:"畢達哥拉斯以一弦琴實驗音律，發現純律比例"},
+ {y:"約400 B.C.",t:"柏拉圖、亞里斯多德論音樂的倫理與教育功能"},
+ {y:"約128 B.C.",t:"古希臘現存最完整的「賽奇洛斯墓誌銘」石刻，含字母記譜"},
+ ]},
+{id:"medieval",name:"中古時期",sub:"Middle Ages · 500–1400",icon:"⛪",color:"#C8438C",
+ intro:"教會為音樂中心。葛利果聖歌統一西方教會音樂，奧爾加農誕生複音音樂，新藝術崛起。",
+ TIMELINE:[
+ {y:"約590",t:"教宗葛利果一世彙整聖歌，定立葛利果聖歌系統"},
+ {y:"約900",t:"奧爾加農（Organum）出現，最早的複音音樂"},
+ {y:"約1025",t:"桂多·達瑞佐發明四線譜與唱名（Ut, Re, Mi, Fa, Sol, La）"},
+ {y:"約1163",t:"聖母院樂派（雷奧南、培洛廷）建立節奏模式"},
+ {y:"1322",t:"《新藝術》（Ars Nova）論文發表，節奏記譜大躍進"},
+ {y:"1364",t:"馬肖《聖母彌撒曲》——史上第一首單一作曲家完成的彌撒"},
+ ]},
+{id:"renaissance",name:"文藝復興時期",sub:"Renaissance · 1400–1600",icon:"🎨",color:"#2ED573",
+ intro:"人文主義興起。複音音樂達到巔峰，無伴奏合唱（A cappella）、牧歌與香頌盛行。",
+ TIMELINE:[
+ {y:"約1430",t:"杜飛、班舒瓦活躍於勃艮第宮廷，建立文藝復興初期風格"},
+ {y:"約1450",t:"古騰堡發明活版印刷術，為樂譜量產鋪路"},
+ {y:"1501",t:"佩特魯齊出版第一本以活版印刷的複音樂譜"},
+ {y:"約1550",t:"帕勒斯崔那活躍於羅馬，無伴奏教會音樂典範"},
+ {y:"1567",t:"帕勒斯崔那《教皇馬歇爾彌撒》拯救複音教會音樂"},
+ {y:"1597",t:"佩里《達芙妮》——史上第一部歌劇雛形"},
+ ]},
+{id:"baroque",name:"巴洛克時期",sub:"Baroque · 1600–1750",icon:"👑",color:"#7158E2",
+ intro:"歌劇誕生，數字低音為核心。協奏曲、賦格、組曲成形，巴哈、韓德爾達顛峰。",
+ TIMELINE:[
+ {y:"1607",t:"蒙特威爾第《奧菲歐》——第一部完整保存的歌劇"},
+ {y:"1685",t:"巴哈、韓德爾、史卡拉第同年出生"},
+ {y:"1721",t:"巴哈獻給布蘭登堡公爵《布蘭登堡協奏曲》六首"},
+ {y:"1722",t:"巴哈《平均律鍵盤曲集》第一卷完成"},
+ {y:"1725",t:"韋瓦第出版小提琴協奏曲《四季》"},
+ {y:"1741",t:"韓德爾以24天完成神劇《彌賽亞》"},
+ {y:"1750",t:"巴哈逝世，巴洛克時期終結"},
+ ]},
+{id:"classical",name:"古典時期",sub:"Classicism · 1750–1825",icon:"🎻",color:"#3498DB",
+ intro:"奏鳴曲式確立，交響曲、四重奏、協奏曲規範化。維也納古典三巨匠輝映樂壇。",
+ TIMELINE:[
+ {y:"1762",t:"葛路克歌劇改革《奧菲歐與尤莉狄絲》"},
+ {y:"1782",t:"莫札特定居維也納，創作《後宮誘逃》"},
+ {y:"1791",t:"莫札特完成《魔笛》與《安魂曲》（未竟），同年逝世"},
+ {y:"1798",t:"海頓神劇《創世紀》首演"},
+ {y:"1808",t:"貝多芬第五《命運》、第六《田園》同場首演"},
+ {y:"1824",t:"貝多芬第九《合唱》首演，加入人聲"},
+ ]},
+{id:"romantic",name:"浪漫時期",sub:"Romanticism · 1820–1900",icon:"💫",color:"#FF4757",
+ intro:"情感至上，個人風格鮮明。藝術歌曲、性格小品、交響詩、樂劇蓬勃發展。",
+ TIMELINE:[
+ {y:"1814",t:"舒伯特創作《紡車旁的葛麗卿》，藝術歌曲新里程"},
+ {y:"1830",t:"白遼士《幻想交響曲》——標題音樂的代表"},
+ {y:"1840",t:"李斯特倫敦演出，首次使用「Recital（獨奏會）」一詞"},
+ {y:"1853",t:"威爾第《茶花女》首演"},
+ {y:"1865",t:"華格納《崔斯坦與依索德》首演，半音和聲新天地"},
+ {y:"1876",t:"華格納《尼貝龍根的指環》於拜魯特慶典劇院全本演出"},
+ {y:"1888",t:"理查·史特勞斯首部音詩《唐璜》完成"},
+ ]},
+{id:"nationalism",name:"國民樂派",sub:"Nationalism · 1825–",icon:"🌍",color:"#00B894",
+ intro:"以民族語言、民謠、傳說入樂。俄國五人組、北歐、東歐、西班牙各派蓬勃發展。",
+ TIMELINE:[
+ {y:"1836",t:"葛令卡《為沙皇而戰》——俄國國民樂派起點"},
+ {y:"1862",t:"俄國五人組（強力集團）於聖彼得堡成形"},
+ {y:"1874",t:"穆梭斯基《圖畫展覽會》、歌劇《鮑里斯·郭德諾夫》"},
+ {y:"1879",t:"史麥塔納完成交響詩集《我的祖國》（含〈莫爾道河〉）"},
+ {y:"1893",t:"德弗札克在美國寫下第九《新世界》交響曲"},
+ {y:"1900",t:"西貝流士《芬蘭頌》成為芬蘭獨立運動的精神支柱"},
+ ]},
+{id:"modern",name:"現代時期",sub:"Modern · 1900–",icon:"⚡",color:"#FF6348",
+ intro:"印象、表現、新古典、十二音、簡約、偶然、電子百花齊放，傳統調性瓦解。",
+ TIMELINE:[
+ {y:"1894",t:"德布西《牧神的午後前奏曲》開啟印象樂派"},
+ {y:"1908",t:"荀貝格《第二弦樂四重奏》進入無調性世界"},
+ {y:"1913",t:"史特拉汶斯基《春之祭》巴黎首演引發暴動"},
+ {y:"1923",t:"荀貝格完成十二音技法系統"},
+ {y:"1928",t:"拉威爾《波麗露》首演"},
+ {y:"1952",t:"凱吉發表《4'33\"》——偶然音樂的極致"},
+ {y:"1965",t:"萊許《將會下雨》——簡約主義代表"},
+ ]}
+];
+
+function yt(q){return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q);}
+function ytl(label,q){return `<a class="ytlink" href="${yt(q)}" target="_blank" rel="noopener">▶ ${label}</a>`;}
+
+const INTROS={
+ancient:{
+ bg:"古希臘哲學家視音樂為教化心靈的力量，並建立完整的音律理論與調式系統。同時期，古埃及、兩河流域（蘇美/巴比倫）、古印度、古中國各自發展出獨立而豐富的音樂體系，奠定東西方音樂文化的根基。",
+ features:[
+ {f:"純律音律",d:"畢達哥拉斯（Pythagoras）以整數比建立八度 2:1、五度 3:2、四度 4:3"},
+ {f:"八種調式",d:"多利安、弗里吉安、利底亞、米索利底安等，名稱影響中古教會調式"},
+ {f:"字母記譜",d:"古希臘以字母（α、β、γ）標記音高，是西方最早的記譜法"},
+ {f:"歌唱為主",d:"以人聲吟唱史詩、頌歌為主，里拉琴、阿夫洛斯管為主要伴奏"},
+ {f:"五聲音階",d:"古中國「宮、商、角、徵、羽」五聲音階體系；古印度建立 Raga 旋律框架"},
+ {f:"音樂功能",d:"宗教祭祀、戲劇合唱、教育養成、軍事儀式為主要用途"},
+ ],
+ genres:[
+ {n:"頌歌（Ode）",d:"敬神或英雄事蹟，含合唱與舞蹈"},
+ {n:"史詩朗誦",d:"如荷馬史詩，以吟誦方式表演"},
+ {n:"戲劇合唱（Choral）",d:"古希臘悲劇中由合唱團演唱的部分"},
+ {n:"祭祀音樂",d:"古埃及、中國祭典儀式音樂"},
+ {n:"宴樂",d:"宮廷宴會音樂（古中國雅樂、燕樂）"},
+ ],
+ terms:[
+ {t:"Ethos",z:"性情論：不同調式塑造不同道德性情"},
+ {t:"Music of the Spheres",z:"天體和諧——畢氏學派宇宙觀"},
+ {t:"Lyre / Kithara",z:"里拉琴／奇塔拉琴，阿波羅樂器"},
+ {t:"Aulos",z:"阿夫洛斯——雙簧管樂器，戴奧尼索斯樂器"},
+ {t:"Raga",z:"拉格：印度旋律框架"},
+ {t:"Tala",z:"塔拉：印度節奏循環"},
+ {t:"五聲音階",z:"宮商角徵羽，相當於 Do Re Mi Sol La"},
+ {t:"編鐘",z:"中國禮樂青銅打擊樂器"},
+ ],
+ listen:[
+ {t:"〈賽奇洛斯墓誌銘〉",c:"古希臘 約1世紀",q:"Seikilos Epitaph ancient Greek music"},
+ {t:"古埃及音樂重現",c:"Ancient Egypt",q:"ancient Egyptian music reconstruction"},
+ {t:"曾侯乙編鐘演奏",c:"古中國 戰國時期",q:"曾侯乙編鐘 演奏"},
+ {t:"古印度 Raga 入門",c:"古印度",q:"Indian classical raga introduction"},
+ {t:"烏爾豎琴重現",c:"蘇美 兩河流域",q:"Lyre of Ur ancient Sumerian music"},
+ ],
+},
+medieval:{
+ bg:"教會為西方音樂的中心。教宗葛利果一世（Gregorius I）統一聖歌系統，9 世紀奧爾加農（Organum）誕生複音音樂，12-13 世紀聖母院樂派建立節奏模式，14 世紀「新藝術」(Ars Nova) 革新節奏記譜並使世俗音樂興起。",
+ features:[
+ {f:"單音聖歌",d:"葛利果聖歌：單音齊唱、自由節奏、拉丁文、無伴奏"},
+ {f:"教會調式",d:"8 種教會調式（4 正格 + 4 變格）"},
+ {f:"奧爾加農",d:"複音音樂起源：在聖歌上方加入平行五度/四度"},
+ {f:"紐姆譜",d:"早期記譜法，桂多·達瑞佐（Guido d'Arezzo）發明四線譜與唱名"},
+ {f:"節奏模式",d:"聖母院樂派建立 6 種節奏模式（Rhythmic Modes）"},
+ {f:"新藝術",d:"14 世紀，發展精細節奏記譜，世俗音樂興起"},
+ {f:"遊吟詩人",d:"以方言創作世俗歌曲，歌頌愛情與騎士精神"},
+ ],
+ genres:[
+ {n:"葛利果聖歌（Chant）",d:"教會單音齊唱，含彌撒、日課"},
+ {n:"奧爾加農（Organum）",d:"最早的複音音樂"},
+ {n:"經文歌（Motet）",d:"由 Organum 加歌詞發展而成"},
+ {n:"彌撒（Mass）",d:"5 段常用彌撒：Kyrie/Gloria/Credo/Sanctus/Agnus Dei"},
+ {n:"敘事曲（Ballata, Ballade）",d:"新藝術時期的世俗歌曲"},
+ {n:"康都曲（Conductus）",d:"自由創作的拉丁文歌曲"},
+ ],
+ terms:[
+ {t:"Plainchant",z:"素歌／聖歌（單音齊唱）"},
+ {t:"Cantus firmus",z:"定旋律：用既有旋律當基礎聲部"},
+ {t:"Neumes",z:"紐姆譜——早期記譜法"},
+ {t:"Solmization",z:"唱名法（Ut-Re-Mi-Fa-Sol-La）"},
+ {t:"Ars Antiqua / Ars Nova",z:"古藝術／新藝術"},
+ {t:"Hocket",z:"打嗝音——聲部間斷續交替"},
+ {t:"Troubadour / Trouvère",z:"南／北法遊吟詩人"},
+ {t:"Minnesinger",z:"德國遊吟詩人"},
+ ],
+ listen:[
+ {t:"〈Salve Regina〉葛利果聖歌",c:"中世紀聖歌",q:"Gregorian chant Salve Regina"},
+ {t:"〈O Virtus Sapientiae〉",c:"賓根的希爾德加德（Hildegard von Bingen）",q:"Hildegard von Bingen O Virtus Sapientiae"},
+ {t:"〈Viderunt omnes〉四聲部",c:"培洛廷（Pérotin）",q:"Perotin Viderunt omnes"},
+ {t:"《聖母彌撒曲》",c:"馬肖（Guillaume de Machaut）",q:"Machaut Messe de Nostre Dame"},
+ {t:"〈夏天到來〉Sumer is icumen in",c:"英國無名氏 約13世紀",q:"Sumer is icumen in medieval"},
+ ],
+},
+renaissance:{
+ bg:"人文主義興起，音樂從教會走向兼顧世俗。複音音樂達到巔峰，無伴奏合唱（A cappella）成熟，1501 年活版印刷樂譜的出現徹底改變音樂傳播。1597 年佩里《達芙妮》催生歌劇，文藝復興末期過渡到巴洛克。",
+ features:[
+ {f:"複音對位",d:"4-6 聲部，模仿（imitation）技法成熟"},
+ {f:"A cappella",d:"無伴奏合唱風格，文字清晰可辨"},
+ {f:"教會調式",d:"主要使用 8 種教會調式（後擴張至 12 種）"},
+ {f:"文字描繪",d:"Word painting：歌詞意義以音樂手法具象化"},
+ {f:"複合唱",d:"威尼斯樂派「Cori spezzati」——南北唱台對唱"},
+ {f:"印刷術",d:"1501 年佩特魯齊（Petrucci）出版第一本活版複音樂譜"},
+ {f:"歌劇誕生",d:"卡梅拉塔同人會（Camerata）催生第一部歌劇"},
+ ],
+ genres:[
+ {n:"彌撒（Mass）",d:"宗教音樂主要曲種，常用定旋律技法"},
+ {n:"經文歌（Motet）",d:"拉丁文宗教合唱"},
+ {n:"牧歌（Madrigal）",d:"義大利世俗合唱，用方言歌詞"},
+ {n:"香頌（Chanson）",d:"法國世俗多聲部歌曲"},
+ {n:"利特（Lied）",d:"德國世俗歌曲"},
+ {n:"里切爾卡（Ricercar）",d:"早期器樂對位作品"},
+ {n:"幻想曲（Fantasia）",d:"自由曲式的器樂曲"},
+ ],
+ terms:[
+ {t:"A cappella",z:"無伴奏合唱（拉丁文「依教堂風格」）"},
+ {t:"Polyphony",z:"複音音樂——多聲部獨立進行"},
+ {t:"Imitation",z:"模仿——聲部依次進入相同旋律"},
+ {t:"Cantus firmus",z:"定旋律——用既有旋律當基礎"},
+ {t:"Word painting",z:"文字描繪——以音樂手法畫出歌詞意義"},
+ {t:"Cori spezzati",z:"複合唱——分組對唱"},
+ {t:"Camerata",z:"佛羅倫斯卡梅拉塔同人會"},
+ {t:"Monody",z:"單音曲調——歌劇雛形風格"},
+ ],
+ listen:[
+ {t:"《教皇馬歇爾彌撒》Kyrie",c:"帕勒斯崔那（Palestrina）",q:"Palestrina Missa Papae Marcelli Kyrie"},
+ {t:"〈Ave Maria...virgo serena〉",c:"約斯坎（Josquin des Prez）",q:"Josquin Ave Maria virgo serena"},
+ {t:"〈Spem in alium〉40聲部",c:"塔利斯（Thomas Tallis）",q:"Tallis Spem in alium"},
+ {t:"〈Il bianco e dolce cigno〉",c:"阿卡德爾特（Arcadelt）",q:"Arcadelt Il bianco e dolce cigno"},
+ {t:"《Sonata Pian'e Forte》",c:"喬凡尼·加布利埃利（Giovanni Gabrieli）",q:"Giovanni Gabrieli Sonata Pian e Forte"},
+ {t:"《奧菲歐》〈Toccata〉",c:"蒙特威爾第（Monteverdi）",q:"Monteverdi L'Orfeo Toccata"},
+ ],
+},
+baroque:{
+ bg:"歌劇誕生，數字低音（Basso Continuo）成為音樂的核心伴奏。對位法達到顛峰，協奏曲、賦格、組曲等曲式成形。1685 年是黃金年——巴哈、韓德爾、史卡拉第同年出生。1750 年巴哈逝世，巴洛克時期落幕。",
+ features:[
+ {f:"數字低音",d:"Basso Continuo：低音聲部 + 鍵盤即興填和聲"},
+ {f:"對比性原則",d:"Concertato：獨奏與合奏、強弱、快慢的對比"},
+ {f:"情感論",d:"Doctrine of Affections：一個樂章一個情感"},
+ {f:"賦格對位",d:"主題、答題、對題輪流出現的複音曲式"},
+ {f:"裝飾即興",d:"演奏者大量加裝飾音與即興變化"},
+ {f:"等步低音",d:"低音聲部規律穩定地行進"},
+ {f:"歌劇成熟",d:"宣敘調 + 返始詠嘆調 + 合唱的結構"},
+ ],
+ genres:[
+ {n:"歌劇（Opera）",d:"宣敘調＋詠嘆調＋合唱＋序曲"},
+ {n:"神劇（Oratorio）",d:"宗教題材的大型聲樂作品，無舞台演出"},
+ {n:"清唱劇（Cantata）",d:"小型聲樂套曲，巴哈的教會清唱劇最著名"},
+ {n:"協奏曲（Concerto）",d:"獨奏協奏曲 + 大協奏曲（Concerto Grosso）"},
+ {n:"賦格（Fugue）",d:"以主題模仿展開的複音曲式"},
+ {n:"組曲（Suite）",d:"阿勒曼、庫朗、薩拉邦、吉格四段標準舞曲"},
+ {n:"三重奏鳴曲（Trio Sonata）",d:"兩件旋律樂器＋數字低音"},
+ {n:"觸技曲（Toccata）",d:"鍵盤樂器即興炫技作品"},
+ ],
+ terms:[
+ {t:"Basso Continuo",z:"數字低音（巴洛克核心伴奏型態）"},
+ {t:"Concertato",z:"對比性原則：獨奏 vs 合奏"},
+ {t:"Da Capo Aria",z:"返始詠嘆調（A-B-A）"},
+ {t:"Recitative",z:"宣敘調——介於說與唱之間"},
+ {t:"Concerto Grosso",z:"大協奏曲——獨奏組 vs 樂隊"},
+ {t:"Fugue",z:"賦格：主題 → 答題 → 對題"},
+ {t:"Ritornello",z:"利都奈羅——全合奏反覆段"},
+ {t:"Ornament",z:"裝飾音（顫音、迴音、倚音等）"},
+ ],
+ listen:[
+ {t:"《布蘭登堡協奏曲》第3號",c:"巴哈（Johann Sebastian Bach）",q:"Bach Brandenburg Concerto No 3"},
+ {t:"〈d小調觸技曲與賦格〉",c:"巴哈（J.S. Bach）",q:"Bach Toccata and Fugue in D minor BWV 565"},
+ {t:"《b小調彌撒》Kyrie",c:"巴哈（J.S. Bach）",q:"Bach Mass in B minor Kyrie"},
+ {t:"《四季》〈春〉",c:"韋瓦第（Antonio Vivaldi）",q:"Vivaldi Four Seasons Spring"},
+ {t:"《彌賽亞》〈哈利路亞〉",c:"韓德爾（George Frideric Handel）",q:"Handel Messiah Hallelujah Chorus"},
+ {t:"《水上音樂》組曲",c:"韓德爾（Handel）",q:"Handel Water Music Suite"},
+ {t:"D大調卡農",c:"巴海貝爾（Johann Pachelbel）",q:"Pachelbel Canon in D"},
+ {t:"《奧菲歐》〈Toccata〉",c:"蒙特威爾第（Monteverdi）",q:"Monteverdi L'Orfeo Toccata"},
+ ],
+},
+classical:{
+ bg:"啟蒙運動推動理性、清晰、平衡的美學。維也納成為音樂中心，海頓（Haydn）、莫札特（Mozart）、貝多芬（Beethoven）三巨匠輝映樂壇。奏鳴曲式確立，交響曲、弦樂四重奏、協奏曲規範化，主音音樂取代複音音樂成為主流。",
+ features:[
+ {f:"主音音樂",d:"Homophony：清晰主旋律＋分解和弦伴奏"},
+ {f:"阿爾貝堤低音",d:"Alberti bass：左手分解和弦取代數字低音"},
+ {f:"奏鳴曲式",d:"呈示部→發展部→再現部的三段架構"},
+ {f:"對稱樂句",d:"8小節對稱結構，平衡優雅"},
+ {f:"大小調系統",d:"確立大小調體系，教會調式退場"},
+ {f:"漸強漸弱",d:"自由的力度變化（crescendo/decrescendo）"},
+ {f:"標準化編制",d:"交響曲四樂章；弦樂四重奏（2小+中+大）"},
+ ],
+ genres:[
+ {n:"交響曲（Symphony）",d:"4 樂章：快-慢-小步舞曲/詼諧曲-快"},
+ {n:"弦樂四重奏",d:"古典室內樂代表，海頓奠基"},
+ {n:"協奏曲（Concerto）",d:"獨奏樂器與管弦樂的對話"},
+ {n:"奏鳴曲（Sonata）",d:"獨奏或二重奏曲，多樂章結構"},
+ {n:"正歌劇（Opera seria）",d:"嚴肅題材，多取材神話歷史"},
+ {n:"喜歌劇（Opera buffa）",d:"喜劇題材，較貼近生活"},
+ {n:"歌唱劇（Singspiel）",d:"德語對白＋歌唱（如《魔笛》）"},
+ {n:"變奏曲",d:"主題與變奏（Theme and Variations）"},
+ ],
+ terms:[
+ {t:"Sonata form",z:"奏鳴曲式（最核心曲式）"},
+ {t:"Exposition / Development / Recapitulation",z:"呈示部／發展部／再現部"},
+ {t:"Alberti bass",z:"阿爾貝堤低音（分解和弦伴奏）"},
+ {t:"K. number",z:"柯歇爾編號（莫札特作品編號）"},
+ {t:"Op. number",z:"作品編號（Opus）"},
+ {t:"Sturm und Drang",z:"狂飆運動（古典前期情感風潮）"},
+ {t:"Cadenza",z:"裝飾奏——獨奏炫技段"},
+ {t:"Rondo",z:"輪旋曲（A-B-A-C-A 結構）"},
+ ],
+ listen:[
+ {t:"《驚愕》交響曲第2樂章",c:"海頓（Joseph Haydn）",q:"Haydn Surprise Symphony No 94 second movement"},
+ {t:"〈一首小夜曲〉K.525",c:"莫札特（W.A. Mozart）",q:"Mozart Eine kleine Nachtmusik K525"},
+ {t:"《魔笛》〈夜后詠嘆調〉",c:"莫札特（Mozart）",q:"Mozart Magic Flute Queen of the Night aria"},
+ {t:"第40號交響曲第1樂章",c:"莫札特（Mozart）",q:"Mozart Symphony No 40 first movement"},
+ {t:"《命運》交響曲",c:"貝多芬（Ludwig van Beethoven）",q:"Beethoven Symphony No 5 Fate"},
+ {t:"〈合唱〉交響曲〈快樂頌〉",c:"貝多芬（Beethoven）",q:"Beethoven Symphony No 9 Ode to Joy"},
+ {t:"《月光》奏鳴曲",c:"貝多芬（Beethoven）",q:"Beethoven Moonlight Sonata Op 27 No 2"},
+ ],
+},
+romantic:{
+ bg:"情感至上，個人風格鮮明。藝術歌曲、性格小品、交響詩、樂劇蓬勃發展。鋼琴技巧大幅革新，半音和聲擴展調性界限，管弦樂編制不斷擴大。標題音樂與絕對音樂兩派並立，最終由華格納（Wagner）的樂劇推向極致。",
+ features:[
+ {f:"情感外露",d:"極端對比、激烈情緒、個人主義"},
+ {f:"半音和聲",d:"大量使用半音、轉調、屬七和弦"},
+ {f:"標題音樂",d:"Programme Music：以文學/繪畫/自然為題"},
+ {f:"鋼琴革新",d:"延音踏瓣、彈性速度、超技華麗"},
+ {f:"管弦樂擴張",d:"編制龐大（馬勒《千人》交響曲）"},
+ {f:"固定樂思",d:"Idée fixe（白遼士）／Leitmotif（華格納）"},
+ {f:"藝術歌曲",d:"鋼琴與聲樂同等重要（Lied）"},
+ {f:"民族意識",d:"與國民樂派交織，本土素材入樂"},
+ ],
+ genres:[
+ {n:"藝術歌曲（Lied）",d:"鋼琴伴奏的德語藝術歌曲"},
+ {n:"聯篇歌曲（Song Cycle）",d:"多首歌曲串成的整體（如《冬之旅》）"},
+ {n:"性格小品",d:"鋼琴短曲，標題化（夜曲、即興曲、敘事曲）"},
+ {n:"交響詩",d:"單樂章標題管弦樂（李斯特首創）"},
+ {n:"標題交響曲",d:"如白遼士《幻想交響曲》"},
+ {n:"樂劇（Music Drama）",d:"華格納總體藝術（Gesamtkunstwerk）"},
+ {n:"夜曲（Nocturne）",d:"柔美抒情的鋼琴短曲（蕭邦）"},
+ {n:"練習曲（Étude）",d:"兼具技巧與音樂性的鋼琴曲"},
+ ],
+ terms:[
+ {t:"Lied",z:"藝術歌曲（複數 Lieder）"},
+ {t:"Song Cycle",z:"聯篇歌曲——多首串成整體"},
+ {t:"Idée fixe",z:"固定樂思（白遼士）"},
+ {t:"Leitmotif",z:"主導動機（華格納）"},
+ {t:"Symphonic Poem / Tone Poem",z:"交響詩／音詩"},
+ {t:"Programme Music",z:"標題音樂"},
+ {t:"Gesamtkunstwerk",z:"總體藝術（華格納樂劇）"},
+ {t:"Rubato",z:"彈性速度——自由伸縮拍子"},
+ {t:"Recital",z:"獨奏會（李斯特首創）"},
+ ],
+ listen:[
+ {t:"〈魔王〉藝術歌曲",c:"舒伯特（Franz Schubert）",q:"Schubert Erlkonig"},
+ {t:"〈鱒魚〉五重奏第4樂章",c:"舒伯特（Schubert）",q:"Schubert Trout Quintet fourth movement"},
+ {t:"〈夜曲〉Op.9 No.2",c:"蕭邦（Frédéric Chopin）",q:"Chopin Nocturne Op 9 No 2"},
+ {t:"〈幻想〉交響曲第5樂章",c:"白遼士（Hector Berlioz）",q:"Berlioz Symphonie fantastique fifth movement"},
+ {t:"〈愛之夢〉第3號",c:"李斯特（Franz Liszt）",q:"Liszt Liebestraum No 3"},
+ {t:"〈仲夏夜之夢〉序曲",c:"孟德爾頌（Felix Mendelssohn）",q:"Mendelssohn Midsummer Night's Dream Overture"},
+ {t:"《女武神的騎行》",c:"華格納（Richard Wagner）",q:"Wagner Ride of the Valkyries"},
+ {t:"《茶花女》〈飲酒歌〉",c:"威爾第（Giuseppe Verdi）",q:"Verdi La Traviata Libiamo Brindisi"},
+ {t:"第4號交響曲第1樂章",c:"布拉姆斯（Johannes Brahms）",q:"Brahms Symphony No 4 first movement"},
+ {t:"《1812 序曲》",c:"柴可夫斯基（Tchaikovsky）",q:"Tchaikovsky 1812 Overture"},
+ {t:"第5號交響曲〈Adagietto〉",c:"馬勒（Gustav Mahler）",q:"Mahler Symphony No 5 Adagietto"},
+ ],
+},
+nationalism:{
+ bg:"19 世紀民族主義思潮推動作曲家從民族文化中汲取靈感。葛令卡（Glinka）為俄國音樂之父，五人組（強力集團）對抗德奧主流。捷克的史麥塔納、德弗札克，北歐的葛利格、西貝流士，西班牙的法雅，英國的艾爾加，各以本土素材豐富音樂語彙。",
+ features:[
+ {f:"民謠素材",d:"直接引用或仿作民間歌曲、舞曲"},
+ {f:"民族舞曲節奏",d:"馬厝卡、波卡、查爾達斯、佛朗明哥"},
+ {f:"民間傳說題材",d:"史詩、神話、歷史事件入樂"},
+ {f:"本國語言歌劇",d:"打破義大利語/德語的歌劇傳統"},
+ {f:"鮮明色彩",d:"管弦樂法強調民族特色音響"},
+ {f:"教會調式重現",d:"借用民謠中的特殊調式"},
+ ],
+ genres:[
+ {n:"交響詩（Symphonic Poem）",d:"民族題材的單樂章管弦樂"},
+ {n:"國民歌劇",d:"本國語言、本國題材的歌劇"},
+ {n:"民俗組曲",d:"如《培爾金特》《我的祖國》"},
+ {n:"民族舞曲",d:"《斯拉夫舞曲》《匈牙利舞曲》"},
+ {n:"狂想曲（Rhapsody）",d:"自由曲式融合民謠（李斯特《匈牙利狂想曲》）"},
+ ],
+ terms:[
+ {t:"Mighty Five / Moguchaya Kuchka",z:"強力集團（俄國五人組）"},
+ {t:"Mazurka",z:"馬厝卡舞曲（波蘭民間舞）"},
+ {t:"Polonaise",z:"波蘭舞曲（宮廷舞）"},
+ {t:"Czardas",z:"查爾達斯（匈牙利舞曲）"},
+ {t:"Flamenco",z:"佛朗明哥（西班牙民間風格）"},
+ {t:"Kalevala",z:"卡列瓦拉（芬蘭民族史詩）"},
+ {t:"Pentatonic",z:"五聲音階（東歐民謠常見）"},
+ ],
+ listen:[
+ {t:"〈莫爾道河〉",c:"史麥塔納（Bedřich Smetana）",q:"Smetana Vltava Moldau Ma vlast"},
+ {t:"〈新世界〉交響曲第4樂章",c:"德弗札克（Antonín Dvořák）",q:"Dvorak Symphony No 9 New World fourth movement"},
+ {t:"《圖畫展覽會》〈基輔的大門〉",c:"穆梭斯基／拉威爾編（Mussorgsky/Ravel）",q:"Mussorgsky Pictures at an Exhibition Great Gate of Kiev Ravel"},
+ {t:"《天方夜譚》第1樂章",c:"林姆斯基-高沙可夫（Rimsky-Korsakov）",q:"Rimsky-Korsakov Scheherazade first movement"},
+ {t:"《伊果王子》〈波羅維茲舞曲〉",c:"鮑羅定（Alexander Borodin）",q:"Borodin Prince Igor Polovtsian Dances"},
+ {t:"《培爾金特》〈山魔王宮殿〉",c:"葛利格（Edvard Grieg）",q:"Grieg Peer Gynt In the Hall of the Mountain King"},
+ {t:"《芬蘭頌》",c:"西貝流士（Jean Sibelius）",q:"Sibelius Finlandia Op 26"},
+ {t:"《愛情魔法師》〈火祭舞〉",c:"法雅（Manuel de Falla）",q:"Falla Ritual Fire Dance El amor brujo"},
+ {t:"《威風凜凜進行曲》第1號",c:"艾爾加（Edward Elgar）",q:"Elgar Pomp and Circumstance March No 1"},
+ ],
+},
+modern:{
+ bg:"20 世紀傳統調性瓦解，多元風格並存：印象樂派（德布西、拉威爾）、表現主義（荀貝格、貝爾格、魏本）、新古典主義（史特拉汶斯基）、原始主義、序列音樂、簡約主義（萊許、葛拉斯）、偶然音樂（凱吉）、電子音樂等同時並存。",
+ features:[
+ {f:"印象樂派",d:"全音音階、五聲音階、平行和弦、模糊調性"},
+ {f:"表現主義",d:"無調性、極端情感、十二音技法"},
+ {f:"新古典主義",d:"回歸巴洛克/古典曲式，現代和聲"},
+ {f:"原始主義",d:"強烈節奏、不和諧、異教元素（春之祭）"},
+ {f:"序列音樂",d:"音高、節奏、力度全面序列化"},
+ {f:"簡約主義",d:"重複音型、相位偏移、漸進變化"},
+ {f:"偶然音樂",d:"演奏中加入隨機元素（凱吉）"},
+ {f:"電子音樂",d:"具象音樂、磁帶、合成器、MIDI"},
+ ],
+ genres:[
+ {n:"印象樂派（Impressionism）",d:"德布西、拉威爾為代表"},
+ {n:"表現主義（Expressionism）",d:"第二維也納樂派"},
+ {n:"十二音技法（Dodecaphony）",d:"荀貝格 1923 提出"},
+ {n:"序列音樂（Serialism）",d:"布列茲、史托克豪森"},
+ {n:"偶然音樂（Aleatoric）",d:"凱吉、不確定性"},
+ {n:"簡約主義（Minimalism）",d:"萊許、葛拉斯、萊利"},
+ {n:"電子音樂",d:"具象音樂、合成器、Tape music"},
+ {n:"爵士融合",d:"蓋希文交響爵士樂"},
+ ],
+ terms:[
+ {t:"Whole tone scale",z:"全音音階（六個全音）"},
+ {t:"Pentatonic scale",z:"五聲音階"},
+ {t:"Atonality",z:"無調性"},
+ {t:"Twelve-tone / Dodecaphony",z:"十二音技法"},
+ {t:"Serialism",z:"序列音樂"},
+ {t:"Sprechstimme",z:"說唱——介於說話與唱"},
+ {t:"Klangfarbenmelodie",z:"音色旋律（魏本）"},
+ {t:"Musique concrète",z:"具象音樂（用錄音素材）"},
+ {t:"Indeterminacy",z:"不確定性／偶然"},
+ {t:"Minimalism",z:"簡約主義"},
+ ],
+ listen:[
+ {t:"〈月光〉鋼琴曲",c:"德布西（Claude Debussy）",q:"Debussy Clair de Lune Suite bergamasque"},
+ {t:"《大海》第1樂章",c:"德布西（Debussy）",q:"Debussy La Mer first movement"},
+ {t:"〈牧神的午後前奏曲〉",c:"德布西（Debussy）",q:"Debussy Prelude a l apres-midi d'un faune"},
+ {t:"《波麗露》",c:"拉威爾（Maurice Ravel）",q:"Ravel Bolero"},
+ {t:"《春之祭》〈獻祭舞〉",c:"史特拉汶斯基（Igor Stravinsky）",q:"Stravinsky Rite of Spring Sacrificial Dance"},
+ {t:"《月光小丑》",c:"荀貝格（Arnold Schoenberg）",q:"Schoenberg Pierrot Lunaire"},
+ {t:"《沃采克》第3幕",c:"貝爾格（Alban Berg）",q:"Berg Wozzeck Act 3"},
+ {t:"《4'33\"》",c:"凱吉（John Cage）",q:"John Cage 4'33 performance"},
+ {t:"《藍色狂想曲》",c:"蓋希文（George Gershwin）",q:"Gershwin Rhapsody in Blue"},
+ {t:"《彼得與狼》",c:"普羅高菲夫（Sergei Prokofiev）",q:"Prokofiev Peter and the Wolf"},
+ {t:"《圖蘭加里拉交響曲》第1樂章",c:"梅湘（Olivier Messiaen）",q:"Messiaen Turangalila Symphony first movement"},
+ {t:"《十八位音樂家的音樂》",c:"萊許（Steve Reich）",q:"Steve Reich Music for 18 Musicians"},
+ ],
+},
+};
+
+const DATA={
+ancient:{
+TF:[
+ {q:"畢達哥拉斯透過一弦琴實驗，發現音高比例與整數的關係，奠定西方音律理論。",ans:true,e:"✅ 正確！畢達哥拉斯以「單弦琴」測得 2:1 為八度、3:2 為純五度、4:3 為純四度，建立數理音律。"},
+ {q:"古希臘的調式與後來中古教會調式名稱相同，所代表的音階結構也完全一樣。",ans:false,e:"❌ 錯！名稱相同但結構不同。古希臘的多利安、弗里吉安等，與中古教會調式內容並不相對應。"},
+ {q:"古埃及的豎琴（Harp）在壁畫中經常出現，是當時宗教儀式與宮廷的重要樂器。",ans:true,e:"✅ 正確！古埃及壁畫廣泛描繪豎琴、雙簧管、長笛、鼓的演奏，多用於宗教與宮廷場合。"},
+ {q:"古希臘的「七弦琴（Lyre）」與太陽神阿波羅有關，象徵理性、莊嚴的音樂氣質。",ans:true,e:"✅ 正確！里拉琴屬阿波羅（理性），阿夫洛斯管屬戴奧尼索斯（狂熱），是兩種對立的精神象徵。"},
+ {q:"古希臘的「阿夫洛斯（Aulos）」是一種拉弦樂器，類似後來的小提琴。",ans:false,e:"❌ 錯！阿夫洛斯是雙管的「簧片管樂器」（吹管樂器），與戴奧尼索斯祭典關聯密切。"},
+ {q:"古中國西周時期建立「禮樂制度」，編鐘是重要禮器；湖北曾侯乙墓出土的編鐘是著名遺存。",ans:true,e:"✅ 正確！曾侯乙編鐘共65件，跨5個八度，是世界考古史上的重大發現。"},
+ {q:"古印度音樂中的「拉格（Raga）」只是固定的旋律，演奏者必須一字不差地演出。",ans:false,e:"❌ 錯！拉格是「旋律框架」，包含特定音階、裝飾音、情緒，演奏者要在框架內即興發揮。"},
+ {q:"兩河流域的烏爾（Ur）遺址出土了距今約 4500 年前的里拉琴，是現存最古老的樂器之一。",ans:true,e:"✅ 正確！1929年伍利爵士挖掘出黃金牛頭里拉琴，現存於伊拉克博物館與大英博物館。"},
+ {q:"柏拉圖認為某些調式會敗壞道德，主張理想國中應禁止這些「軟弱」的調式。",ans:true,e:"✅ 正確！柏拉圖《理想國》主張只保留多利安、弗里吉安（剛強剛毅）調式，禁用利底亞等。"},
+ {q:"古中國的「五聲音階」由「宮、商、角、徵、羽」組成，相當於 Do, Re, Mi, Sol, La。",ans:true,e:"✅ 正確！五聲音階為中國音樂的基礎，相對於西方無第4、7音的大調五聲音階。"},
+],
+MC:[
+ {q:"畢達哥拉斯發現「八度」音程的弦長比例為何？",opts:["2:1","3:2","4:3","9:8"],ans:0,e:"八度＝2:1；純五度＝3:2；純四度＝4:3；全音＝9:8。"},
+ {q:"古希臘現存最完整、有字母記譜的旋律遺存是哪一件？",opts:["賽奇洛斯墓誌銘","荷馬史詩石板","巴特農石刻","奧林匹亞銘文"],ans:0,e:"〈賽奇洛斯墓誌銘〉（Seikilos Epitaph，約1世紀）是現存最完整的古希臘音樂曲譜。"},
+ {q:"古希臘哪一種樂器與酒神戴奧尼索斯祭典關係密切？",opts:["里拉琴（Lyre）","奇塔拉琴（Kithara）","阿夫洛斯管（Aulos）","水風琴（Hydraulis）"],ans:2,e:"阿夫洛斯（雙簧管樂器）屬戴奧尼索斯（狂熱、感性）；里拉、奇塔拉屬阿波羅（理性）。"},
+ {q:"中國「曾侯乙編鐘」出土於哪一省？",opts:["陝西","河南","湖北","山東"],ans:2,e:"1978年湖北隨州曾侯乙墓出土65件編鐘，是中國音樂考古最重要的發現。"},
+ {q:"古印度音樂理論中的「Tala」指的是什麼？",opts:["旋律模式","節奏循環","音色變化","和聲進行"],ans:1,e:"Tala 是節奏循環架構，Raga 是旋律框架，兩者是印度古典音樂的兩大柱石。"},
+ {q:"教導兒童音樂、提倡「音樂是靈魂的體操」的古希臘哲學家是？",opts:["蘇格拉底","柏拉圖","亞里斯多德","畢達哥拉斯"],ans:1,e:"柏拉圖在《理想國》中強調音樂教育是靈魂教化、養成公民德行的關鍵。"},
+ {q:"古埃及音樂家在宗教儀式中常使用的搖鈴狀打擊樂器叫什麼？",opts:["叉鈴（Sistrum）","木鐸","響板","鈸"],ans:0,e:"叉鈴（Sistrum）為古埃及神廟伴隨女神 Hathor 崇拜的搖擺金屬樂器。"},
+ {q:"以下哪一個「不屬於」古希臘三大文明古國音樂的範疇？",opts:["古埃及","兩河流域","印度","羅馬"],ans:3,e:"三大文明古國音樂指：古埃及、兩河（蘇美/巴比倫）、古印度、古中國，羅馬屬西方古典文明後期。"},
+ {q:"古希臘音樂理論中的「Ethos（性情論）」主張什麼？",opts:["音樂應追求美感","不同調式影響道德性格","音樂只是娛樂","音樂應自由創作"],ans:1,e:"Ethos 性情論認為各調式對應不同的道德情感效果，是柏拉圖、亞里斯多德音樂教育論的核心。"},
+],
+WORKS:[
+ {l:"〈賽奇洛斯墓誌銘〉",r:"古希臘"},{l:"曾侯乙編鐘",r:"古中國"},
+ {l:"烏爾的金色里拉琴",r:"兩河流域"},{l:"《吠陀經》吟誦",r:"古印度"},
+ {l:"叉鈴（Sistrum）",r:"古埃及"},{l:"阿夫洛斯管",r:"古希臘"},
+ {l:"《理想國》音樂論",r:"柏拉圖"},{l:"一弦琴音律實驗",r:"畢達哥拉斯"},
+ {l:"宮商角徵羽",r:"古中國"},{l:"Raga 與 Tala",r:"古印度"},
+],
+TITLES:[
+ {l:"西方音律奠基者",r:"畢達哥拉斯"},{l:"理想國音樂教育論",r:"柏拉圖"},
+ {l:"音樂倫理（Ethos）",r:"亞里斯多德"},{l:"理性音樂之神",r:"阿波羅"},
+ {l:"狂熱音樂之神",r:"戴奧尼索斯"},{l:"禮樂制度",r:"古中國"},
+ {l:"豎琴文明",r:"古埃及"},{l:"金色里拉琴",r:"蘇美人"},
+ {l:"Raga 旋律框架",r:"古印度"},{l:"四線譜前身唱名",r:"古希臘字母記譜"},
+],
+REF:[
+ {name:"畢達哥拉斯（Pythagoras）",dates:"約 570–495 B.C.",period:"古希臘",facts:["以一弦琴（Monochord）實驗確立純律：八度 2:1、五度 3:2、四度 4:3","主張「天體和諧」（Music of the Spheres / Musica universalis）——宇宙也有音樂","其學派影響整個西方音樂理論至中世紀",ytl('畢氏音律解說','Pythagoras music theory monochord explained')]},
+ {name:"柏拉圖（Plato）",dates:"約 428–348 B.C.",period:"古希臘",facts:["《理想國》（Republic）視音樂教育為公民養成的核心","Ethos（性情論）：不同調式塑造不同的道德性情","僅允許多利安（Dorian）、弗里吉安（Phrygian）等「剛毅」調式進入理想國"]},
+ {name:"亞里斯多德（Aristotle）",dates:"384–322 B.C.",period:"古希臘",facts:["《政治學》《詩學》論音樂的教育與淨化（Katharsis）功能","發展性情論，認為音樂能模仿並塑造靈魂","為西方音樂美學奠定哲學基礎"]},
+ {name:"古希臘音樂",dates:"約 1200 B.C.–4 世紀",period:"古希臘",facts:["主要樂器：里拉琴（Lyre）、奇塔拉琴（Kithara）、阿夫洛斯管（Aulos）","採用「字母記譜法」（Greek alphabetic notation）","八種調式：多利安、弗里吉安、利底亞、米索利底安⋯⋯名稱沿用至教會調式但結構不同","代表遺存：賽奇洛斯墓誌銘（Seikilos Epitaph）、德爾菲頌歌（Delphic Hymns）",ytl('〈賽奇洛斯墓誌銘〉','Seikilos Epitaph ancient Greek music')]},
+ {name:"古埃及音樂（Ancient Egyptian Music）",dates:"約 3000–30 B.C.",period:"三大文明古國",facts:["壁畫廣泛描繪豎琴（harp）、雙簧管、長笛、鼓的合奏","宗教儀式用叉鈴（Sistrum）伴奏女神 Hathor","音樂家社會地位高，常有專屬樂團","已使用半音與五度音程",ytl('古埃及音樂重現','ancient Egyptian music reconstruction performance')]},
+ {name:"兩河流域音樂（Mesopotamian Music）",dates:"約 3500–500 B.C.",period:"三大文明古國",facts:["蘇美（Sumer）、巴比倫（Babylon）、亞述（Assyria）文明","烏爾遺址（Ur）出土黃金牛頭里拉琴（約 2500 B.C.）","泥板上記載世界最古老的樂譜——〈胡里安頌歌〉（Hurrian Hymn）","已使用七音音階概念",ytl('〈胡里安頌歌〉','Hurrian Hymn No 6 oldest song')]},
+ {name:"古印度音樂（Ancient Indian Music）",dates:"約 1500 B.C.–",period:"三大文明古國",facts:["《吠陀經》（Vedas）以歌唱形式吟誦傳承","Raga（拉格）：旋律框架，每首對應特定情緒與時辰","Tala（塔拉）：節奏循環架構","Sitar（西塔琴）、Tabla（塔布拉鼓）、Tanpura 等典型樂器",ytl('印度古典 Raga 入門','Indian classical raga introduction Ravi Shankar')]},
+ {name:"古中國音樂（Ancient Chinese Music）",dates:"約 3000 B.C.–",period:"三大文明古國",facts:["五聲音階：宮、商、角、徵、羽（無 Fa、Si）","西周禮樂制度，編鐘為國家祭祀禮器","曾侯乙編鐘（湖北隨州）65 件，跨 5 個八度","三分損益法——中國的音律生成方法",ytl('曾侯乙編鐘演奏','曾侯乙編鐘 演奏 復原')]},
+],
+},
+medieval:{
+TF:[
+ {q:"葛利果聖歌（Gregorian Chant）為單音音樂、無伴奏、以拉丁文歌唱、節奏自由。",ans:true,e:"✅ 正確！葛利果聖歌的四大特徵：單音齊唱、自由節奏、拉丁文、無樂器伴奏。"},
+ {q:"葛利果聖歌之所以稱為「葛利果」，是因為教宗葛利果一世「親自作曲」每一首聖歌。",ans:false,e:"❌ 錯！葛利果一世是「彙整、編纂」全教會聖歌，並非每首皆為其親自所作。"},
+ {q:"中世紀後期最重要的記譜貢獻者是桂多·達瑞佐（Guido d'Arezzo），他發明了四線譜。",ans:true,e:"✅ 正確！桂多·達瑞佐約1025年發明四線譜及唱名（Ut-Re-Mi-Fa-Sol-La），徹底改變音樂傳遞。"},
+ {q:"「奧爾加農（Organum）」是最早的複音音樂形式，最初僅是平行四度或五度。",ans:true,e:"✅ 正確！奧爾加農是西方複音音樂起源，最早為「平行奧爾加農」（平行五/四度）。"},
+ {q:"聖母院樂派的代表人物是雷奧南（Léonin）與培洛廷（Pérotin），活躍於 12-13 世紀的巴黎。",ans:true,e:"✅ 正確！雷奧南著《大奧爾加農集》（Magnus Liber Organi），培洛廷再以三聲部、四聲部擴展。"},
+ {q:"「新藝術（Ars Nova）」時期由德國作曲家領導，主要貢獻是發明調性和聲。",ans:false,e:"❌ 錯！新藝術以法國（菲利浦·德·維特里）為中心；主要貢獻是節奏記譜法的革新與世俗音樂興起。"},
+ {q:"馬肖（Guillaume de Machaut）的《聖母彌撒曲》是史上第一部由「單一作曲家」完成的彌撒套曲。",ans:true,e:"✅ 正確！1364年馬肖《聖母彌撒曲》是第一部由單一作曲家完成的「常用彌撒五部分」整體創作。"},
+ {q:"中世紀的「遊吟詩人」（Troubadours）以拉丁文寫成宗教歌曲，主要服務教會。",ans:false,e:"❌ 錯！遊吟詩人以「方言（普羅旺斯語等）」創作「世俗歌曲」，多歌頌愛情、英雄、騎士。"},
+ {q:"中世紀教會音樂的七種教會調式中，最常用的是「多利安（Dorian）」調式。",ans:true,e:"✅ 正確！多利安、弗里吉安、利底亞、米索利底亞是四種正格調式，多利安最為常用。"},
+ {q:"經文歌（Motet）起源於中古晚期，原本是「奧爾加農」上方加入歌詞而發展出來。",ans:true,e:"✅ 正確！經文歌起源於 13 世紀，由奧爾加農上層加入歌詞（mot＝字）發展而成，後成為文藝復興主要曲種。"},
+],
+MC:[
+ {q:"教宗葛利果一世彙整聖歌大約在哪一個時期？",opts:["約 4 世紀","約 6 世紀末","約 9 世紀","約 12 世紀"],ans:1,e:"葛利果一世（590-604在位）約於 6 世紀末彙整聖歌，故名葛利果聖歌。"},
+ {q:"桂多·達瑞佐用哪一首聖歌的歌詞開頭創造唱名 Ut-Re-Mi-Fa-Sol-La？",opts:["聖母頌","聖約翰頌歌","主禱文","哈利路亞"],ans:1,e:"取自〈聖約翰頌歌〉每行歌詞的開頭：Ut queant laxis、Resonare、Mira gestorum⋯⋯"},
+ {q:"以下哪一位「不屬於」聖母院樂派？",opts:["雷奧南（Léonin）","培洛廷（Pérotin）","馬肖（Machaut）","——"],ans:2,e:"雷奧南與培洛廷屬聖母院樂派（巴黎，12-13世紀）；馬肖屬新藝術時期（14世紀）。"},
+ {q:"「新藝術」（Ars Nova）的主要貢獻是？",opts:["發明複音音樂","革新節奏記譜與世俗音樂興起","建立大小調","發明十二平均律"],ans:1,e:"新藝術以菲利浦·德·維特里為理論代表，發展二分節奏與精細節奏記譜，世俗音樂大幅興起。"},
+ {q:"中世紀「遊吟詩人」（Troubadours）主要活躍於哪個地區？",opts:["北法","南法（普羅旺斯）","德國","英國"],ans:1,e:"Troubadours 活躍南法（普羅旺斯語），北法的同類稱 Trouvères；德國稱 Minnesinger。"},
+ {q:"葛利果聖歌的「彌撒（Mass）」常用五個固定樂章稱為「常用彌撒」，以下哪一個「不屬於」？",opts:["Kyrie（垂憐經）","Gloria（光榮頌）","Sanctus（聖三頌）","Dies Irae（震怒之日）"],ans:3,e:"常用彌撒五段：Kyrie、Gloria、Credo、Sanctus、Agnus Dei。Dies Irae 屬安魂彌撒（變更彌撒）。"},
+ {q:"中世紀晚期義大利「新藝術」的代表作曲家是？",opts:["馬肖","蘭迪尼（Landini）","培洛廷","賓根的希爾德加德"],ans:1,e:"法蘭契斯柯·蘭迪尼（Francesco Landini）為14世紀義大利新藝術代表，盲眼風琴家，作品多為敘事曲（Ballata）。"},
+ {q:"以下哪一位是中世紀著名的女作曲家、修道院長與神祕主義者？",opts:["馬肖","桂多·達瑞佐","賓根的希爾德加德","蘭迪尼"],ans:2,e:"賓根的希爾德加德（Hildegard von Bingen, 1098-1179），代表作《天啟頌歌集》（Symphonia）。"},
+ {q:"中古的「教會調式」共有幾個？",opts:["4 個","6 個","7 個","8 個"],ans:3,e:"教會調式為 8 個：4 個正格（Authentic）＋4 個變格（Plagal）。後加 Aeolian、Ionian 成 12 個。"},
+],
+WORKS:[
+ {l:"《大奧爾加農集》",r:"雷奧南"},{l:"《聖母彌撒曲》",r:"馬肖"},
+ {l:"《天啟頌歌集》",r:"賓根的希爾德加德"},{l:"《Viderunt omnes》四聲部",r:"培洛廷"},
+ {l:"敘事曲（Ballata）",r:"蘭迪尼"},{l:"四線譜與唱名",r:"桂多·達瑞佐"},
+ {l:"葛利果聖歌彙整",r:"葛利果一世"},{l:"《新藝術》論文",r:"菲利浦·德·維特里"},
+ {l:"〈夏天到來〉（Sumer is icumen in）",r:"英國無名氏"},{l:"愛情敘事歌（Lai）",r:"南法遊吟詩人"},
+],
+TITLES:[
+ {l:"聖歌之父",r:"葛利果一世"},{l:"四線譜發明者",r:"桂多·達瑞佐"},
+ {l:"聖母院樂派",r:"雷奧南、培洛廷"},{l:"新藝術之父",r:"菲利浦·德·維特里"},
+ {l:"中世紀女作曲家",r:"賓根的希爾德加德"},{l:"義大利新藝術代表",r:"蘭迪尼"},
+ {l:"南法遊吟詩人",r:"Troubadours"},{l:"北法遊吟詩人",r:"Trouvères"},
+ {l:"德國遊吟詩人",r:"Minnesinger"},{l:"複音音樂之始",r:"奧爾加農"},
+],
+REF:[
+ {name:"葛利果一世（Gregorius I / Gregory the Great）",dates:"約 540–604，羅馬",period:"早期",facts:["羅馬教宗，於 590-604 年在位","彙整全教會聖歌成系統，故名葛利果聖歌（Gregorian Chant）","非親自作曲，而是匯編整理","聖歌特徵：單音齊唱、無伴奏、拉丁文、自由節奏",ytl('葛利果聖歌〈Kyrie〉','Gregorian chant Kyrie')]},
+ {name:"桂多·達瑞佐（Guido d'Arezzo）",dates:"約 991–1033，義",period:"早期",facts:["約 1025 年發明四線譜（four-line staff）","以〈聖約翰頌歌〉每行字首創造唱名：Ut-Re-Mi-Fa-Sol-La","Ut 後改為 Do（17 世紀），再加上 Si（Ti）","發明「桂多手」（Guidonian Hand）助記音名",ytl('〈Ut queant laxis〉','Ut queant laxis hymn to Saint John')]},
+ {name:"賓根的希爾德加德（Hildegard von Bingen）",dates:"1098–1179，德",period:"中期",facts:["中世紀著名女作曲家、修道院長、神祕主義者","代表作《天啟頌歌集》（Symphonia）共 77 首","也是音樂劇《道德典範》（Ordo Virtutum）作者","另為植物學家、醫學家、神學作家","2012 年被天主教會封為聖人與教會聖師",ytl('〈O Virtus Sapientiae〉','Hildegard von Bingen O Virtus Sapientiae')]},
+ {name:"雷奧南（Léonin / Leoninus）",dates:"約 1135–1201，法",period:"中期",facts:["巴黎聖母院樂派（Notre Dame School）早期代表","著《大奧爾加農集》（Magnus Liber Organi）","發展兩聲部奧爾加農與節奏模式","為西方記譜節奏化奠基",ytl('雷奧南〈Viderunt omnes〉二聲部','Leonin Viderunt omnes organum')]},
+ {name:"培洛廷（Pérotin / Perotinus）",dates:"約 1160–1230，法",period:"中期",facts:["聖母院樂派後期代表","發展三聲部（Triplum）與四聲部（Quadruplum）","代表作《Viderunt omnes》《Sederunt principes》","建立節奏模式（Rhythmic Modes）系統",ytl('培洛廷〈Viderunt omnes〉四聲部','Perotin Viderunt omnes four-part')]},
+ {name:"菲利浦·德·維特里（Philippe de Vitry）",dates:"1291–1361，法",period:"晚期",facts:["《新藝術》（Ars Nova）論文作者，1322 年發表","發展精細的節奏記譜系統","支持二分節奏（imperfect time）","為 14 世紀法國音樂理論奠基"]},
+ {name:"馬肖（Guillaume de Machaut）",dates:"約 1300–1377，法",period:"晚期",facts:["新藝術時期最重要的作曲家、詩人","《聖母彌撒曲》（Messe de Nostre Dame）——史上第一部單一作曲家完成的常用彌撒","世俗作品：敘事曲（Ballades）、迴旋曲（Rondeaux）、維勒萊（Virelais）","結合詩歌與音樂，跨越宗教與世俗",ytl('《聖母彌撒曲》〈Kyrie〉','Machaut Messe de Nostre Dame Kyrie')]},
+ {name:"蘭迪尼（Francesco Landini）",dates:"約 1325–1397，義",period:"晚期",facts:["義大利新藝術（Trecento）代表，活躍佛羅倫斯","盲眼風琴家，被尊稱「盲眼的法蘭契斯柯」","發明「蘭迪尼終止式」（Landini cadence）——獨特的旋律終止音型","作品以敘事曲（Ballata）為主",ytl('〈Ecco la primavera〉','Landini Ecco la primavera')]},
+],
+},
+renaissance:{
+TF:[
+ {q:"文藝復興時期音樂的審美轉向「人文主義」，從中世紀的禁慾走向歌頌人性。",ans:true,e:"✅ 正確！人文主義是文藝復興的核心，音樂從教會專屬走向兼顧人性、情感表達。"},
+ {q:"帕勒斯崔那的《教皇馬歇爾彌撒》據說「拯救」了複音教會音樂，使其免於被特倫多會議禁止。",ans:true,e:"✅ 正確！傳說特倫多會議（1545-63）討論禁絕複音音樂，因《教皇馬歇爾彌撒》清晰可辨歌詞而被認可。"},
+ {q:"文藝復興的「無伴奏合唱」風格義大利文稱為「A cappella」，意為「依教堂風格」。",ans:true,e:"✅ 正確！A cappella 字面意為「在小教堂中」，引申為「無樂器伴奏的合唱」風格。"},
+ {q:"牧歌（Madrigal）起源於義大利，採用方言（義大利文）歌詞，內容多為愛情詩、自然景色。",ans:true,e:"✅ 正確！16世紀的義大利牧歌結合精緻歌詞與「文字描繪（word painting）」手法，世俗音樂代表。"},
+ {q:"印刷術的發明對文藝復興音樂沒有什麼影響，因為大家還是仰賴手抄譜傳遞。",ans:false,e:"❌ 錯！1501年佩特魯齊出版第一本複音活版印刷樂譜後，樂譜大量流通，徹底改變音樂傳遞。"},
+ {q:"約斯坎（Josquin des Prez）被馬丁路德譽為「音符的主人」，文藝復興盛期最具影響力的作曲家。",ans:true,e:"✅ 正確！馬丁路德稱讚約斯坎能「指揮音符」（其他作曲家只能被音符指揮），影響後世深遠。"},
+ {q:"文藝復興後期義大利「牧歌」的「文字描繪」（word painting）是指將歌詞意義以音樂手法具象化。",ans:true,e:"✅ 正確！例：歌詞「上升」用上行旋律、「哭泣」用半音下行，是牧歌的特徵性技法。"},
+ {q:"威尼斯樂派（Venetian School）以聖馬可大教堂為中心，發展「複合唱（Cori spezzati）」風格。",ans:true,e:"✅ 正確！威拉爾特、加布利埃利叔姪將分組合唱於聖馬可大教堂南北唱台對唱，啟發巴洛克協奏風格。"},
+ {q:"史上第一部「歌劇雛形」是 1597 年義大利佩里（Peri）的《達芙妮》（Dafne）。",ans:true,e:"✅ 正確！佛羅倫斯卡梅拉塔同人會（Camerata）追隨古希臘戲劇精神，催生史上第一部歌劇雛形。"},
+ {q:"文藝復興香頌（Chanson）發展於英格蘭，是英國世俗合唱的代表。",ans:false,e:"❌ 錯！香頌（Chanson）為「法國」世俗多聲部歌曲，英國的對應曲種是英式牧歌、康索特歌曲。"},
+],
+MC:[
+ {q:"文藝復興時期最具代表性的羅馬樂派作曲家是？",opts:["拉素（Lassus）","帕勒斯崔那","蒙特威爾第","拜爾德"],ans:1,e:"帕勒斯崔那（1525-1594）為羅馬樂派代表，其無伴奏複音風格成為教會音樂典範。"},
+ {q:"以下哪一首作品是「義大利牧歌」的代表作？",opts:["《教皇馬歇爾彌撒》","《白色月光》","《尼貝龍根的指環》","《菲德里奧》"],ans:1,e:"《白色月光》（Il bianco e dolce cigno）由阿卡德爾特（Arcadelt）作曲，是經典義大利牧歌。"},
+ {q:"威尼斯樂派的「複合唱（Cori spezzati）」風格主要由誰所發展？",opts:["帕勒斯崔那","威拉爾特、加布利埃利叔姪","約斯坎","杜飛"],ans:1,e:"威拉爾特（Willaert）任職聖馬可大教堂，與加布利埃利叔姪（Andrea、Giovanni Gabrieli）發展複合唱。"},
+ {q:"以下哪一位是「英國文藝復興」的代表作曲家？",opts:["拜爾德（Byrd）","拉素","約斯坎","杜飛"],ans:0,e:"威廉·拜爾德（William Byrd, 1543-1623）為伊莉莎白一世時期英國代表作曲家，作品兼具天主與英國國教風格。"},
+ {q:"以下哪一位是「文藝復興過渡到巴洛克」的關鍵作曲家？",opts:["帕勒斯崔那","蒙特威爾第","約斯坎","杜飛"],ans:1,e:"蒙特威爾第（Monteverdi, 1567-1643）跨越兩個時期，《奧菲歐》（1607）為早期歌劇里程碑。"},
+ {q:"以下哪一個是「文藝復興時期的主要世俗歌曲類型」？",opts:["經文歌（Motet）","彌撒（Mass）","牧歌（Madrigal）","聖歌（Chant）"],ans:2,e:"牧歌（義大利）、香頌（法國）、利特（德國）為三大世俗歌曲類型；經文歌、彌撒、聖歌屬宗教音樂。"},
+ {q:"佛羅倫斯「卡梅拉塔同人會」（Camerata）的主要貢獻是？",opts:["發展牧歌","催生歌劇","建立和聲學","發明對位法"],ans:1,e:"卡梅拉塔同人會研究古希臘戲劇，倡導「以歌唱方式說故事」，催生史上第一部歌劇。"},
+ {q:"以下哪位作曲家以「半音和聲」的牧歌聞名，並有殺妻的傳奇故事？",opts:["杜飛","蓋斯瓦多（Gesualdo）","約斯坎","拜爾德"],ans:1,e:"卡羅·蓋斯瓦多王子（Gesualdo, 1566-1613）的牧歌大膽使用半音、不和諧聲響，其私生活也充滿戲劇性。"},
+ {q:"印刷術音樂出版第一人是？",opts:["古騰堡","佩特魯齊","卡克斯頓","曼努提烏斯"],ans:1,e:"奧塔維亞諾·佩特魯齊（Petrucci）於1501年出版第一本以活版印刷的複音樂譜《Harmonice Musices Odhecaton》。"},
+],
+WORKS:[
+ {l:"《教皇馬歇爾彌撒》",r:"帕勒斯崔那"},{l:"《奧菲歐》（早期歌劇）",r:"蒙特威爾第"},
+ {l:"《武裝人》彌撒",r:"杜飛"},{l:"《Ave Maria》",r:"約斯坎"},
+ {l:"《白色月光》",r:"阿卡德爾特"},{l:"《達芙妮》",r:"佩里"},
+ {l:"《Sonata Pian'e Forte》",r:"喬凡尼·加布利埃利"},{l:"《彌撒與經文歌》",r:"拜爾德"},
+ {l:"半音牧歌",r:"蓋斯瓦多"},{l:"法蘭德斯複音",r:"拉素"},
+],
+TITLES:[
+ {l:"音符的主人",r:"約斯坎"},{l:"羅馬樂派代表",r:"帕勒斯崔那"},
+ {l:"威尼斯複合唱",r:"加布利埃利叔姪"},{l:"文藝復興過渡到巴洛克",r:"蒙特威爾第"},
+ {l:"勃艮第樂派始祖",r:"杜飛"},{l:"英國文藝復興代表",r:"拜爾德"},
+ {l:"佛羅倫斯卡梅拉塔",r:"佩里"},{l:"半音牧歌王子",r:"蓋斯瓦多"},
+ {l:"宗教改革音樂",r:"馬丁路德"},{l:"法蘭德斯樂派",r:"拉素"},
+],
+REF:[
+ {name:"杜飛（Guillaume Dufay）",dates:"約 1397–1474，勃艮第",period:"早期",facts:["勃艮第樂派代表，文藝復興初期最重要作曲家","《武裝人彌撒》（Missa L'homme armé）——以世俗曲調為定旋律（cantus firmus）","結合英、法、義風格，奠定文藝復興音樂語彙","為各地宮廷與教會服務",ytl('〈Nuper rosarum flores〉','Dufay Nuper rosarum flores')]},
+ {name:"約斯坎（Josquin des Prez）",dates:"約 1450–1521，法蘭德斯",period:"盛期",facts:["馬丁路德譽為「音符的主人」","盛期文藝復興最具影響力的作曲家","作品：彌撒、經文歌、香頌共數百首","代表作《Ave Maria...virgo serena》《Missa Pange Lingua》","發展「模仿對位」（imitation）成為文藝復興主要技法",ytl('〈Ave Maria〉','Josquin Ave Maria virgo serena')]},
+ {name:"帕勒斯崔那（G. P. da Palestrina）",dates:"1525–1594，義",period:"盛期",facts:["全名 Giovanni Pierluigi da Palestrina","羅馬樂派代表，無伴奏複音教會音樂典範","《教皇馬歇爾彌撒》（Missa Papae Marcelli）據說拯救了複音教會音樂","風格平穩、流暢、文字清晰","被視為對位法（Counterpoint）的最高典範","其風格成為日後教會音樂寫作教材",ytl('《教皇馬歇爾彌撒》Kyrie','Palestrina Missa Papae Marcelli Kyrie')]},
+ {name:"拉素（Orlando di Lasso）",dates:"1532–1594，法蘭德斯",period:"盛期",facts:["法蘭德斯樂派代表，作品數量驚人（逾 2000 首）","活躍於慕尼黑宮廷","風格兼容並蓄：宗教＋世俗、義式＋德式","代表作《懺悔詩篇》（Penitential Psalms）《歌德的牧歌》",ytl('〈Matona mia cara〉','Lasso Matona mia cara')]},
+ {name:"拜爾德（William Byrd）",dates:"1543–1623，英",period:"盛期",facts:["英國文藝復興代表，伊莉莎白一世御用作曲家","作品橫跨拉丁彌撒、英國國教崇拜、世俗、鍵盤","《我心已歸》（My Mind to Me a Kingdom Is）","《菲茨威廉處女琴譜》（Fitzwilliam Virginal Book）中收錄其大量鍵盤作品","儘管為天主教徒，仍在新教伊莉莎白王朝獲重用",ytl('〈Ave verum corpus〉','William Byrd Ave verum corpus')]},
+ {name:"威拉爾特（Adrian Willaert）",dates:"約 1490–1562，法蘭德斯",period:"盛期",facts:["威尼斯樂派創始人，任職聖馬可大教堂 50 餘年","發展「複合唱」（Cori spezzati）——南北唱台分組對唱","結合法蘭德斯複音技術與義大利風格","培育加布利埃利叔姪、奇普里安諾·德·羅雷等門生",ytl('〈Vecchie letrose〉','Willaert Vecchie letrose')]},
+ {name:"喬凡尼·加布利埃利（Giovanni Gabrieli）",dates:"約 1554–1612，義",period:"晚期",facts:["威尼斯樂派盛期，叔父為安德烈·加布利埃利（Andrea Gabrieli）","《Sonata Pian'e Forte》——史上第一首明確標示力度的器樂作品","發展器樂與聲樂並重的複合唱","學生包括德國音樂之父許茨（Heinrich Schütz）",ytl('《Sonata Pian e Forte》','Giovanni Gabrieli Sonata Pian e Forte')]},
+ {name:"蒙特威爾第（Claudio Monteverdi）",dates:"1567–1643，義",period:"過渡",facts:["文藝復興到巴洛克的橋樑","《奧菲歐》（L'Orfeo, 1607）——第一部完整保存的歌劇","提出「第二實踐」（seconda pratica）——情感優先於規則","代表作《波佩亞的加冕》、第八牧歌集",ytl('《奧菲歐》〈Toccata〉','Monteverdi Orfeo Toccata 1607')]},
+ {name:"佩里（Jacopo Peri）",dates:"1561–1633，義",period:"過渡",facts:["佛羅倫斯卡梅拉塔（Camerata）成員","《達芙妮》（Dafne, 1597）——史上第一部歌劇雛形（樂譜失傳）","《尤莉狄絲》（Euridice, 1600）——現存最早的完整歌劇","催生新的「單音曲調」（monody）風格",ytl('《尤莉狄絲》','Jacopo Peri Euridice 1600')]},
+],
+},
+baroque:{
+TF:[
+ {q:"巴洛克時期最重要的伴奏型態是「數字低音（Basso Continuo）」，由低音樂器與和聲樂器共同擔任。",ans:true,e:"✅ 正確！數字低音是巴洛克的招牌：低音聲部加上和聲樂器（大鍵琴/魯特琴）即興填充和聲。"},
+ {q:"歌劇起源於 17 世紀的義大利佛羅倫斯，蒙特威爾第的《奧菲歐》（1607）是第一部完整保存的歌劇。",ans:true,e:"✅ 正確！蒙特威爾第《奧菲歐》是第一部完整保存的歌劇，標誌巴洛克歌劇成熟。"},
+ {q:"巴哈一生並未離開德國，主要活躍於萊比錫、威瑪、科登等地。",ans:true,e:"✅ 正確！巴哈一生侍奉德國各地教會與宮廷，足跡未曾離開德意志地區。"},
+ {q:"韓德爾的神劇《彌賽亞》是用德文寫成，描述耶穌生平。",ans:false,e:"❌ 錯！《彌賽亞》（1741）以「英文」寫成，由詹斯（Jennens）編詞。著名的〈哈利路亞〉合唱出自此曲。"},
+ {q:"巴哈的《布蘭登堡協奏曲》共有六首，獻給布蘭登堡侯爵，每首樂器編制都不同。",ans:true,e:"✅ 正確！《布蘭登堡協奏曲》（1721）六首皆採不同編制，展現大協奏曲（Concerto Grosso）的多樣面貌。"},
+ {q:"韋瓦第的《四季》是世界上最早的協奏曲，每首搭配一首十四行詩，是標題音樂的早期範例。",ans:true,e:"✅ 正確！韋瓦第《四季》（1725）每首小提琴協奏曲對應一首十四行詩，被視為標題音樂的先驅。"},
+ {q:"巴洛克時期的「賦格（Fugue）」是一種「複音」對位形式，由主題、答題、對題輪流出現。",ans:true,e:"✅ 正確！賦格以「主題」開頭，依序模仿（答題）並加上「對題」，代表巴洛克對位法的最高成就。"},
+ {q:"巴哈完成的《平均律鍵盤曲集》共有兩冊，每冊各包含 12 個大調與 12 個小調，共 24 首前奏與賦格。",ans:true,e:"✅ 正確！兩冊各24首（12大調＋12小調），合計48首前奏曲與賦格，是西洋鍵盤聖經。"},
+ {q:"巴洛克器樂組曲（Suite）的標準四個樂章是：阿勒曼、庫朗、薩拉邦、吉格。",ans:true,e:"✅ 正確！四標準舞曲：阿勒曼（德，中速）、庫朗（法，快）、薩拉邦（西，慢三）、吉格（英，急）。"},
+ {q:"巴洛克歌劇的「返始詠嘆調（Da Capo Aria）」採用 A-B-A' 三段體，A' 是 A 的縮減版。",ans:false,e:"❌ 錯！返始詠嘆調是 A-B-A 結構，A' 是「裝飾性的重複」（演唱者即興加花），非縮減版。"},
+],
+MC:[
+ {q:"以下哪一首作品是巴哈的「神劇」代表作？",opts:["《馬太受難曲》","《彌賽亞》","《創世紀》","《以利亞》"],ans:0,e:"《馬太受難曲》（1727）是巴哈兩部受難曲中規模較大的一部；《彌賽亞》是韓德爾的作品。"},
+ {q:"以下哪一首「不是」巴哈的作品？",opts:["《布蘭登堡協奏曲》","《平均律鍵盤曲集》","《水上音樂》","《賦格的藝術》"],ans:2,e:"《水上音樂》是韓德爾應英王喬治一世請求所作的管弦樂組曲。"},
+ {q:"巴洛克時期最重要的鍵盤樂器是？",opts:["鋼琴","大鍵琴（Harpsichord）","管風琴","古鋼琴"],ans:1,e:"巴洛克時期以「大鍵琴」為主要鍵盤樂器；鋼琴於 1700 年由克里斯多福里發明，但巴洛克末期才普及。"},
+ {q:"以下哪位「不是」與巴哈、韓德爾同年（1685）出生的作曲家？",opts:["史卡拉第（Domenico Scarlatti）","泰勒曼（Telemann）","——","——"],ans:1,e:"1685 年同年生：巴哈、韓德爾、多明尼可·史卡拉第。泰勒曼生於 1681 年。"},
+ {q:"韓德爾的「水上音樂」是為了哪一位英王的泰晤士河船遊而作？",opts:["亨利八世","伊莉莎白一世","喬治一世","維多利亞"],ans:2,e:"1717年為英王喬治一世泰晤士河船遊而作，與《皇家煙火》並列韓德爾最著名的器樂作品。"},
+ {q:"以下哪位是法國巴洛克著名作曲家、被路易十四任命為宮廷音樂總監？",opts:["拉莫（Rameau）","律利（Lully）","柯瑞里","巴哈"],ans:1,e:"尚-巴蒂斯特·律利（Jean-Baptiste Lully）為太陽王路易十四宮廷音樂總監，建立法國歌劇傳統。"},
+ {q:"以下哪一首是巴哈最後的、未完成的作品？",opts:["《b 小調彌撒》","《賦格的藝術》","《音樂的奉獻》","《郭德堡變奏曲》"],ans:1,e:"《賦格的藝術》（1751）是巴哈最後作品，未完成即逝世，展示對位法的所有可能性。"},
+ {q:"巴洛克協奏曲分為哪兩大類？",opts:["獨奏協奏曲＋大協奏曲","小型協奏曲＋大型協奏曲","三重奏鳴曲＋協奏曲","序曲＋協奏曲"],ans:0,e:"巴洛克協奏曲兩大類：獨奏協奏曲（如韋瓦第《四季》）與大協奏曲（如巴哈《布蘭登堡》）。"},
+ {q:"巴洛克著名的「巴海貝爾的卡農（Pachelbel's Canon）」原名是？",opts:["D大調卡農與吉格","D大調卡農","D大調卡農與小步舞曲","卡農變奏曲"],ans:0,e:"原作為《D大調三把小提琴與數字低音的卡農與吉格》，但現代演出常省略吉格。"},
+ {q:"巴哈一生擔任過最後一個職位是？",opts:["威瑪宮廷管風琴師","科登宮廷樂長","萊比錫聖多瑪斯教堂樂長","萊比錫大學音樂指導"],ans:2,e:"1723年起，巴哈擔任萊比錫聖多瑪斯教堂（Thomaskirche）樂長直到 1750 年逝世。"},
+],
+WORKS:[
+ {l:"《奧菲歐》（1607）",r:"蒙特威爾第"},{l:"《四季》小提琴協奏曲",r:"韋瓦第"},
+ {l:"《布蘭登堡協奏曲》",r:"巴哈"},{l:"《平均律鍵盤曲集》",r:"巴哈"},
+ {l:"《馬太受難曲》",r:"巴哈"},{l:"《賦格的藝術》",r:"巴哈"},
+ {l:"《彌賽亞》",r:"韓德爾"},{l:"《水上音樂》",r:"韓德爾"},
+ {l:"《皇家煙火》",r:"韓德爾"},{l:"D大調卡農",r:"巴海貝爾"},
+ {l:"鍵盤奏鳴曲（555首）",r:"D. 史卡拉第"},{l:"《狄朵與埃涅阿斯》",r:"普賽爾"},
+],
+TITLES:[
+ {l:"歌劇之父",r:"蒙特威爾第"},{l:"紅髮神父",r:"韋瓦第"},
+ {l:"音樂之父",r:"巴哈"},{l:"神劇之父",r:"韓德爾"},
+ {l:"鍵盤奏鳴曲開創者",r:"D. 史卡拉第"},{l:"法國宮廷音樂總監",r:"律利"},
+ {l:"D 大調卡農作者",r:"巴海貝爾"},{l:"英國巴洛克高峰",r:"普賽爾"},
+ {l:"法國巴洛克晚期",r:"拉莫"},{l:"巴哈摯友",r:"泰勒曼"},
+],
+REF:[
+ {name:"蒙特威爾第（Claudio Monteverdi）",dates:"1567–1643，義",period:"早期",facts:["跨越文藝復興與巴洛克，建立歌劇傳統","《奧菲歐》（L'Orfeo, 1607）——第一部完整保存的歌劇","《波佩亞的加冕》（L'incoronazione di Poppea）","《尤里西斯返鄉》（Il ritorno d'Ulisse in patria）","提出「第二實踐」（seconda pratica）——情感優先於對位法則","八冊牧歌集，跨越兩個時期",ytl('《奧菲歐》〈Toccata〉','Monteverdi Orfeo Toccata')]},
+ {name:"巴海貝爾（Johann Pachelbel）",dates:"1653–1706，德",period:"中期",facts:["德國中部風琴學派代表","《D 大調卡農與吉格》（Canon and Gigue in D）家喻戶曉","為巴哈兄長 J.C. 巴哈（Johann Christoph Bach）的老師","作品多為宗教合唱、風琴聖詠變奏",ytl('D大調卡農','Pachelbel Canon in D')]},
+ {name:"柯瑞里（Arcangelo Corelli）",dates:"1653–1713，義",period:"中期",facts:["義大利巴洛克小提琴學派奠基者","完美定立「三重奏鳴曲」（Trio Sonata）與「大協奏曲」（Concerto Grosso）形式","作品 12 首大協奏曲 Op.6 影響韓德爾《大協奏曲》","學生眾多，貢獻小提琴演奏技法",ytl('〈耶誕協奏曲〉Op.6 No.8','Corelli Christmas Concerto Op 6 No 8')]},
+ {name:"普賽爾（Henry Purcell）",dates:"1659–1695，英",period:"中期",facts:["英國巴洛克最重要的作曲家","《狄朵與埃涅阿斯》（Dido and Aeneas）——英國第一部國民歌劇","〈狄朵的悲歌〉（Dido's Lament）為經典詠嘆調","劇場音樂、頌歌（Anthem）、室內樂兼擅","36 歲早逝，被譽為「英國的奧菲歐」",ytl('〈狄朵的悲歌〉','Purcell Dido Lament When I am laid in earth')]},
+ {name:"韋瓦第（Antonio Vivaldi）",dates:"1678–1741，義",period:"盛期",facts:["紅髮神父（Il Prete Rosso），威尼斯仁慈醫院教堂任職","小提琴協奏曲 500 餘首","《四季》（Le quattro stagioni）最著名，每首配對十四行詩","建立「快-慢-快」三樂章協奏曲格式","被視為標題音樂的先驅","作品散佚多年，20 世紀才重新獲得重視",ytl('《四季》〈春〉','Vivaldi Four Seasons Spring')+ytl('《四季》〈冬〉','Vivaldi Four Seasons Winter')]},
+ {name:"泰勒曼（Georg Philipp Telemann）",dates:"1681–1767，德",period:"盛期",facts:["巴洛克最多產作曲家（逾 3000 首作品）","巴哈摯友，當時名氣比巴哈大","《餐桌音樂》（Tafelmusik）為代表","作品橫跨歌劇、神劇、協奏曲、室內樂",ytl('《餐桌音樂》','Telemann Tafelmusik')]},
+ {name:"拉莫（Jean-Philippe Rameau）",dates:"1683–1764，法",period:"盛期",facts:["法國巴洛克晚期代表","《和聲論》（Traité de l'harmonie, 1722）——音樂理論里程碑","建立「根音」與「轉位」的和聲理論","歌劇代表：《卡斯托耳與波呂克斯》《依波利特與阿莉茜》",ytl('〈母雞〉鍵盤曲','Rameau La Poule')]},
+ {name:"巴哈（Johann Sebastian Bach）",dates:"1685–1750，德",period:"盛期",facts:["音樂之父，巴洛克音樂的集大成者","威瑪、科登、萊比錫聖多瑪斯教堂（Thomaskirche）任職","《布蘭登堡協奏曲》（Brandenburg Concertos）六首","《平均律鍵盤曲集》（Das Wohltemperierte Klavier）兩冊 48 首","《馬太受難曲》（Matthäus-Passion）；《b 小調彌撒》","《賦格的藝術》（Die Kunst der Fuge）——未完成","《音樂的奉獻》（Musikalisches Opfer）","《郭德堡變奏曲》《無伴奏小提琴／大提琴組曲》","20 名子女，C.P.E. 與 J.C. 為著名作曲家","作品編號 BWV（Bach-Werke-Verzeichnis）",ytl('《布蘭登堡》第3號','Bach Brandenburg Concerto No 3')+ytl('〈d小調觸技曲與賦格〉','Bach Toccata and Fugue D minor BWV 565')+ytl('《G弦上的詠嘆調》','Bach Air on the G String')]},
+ {name:"韓德爾（George Frideric Handel）",dates:"1685–1759，德／英",period:"盛期",facts:["神劇之父，後入英國籍（1727）","《彌賽亞》（Messiah, 1741）——24 天完成","《彌賽亞》〈哈利路亞〉合唱演出時聽眾起立的傳統由此而來","《水上音樂》（Water Music）——為英王喬治一世泰晤士河船遊","《皇家煙火》（Music for the Royal Fireworks）","歌劇 42 部；神劇 29 部","晚年失明，仍持續創作；葬於西敏寺",ytl('《彌賽亞》〈哈利路亞〉','Handel Messiah Hallelujah Chorus')+ytl('《水上音樂》組曲','Handel Water Music Suite')]},
+ {name:"D. 史卡拉第（Domenico Scarlatti）",dates:"1685–1757，義／西",period:"盛期",facts:["多明尼可·史卡拉第，亞歷山卓·史卡拉第之子","與巴哈、韓德爾同年（1685）出生——巴洛克黃金年","555 首鍵盤奏鳴曲，多為單樂章二段體","作品編號 K.（Kirkpatrick 編號）","技巧革新：雙手交叉、快速重複音、跳躍","為西班牙宮廷服務多年（影響佛朗明哥節奏入鍵盤）",ytl('K.380 E大調奏鳴曲','Domenico Scarlatti Sonata K 380')]},
+],
+},
+classical:{
+TF:[
+ {q:"古典時期重要的曲式「奏鳴曲式」由呈示部、發展部、再現部組成。",ans:true,e:"✅ 正確！奏鳴曲式三大段：呈示部（兩主題）、發展部（變化）、再現部（回主調）。"},
+ {q:"海頓被尊稱為「交響曲之父」，一生創作了 104 首交響曲。",ans:true,e:"✅ 正確！海頓 104 首交響曲，確立四樂章模式，故被尊稱為「交響曲之父」。"},
+ {q:"莫札特被稱為「神童」，三歲即能彈鋼琴，五歲開始作曲。",ans:true,e:"✅ 正確！莫札特由父親利奧波得啟蒙，三歲彈琴、五歲作曲、六歲開始全歐巡演。"},
+ {q:"貝多芬第九號交響曲《合唱》是史上第一首加入人聲的交響曲，歌詞採自席勒〈快樂頌〉。",ans:true,e:"✅ 正確！1824年首演的《合唱》交響曲第四樂章加入獨唱與合唱，歌詞為席勒〈快樂頌〉。"},
+ {q:"古典時期維也納古典三巨匠依年齡排序為：莫札特、海頓、貝多芬。",ans:false,e:"❌ 錯！正確順序：海頓（1732）→ 莫札特（1756）→ 貝多芬（1770）。海頓最年長。"},
+ {q:"貝多芬的「英雄交響曲」原本要獻給拿破崙，後因拿破崙稱帝而塗去獻詞。",ans:true,e:"✅ 正確！第三交響曲《英雄》原獻給拿破崙，1804年拿破崙稱帝後貝多芬憤而撕毀獻詞封面。"},
+ {q:"莫札特一生完成了《費加洛婚禮》《唐喬望尼》《魔笛》三部歌劇傑作。",ans:true,e:"✅ 正確！這三部與《女人皆如此》並稱莫札特四大歌劇傑作。"},
+ {q:"古典時期取代巴洛克「數字低音」的標準伴奏形式是「阿爾貝堤低音」——分解和弦伴奏。",ans:true,e:"✅ 正確！阿爾貝堤低音（Alberti bass）以分解和弦取代數字低音，是古典時期典型伴奏型態。"},
+ {q:"莫札特的《安魂曲》於 1791 年完成，是莫札特生前最後完成的作品。",ans:false,e:"❌ 錯！《安魂曲》「未完成」即逝世，由弟子蘇斯邁爾（Süssmayr）依草稿補完。"},
+ {q:"古典樂派以「主音音樂」（Homophony）為主，旋律明顯、伴奏為輔，與巴洛克的複音音樂形成對比。",ans:true,e:"✅ 正確！古典樂派以主音音樂為主——清晰旋律＋分解和弦伴奏，與巴洛克的複音形成對照。"},
+],
+MC:[
+ {q:"海頓被尊稱為「交響曲之父」與「四重奏之父」，他一生創作了多少首交響曲？",opts:["41 首","68 首","104 首","250 首"],ans:2,e:"海頓 104 首交響曲、68 首弦樂四重奏，是這兩種曲式的奠基者。"},
+ {q:"莫札特第 41 號交響曲的副題是？",opts:["《天鵝》","《朱彼特》","《巴黎》","《林茲》"],ans:1,e:"《朱彼特》交響曲（K.551）是莫札特最後一首交響曲，1788 年完成。"},
+ {q:"貝多芬的耳疾大約何時開始嚴重影響他？",opts:["20 歲左右","30 歲左右","40 歲左右","50 歲左右"],ans:1,e:"貝多芬 28-32 歲（1798-1802）耳疾惡化，1802 年留下著名的〈海里根城遺書〉。"},
+ {q:"以下哪一首是貝多芬的「鋼琴奏鳴曲」代表作？",opts:["《悲愴》","《月光》","《熱情》","以上皆是"],ans:3,e:"《悲愴》Op.13、《月光》Op.27-2、《熱情》Op.57 都是貝多芬鋼琴奏鳴曲傑作。"},
+ {q:"莫札特的歌劇《魔笛》是什麼類型？",opts:["義大利語正歌劇","法語抒情悲劇","德語歌唱劇（Singspiel）","拉丁文宗教劇"],ans:2,e:"《魔笛》（1791）為德語「歌唱劇（Singspiel）」，台詞為對白，歌唱與對白交替。"},
+ {q:"以下哪一位是「古典時期歌劇改革」的重要人物？",opts:["葛路克（Gluck）","莫札特","拉莫","蒙特威爾第"],ans:0,e:"葛路克（1714-1787）以《奧菲歐與尤莉狄絲》（1762）改革歌劇——回歸戲劇本位，反對華麗炫技。"},
+ {q:"海頓晚年寫作的兩部神劇是？",opts:["《創世紀》《四季》","《彌賽亞》《以色列在埃及》","《創世紀》《彌賽亞》","《以利亞》《保羅》"],ans:0,e:"海頓晚年神劇《創世紀》（1798）、《四季》（1801），受韓德爾英國神劇傳統啟發。"},
+ {q:"貝多芬唯一的歌劇是？",opts:["《費黛里奧》","《魔彈射手》","《魔笛》","《唐喬望尼》"],ans:0,e:"《費黛里奧》（Fidelio）是貝多芬唯一的歌劇，反覆修改三個版本，1814 年定稿。"},
+ {q:"古典時期室內樂中最重要的編制是？",opts:["鋼琴三重奏","弦樂四重奏","木管五重奏","弦樂五重奏"],ans:1,e:"弦樂四重奏（兩把小提琴＋中提琴＋大提琴）是古典樂派最重要的室內樂編制，海頓奠基。"},
+],
+WORKS:[
+ {l:"《驚愕》交響曲",r:"海頓"},{l:"《創世紀》神劇",r:"海頓"},
+ {l:"《費加洛婚禮》",r:"莫札特"},{l:"《唐喬望尼》",r:"莫札特"},
+ {l:"《魔笛》",r:"莫札特"},{l:"《安魂曲》",r:"莫札特"},
+ {l:"《朱彼特》交響曲",r:"莫札特"},{l:"《命運》交響曲",r:"貝多芬"},
+ {l:"《田園》交響曲",r:"貝多芬"},{l:"《合唱》交響曲",r:"貝多芬"},
+ {l:"《月光》奏鳴曲",r:"貝多芬"},{l:"《費黛里奧》歌劇",r:"貝多芬"},
+ {l:"《奧菲歐與尤莉狄絲》改革",r:"葛路克"},
+],
+TITLES:[
+ {l:"交響曲之父",r:"海頓"},{l:"四重奏之父",r:"海頓"},
+ {l:"音樂神童",r:"莫札特"},{l:"樂聖",r:"貝多芬"},
+ {l:"歌劇改革家",r:"葛路克"},{l:"狂飆運動代表",r:"C.P.E. 巴哈"},
+ {l:"莫札特宿敵",r:"薩里耶利"},{l:"貝多芬老師",r:"海頓"},
+ {l:"維也納古典三巨匠",r:"海頓、莫札特、貝多芬"},{l:"古典過渡浪漫",r:"貝多芬"},
+],
+REF:[
+ {name:"葛路克（Christoph W. Gluck）",dates:"1714–1787，德",period:"早期",facts:["古典時期歌劇改革家","《奧菲歐與尤莉狄絲》（Orfeo ed Euridice, 1762）標誌歌劇改革","主張：戲劇優先、回歸自然、反炫技","其他作品：《阿爾賽斯特》《伊菲珍妮在陶里斯》",ytl('〈精靈之舞〉','Gluck Dance of the Blessed Spirits')]},
+ {name:"C.P.E. 巴哈（Carl Philipp Emanuel Bach）",dates:"1714–1788，德",period:"早期",facts:["巴哈第二子，「狂飆運動（Sturm und Drang）」代表","風格情感豐沛，情緒變化劇烈","著《鍵盤樂器演奏的真實藝術》（Versuch）——古典演奏聖經","海頓、莫札特皆受其影響",ytl('Württemberg奏鳴曲','C.P.E. Bach Wurttemberg Sonatas')]},
+ {name:"海頓（Joseph Haydn）",dates:"1732–1809，奧",period:"盛期",facts:["「交響曲之父」「弦樂四重奏之父」","104 首交響曲；68 首弦樂四重奏","交響曲：第94《驚愕》、第101《時鐘》、《告別》、《軍隊》","《倫敦》交響曲（第93-104號）——晚年訪倫敦所作","弦樂四重奏：《皇帝》《雲雀》《日出》","晚年神劇《創世紀》（Die Schöpfung）、《四季》","長居艾斯特哈齊宮廷（Esterházy）","為貝多芬恩師",ytl('《驚愕》交響曲第2樂章','Haydn Surprise Symphony No 94 second movement')+ytl('〈皇帝〉四重奏第2樂章','Haydn Emperor Quartet second movement')]},
+ {name:"莫札特（Wolfgang Amadeus Mozart）",dates:"1756–1791，奧",period:"盛期",facts:["音樂神童，3 歲彈琴、5 歲作曲、6 歲全歐巡演","作品 626 首，柯歇爾編號（K. = Köchel-Verzeichnis）","41 首交響曲：第40號 g 小調、第41號《朱彼特》","27 首鋼琴協奏曲——確立古典協奏曲規範","歌劇傑作：《費加洛婚禮》《唐喬望尼》《魔笛》《女人皆如此》","《魔笛》為德語歌唱劇（Singspiel）","《安魂曲》（Requiem, K.626）未完成，享年 35","由弟子蘇斯邁爾（Süssmayr）依草稿補完",ytl('〈一首小夜曲〉','Mozart Eine kleine Nachtmusik K525')+ytl('第40號交響曲','Mozart Symphony No 40 G minor')+ytl('《魔笛》〈夜后詠嘆調〉','Mozart Magic Flute Queen of the Night')]},
+ {name:"貝多芬（Ludwig van Beethoven）",dates:"1770–1827，德",period:"盛期晚期",facts:["古典過渡浪漫的關鍵人物，「樂聖」","9 首交響曲：第3《英雄》（Eroica）、第5《命運》、第6《田園》、第9《合唱》","32 首鋼琴奏鳴曲：《悲愴》《月光》《華德斯坦》《熱情》《漢馬克拉維》","16 首弦樂四重奏（晚期五曲尤其重要）","5 首鋼琴協奏曲，第5《皇帝》最著名","唯一歌劇《費黛里奧》（Fidelio）","《D 大調小提琴協奏曲》","28 歲起耳疾惡化，留下〈海里根城遺書〉","完全失聰仍創作《合唱》交響曲、晚期四重奏",ytl('第5號〈命運〉交響曲','Beethoven Symphony No 5 Fate')+ytl('第9號〈快樂頌〉','Beethoven Symphony No 9 Ode to Joy')+ytl('〈月光〉奏鳴曲','Beethoven Moonlight Sonata')+ytl('〈給愛麗絲〉','Beethoven Für Elise')]},
+ {name:"薩里耶利（Antonio Salieri）",dates:"1750–1825，義",period:"盛期",facts:["維也納宮廷樂長，地位顯赫","與莫札特並非如電影《阿瑪迪斯》所述為毒殺對手","學生包括貝多芬、舒伯特、李斯特","作品有歌劇、宗教音樂、器樂多種",ytl('〈大序曲〉','Salieri Sinfonia')]},
+],
+},
+romantic:{
+TF:[
+ {q:"舒伯特的藝術歌曲特色是「一定用鋼琴伴奏」，鋼琴聲部輔助聲樂烘托歌手，而非只是單純的背景。",ans:true,e:"✅ 正確！舒伯特藝術歌曲中，鋼琴與聲樂同等重要，輔助烘托歌手情感。"},
+ {q:"蕭邦的馬厝卡舞曲（Mazurka）是波蘭的宮廷舞曲，具有莊嚴歡樂的氣氛，常用於宮廷跳舞場合。",ans:false,e:"❌ 錯！馬厝卡是波蘭「民間」舞曲，重拍落在第二或第三拍。波蘭舞曲（Polonaise）才是宮廷舞曲！"},
+ {q:"白遼士的《幻想》交響曲共有五個樂章，以「固定樂思」（Idée Fixe）貫穿全曲。",ans:true,e:"✅ 正確！《幻想》交響曲是標題音樂的代表，固定樂思代表所愛慕的女子在五個樂章中均出現。"},
+ {q:"李斯特是首先使用「Recital（獨奏會）」這個字的音樂家，打破以往音樂會由多人分擔演出的慣例。",ans:true,e:"✅ 正確！1840年倫敦演出，李斯特首次使用 Recital 一詞，也將鋼琴轉向成為現今演奏會的擺設位置。"},
+ {q:"華格納的歌劇稱為「樂劇」，因為他的作品只重視音樂，不重視劇本與舞台效果。",ans:false,e:"❌ 錯！華格納的樂劇強調舞台、劇本、音樂三者「並重」，是「總體藝術」（Gesamtkunstwerk）的概念！"},
+ {q:"布拉姆斯的《德意志安魂曲》是第一部以德文寫成的安魂曲（絕大部分安魂曲以拉丁文寫成）。",ans:true,e:"✅ 正確！布拉姆斯特意以德文創作，是音樂史上第一個以德文寫成的安魂曲。"},
+ {q:"威爾第的《安魂彌撒曲》與莫札特、布拉姆斯的安魂曲並稱「三大安魂曲」。",ans:true,e:"✅ 正確！三大安魂曲：莫札特《安魂曲》、威爾第《安魂彌撒曲》、布拉姆斯《德意志安魂曲》。"},
+ {q:"柴可夫斯基的三大芭蕾舞劇是《天鵝湖》《睡美人》《胡桃鉗》，其中《胡桃鉗》是聖誕節必演的劇目。",ans:true,e:"✅ 正確！三大芭蕾全部正確，《胡桃鉗》確實是每逢聖誕節、新年必演出的童話芭蕾。"},
+ {q:"普契尼的《杜蘭朵公主》故事背景在日本，並使用了「茉莉花」的旋律。",ans:false,e:"❌ 錯！《杜蘭朵公主》背景在「中國」，才使用中國民謠「茉莉花」。《蝴蝶夫人》才是日本故事！"},
+ {q:"孟德爾頌是第一位使用指揮棒的指揮家，他也創辦了萊比錫音樂院。",ans:true,e:"✅ 正確！孟德爾頌1829年重新指揮巴赫《馬太受難曲》，推廣巴赫音樂，也是首先使用指揮棒的指揮家。"},
+ {q:"馬勒的交響曲被視為「清唱劇式的交響曲」，因為他把人聲視為樂器的一部分加入交響曲中。",ans:true,e:"✅ 正確！馬勒的第2、3、4、8號交響曲都加入人聲，被視為清唱劇式的交響曲（Cantata Symphony）。"},
+ {q:"比才的《卡門》是他的最後一首歌劇，也是最後一部作品，首演後三個月他便去世了。",ans:true,e:"✅ 正確！《卡門》1875年首演，比才三個月後去世，享年36歲，是他的最後一部作品。"},
+],
+MC:[
+ {q:"舒伯特《鱒魚》鋼琴五重奏的配器組合為何？",opts:["鋼琴＋絃樂四重奏","鋼琴＋小提琴＋中提琴＋大提琴＋低音大提琴","鋼琴五手聯彈","鋼琴＋管樂四件"],ans:1,e:"《鱒魚》五重奏是鋼琴＋小提琴＋中提琴＋大提琴＋低音大提琴，注意沒有第二小提琴，但有低音大提琴！"},
+ {q:"李斯特首創的音樂形式「交響詩」英文名稱為何？",opts:["Symphonic poem","Tone painting","Programme music","Music Drama"],ans:0,e:"交響詩（Symphonic poem），又稱音詩，是李斯特首創的單樂章管絃樂形式，受白遼士標題音樂影響。"},
+ {q:"以下哪一個不是蕭邦的作品類型？",opts:["馬厝卡舞曲","波蘭舞曲","匈牙利狂想曲","夜曲"],ans:2,e:"匈牙利狂想曲（共15首）是李斯特的代表作，不是蕭邦的創作類型。"},
+ {q:"華格納「拜魯特慶典劇院」有什麼特殊舞台設計？",opts:["用黑幕遮住樂團","樂團演奏池沉入地底（神秘洞穴）","劇院可旋轉360度","用大型螢幕轉播"],ans:1,e:"樂團演奏池降低沉入地底，稱為「神秘洞穴」（Mystic Gulf），觀眾完全看不到樂團及指揮，增加神秘戲劇感。"},
+ {q:"舒曼使用哪兩個筆名分別代表個人性格的兩面？",opts:["阿波羅與戴奧尼索斯","尤斯貝歐與佛羅倫斯坦","浪漫與古典","天才與瘋狂"],ans:1,e:"尤斯貝歐（Eusebius）代表內斂優美，佛羅倫斯坦（Florestan）代表外向熱情，反映舒曼性格的兩個極端。"},
+ {q:"威爾第歌劇《那布果》中最著名的合唱曲叫什麼？",opts:["飲酒歌","飛吧，思念，乘著金色的翅膀","善變的女人","哈巴奈拉舞曲"],ans:1,e:"「飛吧，思念，乘著金色的翅膀」（Va, pensiero）是《那布果》最著名的合唱曲，也是義大利民族精神的象徵。"},
+ {q:"馬勒《大地之歌》是利用哪個國家的詩歌創作的？",opts:["日本俳句","德國民謠","中國唐詩","俄國民歌"],ans:2,e:"《大地之歌》利用中國唐詩譜寫而成，共6個樂章，其中包含李白的「悲歌行」。"},
+ {q:"聖桑《動物狂歡節》生前唯一願意公開演出的樂章是？",opts:["序曲及獅子進行曲","水族館","天鵝","化石"],ans:2,e:"第13樂章「天鵝」（Le Cygne）是聖桑生前唯一願意公開的樂章，大提琴旋律最為優美。"},
+ {q:"布拉姆斯「德國樂壇三B」的另外兩位是誰？",opts:["貝多芬與巴赫","貝多芬與白遼士","貝多芬與布魯克納","巴赫與比才"],ans:0,e:"三B：巴赫（Bach）、貝多芬（Beethoven）、布拉姆斯（Brahms）——三位都以字母B開頭！"},
+ {q:"理查·史特勞斯的「音詩」主要受到哪位作曲家的影響？",opts:["白遼士","華格納","布拉姆斯","李斯特"],ans:3,e:"理查·史特勞斯受李斯特「交響詩」影響，進一步創作強調音畫性質描繪與表達能力的「音詩」。"},
+],
+WORKS:[
+ {l:"《魔彈射手》",r:"韋伯"},{l:"《塞維亞理髮師》",r:"羅西尼"},
+ {l:"《鱒魚》五重奏",r:"舒伯特"},{l:"《幻想》交響曲",r:"白遼士"},
+ {l:"《仲夏夜之夢》",r:"孟德爾頌"},{l:"《波蘭舞曲》系列",r:"蕭邦"},
+ {l:"《詩人之戀》",r:"舒曼"},{l:"《前奏曲》交響詩",r:"李斯特"},
+ {l:"《崔斯坦與依索德》",r:"華格納"},{l:"《茶花女》",r:"威爾第"},
+ {l:"《德意志安魂曲》",r:"布拉姆斯"},{l:"《天鵝湖》",r:"柴可夫斯基"},
+ {l:"《卡門》",r:"比才"},{l:"《動物狂歡節》",r:"聖桑"},
+ {l:"《蝴蝶夫人》",r:"普契尼"},{l:"《大地之歌》",r:"馬勒"},
+],
+TITLES:[
+ {l:"藝術歌曲之王",r:"舒伯特"},{l:"鋼琴詩人",r:"蕭邦"},
+ {l:"鋼琴之王",r:"李斯特"},{l:"樂劇的宗師",r:"華格納"},
+ {l:"歌劇巨匠",r:"威爾第"},{l:"標題音樂倡導者",r:"白遼士"},
+ {l:"進行曲之王",r:"蘇沙"},{l:"圓舞曲之王",r:"小約翰·史特勞斯"},
+ {l:"輕歌劇的鼻祖",r:"奧芬巴赫"},{l:"音詩大師",r:"理查·史特勞斯"},
+ {l:"寫實主義歌劇",r:"普契尼"},{l:"清唱劇式交響曲",r:"馬勒"},
+ {l:"浪漫樂派先驅",r:"韋伯"},{l:"巴赫音樂推廣者",r:"孟德爾頌"},
+],
+REF:[
+ {name:"舒伯特（Franz Schubert）",dates:"1797–1828，奧",period:"前期",facts:["藝術歌曲（Lied）之王，作品編號用 D.（Deutsch 編號）","藝術歌曲共 600 餘首，鋼琴伴奏與聲樂同等重要","連篇歌曲：《冬之旅》（Winterreise，穆勒詩詞）《美麗的磨坊少女》","《鱒魚》（Die Forelle）五重奏：鋼琴＋小提琴＋中提琴＋大提琴＋低音大提琴","交響曲第8號《未完成》（Unvollendete）只有兩個樂章；第9號《偉大》","歌曲類型：同曲調式 / 異體同音異詞 / 貫穿全曲式（《魔王》Erlkönig 四個角色）",ytl('〈魔王〉Erlkönig','Schubert Erlkonig')+ytl('〈未完成〉交響曲','Schubert Unfinished Symphony No 8')]},
+ {name:"蕭邦（Frédéric Chopin）",dates:"1810–1849，波蘭",period:"前期",facts:["鋼琴詩人，浪漫樂派對鋼琴貢獻最大","特色：延音踏瓣、彈性速度（rubato）、裝飾音群、半音和聲","馬厝卡（Mazurka）61首：波蘭民間舞曲，重拍在第2或3拍","波蘭舞曲（Polonaise）16首：宮廷舞曲，三拍子，莊嚴歡樂","夜曲（Nocturne）21首；前奏曲（Préludes）24首","練習曲（Études）27首；敘事曲（Ballades）4首","鋼琴協奏曲 2 首（e小調、f小調）",ytl('〈夜曲〉Op.9 No.2','Chopin Nocturne Op 9 No 2')+ytl('〈離別曲〉Op.10 No.3','Chopin Etude Op 10 No 3 Tristesse')]},
+ {name:"白遼士（Hector Berlioz）",dates:"1803–1869，法",period:"前期",facts:["法國浪漫樂派先驅、標題音樂（Programme Music）倡導者","著有《管絃樂法》（Traité d'instrumentation）：第一本管絃樂教科書","《幻想》交響曲（Symphonie fantastique）5個樂章","以「固定樂思」（Idée Fixe）貫穿全曲——所愛慕女子的主題","1830 年獲羅馬大獎","將韋伯〈邀舞〉改編為管絃樂版",ytl('《幻想》第5樂章','Berlioz Symphonie fantastique fifth movement')]},
+ {name:"孟德爾頌（Felix Mendelssohn）",dates:"1809–1847，德",period:"前期",facts:["最大貢獻：1829 年重新指揮巴哈《馬太受難曲》，推廣巴洛克音樂","首先使用指揮棒的指揮家；創辦萊比錫音樂院","交響曲 5 首：第3《蘇格蘭》、第4《義大利》、第5《宗教改革》","《e小調小提琴協奏曲》——浪漫派四大小提琴協奏曲之一","鋼琴 50 首《無言歌》（Lieder ohne Worte）","管絃樂《仲夏夜之夢》（含著名〈結婚進行曲〉）","神劇《以利亞》（Elijah）",ytl('〈仲夏夜之夢〉序曲','Mendelssohn Midsummer Night Dream Overture')+ytl('〈結婚進行曲〉','Mendelssohn Wedding March')]},
+ {name:"舒曼（Robert Schumann）",dates:"1810–1856，德",period:"前期",facts:["創辦「新音樂雜誌」（Neue Zeitschrift für Musik, NZFM）","妻子克拉拉（Clara Wieck-Schumann）是傑出鋼琴家","以「尤斯貝歐（Eusebius）」與「佛羅倫斯坦（Florestan）」兩個筆名署名","連篇歌曲：《詩人之戀》（Dichterliebe）、《女人的愛情與生命》","藝術歌曲 140 首；鋼琴曲集：《狂歡節》《蝴蝶》《兒時情景》","《兒時情景》第7首〈夢幻曲〉（Träumerei）最著名",ytl('〈夢幻曲〉Träumerei','Schumann Traumerei Kinderszenen')+ytl('《狂歡節》Op.9','Schumann Carnaval Op 9')]},
+ {name:"李斯特（Franz Liszt）",dates:"1811–1886，匈",period:"中期",facts:["首創「交響詩」（Symphonic poem），受白遼士影響","1840 年於倫敦首次使用「Recital」（獨奏會）一詞","將鋼琴轉向，成為現今演奏會擺設位置；首先採用「不看譜」演出","交響詩 13 首：《前奏曲》《哈姆雷特》《馬采巴》","《匈牙利狂想曲》15首；《超技練習曲》12首","《帕格尼尼大練習曲》6首（第3首〈鐘〉La Campanella 最著名）","晚年皈依宗教，創作神劇《基督》",ytl('〈愛之夢〉第3號','Liszt Liebestraum No 3')+ytl('〈鐘〉La Campanella','Liszt La Campanella')+ytl('〈匈牙利狂想曲〉第2號','Liszt Hungarian Rhapsody No 2')]},
+ {name:"華格納（Richard Wagner）",dates:"1813–1883，德",period:"中期",facts:["樂劇（Music Drama）：舞台＋劇本＋音樂並重，「總體藝術」（Gesamtkunstwerk）概念","設計引導動機（Leitmotif），使樂團引導劇情","拜魯特慶典劇院（Bayreuther Festspielhaus）：「神秘洞穴」（Mystic Gulf）設計","六部浪漫歌劇：《漂泊的荷蘭人》《唐懷瑟》《羅恩格林》","四部樂劇：《尼貝龍根的指環》（Ring）四晚連演","《崔斯坦與依索德》（Tristan und Isolde）——半音和聲新天地","《帕西法爾》（Parsifal）——最後一部",ytl('〈女武神的騎行〉','Wagner Ride of the Valkyries')+ytl('〈崔斯坦〉前奏曲','Wagner Tristan und Isolde Prelude')]},
+ {name:"威爾第（Giuseppe Verdi）",dates:"1813–1901，義",period:"中期",facts:["19 世紀義大利歌劇頂峰，當時的愛國英雄","歌劇 26 部：《那布果》（Nabucco）——〈飛吧，思念〉合唱","《弄臣》（Rigoletto）；《茶花女》（La Traviata）；《阿依達》（Aida）","《奧泰羅》（Otello）；《法斯塔夫》（Falstaff）——最後一部喜劇","《安魂彌撒曲》列三大安魂曲之一",ytl('《茶花女》〈飲酒歌〉','Verdi La Traviata Brindisi')+ytl('《那布果》〈飛吧思念〉','Verdi Nabucco Va pensiero')+ytl('《阿依達》〈凱旋進行曲〉','Verdi Aida Triumphal March')]},
+ {name:"布拉姆斯（Johannes Brahms）",dates:"1833–1897，德",period:"中期",facts:["自稱「古典主義者」，絕對音樂提倡者","「德國樂壇三B」：巴哈（Bach）、貝多芬（Beethoven）、布拉姆斯（Brahms）","《德意志安魂曲》（Ein deutsches Requiem）——第一部以德文寫成的安魂曲","交響曲 4 首（重要性直追貝多芬九大）","《匈牙利舞曲》21 首；藝術歌曲 200 多首","《D 大調小提琴協奏曲》——浪漫四大協奏曲之一","與舒曼夫婦深厚情誼",ytl('交響曲第4號終樂章','Brahms Symphony No 4 finale')+ytl('〈匈牙利舞曲〉第5號','Brahms Hungarian Dance No 5')]},
+ {name:"柴可夫斯基（Pyotr Tchaikovsky）",dates:"1840–1893，俄",period:"晚期",facts:["風格偏向浪漫時期（介於國民樂派與西歐浪漫之間）","富梅格夫人（Madame von Meck）資助其創作 14 年","三大芭蕾：《天鵝湖》《睡美人》《胡桃鉗》（聖誕節必演）","交響曲 6 首：第 6 號《悲愴》（Pathétique）最著名","《1812 序曲》——含真砲聲","降 b 小調《第 1 號鋼琴協奏曲》","《e 小調第 5 號交響曲》","《e 小調小提琴協奏曲》",ytl('《1812 序曲》','Tchaikovsky 1812 Overture')+ytl('《胡桃鉗》〈花之圓舞曲〉','Tchaikovsky Nutcracker Waltz of the Flowers')+ytl('《天鵝湖》主題','Tchaikovsky Swan Lake theme')]},
+ {name:"聖桑（Camille Saint-Saëns）",dates:"1835–1921，法",period:"晚期",facts:["神童作曲家、管風琴大師、鋼琴家","第一位為「電影」寫作配樂的著名作曲家（1908 年）","《動物狂歡節》（Le Carnaval des Animaux）14 樂章","生前僅同意公開第13樂章〈天鵝〉（Le Cygne）","《骷髏之舞》（Danse macabre）：法國第一首交響詩","《第3號交響曲〈管風琴〉》（使用管風琴與鋼琴）",ytl('〈天鵝〉','Saint-Saens The Swan Le Cygne')+ytl('《骷髏之舞》','Saint-Saens Danse macabre')+ytl('〈管風琴〉交響曲終樂章','Saint-Saens Symphony 3 Organ finale')]},
+ {name:"普契尼（Giacomo Puccini）",dates:"1858–1924，義",period:"晚期",facts:["承接威爾第，寫實主義（Verismo）歌劇代表","《波西米亞人》（La Bohème）——含〈我的名字叫咪咪〉","《托斯卡》（Tosca）——含〈為了藝術 為了愛〉","《蝴蝶夫人》（Madama Butterfly）——日本故事","《杜蘭朵公主》（Turandot）——中國故事，使用〈茉莉花〉旋律","《杜蘭朵公主》未完成，由阿爾法諾（Alfano）補完","〈公主徹夜未眠〉（Nessun dorma）是世界最知名男高音詠嘆調之一",ytl('〈公主徹夜未眠〉','Pavarotti Nessun dorma Turandot')+ytl('《蝴蝶夫人》〈美好的一日〉','Puccini Un bel di Madama Butterfly')]},
+ {name:"馬勒（Gustav Mahler）",dates:"1860–1911，奧",period:"晚期",facts:["交響曲視為「清唱劇式的交響曲」（Cantata Symphony）","第 2、3、4、8 號交響曲皆加入人聲","《大地之歌》（Das Lied von der Erde）：採中國唐詩，含李白〈悲歌行〉","交響曲 10 首：第2《復活》；第8《千人》；第10未完成","管絃樂連篇歌曲：《青年旅人之歌》《悼亡兒之歌》","維也納宮廷歌劇院指揮，後赴紐約大都會、紐約愛樂",ytl('第5號交響曲〈Adagietto〉','Mahler Symphony 5 Adagietto')+ytl('第2號〈復活〉終樂章','Mahler Symphony 2 Resurrection finale')]},
+ {name:"理查·史特勞斯（Richard Strauss）",dates:"1864–1949，德",period:"晚期",facts:["受李斯特影響創作「音詩」（Tone poem）","音詩：《唐璜》《死與澄淨》《英雄的生涯》","《查拉圖斯特拉如是說》——電影《2001 太空漫遊》主題","《狄爾的惡作劇》（Till Eulenspiegel）","歌劇：《莎樂美》（Salome）《艾雷克塔》（Elektra）《玫瑰騎士》（Der Rosenkavalier）","晚年《四首最後歌曲》（Vier letzte Lieder）",ytl('《查拉圖斯特拉》開頭','Richard Strauss Also sprach Zarathustra opening')+ytl('《玫瑰騎士》組曲','Richard Strauss Rosenkavalier Suite')]},
+],
+},
+nationalism:{
+TF:[
+ {q:"國民樂派的核心精神是運用本國民謠、傳說、語言、歷史為素材創作，喚起民族意識。",ans:true,e:"✅ 正確！國民樂派以民族素材抗衡德奧主流音樂，喚起民族認同與文化自信。"},
+ {q:"葛令卡（Glinka）被尊稱為「俄國音樂之父」，其歌劇《為沙皇而戰》是俄國國民樂派的起點。",ans:true,e:"✅ 正確！葛令卡（1804-1857）是俄國音樂之父，《為沙皇而戰》（1836）為俄國國民樂派的開端。"},
+ {q:"「俄國五人組」由穆梭斯基、林姆斯基-高沙可夫、鮑羅定、庫宜、巴拉基列夫所組成，又稱「強力集團」。",ans:true,e:"✅ 正確！這五位非職業音樂家組成強力集團（The Mighty Handful），以民族題材對抗西歐主流。"},
+ {q:"穆梭斯基的《圖畫展覽會》原為管弦樂作品，後由拉威爾改編為鋼琴組曲。",ans:false,e:"❌ 錯！相反！《圖畫展覽會》原為「鋼琴組曲」（1874），由拉威爾於 1922 年改編為「管弦樂版本」。"},
+ {q:"史麥塔納（Smetana）的交響詩集《我的祖國》共六首，其中第二首〈莫爾道河〉最著名。",ans:true,e:"✅ 正確！《我的祖國》（Má vlast）共6首交響詩，第二首〈莫爾道河〉（Vltava）家喻戶曉。"},
+ {q:"德弗札克的《新世界》交響曲是他在巴黎時期寫成的，使用了大量法國民謠。",ans:false,e:"❌ 錯！《新世界》第九交響曲（1893）是德弗札克在「美國」紐約所作，融合美國黑人靈歌與印第安音樂元素。"},
+ {q:"葛利格（Grieg）是挪威國民樂派代表，其組曲《培爾金特》源自易卜生（Ibsen）的同名戲劇配樂。",ans:true,e:"✅ 正確！葛利格為挪威戲劇大師易卜生《培爾金特》（Peer Gynt）寫的配樂，後整理為兩套組曲。"},
+ {q:"西貝流士的《芬蘭頌》（Finlandia）成為芬蘭民族獨立運動的精神象徵。",ans:true,e:"✅ 正確！1899年《芬蘭頌》激起芬蘭人對抗俄國統治的民族情感，被視為非官方國歌。"},
+ {q:"巴爾托克（Bartók）與高大宜（Kodály）深入鄉村採集匈牙利民謠，奠定 20 世紀民族音樂學基礎。",ans:true,e:"✅ 正確！1905 年起兩人深入匈牙利、羅馬尼亞、斯洛伐克鄉村採集民謠，是現代民族音樂學先驅。"},
+ {q:"西班牙國民樂派代表是阿爾班尼士、葛拉納多斯與法雅，他們致力於展現西班牙的吉普賽、佛朗明哥特色。",ans:true,e:"✅ 正確！阿爾班尼士《依貝利亞》、葛拉納多斯《哥雅之畫》、法雅《愛情魔法師》代表西班牙國民樂派。"},
+],
+MC:[
+ {q:"「俄國五人組」中職業是化學家的作曲家是？",opts:["穆梭斯基","鮑羅定","林姆斯基-高沙可夫","庫宜"],ans:1,e:"亞歷山大·鮑羅定（Borodin, 1833-1887）是有機化學家、醫師，業餘創作。代表作《伊果王子》《在中亞的草原上》。"},
+ {q:"林姆斯基-高沙可夫的著名管弦樂組曲是？",opts:["《天方夜譚》","《行星組曲》","《圖畫展覽會》","《我的祖國》"],ans:0,e:"《天方夜譚》（Scheherazade, 1888）是林姆斯基-高沙可夫最著名的管弦樂作品，色彩斑斕。"},
+ {q:"穆梭斯基最著名的歌劇是？",opts:["《伊果王子》","《鮑里斯·郭德諾夫》","《尤金奧涅金》","《沙皇的新娘》"],ans:1,e:"《鮑里斯·郭德諾夫》（1874）改編自普希金歷史劇，俄國國民樂派歌劇代表。"},
+ {q:"德弗札克在美國時期擔任的職務是？",opts:["紐約愛樂指揮","紐約音樂院院長","耶魯大學教授","茱莉亞音樂院創辦人"],ans:1,e:"1892-1895 年德弗札克任美國紐約「國家音樂院」院長，期間創作《新世界》交響曲、《美國四重奏》。"},
+ {q:"葛利格的鋼琴協奏曲 a 小調受到哪一位作曲家的鋼琴協奏曲影響？",opts:["蕭邦","李斯特","舒曼","柴可夫斯基"],ans:2,e:"葛利格 a 小調鋼琴協奏曲（1868）深受舒曼 a 小調鋼琴協奏曲影響，調性與架構皆相近。"},
+ {q:"西貝流士的「卡列利亞組曲」素材來自？",opts:["芬蘭神話","俄國民歌","《卡列瓦拉》史詩","北極傳說"],ans:2,e:"西貝流士許多作品取材自芬蘭民族史詩《卡列瓦拉》（Kalevala），如《圖內拉的天鵝》《波赫尤拉之女》。"},
+ {q:"以下哪一位「不是」西班牙國民樂派代表？",opts:["阿爾班尼士","葛拉納多斯","法雅","薩拉沙泰"],ans:3,e:"薩拉沙泰（Sarasate）是西班牙小提琴大師，創作偏炫技風格，不算典型的西班牙國民樂派作曲家。"},
+ {q:"史麥塔納晚年失聰，但仍創作不輟，他與哪一位古典時期作曲家有相同的命運？",opts:["莫札特","海頓","貝多芬","蕭邦"],ans:2,e:"史麥塔納（1824-1884）50歲耳聾，與貝多芬命運相似，仍在失聰中完成《我的祖國》交響詩集。"},
+ {q:"以下哪一位是「英國音樂復興」國民樂派代表？",opts:["佛漢-威廉斯（Vaughan Williams）","艾爾加（Elgar）","荷爾斯特（Holst）","以上皆是"],ans:3,e:"19世紀末-20世紀初英國音樂復興：艾爾加、佛漢-威廉斯、荷爾斯特、布瑞頓，皆以英國素材創作。"},
+ {q:"鮑羅定的歌劇《伊果王子》中最著名的是？",opts:["序曲","波羅維茲舞曲","愛情二重唱","終曲合唱"],ans:1,e:"〈波羅維茲舞曲〉（Polovtsian Dances）為《伊果王子》中最著名的段落。"},
+],
+WORKS:[
+ {l:"《我的祖國》〈莫爾道河〉",r:"史麥塔納"},{l:"《新世界》交響曲",r:"德弗札克"},
+ {l:"《培爾金特》組曲",r:"葛利格"},{l:"《芬蘭頌》",r:"西貝流士"},
+ {l:"《圖畫展覽會》",r:"穆梭斯基"},{l:"《鮑里斯·郭德諾夫》",r:"穆梭斯基"},
+ {l:"《天方夜譚》",r:"林姆斯基-高沙可夫"},{l:"《伊果王子》波羅維茲舞曲",r:"鮑羅定"},
+ {l:"《為沙皇而戰》",r:"葛令卡"},{l:"《被出賣的新娘》",r:"史麥塔納"},
+ {l:"《依貝利亞》",r:"阿爾班尼士"},{l:"《哥雅之畫》",r:"葛拉納多斯"},
+ {l:"《愛情魔法師》",r:"法雅"},{l:"《行星組曲》",r:"荷爾斯特"},
+],
+TITLES:[
+ {l:"俄國音樂之父",r:"葛令卡"},{l:"五人組／強力集團",r:"巴拉基列夫"},
+ {l:"化學家作曲家",r:"鮑羅定"},{l:"管弦樂魔術師",r:"林姆斯基-高沙可夫"},
+ {l:"捷克國民樂派之父",r:"史麥塔納"},{l:"捷克新世界",r:"德弗札克"},
+ {l:"挪威國民樂派",r:"葛利格"},{l:"芬蘭民族樂魂",r:"西貝流士"},
+ {l:"匈牙利民謠採集者",r:"巴爾托克"},{l:"西班牙吉普賽風",r:"法雅"},
+ {l:"英國音樂復興",r:"艾爾加"},{l:"《卡列瓦拉》素材",r:"西貝流士"},
+],
+REF:[
+ {name:"葛令卡（Mikhail Glinka）",dates:"1804–1857，俄",period:"先驅",facts:["俄國音樂之父，國民樂派起點","《為沙皇而戰》（A Life for the Tsar, 1836）——第一部俄文歌劇","《魯斯蘭與柳德米拉》（Ruslan and Lyudmila）——民間故事素材","奠基俄式管弦色彩，影響五人組",ytl('《魯斯蘭》序曲','Glinka Ruslan and Lyudmila Overture')]},
+ {name:"史麥塔納（Bedřich Smetana）",dates:"1824–1884，捷克",period:"中期",facts:["捷克國民樂派之父","交響詩集《我的祖國》（Má vlast）6 首：","〈高堡〉〈莫爾道河〉〈薩爾卡〉〈波西米亞的草原與森林〉〈塔波爾〉〈布拉尼克〉","歌劇《被出賣的新娘》（The Bartered Bride）——捷克國民歌劇代表","50 歲失聰，仍持續創作（同貝多芬命運）",ytl('〈莫爾道河〉','Smetana Vltava Moldau')+ytl('《被出賣的新娘》序曲','Smetana Bartered Bride Overture')]},
+ {name:"巴拉基列夫（Mily Balakirev）",dates:"1837–1910，俄",period:"中期",facts:["俄國五人組（The Mighty Five / Могучая кучка）領導者","鋼琴幻想曲《伊斯拉美》（Islamey）——技巧最艱深的鋼琴曲之一","交響曲、交響詩《塔瑪拉》","推廣五人組創作理念，提攜後輩",ytl('《伊斯拉美》','Balakirev Islamey')]},
+ {name:"穆梭斯基（Modest Mussorgsky）",dates:"1839–1881，俄",period:"中期",facts:["五人組成員，最具獨創性的俄國作曲家","《圖畫展覽會》（Pictures at an Exhibition, 1874）——鋼琴組曲","拉威爾於 1922 年改編為管弦樂版本，更廣為人知","歌劇《鮑里斯·郭德諾夫》（Boris Godunov）","交響詩《荒山之夜》（Night on Bald Mountain）","42 歲早逝，許多作品由林姆斯基-高沙可夫修訂完成",ytl('《圖畫展覽會》〈基輔的大門〉','Mussorgsky Pictures at an Exhibition Great Gate of Kiev')+ytl('《荒山之夜》','Mussorgsky Night on Bald Mountain')]},
+ {name:"鮑羅定（Alexander Borodin）",dates:"1833–1887，俄",period:"中期",facts:["五人組成員，本職有機化學家、醫師","歌劇《伊果王子》（Prince Igor）——含〈波羅維茲舞曲〉","交響詩《在中亞的草原上》（In the Steppes of Central Asia）","交響曲第 2 號 b 小調《英雄》",ytl('〈波羅維茲舞曲〉','Borodin Polovtsian Dances Prince Igor')]},
+ {name:"林姆斯基-高沙可夫（Nikolai Rimsky-Korsakov）",dates:"1844–1908，俄",period:"中期",facts:["五人組成員，管弦樂法大師","《天方夜譚》（Scheherazade, 1888）交響組曲","《西班牙隨想曲》（Capriccio espagnol）","〈大黃蜂的飛行〉（出自歌劇《沙皇薩爾坦的故事》）","學生包括史特拉汶斯基、普羅高菲夫","著《管弦樂法原理》",ytl('《天方夜譚》第3樂章','Rimsky-Korsakov Scheherazade third movement')+ytl('〈大黃蜂的飛行〉','Rimsky-Korsakov Flight of the Bumblebee')]},
+ {name:"德弗札克（Antonín Dvořák）",dates:"1841–1904，捷克",period:"中期",facts:["布拉格音樂院畢業，1892-95 任紐約國家音樂院院長","第 9 交響曲《新世界》（From the New World, 1893）——融合美國素材","《b 小調大提琴協奏曲》——大提琴協奏曲經典","《斯拉夫舞曲》（Slovanské tance）兩套","弦樂四重奏《美國》（American Quartet）","受布拉姆斯提攜",ytl('〈新世界〉第4樂章','Dvorak New World Symphony fourth movement')+ytl('〈幽默曲〉','Dvorak Humoresque Op 101 No 7')]},
+ {name:"葛利格（Edvard Grieg）",dates:"1843–1907，挪威",period:"中期",facts:["挪威國民樂派代表","《培爾金特》（Peer Gynt）組曲——為易卜生（Ibsen）戲劇配樂","含〈晨景〉〈山魔王宮殿〉〈安妮特拉之舞〉〈索爾薇格之歌〉","a 小調鋼琴協奏曲（1868）——受舒曼影響","《抒情小品集》（Lyric Pieces）10 冊鋼琴曲","以挪威民謠、舞曲為素材",ytl('《培爾金特》〈山魔王宮殿〉','Grieg In the Hall of the Mountain King')+ytl('a小調鋼琴協奏曲','Grieg Piano Concerto A minor')]},
+ {name:"西貝流士（Jean Sibelius）",dates:"1865–1957，芬蘭",period:"晚期",facts:["芬蘭國民樂派代表，活躍 92 歲","交響詩《芬蘭頌》（Finlandia, 1899）——民族獨立精神象徵","交響曲 7 首；《d 小調小提琴協奏曲》","《卡列瓦拉》（Kalevala）芬蘭民族史詩素材：","《圖內拉的天鵝》《波赫尤拉之女》《塔皮歐拉》","晚年「西貝流士的沉默」——30 年不再發表新作",ytl('《芬蘭頌》','Sibelius Finlandia')+ytl('小提琴協奏曲','Sibelius Violin Concerto D minor')]},
+ {name:"巴爾托克（Béla Bartók）",dates:"1881–1945，匈",period:"晚期",facts:["匈牙利國民樂派、現代音樂大師","與高大宜（Zoltán Kodály）採集匈牙利、羅馬尼亞、斯洛伐克民謠","現代民族音樂學（Ethnomusicology）先驅","《管弦樂協奏曲》（Concerto for Orchestra, 1943）","《雙鋼琴與打擊樂奏鳴曲》","《弦樂、打擊樂與鋼片琴的音樂》","6 首弦樂四重奏——20 世紀四重奏經典","《小宇宙》（Mikrokosmos）鋼琴教材 153 首",ytl('《管弦樂協奏曲》第2樂章','Bartok Concerto for Orchestra second movement')+ytl('〈羅馬尼亞民間舞曲〉','Bartok Romanian Folk Dances')]},
+ {name:"法雅（Manuel de Falla）",dates:"1876–1946，西",period:"晚期",facts:["西班牙國民樂派代表","《愛情魔法師》（El amor brujo）含〈火祭舞〉（Ritual Fire Dance）","《三角帽》（El sombrero de tres picos）芭蕾舞劇","《西班牙花園之夜》——交響印象","融合佛朗明哥、安達魯西亞素材",ytl('〈火祭舞〉','Falla Ritual Fire Dance')+ytl('《三角帽》〈鄰居們的舞〉','Falla Three-Cornered Hat Neighbours Dance')]},
+ {name:"艾爾加（Edward Elgar）",dates:"1857–1934，英",period:"晚期",facts:["英國音樂復興奠基者","《謎語變奏曲》（Enigma Variations）——以朋友肖像為主題","《威風凜凜進行曲》（Pomp and Circumstance Marches）","第1號常用於畢業典禮","《e 小調大提琴協奏曲》——杜普蕾經典詮釋","受英國國王賞識，列爵士",ytl('《威風凜凜》第1號','Elgar Pomp and Circumstance March No 1')+ytl('〈謎語變奏曲〉〈Nimrod〉','Elgar Enigma Variations Nimrod')+ytl('大提琴協奏曲','Elgar Cello Concerto')]},
+],
+},
+modern:{
+TF:[
+ {q:"印象樂派的代表是德布西與拉威爾，他們的音樂以模糊的調性、色彩、氛圍為特色。",ans:true,e:"✅ 正確！印象樂派以全音音階、五聲音階、平行和弦、平行五度創造模糊朦朧的色彩。"},
+ {q:"德布西的《牧神的午後前奏曲》（1894）被視為印象樂派的開山之作。",ans:true,e:"✅ 正確！《牧神的午後前奏曲》依馬拉美象徵主義詩作而成，是印象樂派的劃時代作品。"},
+ {q:"史特拉汶斯基的《春之祭》（1913）在巴黎首演時引發騷動，是 20 世紀音樂史最著名的事件之一。",ans:true,e:"✅ 正確！《春之祭》以原始節奏、不協和聲響、異教題材震驚觀眾，引發爆動，成為現代音樂里程碑。"},
+ {q:"荀貝格的「十二音技法」是一種「規定 12 個音必須等次出現」的作曲方法。",ans:true,e:"✅ 正確！十二音技法（dodecaphony）將 12 個半音排成「音列」（Tone Row），確保每個音平等使用。"},
+ {q:"第二維也納樂派由荀貝格與其弟子貝爾格、魏本組成，發展無調性與十二音音樂。",ans:true,e:"✅ 正確！第二維也納樂派（Second Viennese School）：荀貝格、貝爾格、魏本。"},
+ {q:"凱吉（John Cage）的《4'33\"》整曲共 4 分 33 秒，演奏者完全不演奏任何音符。",ans:true,e:"✅ 正確！1952 年首演的《4'33\"》是偶然音樂代表作，觀眾聽到的「環境聲響」即為音樂內容。"},
+ {q:"史特拉汶斯基的創作生涯只有「俄羅斯時期」與「序列音樂時期」兩個階段。",ans:false,e:"❌ 錯！史特拉汶斯基創作分三期：俄羅斯時期（春之祭）、新古典時期（普希內拉）、序列音樂時期（晚年）。"},
+ {q:"葛拉斯（Glass）、萊許（Reich）為簡約主義（Minimalism）代表，以重複、漸進變化的音型構成音樂。",ans:true,e:"✅ 正確！簡約主義 1960s 興起於美國，特徵是反複、相位偏移、漸進變化。"},
+ {q:"電子音樂在 20 世紀後半發展迅速，現代電子合成器催生了 20 世紀末的電音文化。",ans:true,e:"✅ 正確！從具象音樂到電子合成器（Moog 1964）再到 MIDI（1983），電子音樂改變音樂創作。"},
+ {q:"蓋希文（Gershwin）的《藍色狂想曲》結合古典與爵士元素，是美國 20 世紀音樂的代表作。",ans:true,e:"✅ 正確！《藍色狂想曲》（1924）由保羅·懷特曼委託，是美國「交響爵士樂」典範。"},
+],
+MC:[
+ {q:"印象樂派最具代表性的音階手法是？",opts:["大小調系統","全音音階與五聲音階","十二音音列","微分音階"],ans:1,e:"印象樂派以全音音階（六個全音）與五聲音階（無半音）打破大小調傳統。"},
+ {q:"拉威爾最著名的管弦樂作品《波麗露》以何種特徵聞名？",opts:["快速變化","單一節奏不斷重複","強烈不和諧","無人聲合唱"],ans:1,e:"《波麗露》（1928）整首 17 分鐘只有一段旋律和一個節奏，靠配器漸進變化推進。"},
+ {q:"以下哪一位「不屬於」第二維也納樂派？",opts:["荀貝格","貝爾格","魏本","奧福（Orff）"],ans:3,e:"卡爾·奧福（Orff）以《布蘭詩歌》（Carmina Burana）聞名，並非第二維也納樂派成員。"},
+ {q:"史特拉汶斯基的三大芭蕾舞劇（俄羅斯時期）是？",opts:["火鳥、彼得洛希卡、春之祭","春之祭、玫瑰精靈、彼得洛希卡","火鳥、玫瑰精靈、達夫尼","春之祭、達夫尼、彼得洛希卡"],ans:0,e:"史特拉汶斯基為俄羅斯芭蕾舞團（迪亞吉列夫）寫的三大芭蕾：《火鳥》（1910）、《彼得洛希卡》（1911）、《春之祭》（1913）。"},
+ {q:"以下哪部作品「不是」普羅高菲夫的代表作？",opts:["《彼得與狼》","《羅密歐與茱麗葉》","《灰姑娘》","《杜蘭朵公主》"],ans:3,e:"《杜蘭朵公主》為普契尼歌劇，非普羅高菲夫作品。"},
+ {q:"梅湘（Messiaen）的鳥鳴音樂以哪一作品為代表？",opts:["《圖蘭加里拉交響曲》","《鳥誌》","《時間終了四重奏》","以上皆是"],ans:3,e:"梅湘是法國 20 世紀最具影響力作曲家：《圖蘭加里拉交響曲》《鳥誌》《時間終了四重奏》皆其代表。"},
+ {q:"美國 20 世紀作曲家蓋希文的代表作不包括？",opts:["《藍色狂想曲》","《一個美國人在巴黎》","《波吉與貝絲》","《一片小夜曲》"],ans:3,e:"《一片小夜曲》（艾尼·克萊納·克奈赫特音樂）是莫札特作品。"},
+ {q:"以下哪一位是「序列音樂（Serialism）」的全面發展者？",opts:["凱吉","布列茲（Boulez）","葛拉斯","巴爾托克"],ans:1,e:"皮耶·布列茲（Boulez）將十二音延伸為「全面序列主義」，把節奏、力度、音色都序列化。"},
+ {q:"以下哪一位「不是」簡約主義代表？",opts:["史提夫·萊許","菲利浦·葛拉斯","泰瑞·萊利","布瑞頓"],ans:3,e:"班傑明·布瑞頓（Britten）為英國作曲家（《彼得·葛萊姆》），非簡約主義。"},
+],
+WORKS:[
+ {l:"《牧神的午後前奏曲》",r:"德布西"},{l:"《大海》（La Mer）",r:"德布西"},
+ {l:"《月光》（鋼琴）",r:"德布西"},{l:"《波麗露》",r:"拉威爾"},
+ {l:"《達夫尼與克羅伊》",r:"拉威爾"},{l:"《春之祭》",r:"史特拉汶斯基"},
+ {l:"《火鳥》",r:"史特拉汶斯基"},{l:"《彼得洛希卡》",r:"史特拉汶斯基"},
+ {l:"《月光小丑》",r:"荀貝格"},{l:"《沃采克》",r:"貝爾格"},
+ {l:"《4'33\"》",r:"凱吉"},{l:"《藍色狂想曲》",r:"蓋希文"},
+ {l:"《彼得與狼》",r:"普羅高菲夫"},{l:"《圖蘭加里拉交響曲》",r:"梅湘"},
+],
+TITLES:[
+ {l:"印象樂派",r:"德布西"},{l:"管弦樂魔術師",r:"拉威爾"},
+ {l:"原始主義／新古典",r:"史特拉汶斯基"},{l:"十二音技法",r:"荀貝格"},
+ {l:"表現主義歌劇",r:"貝爾格"},{l:"極簡點描派",r:"魏本"},
+ {l:"偶然音樂",r:"凱吉"},{l:"美國交響爵士",r:"蓋希文"},
+ {l:"鳥鳴音樂",r:"梅湘"},{l:"序列音樂發展者",r:"布列茲"},
+ {l:"簡約主義",r:"萊許／葛拉斯"},{l:"蘇聯交響傳統",r:"蕭斯塔高維契"},
+ {l:"匈牙利民族＋現代",r:"巴爾托克"},{l:"《布蘭詩歌》",r:"奧福"},
+],
+REF:[
+ {name:"德布西（Claude Debussy）",dates:"1862–1918，法",period:"印象",facts:["印象樂派（Impressionism）開創者","《牧神的午後前奏曲》（Prélude à l'après-midi d'un faune, 1894）——印象樂派開山作","《大海》（La Mer）三幅交響素描","鋼琴：《貝加馬斯克組曲》（含〈月光〉Clair de Lune）","《前奏曲集》兩冊；《意象》（Images）","歌劇《佩利亞與梅麗桑》（Pelléas et Mélisande）","全音音階、五聲音階、平行和弦",ytl('〈月光〉','Debussy Clair de Lune Suite bergamasque')+ytl('《大海》第1樂章','Debussy La Mer first movement')+ytl('〈牧神的午後〉','Debussy Prelude faune')]},
+ {name:"拉威爾（Maurice Ravel）",dates:"1875–1937，法",period:"印象",facts:["印象樂派代表，但風格更精確、古典","《波麗露》（Boléro, 1928）——單一節奏 17 分鐘","《達夫尼與克羅伊》（Daphnis et Chloé）芭蕾","《G 大調鋼琴協奏曲》《左手鋼琴協奏曲》","《死公主之孔雀舞曲》《水之嬉戲》","改編穆梭斯基《圖畫展覽會》為管弦樂版（1922）",ytl('《波麗露》','Ravel Bolero')+ytl('〈死公主孔雀舞曲〉','Ravel Pavane pour une infante defunte')+ytl('《達夫尼與克羅伊》第二組曲','Ravel Daphnis et Chloe Suite No 2')]},
+ {name:"荀貝格（Arnold Schoenberg）",dates:"1874–1951，奧／美",period:"表現主義",facts:["第二維也納樂派（Second Viennese School）領袖","《昇華之夜》（Verklärte Nacht）——早期晚浪漫","《月光小丑》（Pierrot Lunaire, 1912）——說唱（Sprechstimme）","發展十二音技法（dodecaphony, 1923 起）","《華沙倖存者》（A Survivor from Warsaw）——納粹大屠殺主題","美國加州大學任教，影響深遠",ytl('《昇華之夜》','Schoenberg Verklarte Nacht')+ytl('《月光小丑》','Schoenberg Pierrot Lunaire')]},
+ {name:"貝爾格（Alban Berg）",dates:"1885–1935，奧",period:"表現主義",facts:["第二維也納樂派，荀貝格學生","歌劇《沃采克》（Wozzeck, 1925）——表現主義歌劇代表","歌劇《露露》（Lulu）——未完成","《小提琴協奏曲》「獻給天使的回憶」（紀念馬勒的繼女）","結合十二音與抒情浪漫感",ytl('《沃采克》第3幕','Berg Wozzeck Act 3')+ytl('小提琴協奏曲第2樂章','Berg Violin Concerto second movement')]},
+ {name:"魏本（Anton Webern）",dates:"1883–1945，奧",period:"表現主義",facts:["第二維也納樂派，荀貝格學生","作品極為簡短、精煉，「點描派」（Pointillism）風格","「音色旋律」（Klangfarbenmelodie）開創者","《六首管弦樂小品》（Op.6）《交響曲 Op.21》","二戰末期被美軍誤殺","序列音樂與布列茲的影響源頭",ytl('《六首管弦樂小品》Op.6','Webern Six Pieces for Orchestra Op 6')]},
+ {name:"史特拉汶斯基（Igor Stravinsky）",dates:"1882–1971，俄／法／美",period:"原始／新古典／序列",facts:["20 世紀最具影響力作曲家之一","俄羅斯時期（原始主義）：《火鳥》（Firebird, 1910）","《彼得洛希卡》（Petrushka, 1911）","《春之祭》（Le Sacre du printemps, 1913）——首演引發暴動","新古典時期：《普希內拉》（Pulcinella）《詩篇交響曲》","序列音樂時期：《阿貢》（Agon）《安魂頌歌》","與俄羅斯芭蕾舞團（迪亞吉列夫 Diaghilev）合作",ytl('《春之祭》〈獻祭舞〉','Stravinsky Rite of Spring Sacrificial Dance')+ytl('《火鳥》組曲','Stravinsky Firebird Suite')+ytl('《彼得洛希卡》','Stravinsky Petrushka')]},
+ {name:"巴爾托克（Béla Bartók）",dates:"1881–1945，匈／美",period:"民族＋現代",facts:["匈牙利民謠採集者，現代主義代表","《管弦樂協奏曲》（Concerto for Orchestra, 1943）","《雙鋼琴與打擊樂奏鳴曲》","《弦樂、打擊樂與鋼片琴的音樂》","6 首弦樂四重奏——20 世紀經典","《小宇宙》（Mikrokosmos）鋼琴教材 153 首","逃離納粹至美國，1945 病逝紐約",ytl('《管弦樂協奏曲》第2樂章','Bartok Concerto for Orchestra second movement')+ytl('《小宇宙》〈保加利亞節奏〉','Bartok Mikrokosmos Bulgarian Rhythm')]},
+ {name:"普羅高菲夫（Sergei Prokofiev）",dates:"1891–1953，俄",period:"蘇聯",facts:["《古典交響曲》（第1號 D 大調）——新古典代表","《彼得與狼》（Peter and the Wolf）——音樂教育經典","《羅密歐與茱麗葉》《灰姑娘》芭蕾","5 首鋼琴協奏曲、9 首鋼琴奏鳴曲","與蕭斯塔高維契同為蘇聯雙傑","與史達林同日逝世（1953/3/5）",ytl('《彼得與狼》','Prokofiev Peter and the Wolf')+ytl('〈羅茱〉〈騎士之舞〉','Prokofiev Dance of the Knights Romeo Juliet')]},
+ {name:"蕭斯塔高維契（Dmitri Shostakovich）",dates:"1906–1975，俄",period:"蘇聯",facts:["蘇聯交響曲傳統代表","15 首交響曲；15 首弦樂四重奏","第 5 號交響曲〈一位蘇維埃藝術家的回應〉","第 7 號《列寧格勒》——二戰圍城紀念","與史達林政權的複雜關係，作品常具雙重性","DSCH 動機（D-Es-C-H = D-降E-C-B）為個人簽名",ytl('第5號交響曲終樂章','Shostakovich Symphony No 5 fourth movement')+ytl('第7號《列寧格勒》','Shostakovich Symphony 7 Leningrad')]},
+ {name:"梅湘（Olivier Messiaen）",dates:"1908–1992，法",period:"後現代",facts:["20 世紀法國最具影響力作曲家","虔誠天主教徒，作品多宗教主題","《圖蘭加里拉交響曲》（Turangalîla-Symphonie）","《時間終了四重奏》（Quatuor pour la fin du temps）——戰俘營中作","《鳥誌》（Catalogue d'oiseaux）——採集鳥鳴入樂","序列音樂奠基者，學生包括布列茲（Boulez）、史托克豪森（Stockhausen）",ytl('《時間終了四重奏》','Messiaen Quartet for the End of Time')+ytl('《圖蘭加里拉》第5樂章','Messiaen Turangalila fifth movement')]},
+ {name:"凱吉（John Cage）",dates:"1912–1992，美",period:"後現代",facts:["偶然音樂（Chance Music / Aleatoric Music）代表","《4'33\"》（1952）——無聲音樂","《加裝鋼琴》（Prepared Piano）——將螺絲、橡膠夾入琴弦","禪宗、《易經》（I Ching）深深影響其創作","實驗音樂的精神領袖",ytl('〈4 分 33 秒〉','John Cage 4 33 performance')+ytl('〈加裝鋼琴〉奏鳴曲','Cage Sonatas and Interludes prepared piano')]},
+ {name:"萊許／葛拉斯（Reich / Glass）",dates:"1936／1937–，美",period:"簡約",facts:["簡約主義（Minimalism）代表","萊許（Steve Reich）《將會下雨》《十八位音樂家的音樂》","萊許〈不同的火車〉——磁帶與弦樂四重奏","葛拉斯（Philip Glass）歌劇《沙灘上的愛因斯坦》《阿肯那頓》","葛拉斯電影配樂：《楚門的世界》《時時刻刻》《看狗在說話》","重複＋相位偏移（phase shifting）＋漸進變化",ytl('萊許《十八位音樂家》','Steve Reich Music for 18 Musicians')+ytl('葛拉斯《沙灘上愛因斯坦》','Philip Glass Einstein on the Beach')+ytl('葛拉斯〈時時刻刻〉','Philip Glass The Hours soundtrack')]},
+ {name:"蓋希文（George Gershwin）",dates:"1898–1937，美",period:"美國",facts:["古典與爵士融合代表","《藍色狂想曲》（Rhapsody in Blue, 1924）——交響爵士樂","《一個美國人在巴黎》（An American in Paris）","歌劇《波吉與貝絲》（Porgy and Bess）——含〈Summertime〉","受拉威爾欣賞，但拉威爾拒收為徒",ytl('《藍色狂想曲》','Gershwin Rhapsody in Blue')+ytl('〈Summertime〉','Gershwin Summertime Porgy and Bess')+ytl('《一個美國人在巴黎》','Gershwin American in Paris')]},
+],
+},
+};
+
+function sfl(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function pk(a,n){return sfl(a).slice(0,Math.min(n,a.length));}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+let curEra=null,mode=null,gs={};
+const app=document.getElementById('app');
+
+function pb(tot,cur){return '<div class="prog-bar">'+Array.from({length:tot},(_,i)=>`<div class="prog-seg ${i<cur?'pd':i===cur?'pc':''}"></div>`).join('')+'</div>';}
+
+function showEras(){
+ curEra=null;mode=null;
+ const cards=ERAS.map(e=>`<div class="era-btn" style="--ec:${e.color}" onclick="enterEra('${e.id}')"><div class="eicon">${e.icon}</div><div class="elabel">${e.name}</div><span class="eyrs">${e.sub}</span></div>`).join('');
+ app.innerHTML=`<div class="era-grid">${cards}</div><div class="tip">🎼 點選任一樂派 → 選擇學習模式（速查手冊 / 時間軸 / 是非題 / 選擇題 / 作品配對 / 稱號配對）→ 隨時可返回挑戰其他樂派！</div>`;
+}
+
+function enterEra(id){
+ curEra=id;mode=null;
+ const era=ERAS.find(e=>e.id===id);
+ const banner=`<div class="era-banner" style="--ec:${era.color}"><h2>${era.icon} ${era.name}</h2><span class="esub">${era.sub}</span><div class="eintro">${era.intro}</div></div>`;
+ const topBar=`<div class="top-bar"><button class="back-btn" onclick="showEras()">← 樂派總覽</button></div>`;
+ const modes=`<div class="mode-grid">
+ <div class="mode-btn" onclick="sm('intro')"><div class="micon">🎯</div><div class="mlabel">樂派導覽</div><div class="mdesc">特色與必聽</div></div>
+ <div class="mode-btn" onclick="sm('rf')"><div class="micon">📖</div><div class="mlabel">速查手冊</div><div class="mdesc">作曲家重點</div></div>
+ <div class="mode-btn" onclick="sm('tl')"><div class="micon">🕒</div><div class="mlabel">時間軸</div><div class="mdesc">大事年表</div></div>
+ <div class="mode-btn" onclick="sm('tf')"><div class="micon">⭕</div><div class="mlabel">是非題</div><div class="mdesc">真假判斷</div></div>
+ <div class="mode-btn" onclick="sm('mc')"><div class="micon">📝</div><div class="mlabel">選擇題</div><div class="mdesc">四選一</div></div>
+ <div class="mode-btn" onclick="sm('mW')"><div class="micon">🎵</div><div class="mlabel">作品配對</div><div class="mdesc">作品→人物</div></div>
+ <div class="mode-btn" onclick="sm('mT')"><div class="micon">👑</div><div class="mlabel">稱號配對</div><div class="mdesc">稱號→人物</div></div>
+ </div>`;
+ const tip=`<div class="tip">💡 建議順序：速查手冊 → 時間軸 → 是非題 → 選擇題 → 配對遊戲，循序漸進掌握「${era.name}」的重點！</div>`;
+ app.innerHTML=topBar+banner+modes+tip;
+}
+
+function sm(m){
+ mode=m;
+ if(m==='tf')iTF();
+ else if(m==='mc')iMC();
+ else if(m==='mW'||m==='mT')iMT();
+ else if(m==='rf')showRef();
+ else if(m==='tl')showTL();
+ else if(m==='intro')showIntro();
+}
+
+function showIntro(){
+ const era=ERAS.find(e=>e.id===curEra);
+ const d=INTROS[curEra];
+ if(!d){app.innerHTML='<div class="card">資料準備中</div>';return;}
+ const c=era.color;
+ const bg=`<div class="intro-sec"><div class="intro-h" style="--ec:${c}">📜 時代背景</div><div class="intro-body">${d.bg}</div></div>`;
+ const ft=`<div class="intro-sec"><div class="intro-h" style="--ec:${c}">🎼 音樂特色</div><div class="feat-grid">${d.features.map(x=>`<div class="feat-card"><div class="ft">${x.f}</div><div class="fd">${x.d}</div></div>`).join('')}</div></div>`;
+ const gn=`<div class="intro-sec"><div class="intro-h" style="--ec:${c}">🎵 重要曲種／形式</div><div class="feat-grid">${d.genres.map(x=>`<div class="feat-card"><div class="ft">${x.n}</div><div class="fd">${x.d}</div></div>`).join('')}</div></div>`;
+ const tm=`<div class="intro-sec"><div class="intro-h" style="--ec:${c}">📚 重要術語</div><div class="term-grid">${d.terms.map(x=>`<div class="term-card"><div class="tt">${x.t}</div><div class="tz">${x.z}</div></div>`).join('')}</div></div>`;
+ const ls=`<div class="intro-sec"><div class="intro-h" style="--ec:${c}">🎬 必聽曲目（點 ▶ 連結至 YouTube）</div><div>${d.listen.map(x=>`<div class="listen-item"><div class="listen-title">${x.t}</div><div class="listen-comp">${x.c}</div>${ytl('YouTube 搜尋',x.q)}</div>`).join('')}</div></div>`;
+ app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title">🎯 ${era.name} 樂派導覽</span></div>${bg}${ft}${gn}${tm}${ls}`;
+}
+
+function showResult(s,t){
+ const p=Math.round(s/t*100);
+ const ic=p>=90?"🏆":p>=70?"⭐":"🎵";
+ const st=p>=90?"完美 KO!":p>=70?"還不錯!":"再加油!";
+ app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回樂派</button><button class="restart-btn" onclick="sm('${mode}')">↺ 再玩一次</button></div><div class="card"><div class="result-box"><div class="ri">${ic}</div><div class="rs">${st}</div><div class="rsc">得分 ${s} / ${t}</div><div class="rp">正確率 ${p}%</div></div></div>`;
+}
+
+function getD(){return DATA[curEra];}
+
+function iTF(){const d=getD();gs={qs:sfl(d.TF).slice(0,Math.min(10,d.TF.length)),i:0,s:0,a:null};rTF();}
+function rTF(){
+ const{qs,i,s,a}=gs;
+ if(i>=qs.length){showResult(s,qs.length);return;}
+ const q=qs[i];
+ let t0='',t1='';
+ if(a!==null){t0=q.ans===true?'tc':(a===true?'tw':'');t1=q.ans===false?'tc':(a===false?'tw':'');}
+ const ex=a!==null?`<div class="explain ${a===q.ans?'eo':'en'}"><span class="${a===q.ans?'eho':'ehn'}">${a===q.ans?'✅ 答對啦！':'❌ 答錯了'}</span>${q.e}<button class="next-btn" onclick="nTF()">${i+1<qs.length?'下一題 →':'查看結果 ✨'}</button></div>`:'';
+ app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title">⭕ 是非題</span><button class="restart-btn" onclick="iTF()">↺ 重來</button></div>${pb(qs.length,i)}<div class="stat-row"><div class="chip">第 <strong>${i+1}</strong>/${qs.length} 題</div><div class="chip">答對 <strong>${s}</strong></div></div><div class="card"><div class="q-box">${q.q}</div><div class="tf-btns"><button class="tf-btn ${t0}" ${a!==null?'disabled':''} onclick="aTF(true)">○ 正確</button><button class="tf-btn ${t1}" ${a!==null?'disabled':''} onclick="aTF(false)">✗ 錯誤</button></div>${ex}</div>`;
+}
+function aTF(v){if(gs.a!==null)return;const ok=v===gs.qs[gs.i].ans;gs.a=v;if(ok)gs.s++;rTF();}
+function nTF(){gs.i++;gs.a=null;rTF();}
+
+function iMC(){const d=getD();gs={qs:sfl(d.MC).slice(0,Math.min(8,d.MC.length)),i:0,s:0,c:null};rMC();}
+function rMC(){
+ const{qs,i,s,c}=gs;
+ if(i>=qs.length){showResult(s,qs.length);return;}
+ const q=qs[i];
+ const ob=q.opts.map((o,j)=>{let cl='';if(c!==null){cl=j===q.ans?'mc':(j===c?'mw':'');}return`<button class="mc-btn ${cl}" ${c!==null?'disabled':''} onclick="cMC(${j})"><span class="abadge">${['A','B','C','D'][j]}</span>${o}</button>`;}).join('');
+ const ex=c!==null?`<div class="explain ${c===q.ans?'eo':'en'}"><span class="${c===q.ans?'eho':'ehn'}">${c===q.ans?'✅ 答對啦！':'❌ 答錯了'}</span>${q.e}<button class="next-btn" onclick="nMC()">${i+1<qs.length?'下一題 →':'查看結果 ✨'}</button></div>`:'';
+ app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title">📝 選擇題</span><button class="restart-btn" onclick="iMC()">↺ 重來</button></div>${pb(qs.length,i)}<div class="stat-row"><div class="chip">第 <strong>${i+1}</strong>/${qs.length} 題</div><div class="chip">答對 <strong>${s}</strong></div></div><div class="card"><div class="q-box">${q.q}</div>${ob}${ex}</div>`;
+}
+function cMC(j){if(gs.c!==null)return;gs.c=j;if(j===gs.qs[gs.i].ans)gs.s++;rMC();}
+function nMC(){gs.i++;gs.c=null;rMC();}
+
+function iMT(){
+ const d=getD();
+ const src=mode==='mW'?d.WORKS:d.TITLES;
+ const n=Math.min(8,src.length);
+ const pairs=pk(src,n);
+ gs={pairs,L:sfl(pairs.map(p=>p.l)),R:sfl(pairs.map(p=>p.r)),lS:null,rS:null,M:{},W:{},s:0,at:0};
+ rMT();
+}
+function rMT(){
+ const{pairs,L,R,lS,rS,M,W,s,at}=gs;
+ const lbl=mode==='mW'?'🎵 作品配對':'👑 稱號配對';
+ const lhdr=mode==='mW'?'作　品':'稱　號';
+ function mi(v,sd,idx){
+ const isSel=sd==='L'?lS===v:rS===v;
+ const isM=M[v],isW=W[v];
+ let cl='mi';
+ if(isM)cl+=' mi-m';else if(isW)cl+=' mi-w';else if(isSel)cl+=' mi-s';
+ const oc=isM?'':` onclick="selM('${sd}',${idx})"`;
+ return`<div class="${cl}"${oc}>${esc(v)}</div>`;
+ }
+ let cells='';
+ const n=Math.max(L.length,R.length);
+ for(let i=0;i<n;i++){if(L[i])cells+=mi(L[i],'L',i);if(R[i])cells+=mi(R[i],'R',i);}
+ const dm=s===pairs.length?`<div class="done-msg">🎉 全部配對完成！共嘗試 ${at} 次</div>`:'';
+ app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title">${lbl}</span><button class="restart-btn" onclick="iMT()">↺ 重來</button></div><div class="stat-row"><div class="chip">已配對 <strong>${s}</strong>/${pairs.length}</div><div class="chip">嘗試 <strong>${at}</strong> 次</div></div><div class="card"><div class="match-hdr"><div>${lhdr}</div><div>人 物 ／ 出 處</div></div><div class="match-grid">${cells}</div>${dm}</div>`;
+}
+function selM(sd,idx){
+ const g=gs;
+ const v=sd==='L'?g.L[idx]:g.R[idx];
+ if(!v||g.M[v])return;
+ if(sd==='L')g.lS=g.lS===v?null:v;
+ else g.rS=g.rS===v?null:v;
+ if(g.lS&&g.rS){
+ const p=g.pairs.find(x=>x.l===g.lS);
+ const ok=p&&p.r===g.rS;
+ g.at++;
+ if(ok){g.M[g.lS]=true;g.M[g.rS]=true;g.s++;g.lS=null;g.rS=null;g.W={};}
+ else{g.W={[g.lS]:true,[g.rS]:true};setTimeout(()=>{g.W={};g.lS=null;g.rS=null;rMT();},700);}
+ }
+ rMT();
+}
+
+function showRef(){
+ const era=ERAS.find(e=>e.id===curEra);
+ const d=getD();
+ const items=d.REF.map((c,i)=>{
+ return`<div class="ref-item"><div class="ref-head" onclick="tgRef(${i})"><div class="ref-av" style="background:${era.color}">${c.name[0]}</div><div style="flex:1"><div class="ref-name">${c.name}</div><div class="ref-sub">${c.dates}</div></div><div class="ref-badge" style="background:${era.color}">${c.period}</div><div class="ref-arr" id="a${i}">▼</div></div><div id="b${i}" style="display:none"><ul class="ref-body">${c.facts.map(f=>`<li>${f}</li>`).join('')}</ul></div></div>`;
+ }).join('');
+ app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title">📖 速查手冊</span></div><div class="card"><div style="font-size:.78rem;color:#666;margin-bottom:10px;font-weight:600">點擊作曲家展開重點整理</div>${items}</div>`;
+}
+function tgRef(i){
+ const b=document.getElementById('b'+i);
+ const a=document.getElementById('a'+i);
+ if(!b)return;
+ const o=b.style.display!=='none';
+ b.style.display=o?'none':'block';
+ if(a)a.textContent=o?'▼':'▲';
+}
+
+function showTL(){
+ const era=ERAS.find(e=>e.id===curEra);
+ const items=era.TIMELINE.map(t=>`<div class="tl-item"><span class="tl-yr">${t.y}</span><div class="tl-tx">${t.t}</div></div>`).join('');
+ app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title">🕒 時間軸</span></div><div class="card" style="--ec:${era.color}"><div style="font-size:.8rem;color:#666;margin-bottom:10px;text-align:center;font-weight:700">${era.sub}</div><div class="tl">${items}</div></div>`;
+}
+
+showEras();
+</script>
+</body>
+</html>

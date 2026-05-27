@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>音樂史 · 莊敬音樂科學習互動平台</title>
+<link rel="stylesheet" href="../assets/css/shared.css">
+<style>
+.page-hero{background:
+  radial-gradient(ellipse at 20% 60%,rgba(192,57,43,.08) 0,transparent 55%),
+  radial-gradient(ellipse at 80% 30%,rgba(212,146,10,.06) 0,transparent 55%),
+  repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(160,100,40,.05) 39px,rgba(160,100,40,.05) 40px);
+}
+.page-hero h1{color:var(--accent-history);}
+.timeline-bar{
+  display:flex;align-items:center;gap:0;overflow-x:auto;
+  padding:16px 20px;max-width:900px;margin:0 auto;
+  scrollbar-width:none;
+}
+.tl-seg{
+  flex:1;min-width:80px;text-align:center;padding:10px 6px;
+  border-top:3px solid var(--border);position:relative;cursor:default;
+}
+.tl-seg::before{
+  content:'';position:absolute;top:-8px;left:50%;transform:translateX(-50%);
+  width:13px;height:13px;border-radius:50%;
+  background:var(--ec,var(--border));border:2px solid #fff;
+  box-shadow:0 0 0 2px var(--ec,var(--border));
+}
+.tl-yr{font-size:.6rem;font-weight:700;color:var(--text3);}
+.tl-name{font-size:.68rem;font-weight:700;color:var(--ec,var(--text2));margin-top:3px;}
+
+/* TEACHER RESOURCES BANNER */
+.teacher-banner{
+  margin:0 20px 8px;padding:14px 20px;border-radius:var(--radius);
+  background:linear-gradient(135deg,rgba(46,125,107,.08),rgba(52,197,160,.04));
+  border:1.5px solid rgba(46,125,107,.25);
+  display:flex;align-items:center;gap:12px;
+}
+.tb-icon{font-size:1.6rem;}
+.tb-text{flex:1;}
+.tb-title{font-weight:700;font-size:.88rem;color:#1E7A4A;}
+.tb-desc{font-size:.74rem;color:var(--text2);margin-top:2px;}
+.tb-btn{
+  padding:7px 16px;border-radius:20px;background:#1E7A4A;
+  color:#fff;text-decoration:none;font-size:.76rem;font-weight:700;
+  flex-shrink:0;transition:all .15s;
+}
+.tb-btn:hover{opacity:.85;}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="../index.html" class="nav-logo"><span>🎵</span>莊敬音樂科</a>
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link home">首頁</a>
+    <a href="index.html" class="nav-link active-h">音樂史</a>
+    <a href="../theory/index.html" class="nav-link">樂理</a>
+    <a href="teacher-resources.html" class="nav-link">教師資源</a>
+  </div>
+
+  <div id="nav-auth" style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+    <button id="login-btn" onclick="teacherLogin()" style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;border:1.5px solid var(--border,rgba(0,0,0,.12));background:#fff;cursor:pointer;font-size:.78rem;font-weight:700;font-family:inherit;">👤 教師登入</button>
+    <div id="user-info" style="display:none;align-items:center;gap:8px;">
+      <span style="font-size:.78rem;font-weight:700;">👋 <span id="user-name"></span></span>
+      <button onclick="teacherLogout()" style="padding:4px 10px;border-radius:12px;border:1.5px solid rgba(0,0,0,.12);background:transparent;cursor:pointer;font-size:.7rem;font-family:inherit;">登出</button>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb"><a href="../index.html">首頁</a><span>/</span>音樂史</div>
+
+<div class="page-hero">
+  <div class="hero-tag history">MUSIC HISTORY</div>
+  <h1>音樂史</h1>
+  <p>從遠古到現代，橫跨東西方的音樂文化旅程</p>
+</div>
+
+<!-- TIMELINE BAR (西洋) -->
+<div class="timeline-bar">
+  <div class="tl-seg" style="--ec:#8B4513"><div class="tl-yr">中世紀</div><div class="tl-name">Medieval</div></div>
+  <div class="tl-seg" style="--ec:#8B6914"><div class="tl-yr">文藝復興</div><div class="tl-name">Renaissance</div></div>
+  <div class="tl-seg" style="--ec:#C0392B"><div class="tl-yr">巴洛克</div><div class="tl-name">Baroque</div></div>
+  <div class="tl-seg" style="--ec:#1B5E8A"><div class="tl-yr">古典</div><div class="tl-name">Classical</div></div>
+  <div class="tl-seg" style="--ec:#5B2D8E"><div class="tl-yr">浪漫</div><div class="tl-name">Romantic</div></div>
+  <div class="tl-seg" style="--ec:#1E7A4A"><div class="tl-yr">現代</div><div class="tl-name">Modern</div></div>
+</div>
+
+<!-- TEACHER BANNER -->
+<div class="teacher-banner">
+  <div class="tb-icon">📁</div>
+  <div class="tb-text">
+    <div class="tb-title">教師資料庫</div>
+    <div class="tb-desc">老師上傳的補充講義、影片連結與參考資料，隨時更新</div>
+  </div>
+  <a href="teacher-resources.html" class="tb-btn">查看資料 →</a>
+</div>
+
+<!-- UNITS -->
+<div class="section-title h">音樂史單元</div>
+<div class="unit-grid max-w" style="padding-left:20px;padding-right:20px;">
+
+  <a href="western-music.html" class="unit-card history-card" data-unit-id="western">
+    <div class="unit-icon">🎻</div>
+    <div class="unit-num">UNIT H-01</div>
+    <div class="unit-name">西洋音樂史</div>
+    <div class="unit-desc">從中世紀到現代，認識歐洲八大音樂時期的風格與代表作曲家</div>
+    <div class="unit-badge h">6大時期 · 測驗</div>
+    <div class="unit-progress">
+      <div class="up-dot"></div><div class="up-dot"></div><div class="up-dot"></div>
+    </div>
+  </a>
+
+  <a href="world-music.html" class="unit-card history-card" data-unit-id="world">
+    <div class="unit-icon">🌏</div>
+    <div class="unit-num">UNIT H-02</div>
+    <div class="unit-name">世界音樂</div>
+    <div class="unit-desc">東亞、東南亞、南亞、中東、非洲、美洲各地的音樂文化特色</div>
+    <div class="unit-badge h">7地區 · 測驗</div>
+    <div class="unit-progress">
+      <div class="up-dot"></div><div class="up-dot"></div><div class="up-dot"></div>
+    </div>
+  </a>
+
+  <a href="taiwan-indigenous.html" class="unit-card history-card" data-unit-id="indigenous">
+    <div class="unit-icon">🪘</div>
+    <div class="unit-num">UNIT H-03</div>
+    <div class="unit-name">台灣原住民音樂</div>
+    <div class="unit-desc">16族原住民的音樂特色、樂器與祭典歌謠，認識台灣本土音樂根源</div>
+    <div class="unit-badge h">16族 · 測驗</div>
+    <div class="unit-progress">
+      <div class="up-dot"></div><div class="up-dot"></div><div class="up-dot"></div>
+    </div>
+  </a>
+
+  <a href="taiwan-music.html" class="unit-card history-card" data-unit-id="taiwan">
+    <div class="unit-icon">🎭</div>
+    <div class="unit-num">UNIT H-04</div>
+    <div class="unit-name">戲曲與台灣音樂史</div>
+    <div class="unit-desc">歌仔戲、北管、南管、布袋戲，以及台灣流行音樂的發展脈絡</div>
+    <div class="unit-badge h">傳統戲曲 · 測驗</div>
+    <div class="unit-progress">
+      <div class="up-dot"></div><div class="up-dot"></div><div class="up-dot"></div>
+    </div>
+  </a>
+
+  <a href="chinese-music.html" class="unit-card history-card" data-unit-id="chinese">
+    <div class="unit-icon">🏯</div>
+    <div class="unit-num">UNIT H-05</div>
+    <div class="unit-name">中國音樂史</div>
+    <div class="unit-desc">從遠古樂舞到近現代，認識中國音樂歷史脈絡、宮廷音樂與民間音樂</div>
+    <div class="unit-badge h">各朝代 · 測驗</div>
+    <div class="unit-progress">
+      <div class="up-dot"></div><div class="up-dot"></div><div class="up-dot"></div>
+    </div>
+  </a>
+
+  <a href="chinese-instruments.html" class="unit-card history-card" data-unit-id="chinstruments">
+    <div class="unit-icon">🪕</div>
+    <div class="unit-num">UNIT H-06</div>
+    <div class="unit-name">中國樂器概論</div>
+    <div class="unit-desc">吹、拉、彈、打四大類樂器的分類、構造與代表樂器介紹</div>
+    <div class="unit-badge h">四大類 · 測驗</div>
+    <div class="unit-progress">
+      <div class="up-dot"></div><div class="up-dot"></div><div class="up-dot"></div>
+    </div>
+  </a>
+
+  <a href="teacher-resources.html" class="unit-card history-card" data-unit-id="teacher-h" style="border-style:dashed;opacity:.85;">
+    <div class="unit-icon">📁</div>
+    <div class="unit-num">資料庫</div>
+    <div class="unit-name">老師資料庫</div>
+    <div class="unit-desc">老師上傳的補充資料、講義與影片，分類整理隨時查閱</div>
+    <div class="unit-badge h">教師上傳</div>
+  </a>
+
+</div>
+
+<div id="ai-messages"></div>
+    
+    
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>window.UNIT_CONTEXT="音樂史總覽";</script>
+<script src="../assets/js/shared.js"></script>
+</body>
+</html>

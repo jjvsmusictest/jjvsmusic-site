@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中國音樂史互動學習 · 音樂知識彙編</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+body{
+  background:#FDF6EC;
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(180,120,60,.12) 39px,rgba(180,120,60,.12) 40px),
+    repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(180,120,60,.12) 39px,rgba(180,120,60,.12) 40px);
+  font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;
+  color:#1a1a1a;padding:16px;min-height:100vh;font-weight:500
+}
+.hd{text-align:center;margin-bottom:18px;position:relative}
+h1{
+  display:inline-block;font-size:1.9rem;color:#fff;
+  background:linear-gradient(135deg,#8B1A1A,#C0392B);
+  padding:10px 26px;border:3px solid #5D0E0E;border-radius:4px;
+  box-shadow:5px 5px 0 #5D0E0E;font-weight:900;
+  letter-spacing:.12em;line-height:1.25;font-family:'Noto Serif TC',serif;
+  position:relative
+}
+h1::before,h1::after{content:'❧';position:absolute;top:50%;transform:translateY(-50%);font-size:1.2rem;opacity:.7}
+h1::before{left:8px}h1::after{right:8px}
+.sub{display:inline-block;margin-top:12px;background:#F5C842;color:#5D0E0E;
+  padding:4px 18px;border:2.5px solid #5D0E0E;border-radius:2px;
+  font-size:.78rem;font-weight:800;box-shadow:3px 3px 0 #5D0E0E;letter-spacing:.1em}
+.era-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:14px;margin:20px 0 16px}
+.era-btn{
+  padding:16px 10px;border-radius:4px;cursor:pointer;text-align:center;
+  background:var(--ec);border:3px solid rgba(0,0,0,.6);
+  box-shadow:5px 5px 0 rgba(0,0,0,.5);
+  transition:all .12s;color:#fff;position:relative;overflow:hidden
+}
+.era-btn::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(255,255,255,.06) 6px,rgba(255,255,255,.06) 12px)}
+.era-btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 rgba(0,0,0,.5)}
+.era-btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 rgba(0,0,0,.5)}
+.eicon{font-size:2rem;margin-bottom:6px;filter:drop-shadow(2px 2px 0 rgba(0,0,0,.4))}
+.elabel{font-weight:900;font-size:.95rem;margin-bottom:4px;line-height:1.3;text-shadow:2px 2px 0 rgba(0,0,0,.4);font-family:'Noto Serif TC',serif;letter-spacing:.06em}
+.eyrs{font-size:.66rem;background:rgba(0,0,0,.75);padding:3px 9px;border-radius:2px;display:inline-block;font-weight:700;letter-spacing:.04em}
+.mode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:14px}
+.mode-btn{padding:14px 10px;border-radius:4px;cursor:pointer;text-align:center;
+  background:#fff;border:3px solid #333;box-shadow:4px 4px 0 #333;transition:all .12s;font-weight:800}
+.mode-btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #333}
+.mode-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #333}
+.micon{font-size:1.6rem;margin-bottom:5px}
+.mlabel{font-weight:900;font-size:.9rem;color:#1a1a1a;margin-bottom:3px;font-family:'Noto Serif TC',serif}
+.mdesc{color:#666;font-size:.68rem;font-weight:600}
+.tip{background:#fff;border:3px solid #333;border-radius:4px;padding:14px 18px;
+  font-size:.82rem;color:#1a1a1a;line-height:1.7;font-weight:600;box-shadow:4px 4px 0 #333;
+  position:relative;margin-top:8px}
+.tip::before{content:"📜 學習小提示";position:absolute;top:-13px;left:18px;background:#F5C842;
+  color:#5D0E0E;padding:2px 12px;border:2.5px solid #333;border-radius:2px;font-size:.72rem;font-weight:900}
+.card{background:#fff;border:3px solid #333;border-radius:4px;padding:14px;box-shadow:4px 4px 0 #333}
+.era-banner{padding:14px 16px;border-radius:4px;margin-bottom:14px;background:var(--ec);
+  border:3px solid rgba(0,0,0,.55);color:#fff;box-shadow:5px 5px 0 rgba(0,0,0,.45);position:relative;overflow:hidden}
+.era-banner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 8px,rgba(255,255,255,.04) 8px,rgba(255,255,255,.04) 16px)}
+.era-banner h2{font-size:1.2rem;margin-bottom:4px;font-weight:900;text-shadow:2px 2px 0 rgba(0,0,0,.4);line-height:1.3;font-family:'Noto Serif TC',serif;letter-spacing:.08em}
+.era-banner .esub{display:inline-block;background:rgba(0,0,0,.72);padding:3px 11px;border-radius:2px;
+  font-size:.72rem;font-weight:700;letter-spacing:.06em;margin-bottom:8px}
+.era-banner .eintro{font-size:.8rem;line-height:1.65;font-weight:600}
+.top-bar{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.back-btn,.restart-btn{padding:7px 16px;border-radius:2px;cursor:pointer;font-size:.78rem;
+  background:#fff;border:2.5px solid #333;color:#1a1a1a;font-family:inherit;
+  font-weight:800;box-shadow:3px 3px 0 #333;transition:all .1s}
+.back-btn:hover,.restart-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #333}
+.back-btn:active,.restart-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #333}
+.restart-btn{margin-left:auto;background:#F5C842;color:#5D0E0E}
+.mode-title{font-weight:900;font-size:.95rem;color:#fff;background:var(--ec,#8B1A1A);
+  padding:5px 14px;border:2.5px solid rgba(0,0,0,.55);border-radius:2px;box-shadow:3px 3px 0 rgba(0,0,0,.4);font-family:'Noto Serif TC',serif;letter-spacing:.06em}
+.prog-bar{display:flex;gap:4px;margin-bottom:14px;background:#fff;padding:5px;
+  border:2.5px solid #333;border-radius:4px;box-shadow:3px 3px 0 #333}
+.prog-seg{flex:1;height:9px;border-radius:2px;background:#eee;border:1.5px solid #aaa;transition:background .3s}
+.pd{background:#2aab6f!important}.pc{background:#F5C842!important}
+.stat-row{display:flex;justify-content:center;gap:10px;margin-bottom:13px;flex-wrap:wrap}
+.chip{background:#fff;border:2.5px solid #333;border-radius:2px;padding:5px 14px;
+  font-size:.78rem;color:#1a1a1a;font-weight:800;box-shadow:2px 2px 0 #333}
+.chip strong{color:#8B1A1A}
+.q-box{background:#FDF6EC;border:3px solid #333;border-radius:4px;padding:14px 17px;
+  font-size:.92rem;color:#1a1a1a;line-height:1.75;margin-bottom:14px;font-weight:600;
+  box-shadow:3px 3px 0 #333;position:relative}
+.q-box::before{content:"問";position:absolute;top:-15px;left:14px;background:#8B1A1A;color:#fff;
+  width:30px;height:30px;border:2.5px solid #333;border-radius:50%;font-weight:900;font-size:.9rem;
+  font-family:'Noto Serif TC',serif;display:flex;align-items:center;justify-content:center;box-shadow:2px 2px 0 #333}
+.tf-btns{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.tf-btn{padding:14px;border-radius:4px;border:3px solid #333;background:#fff;color:#1a1a1a;
+  font-size:1rem;cursor:pointer;font-family:inherit;font-weight:900;transition:all .1s;
+  box-shadow:4px 4px 0 #333}
+.tf-btn:hover:not(:disabled){transform:translate(-1px,-1px);box-shadow:5px 5px 0 #333}
+.tf-btn:active:not(:disabled){transform:translate(2px,2px);box-shadow:1px 1px 0 #333}
+.tc{background:#2aab6f!important;color:#fff!important;text-shadow:1px 1px 0 rgba(0,0,0,.3)}
+.tw{background:#C0392B!important;color:#fff!important;text-shadow:1px 1px 0 rgba(0,0,0,.3)}
+.mc-btn{display:flex;align-items:center;gap:10px;width:100%;padding:11px 14px;border-radius:4px;
+  margin-bottom:9px;border:3px solid #333;background:#fff;color:#1a1a1a;font-size:.86rem;
+  cursor:pointer;font-family:inherit;text-align:left;transition:all .1s;font-weight:700;
+  box-shadow:3px 3px 0 #333}
+.mc-btn:hover:not(:disabled){transform:translate(-1px,-1px);box-shadow:4px 4px 0 #333}
+.mc-btn:active:not(:disabled){transform:translate(2px,2px);box-shadow:1px 1px 0 #333}
+.mc{background:#2aab6f!important;color:#fff!important;text-shadow:1px 1px 0 rgba(0,0,0,.3)}
+.mw{background:#C0392B!important;color:#fff!important;text-shadow:1px 1px 0 rgba(0,0,0,.3)}
+.abadge{width:26px;height:26px;border-radius:50%;background:#F5C842;border:2px solid #333;
+  display:inline-flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:900;flex-shrink:0;color:#5D0E0E}
+.mc .abadge,.mw .abadge{background:rgba(255,255,255,.85);color:#333}
+.explain{margin-top:12px;padding:14px 16px;border-radius:4px;font-size:.82rem;line-height:1.65;
+  font-weight:600;border:3px solid #333;box-shadow:3px 3px 0 #333;position:relative}
+.eo{background:#D6FFE6}.en{background:#FFE0E3}
+.eho,.ehn{font-weight:900;display:block;margin-bottom:5px;font-size:.9rem}
+.eho{color:#0F8C40}.ehn{color:#C0392B}
+.next-btn{margin-top:10px;padding:8px 22px;border-radius:2px;cursor:pointer;
+  background:#F5C842;border:2.5px solid #333;color:#5D0E0E;font-size:.84rem;
+  font-family:inherit;font-weight:900;box-shadow:3px 3px 0 #333;transition:all .1s}
+.next-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #333}
+.next-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #333}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.match-hdr{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;
+  text-align:center;font-size:.78rem;font-weight:900;color:#5D0E0E}
+.mi{padding:10px 9px;border-radius:4px;border:2.5px solid #aaa;background:#f9f9f9;
+  font-size:.78rem;text-align:center;cursor:pointer;transition:all .12s;font-weight:700;min-height:44px;display:flex;align-items:center;justify-content:center;line-height:1.4}
+.mi:hover{border-color:#8B1A1A}
+.mi-s{border-color:#8B1A1A!important;background:#FDF6EC!important;box-shadow:2px 2px 0 #8B1A1A}
+.mi-m{background:#D6FFE6!important;border-color:#2aab6f!important;cursor:default}
+.mi-w{background:#FFE0E3!important;border-color:#C0392B!important}
+.done-msg{text-align:center;padding:14px;font-weight:900;color:#2aab6f;font-size:.95rem;margin-top:10px;font-family:'Noto Serif TC',serif}
+.result-box{text-align:center;padding:20px 10px}
+.ri{font-size:3.5rem;margin-bottom:8px}
+.rs{font-size:1.3rem;font-weight:900;margin-bottom:6px;font-family:'Noto Serif TC',serif}
+.rsc{font-size:1rem;font-weight:700;color:#8B1A1A;margin-bottom:4px}
+.rp{font-size:.9rem;color:#666;font-weight:700}
+/* INTRO PAGE STYLES */
+.intro-sec{margin-bottom:18px}
+.intro-h{background:var(--ec,#8B1A1A);color:#fff;padding:8px 14px;border-radius:2px;
+  font-weight:900;font-size:.88rem;margin-bottom:10px;border:2.5px solid rgba(0,0,0,.5);
+  box-shadow:3px 3px 0 rgba(0,0,0,.4);font-family:'Noto Serif TC',serif;letter-spacing:.06em}
+.intro-body{background:#fff;border:2.5px solid #ddd;border-radius:4px;padding:12px;
+  font-size:.82rem;line-height:1.75;font-weight:600;box-shadow:2px 2px 0 #ddd;color:#333}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.feat-card{background:#fff;border:2.5px solid #ddd;border-radius:4px;padding:11px;box-shadow:2px 2px 0 #ddd}
+.ft{font-weight:900;font-size:.85rem;color:var(--ec,#8B1A1A);margin-bottom:5px;font-family:'Noto Serif TC',serif}
+.fd{font-size:.78rem;line-height:1.65;color:#444;font-weight:600}
+.term-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.term-card{background:#FDF6EC;border:2px solid #e8d5a0;border-radius:4px;padding:9px 12px;display:flex;gap:8px;align-items:flex-start}
+.tt{font-weight:900;font-size:.85rem;color:var(--ec,#8B1A1A);white-space:nowrap;min-width:fit-content;font-family:'Noto Serif TC',serif}
+.tz{font-size:.76rem;line-height:1.6;color:#555;font-weight:600}
+.listen-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1.5px dashed #ddd;flex-wrap:wrap}
+.listen-item:last-child{border-bottom:none}
+.listen-title{font-weight:900;font-size:.85rem;color:#1a1a1a;flex:1;min-width:120px;font-family:'Noto Serif TC',serif}
+.listen-comp{font-size:.76rem;color:#666;font-weight:600;margin-right:4px}
+.yt-btn{display:inline-block;background:#C0392B;color:#fff;padding:4px 12px;border-radius:2px;
+  font-size:.72rem;font-weight:900;text-decoration:none;white-space:nowrap;
+  border:2px solid #8B1A1A;box-shadow:2px 2px 0 #8B1A1A;transition:all .1s;letter-spacing:.04em}
+.yt-btn:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 #8B1A1A}
+/* REF STYLES */
+.ref-item{border:2.5px solid #ddd;border-radius:4px;margin-bottom:8px;overflow:hidden;box-shadow:2px 2px 0 #ddd}
+.ref-head{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;background:#fafafa;transition:background .1s}
+.ref-head:hover{background:#FDF6EC}
+.ref-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:900;font-size:1rem;font-family:'Noto Serif TC',serif;flex-shrink:0;border:2px solid rgba(0,0,0,.3)}
+.ref-name{font-weight:900;font-size:.88rem;color:#1a1a1a;font-family:'Noto Serif TC',serif}
+.ref-sub{font-size:.72rem;color:#777;font-weight:600}
+.ref-badge{display:inline-block;color:#fff;font-size:.66rem;font-weight:900;padding:3px 9px;border-radius:2px;margin-left:auto;white-space:nowrap}
+.ref-arr{font-size:.85rem;color:#aaa;margin-left:8px}
+.ref-body{padding:12px 16px;background:#fff;font-size:.8rem;line-height:1.75;font-weight:600}
+.ref-body li{margin-bottom:6px;padding-left:12px;position:relative;color:#333}
+.ref-body li::before{content:'◆';position:absolute;left:0;color:var(--ec,#8B1A1A);font-size:.6rem;top:5px}
+/* TIMELINE */
+.tl{padding:8px 0}
+.tl-item{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;position:relative;padding-left:4px}
+.tl-item::before{content:'';position:absolute;left:50px;top:18px;bottom:-14px;width:2px;background:var(--ec,#8B1A1A);opacity:.3}
+.tl-item:last-child::before{display:none}
+.tl-yr{background:var(--ec,#8B1A1A);color:#fff;padding:4px 8px;border-radius:2px;font-size:.72rem;font-weight:900;white-space:nowrap;min-width:54px;text-align:center;flex-shrink:0;margin-top:2px;box-shadow:2px 2px 0 rgba(0,0,0,.35);font-family:'Noto Serif TC',serif}
+.tl-tx{font-size:.8rem;line-height:1.7;font-weight:600;color:#333;background:#fff;border:2px solid #e0d0b0;border-radius:4px;padding:8px 12px;box-shadow:2px 2px 0 #e0d0b0;flex:1}
+/* QUICK REF TABLE */
+.qref-sec{margin-bottom:16px}
+.qref-title{font-weight:900;font-size:.85rem;color:var(--ec,#8B1A1A);background:#FDF6EC;
+  padding:7px 12px;border:2px solid var(--ec,#8B1A1A);border-radius:2px;margin-bottom:8px;font-family:'Noto Serif TC',serif}
+.qref-table{width:100%;border-collapse:collapse;font-size:.78rem}
+.qref-table th{background:var(--ec,#8B1A1A);color:#fff;padding:7px 10px;text-align:left;font-weight:900;font-family:'Noto Serif TC',serif}
+.qref-table td{padding:7px 10px;border-bottom:1.5px solid #eee;font-weight:600;color:#333;vertical-align:top;line-height:1.6}
+.qref-table tr:nth-child(even) td{background:#FDF6EC}
+.qref-table tr:hover td{background:#fef9ee}
+</style>
+
+<link rel="stylesheet" href="../assets/css/shared.css">
+<style>
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="../index.html" class="nav-logo"><span>🎵</span>莊敬音樂科</a>
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link home">首頁</a>
+    <a href="index.html" class="nav-link active-h">音樂史</a>
+    <a href="../theory/index.html" class="nav-link">樂理</a>
+    <a href="teacher-resources.html" class="nav-link">教師資源</a>
+  </div>
+
+  <div id="nav-auth" style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+    <button id="login-btn" onclick="teacherLogin()" style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;border:1.5px solid var(--border,rgba(0,0,0,.12));background:#fff;cursor:pointer;font-size:.78rem;font-weight:700;font-family:inherit;">👤 教師登入</button>
+    <div id="user-info" style="display:none;align-items:center;gap:8px;">
+      <span style="font-size:.78rem;font-weight:700;">👋 <span id="user-name"></span></span>
+      <button onclick="teacherLogout()" style="padding:4px 10px;border-radius:12px;border:1.5px solid rgba(0,0,0,.12);background:transparent;cursor:pointer;font-size:.7rem;font-family:inherit;">登出</button>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumb" style="padding:8px 16px;font-size:.76rem;color:#888;display:flex;gap:5px;align-items:center;"><a href="../index.html" style="color:#666;text-decoration:none;">首頁</a><span>/</span><a href="index.html" style="color:#666;text-decoration:none;">音樂史</a><span>/</span>中國音樂史</span></div>
+<div class="hd">
+  <div><h1>中國音樂史</h1></div>
+  <div><span class="sub">音樂知識彙編 · 莊敬音樂科學習互動平台</span></div>
+</div>
+<div id="app"></div>
+<script>
+const ERAS=[
+  {id:'a',name:'遠古時期',icon:'🥁',years:'西元前 2183 年之前',color:'#7B4F2E',sub:'神話傳說的樂舞年代',
+   intro:'相傳黃帝命令伶倫為樂官，制定十二律，以三分損益法定音，這是中國音樂理論的起源。此期音樂以詩歌、音樂、舞蹈三者合一的「樂舞」為主，代表神話傳說時代的音樂文化。'},
+  {id:'b',name:'夏商周時期',icon:'🔔',years:'前 2183～前 222 年',color:'#B5451B',sub:'禮樂制度的黃金時代',
+   intro:'周公制禮作樂，建立西周封建社會秩序。此期設有「大司樂」掌管樂政，「樂官」掌管律呂及教習。周代是上古時期音樂發展最高峰，《詩經》與《楚辭》為最重要的音樂文學遺產。'},
+  {id:'c',name:'秦漢時期',icon:'🎶',years:'前 221～西元 220 年',color:'#8B6914',sub:'樂府興盛與外族音樂傳入',
+   intro:'秦始皇不重視禮樂，周代音樂大量流失。西漢全盛期已有「樂府」，漢武帝命李延年主持，大力發展民間音樂。此期漢武帝令張騫通西域，引入琵琶、箜篌、胡琴等外族樂器，開啟音樂文化交流。'},
+  {id:'d',name:'魏晉南北朝',icon:'🎸',years:'220～581 年',color:'#4A6741',sub:'清商樂與外族音樂融合',
+   intro:'南朝盛行民間音樂（清商樂），北朝盛行胡樂。此時傳入大量外族音樂，如印度天竺樂、西域龜茲樂，及曲頸琵琶、五絃琵琶等樂器。「竹林七賢」的嵇康、阮咸為代表音樂家。'},
+  {id:'e',name:'隋唐五代',icon:'🏮',years:'581～960 年',color:'#8B1A1A',sub:'中古音樂的最高峰',
+   intro:'唐代是中古時期音樂發展最高峰。宮廷設「大樂署」與「鼓吹署」，另有「梨園」訓練演員、「教坊」管理俗樂。唐太宗與玄宗愛好音樂，大量引入胡樂，使唐代成為吸收外族音樂的最高潮。'},
+  {id:'f',name:'宋　　代',icon:'🎭',years:'960～1279 年',color:'#1B5E7B',sub:'民間音樂蓬勃發展',
+   intro:'宋代音樂從宮廷為中心轉向民間為中心。表演場所稱「勾欄」或「遊棚」，出現「唱賺」、「詞調音樂」等新形式。印刷術進步使大量音樂著作流傳，陳暘《樂書》為重要代表。'},
+  {id:'g',name:'元　　代',icon:'🎪',years:'1279～1368 年',color:'#4B3070',sub:'雜劇盛世與說唱藝術',
+   intro:'元代最重要的音樂型式為說唱藝術。雜劇（又稱北曲、元曲）盛行於北方，由七聲音階組成，以工尺譜記譜，伴奏為鑼鼓和管絃。代表作品有關漢卿《竇娥冤》、王實甫《西廂記》等。'},
+  {id:'h',name:'明　　代',icon:'🎵',years:'1369～1650 年',color:'#2E6B4F',sub:'昆曲興起與西樂傳入',
+   intro:'明代音樂以戲曲最具代表性，昆曲由魏良輔創立，對中國往後三百年音樂影響深遠。傳教士利瑪竇（Ricci Matteo）於萬曆年間傳入古鋼琴，明代為接受西洋近代音樂文化之始。'},
+  {id:'i',name:'清　　代',icon:'🎼',years:'1644～1911 年',color:'#5C3A1E',sub:'平劇興盛與西洋音樂',
+   intro:'清代初期音樂家致力於雅樂考訂；西洋傳教士帶來西洋音樂，康熙時代《律呂正義》為第一本有關西洋樂理的書。乾隆五十五年（1790年）平劇（京戲）形成，成為最受歡迎的戲曲。'},
+  {id:'j',name:'民國至今',icon:'🎻',years:'1911 年～至今',color:'#3A5F8A',sub:'中西音樂融合新紀元',
+   intro:'民國為西洋音樂傳入的另一鼎盛期。蕭友梅為現代中國音樂先驅，創立第一所音樂院（現今國立上海音樂專科學校）。劉天華致力改進國樂，運用西樂技巧改進中國樂器演奏技巧。'}
+];
+
+const DATA={
+  a:{
+    bg:'遠古時期（西元前 2183 年以前）是中國音樂的神話傳說時代。相傳黃帝命令伶倫為樂官，用竹管以「三分損益法」定下十二律，以竹 9 寸 9 分訂為基礎音「黃鐘」。樂舞為詩歌、音樂、舞蹈三者合一的藝術形式。',
+    features:[
+      {f:'三分損益法',d:'中國最早計算發聲體長度和音高關係的方法，文獻記載最早見於《管子・地員篇》'},
+      {f:'十二律',d:'以黃鐘為基礎音，六律（陽律）：黃鐘、太簇、姑洗、蕤賓、夷則、無射；六呂（陰呂）：大呂、夾鐘、仲呂、林鐘、南呂、應鐘'},
+      {f:'著名樂舞',d:'「雲門」歌頌黃帝、「咸池」歌頌堯、「大韶」歌頌舜（孔子聽完韶樂，感動三月不知肉味）'},
+      {f:'樂器',d:'磬（打擊樂器，石質）和壎（吹奏樂器，土質）'},
+      {f:'傳說故事',d:'伏羲氏製作琴瑟；女媧氏製作笙簧；黃帝作「渡潁之歌」以打敗蚩尤'}
+    ],
+    genres:[
+      {n:'樂舞（綜合藝術）',d:'詩歌、音樂、舞蹈三者合一，是此時期音樂的主要形式'},
+      {n:'黃鐘調律',d:'以竹管長度為標準，用三分損益法產生十二個半音（十二律）'},
+      {n:'六律六呂',d:'陽律稱「律」，陰律稱「呂」，合稱「律呂」，為中國傳統音樂理論基礎'}
+    ],
+    terms:[
+      {t:'三分損益法',z:'以基準管長乘以 2/3 得「損一」，乘以 4/3 得「益一」，交替運算生成十二律'},
+      {t:'十二律',z:'黃、大、太、夾、姑、仲、蕤、林、夷、南、無、應，中國傳統音階結構'},
+      {t:'黃鐘',z:'十二律之首，相當於西洋音樂的 C 音，竹管長度為基準'},
+      {t:'五度相生律',z:'由三分損益法衍生，利用數學運算計算發聲體長度和音高的方法'}
+    ],
+    listen:[
+      {t:'韶樂（復原版）',c:'古代雅樂',q:'韶樂 復原 中國古代'},
+      {t:'黃鐘大呂',c:'傳統十二律',q:'黃鐘大呂 中國古樂'},
+      {t:'大韶舞',c:'孔子讚嘆的古樂',q:'大韶 古代樂舞 中國'},
+      {t:'遠古壎曲',c:'壎（陶製吹奏樂器）',q:'古代 壎 演奏 中國'}
+    ],
+    REF:[
+      {name:'伶倫',dates:'傳說時代（黃帝時期）',period:'遠古',facts:['黃帝的樂官，奉命制定十二律','用竹管以「三分損益法」確立各音律之間的關係','製作了最早的律管（12 根竹管）','以竹 9 寸 9 分訂為基礎音「黃鐘」']},
+      {name:'伏羲氏',dates:'傳說時代',period:'遠古',facts:['相傳製作琴瑟（中國古代弦樂器）','被視為中國最早的音樂器具發明者之一','琴瑟後來成為中國重要的文人樂器']},
+      {name:'女媧氏',dates:'傳說時代',period:'遠古',facts:['相傳製作笙簧（中國古代簧管樂器）','笙是由多根竹管組成的吹奏樂器','後世認為女媧將音樂帶給人間']}
+    ],
+    TF:[
+      {q:'「三分損益法」是中國古代最早科學產生音律的方法，以黃鐘律為標準音高。',ans:true,e:'三分損益法正是古代中國制定音律的科學方法，以黃鐘做為標準音高，運用此法在一個八度內連續產生十一律，使每相鄰的兩律之間都成半音，稱為十二律。'},
+      {q:'「咸池」是用來歌頌黃帝功績的樂舞。',ans:false,e:'「咸池」是用來歌頌堯的功績。歌頌黃帝的是「雲門」，歌頌舜的是「大韶」，歌頌禹治水的則是「大夏」（夏朝）。'},
+      {q:'磬是石質打擊樂器，壎是土質吹奏樂器。',ans:true,e:'磬確實是石質（石頭製）的打擊樂器；壎則是土質（陶土製）的吹奏樂器，形狀如蛋形，是中國最古老的樂器之一。'},
+      {q:'相傳伏羲氏製作琴瑟，女媧氏製作笙簧。',ans:true,e:'這是遠古時代的傳說故事：伏羲氏製作琴瑟（弦樂器），女媧氏製作笙簧（簧管樂器），兩者都是中國最古老的樂器傳說。'},
+      {q:'黃鐘是十二律中的第六律。',ans:false,e:'黃鐘是十二律之首（第一律），相當於西洋的 C 音。六律（陽律）依序為：黃鐘、太簇、姑洗、蕤賓、夷則、無射。'},
+      {q:'「大韶」是用來歌頌大禹治水功績的樂舞。',ans:false,e:'「大韶」是用來歌頌舜的功績（孔子聽完韶樂後感動三月不知肉味）；歌頌大禹治水的樂舞是夏朝的「大夏」。'}
+    ],
+    MC:[
+      {q:'孔子聽到哪一首樂舞後，感動到「三月不知肉味」？',opts:['大夏','咸池','大韶','雲門'],ans:2,e:'「大韶」是用來歌頌舜的功績，並以「簫韶」為伴奏。孔子聽完韶樂後，感動到三個月都忘記了肉的味道，說明音樂藝術境界之高。'},
+      {q:'中國最早記載五聲音階計算方法的文獻是？',opts:['《呂氏春秋》','《管子・地員篇》','《詩經》','《史記》'],ans:1,e:'《管子・地員篇》是最早記載五聲音階計算方法的文獻，採用「先益」的說法具體明確地描述了五聲音階的計算；《呂氏春秋》則是最早記載十二律的文獻。'},
+      {q:'「三分損益法」中，「三分所生，益之一分以上生」是指？',opts:['管長乘以 4/3，音高降低（低八度方向）','管長乘以 2/3，音高升高','管長加一倍，音高降一個八度','音高降低一個半音'],ans:0,e:'「益一」是將管長乘以 4/3（增加三分之一），音高往低八度方向移動；「損一」是管長乘以 2/3（去除三分之一），音高往高處移動。'},
+      {q:'十二律中，哪一律是最後一個（第十二律）？',opts:['應鐘','無射','南呂','林鐘'],ans:0,e:'應鐘是十二律的最後一個。六呂依序為：大呂、夾鐘、仲呂、林鐘、南呂、應鐘；六律依序為：黃鐘、太簇、姑洗、蕤賓、夷則、無射。'}
+    ],
+    WORKS:[
+      {l:'雲門',r:'歌頌黃帝'},{l:'咸池',r:'歌頌堯'},{l:'大韶',r:'歌頌舜'},{l:'大夏',r:'歌頌禹治水'}
+    ],
+    TITLES:[
+      {l:'黃鐘',r:'十二律之首（相當於 C）'},{l:'三分損益法',r:'中國最早計算音律的方法'},{l:'磬',r:'石質打擊樂器'},{l:'壎',r:'土質吹奏樂器'}
+    ],
+    QREF:{
+      era:'遠古時期',
+      tables:[
+        {title:'六大著名樂舞',headers:['樂舞名稱','所屬時代','歌頌對象'],rows:[
+          ['雲門','黃帝時代','黃帝功績'],['咸池','堯時代','堯的功績'],['大韶（大劭）','舜時代','舜的功績'],
+          ['大夏','夏朝','大禹治水'],['大濩','商朝','成湯功績'],['大武','周朝','周武王功績']
+        ]},
+        {title:'十二律一覽',headers:['類別','律名（由低到高）'],rows:[
+          ['六律（陽律）','黃鐘、太簇、姑洗、蕤賓、夷則、無射'],
+          ['六呂（陰律）','大呂、夾鐘、仲呂、林鐘、南呂、應鐘']
+        ]}
+      ]
+    },
+    TIMELINE:[
+      {y:'黃帝時',t:'伶倫奉命制定十二律，以三分損益法定音；伏羲氏製作琴瑟，女媧氏製作笙簧'},
+      {y:'堯時代',t:'「咸池」樂舞興起，以音樂歌頌帝堯功績；鑄造鐘鼓'},
+      {y:'舜時代',t:'「大韶」樂舞盛行；舜時已對音樂體制有初步的雛型訂定，規定樂隊演奏方式'},
+      {y:'遠古綜合',t:'磬（石頭）、壎（陶土）為代表性樂器；樂舞三位一體（詩歌+音樂+舞蹈）'}
+    ]
+  },
+  b:{
+    bg:'夏商周時期（前 2183～前 222 年），周公制禮作樂，建立了西周封建社會秩序。此時期設有「大司樂」掌管樂政及制定樂律；設「樂官」掌管律呂、教習樂器、歌唱及樂舞。周代是上古時期音樂發展最高峰的時代，禮樂制度、音樂理論和音樂教育制度也已經建立。',
+    features:[
+      {f:'周代禮樂制度',d:'「雅樂」（五聲音階，典禮音樂）、「頌樂」（七聲音階，宗廟祭祀）；教師節在孔廟演奏「大成樂章」即雅樂的一種'},
+      {f:'八音分類',d:'周朝樂器因材質分成八類（八音）：金、石、絲、竹、匏（果實硬殼共鳴箱）、土、革、木'},
+      {f:'音樂文學',d:'《詩經》為孔子所著，是中國第一部詩歌總集；《楚辭》為屈原整理的南方民謠（九歌）'},
+      {f:'代表音樂家',d:'俞伯牙（春秋，古琴演奏家）與鐘子期為知音；高漸離（戰國末，筑演奏家）為荊軻好友'}
+    ],
+    genres:[
+      {n:'雅樂',d:'五聲音階，樂舞齊備，分大雅、小雅，為典禮音樂；「八佾舞」是祭孔的重要典禮儀式'},
+      {n:'頌樂',d:'七聲音階，樂舞齊備，為宗廟祭祀音樂，歌頌帝王、天地神靈'},
+      {n:'詩經（風雅頌）',d:'孔子整理，共 305 首詩歌，分風、雅、頌三部分，「風」篇記載民歌'},
+      {n:'楚辭',d:'屈原整理的南方民謠，以「九歌」為主，富有楚國地方特色的音樂文學'}
+    ],
+    terms:[
+      {t:'大司樂',z:'掌管樂政及制定樂律的最高音樂官員'},
+      {t:'八音',z:'金石絲竹匏土革木，按材質分類的八種樂器類型'},
+      {t:'雅樂',z:'五聲音階的典禮音樂，莊重嚴肅，代表儒家禮樂思想'},
+      {t:'頌樂',z:'七聲音階的宗廟祭祀音樂，歌頌帝王天地'},
+      {t:'《詩經》',z:'中國最早的詩歌總集，收錄 305 首，分風雅頌'},
+      {t:'《楚辭》',z:'屈原整理的南方民謠，以九歌為主'},
+      {t:'《管子》',z:'最早記載五聲音階的文獻'},
+      {t:'《呂氏春秋》',z:'最早記載十二律的文獻'},
+      {t:'筑',z:'13 根絃，以竹條敲擊演奏的古代樂器，高漸離擅長'},
+      {t:'知音',z:'俞伯牙與鐘子期相知相惜的典故，指真正理解音樂的人'}
+    ],
+    listen:[
+      {t:'孔廟大成樂章',c:'傳統雅樂',q:'孔廟 大成樂章 台灣'},
+      {t:'高山流水（古琴）',c:'俞伯牙名曲',q:'高山流水 古琴 俞伯牙'},
+      {t:'詩經 關雎',c:'詩經名篇演唱',q:'詩經 關雎 音樂演唱'},
+      {t:'八佾舞',c:'祭孔典禮儀式',q:'八佾舞 孔廟 台灣'}
+    ],
+    REF:[
+      {name:'俞伯牙',dates:'春秋時代',period:'春秋',facts:['魯國的古琴演奏家','其師成連建議他以大自然為太老師學習古琴彈奏的意境','與樵夫鐘子期為知音相知相惜','「高山流水覓知音」典故的主角','鐘子期死後，俞伯牙破琴絕絃，終身不再彈琴']},
+      {name:'高漸離',dates:'戰國末年',period:'戰國',facts:['燕國的筑（13 根絃，以竹條敲擊演奏）演奏家','荊軻的好友','為幫好友荊軻報仇謀刺秦王卻失敗遇害','「風蕭蕭兮易水寒，壯士一去兮不復還」就是荊軻出發前的歷史場景']}
+    ],
+    TF:[
+      {q:'《詩經》是由屈原所著的中國第一部詩歌總集。',ans:false,e:'《詩經》是由孔子所整理（著）的，是中國第一部詩歌總集與北方歌謠集（記載於其中的「風」篇）；《楚辭》才是屈原所整理的南方民謠。'},
+      {q:'周代將樂器依材質分成「八音」：金、石、絲、竹、匏、土、革、木。',ans:true,e:'正確！周朝因材質的不同將樂器分成八類，又稱「八音」：金（鐘鑼等）、石（磬等）、絲（琴瑟等）、竹（笛簫等）、匏（笙竽等）、土（壎等）、革（鼓等）、木（祝敔等）。'},
+      {q:'雅樂是七聲音階，頌樂是五聲音階。',ans:false,e:'雅樂是「五聲音階」，樂舞齊備，分大雅、小雅，為典禮音樂；頌樂才是「七聲音階」，樂舞齊備，為宗廟祭祀音樂，歌頌帝王、天地神靈。'},
+      {q:'俞伯牙是春秋時代魯國的古琴演奏家，與鐘子期相知相惜。',ans:true,e:'正確！俞伯牙是春秋時代魯國的古琴演奏家，其師成連建議他以大自然為老師；他與樵夫鐘子期因音樂相知相惜，留下「高山流水覓知音」的千古佳話。'},
+      {q:'《呂氏春秋》是最早記載五聲音階的文獻。',ans:false,e:'《管子》才是最早記載五聲音階的文獻；《呂氏春秋》是最早記載十二律的文獻。'},
+      {q:'「八佾舞」是祭孔典禮中的重要儀式，現今仍在孔廟演出。',ans:true,e:'正確！「八佾舞」結合「雅樂」成為祭孔的重要典禮儀式，現今每年教師節在各地孔廟仍會演出「大成樂章」（雅樂）和八佾舞，是保存最完整的古代禮樂儀式。'}
+    ],
+    MC:[
+      {q:'「筑」是哪一位音樂家擅長的樂器？',opts:['俞伯牙','鐘子期','高漸離','荀子'],ans:2,e:'高漸離是戰國末年燕國的筑演奏家。筑有 13 根絃，以竹條敲擊演奏。高漸離為荊軻的好友，為報荊軻被殺之仇謀刺秦王卻失敗遇害。'},
+      {q:'周代最早記載十二律的文獻是？',opts:['《詩經》','《管子》','《呂氏春秋》','《楚辭》'],ans:2,e:'《呂氏春秋》是最早記載十二律的文獻；《管子・地員篇》是最早記載五聲音階的文獻；《詩經》是最早的詩歌總集；《楚辭》是南方民謠集。'},
+      {q:'周代「八音」分類中，「匏」是指什麼材質的樂器？',opts:['金屬製','竹製','用果實硬殼為共鳴箱製作的樂器','革製'],ans:2,e:'匏是用果實的硬殼為共鳴箱所製作成的樂器，如笙、竽等，都屬於「匏」類。其他七音：金（鐘鑼）、石（磬）、絲（琴瑟）、竹（笛簫）、土（壎）、革（鼓）、木（祝敔）。'},
+      {q:'周景王時期，將五聲音階變化成幾聲音階？',opts:['六聲','七聲','八聲','十二聲'],ans:1,e:'周景王時期，將五聲音階變化成七聲音階。這是中國音樂理論發展的重要里程碑，從傳統五聲（宮商角徵羽）擴展至七聲音階。'}
+    ],
+    WORKS:[
+      {l:'詩經・風篇',r:'北方民間歌謠'},{l:'楚辭・九歌',r:'南方民謠（屈原）'},{l:'雅樂',r:'五聲音階典禮音樂'},{l:'頌樂',r:'七聲音階祭祀音樂'}
+    ],
+    TITLES:[
+      {l:'俞伯牙',r:'春秋古琴演奏家'},{l:'高漸離',r:'戰國筑演奏家'},{l:'大司樂',r:'掌管樂政最高官員'},{l:'八佾舞',r:'祭孔重要典禮儀式'}
+    ],
+    QREF:{
+      era:'夏商周時期',
+      tables:[
+        {title:'周代六大著名樂舞',headers:['樂舞','朝代','歌頌對象'],rows:[
+          ['大夏','夏朝','大禹治水'],['大濩','商朝','成湯功績'],['大武','周朝','周武王功績'],
+          ['雅樂','周朝','典禮音樂'],['頌樂','周朝','宗廟祭祀']
+        ]},
+        {title:'重要文獻比較',headers:['文獻','最早記載內容','相關人物'],rows:[
+          ['《管子・地員篇》','五聲音階計算方法','先益的說法'],
+          ['《呂氏春秋》','十二律（先損的說法）','呂不韋'],
+          ['《詩經》','北方歌謠總集（305首）','孔子整理'],
+          ['《楚辭》','南方民謠','屈原整理']
+        ]}
+      ]
+    },
+    TIMELINE:[
+      {y:'夏朝',t:'樂器：石磬、陶壎、銅鈴；大夏樂舞歌頌大禹治水'},
+      {y:'商朝',t:'樂器：銅鼓、特磬、骨壎、原始排簫、鐃；大濩樂舞歌頌成湯'},
+      {y:'西周初',t:'周公制禮作樂，建立封建秩序；設大司樂掌管樂政'},
+      {y:'春秋時代',t:'俞伯牙與鐘子期的知音故事；《詩經》成書；《管子》記載五聲音階'},
+      {y:'戰國末',t:'《呂氏春秋》記載十二律；高漸離為荊軻演奏；《楚辭》成書'},
+      {y:'周景王時',t:'五聲音階擴展為七聲音階，音樂理論更加完備'}
+    ]
+  },
+  c:{
+    bg:'秦漢時期（前 221～西元 220 年）：秦始皇推行暴政，不重視禮樂，焚書坑儒，周代以前的音樂大部分都已經流失。西漢全盛時期已有「樂府」，漢武帝更加以擴充、發展，並任命李延年主持「樂府」。漢武帝令張騫通西域，開始了國際音樂文化交流，傳入外族樂器：琵琶、箜篌、胡琴（至宋代才開始流行，當時稱「奚琴」）。',
+    features:[
+      {f:'樂府制度',d:'西漢設立「樂府」，漢武帝擴充發展，任命李延年主持，收集整理民間歌謠'},
+      {f:'外族樂器傳入',d:'漢武帝令張騫通西域，傳入琵琶、箜篌、胡琴等外族樂器，開啟音樂文化交流'},
+      {f:'相和歌',d:'漢代北方各地民間流行的歌曲，後加入樂器伴奏成藝術歌曲，以「絲竹」伴奏，手持「節」打拍'},
+      {f:'散樂（百戲）',d:'傳自西域，盛行於漢代的雜技表演，有歌唱、舞蹈、動作及樂器伴奏'},
+      {f:'重要作品',d:'琴歌「鳳求凰」（司馬相如追求卓文君）；古琴曲「廣陵散」（嵇康演奏，描述故事刺韓王）'}
+    ],
+    genres:[
+      {n:'相和歌',d:'漢代北方民間流行歌曲，後加入絲竹伴奏，手持「節」一面打節拍一面唱歌'},
+      {n:'鼓吹',d:'北方游牧族傳入的音樂，是古代的軍樂和導引樂'},
+      {n:'敘事歌',d:'即說唱音樂，以說白與歌唱結合敘述故事'},
+      {n:'散樂（百戲）',d:'傳自西域，有歌唱、舞蹈、雜技及器樂伴奏的綜合表演'}
+    ],
+    terms:[
+      {t:'樂府',z:'漢代官方音樂機構，負責收集整理民間音樂，由李延年主持'},
+      {t:'相和歌',z:'漢代北方民間歌曲加上絲竹伴奏的藝術歌曲形式'},
+      {t:'絲竹',z:'管樂器（竹）和弦樂器（絲）的合稱，「絲竹之聲」指音樂'},
+      {t:'節',z:'相和歌演唱時手持用以打節拍的節奏器'},
+      {t:'廣陵散',z:'著名古琴曲，描述戰國時代聶政刺韓王的故事，由嵇康演奏而著名'},
+      {t:'鳳求凰',z:'司馬相如以古琴為伴奏，追求卓文君的琴歌'},
+      {t:'《新聲 28 解》',z:'李延年根據張騫帶回的《摩訶兜勒》改寫的橫吹曲'}
+    ],
+    listen:[
+      {t:'廣陵散（古琴）',c:'著名古琴曲',q:'廣陵散 古琴 嵇康'},
+      {t:'鳳求凰',c:'司馬相如琴歌',q:'鳳求凰 古琴 司馬相如'},
+      {t:'胡笳十八拍',c:'蔡琰名曲',q:'胡笳十八拍 古琴'},
+      {t:'孔雀東南飛',c:'漢代樂府長詩',q:'孔雀東南飛 漢代民歌'}
+    ],
+    REF:[
+      {name:'李延年',dates:'西漢（？～前 87 年）',period:'漢武帝時',facts:['漢武帝命他為「協律都尉」主持「樂府」','曾根據張騫自西域帶回的樂曲《摩訶兜勒》改寫成橫吹曲《新聲 28 解》','其姐妹為漢武帝寵妃']},
+      {name:'蔡邕',dates:'東漢（133～192 年）',period:'東漢',facts:['東漢人，擅長古琴及作曲（如《蔡氏五弄》）','以敏銳聽覺聞名，可辨識琴材','發明「焦尾琴」——從將要燒掉的梧桐木中搶救出來製琴','著有《琴賦》、《琴操》等音樂書籍']},
+      {name:'蔡琰（蔡文姬）',dates:'東漢末（約 177～？）',period:'東漢',facts:['蔡邕之女，著有《胡笳十八拍》','此作品被唐代董庭蘭譜成古琴曲','身世坎坷，曾被匈奴擄走，後曹操以金璧贖回','是中國歷史上著名的女音樂家']},
+      {name:'戴逵',dates:'東晉（約 326～396 年）',period:'東晉',facts:['相傳其製作古箏','傑出的藝術家與音樂家']}
+    ],
+    TF:[
+      {q:'漢代「相和歌」是指北方各地民間流行的歌曲，後加入「絲竹」伴奏。',ans:true,e:'正確！「相和歌」是漢代北方各地民間流行的各種歌曲，後來有樂器加入伴奏，成為藝術歌曲。以「絲竹」（管樂器和絃樂器）伴奏，由一人手裡拿「節」，一面打節拍、一面唱歌。'},
+      {q:'漢武帝命令李延年主持「樂府」，並任命他為「協律都尉」。',ans:true,e:'正確！西漢全盛時期已有「樂府」，漢武帝更加擴充發展，並任命李延年為「協律都尉」主持樂府。'},
+      {q:'琴歌「鳳求凰」是漢代文學家蔡邕為追求卓文君而演奏的。',ans:false,e:'「鳳求凰」是漢代文學家司馬相如為追求卓文君而演奏的，並且感動了卓文君而答應嫁給他。蔡邕則以發明「焦尾琴」而著名。'},
+      {q:'蔡琰著有《胡笳十八拍》，此作品被唐代董庭蘭譜成古琴曲。',ans:true,e:'正確！蔡琰（蔡文姬）是蔡邕的女兒，著有《胡笳十八拍》，此作品被唐代著名琴師董庭蘭譜成古琴曲，流傳至今。'},
+      {q:'古琴曲「廣陵散」是描述大禹治水的故事。',ans:false,e:'「廣陵散」的內容是描寫戰國時代聶政刺韓王的故事（為父親報仇），後來由嵇康的演奏而著名；嵇康臨刑前曾彈奏此曲，感嘆「廣陵散於今絕矣」。'}
+    ],
+    MC:[
+      {q:'漢代哪位音樂家發明了「焦尾琴」？',opts:['蔡琰','李延年','蔡邕','戴逵'],ans:2,e:'蔡邕是東漢人，擅長古琴及作曲，以敏銳聽覺聞名，從將要燃燒的桐木中搶救出木材，製成「焦尾琴」（因末端有燒焦的痕跡而得名）。'},
+      {q:'「散樂（百戲）」起源自何處？',opts:['中原地區','南方民間','西域','朝鮮'],ans:2,e:'「散樂（百戲）」傳自西域，盛行於漢代的雜技表演，是有歌唱、舞蹈、動作及樂器伴奏的綜合表演，類似今日的雜技秀。'},
+      {q:'漢武帝命張騫通西域，傳入的樂器不包括？',opts:['琵琶','箜篌','胡琴','古箏'],ans:3,e:'張騫通西域傳入的外族樂器主要有：琵琶、箜篌、胡琴（至宋代才開始流行，當時稱「奚琴」）。古箏是中國原有的樂器，相傳由秦朝發展而來，並非外族傳入的。'}
+    ],
+    WORKS:[
+      {l:'鳳求凰',r:'司馬相如（琴歌）'},{l:'廣陵散',r:'嵇康（古琴曲）'},{l:'胡笳十八拍',r:'蔡琰（著）'},{l:'《新聲 28 解》',r:'李延年（橫吹曲）'}
+    ],
+    TITLES:[
+      {l:'李延年',r:'協律都尉，主持樂府'},{l:'蔡邕',r:'發明焦尾琴'},{l:'蔡琰',r:'著《胡笳十八拍》'},{l:'相和歌',r:'漢代藝術歌曲形式'}
+    ],
+    QREF:{era:'秦漢時期',tables:[
+      {title:'秦漢重要音樂種類',headers:['種類','特色','備註'],rows:[
+        ['相和歌','北方民間歌曲+絲竹伴奏','手持節打節拍'],
+        ['鼓吹','北方游牧族軍樂','古代軍樂和導引樂'],
+        ['敘事歌','說唱音樂','故事敘述'],
+        ['散樂（百戲）','西域傳入雜技表演','歌唱舞蹈雜技']
+      ]}
+    ]},
+    TIMELINE:[
+      {y:'前 221 年',t:'秦始皇統一中國，焚書坑儒，不重視禮樂，周代音樂大量流失'},
+      {y:'前 119 年',t:'漢武帝令張騫通西域，引入琵琶、箜篌、胡琴等外族樂器'},
+      {y:'漢武帝時',t:'「樂府」制度完善，李延年主持，整理民間歌謠'},
+      {y:'東漢時',t:'蔡邕發明焦尾琴，著有《琴賦》；佛教音樂開始傳入中國'}
+    ]
+  },
+  d:{
+    bg:'魏晉南北朝（220～581 年）：南朝盛行民間音樂（清商樂），北朝盛行胡樂。此時傳入大量外族音樂（印度天竺樂、西域龜茲樂）和西域樂器（曲頸琵琶、五絃琵琶、篳、方響、羯鼓、箜篌、雙簧管之前身及鼓類）。「竹林七賢」的嵇康、阮咸為重要音樂家。',
+    features:[
+      {f:'清商樂',d:'南朝：由漢代「相和歌」演變而來，加入管絃樂伴奏，是民間音樂的主流'},
+      {f:'歌舞音樂',d:'加入故事性內容，是戲劇音樂的雛形；如「代面」（蘭陵王入陣曲）'},
+      {f:'竹林七賢',d:'魏晉時代的七位名士，其中嵇康（古琴家）、阮咸（琵琶家）為代表音樂家'},
+      {f:'中國記譜法',d:'分文字譜和符號譜；「減字譜」為唐代曹柔所創，是現存記譜法中最完整的系統'}
+    ],
+    genres:[
+      {n:'清商樂（清樂）',d:'漢代相和歌的延伸，加入管絃樂伴奏，是南朝最重要的民間音樂'},
+      {n:'歌舞音樂',d:'加入故事性內容的表演，是後來戲劇音樂的前身，如「代面（蘭陵王入陣曲）」'},
+      {n:'百戲',d:'此時百戲更加豐富，包含雜技、歌唱、舞蹈等多元表演'},
+      {n:'文字譜',d:'中國傳統音樂記譜法，南北朝的「碣石調・幽蘭」是以文字記錄音樂的最早記譜法'}
+    ],
+    terms:[
+      {t:'清商樂',z:'南朝最重要的民間音樂，由漢代相和歌演變而來，後稱「清商樂」'},
+      {t:'代面',z:'又名「蘭陵王入陣曲」，歌舞音樂的代表作，是戲劇音樂的雛形'},
+      {t:'竹林七賢',z:'阮籍、嵇康、山濤、劉伶、阮咸、向秀、王戎七位魏晉名士'},
+      {t:'減字譜',z:'文字譜的延伸，唐代曹柔所創，是文字的部分筆畫代表，標明彈奏指法'},
+      {t:'阮',z:'阮咸創制的圓形共鳴箱彈撥樂器，後人稱為「阮咸」或「阮」'},
+      {t:'聲無哀樂論',z:'嵇康的重要音樂觀，認為音樂本身沒有哀樂之分'}
+    ],
+    listen:[
+      {t:'廣陵散（嵇康版）',c:'嵇康古琴名曲',q:'廣陵散 古琴 嵇康版本'},
+      {t:'幽蘭（文字譜）',c:'現存最早琴譜',q:'幽蘭 古琴 文字譜'},
+      {t:'蘭陵王入陣曲',c:'代面·歌舞音樂',q:'蘭陵王入陣曲 古曲'},
+      {t:'酒狂（阮籍）',c:'古琴曲',q:'酒狂 古琴 阮籍'}
+    ],
+    REF:[
+      {name:'嵇康',dates:'魏晉（224～263 年）',period:'魏',facts:['「竹林七賢」之一，古琴家和音樂思想家','著有「聲無哀樂論」音樂觀及書籍《琴賦》、《嵇氏四弄》','「廣陵散」古琴曲因其演奏而著名','臨刑前彈奏廣陵散，嘆「廣陵散於今絕矣」']},
+      {name:'阮咸',dates:'魏晉（？～311 年）',period:'魏',facts:['「竹林七賢」之一，擅長彈奏琵琶','創制圓形共鳴箱的彈撥樂器，後人稱為「阮咸」或「阮」','是阮籍的侄子，與阮籍合稱「大、小阮」']},
+      {name:'阮籍',dates:'魏晉（210～263 年）',period:'魏',facts:['「竹林七賢」之一，阮咸的叔父','與阮咸人稱「大、小阮」（阮籍為大阮，阮咸為小阮）','著有琴曲「酒狂」']},
+      {name:'丘明',dates:'南朝（？～？）',period:'南朝',facts:['古琴曲「幽蘭」是南朝人丘明所傳授','由唐代人用文字記譜法記錄下來的琴曲','是現存最早的琴譜，也是目前所知中國最早的記譜法']}
+    ],
+    TF:[
+      {q:'「代面」又稱「蘭陵王入陣曲」，是歌舞音樂的代表作。',ans:true,e:'正確！「代面（大面）」就是「蘭陵王入陣曲」，是歌舞音樂中加入故事性內容的代表作，也是戲劇音樂的雛形。'},
+      {q:'「減字譜」是南北朝時期丘明所發明的記譜法。',ans:false,e:'「減字譜」是唐代古琴名家曹柔所創；是在文字譜的基礎上進行簡化，主要功能是標明彈奏的指法，也稱為「指法譜」。南北朝的「碣石調・幽蘭」是最早的文字譜。'},
+      {q:'「清商樂」是由漢代「相和歌」蛻變而來的音樂形式。',ans:true,e:'正確！「相和歌」一以管絃樂伴奏；在魏晉南北朝持續的發展，後改稱為「清商樂」，是南朝最重要的民間音樂。'},
+      {q:'嵇康認為「音樂有哀樂之分」，著有《聲有哀樂論》。',ans:false,e:'嵇康的著名音樂觀點正好相反！他著有「聲無哀樂論」，認為音樂本身沒有哀樂之分，哀樂是人的主觀感受，而非音樂本身的特質。'}
+    ],
+    MC:[
+      {q:'「竹林七賢」中，擅長彈奏琵琶並創制圓形共鳴箱彈撥樂器的是？',opts:['嵇康','阮籍','阮咸','劉勉'],ans:2,e:'阮咸是「竹林七賢」之一，擅長彈奏琵琶，並創制了圓形共鳴箱的彈撥樂器，後人稱這種樂器為「阮咸」或簡稱「阮」。'},
+      {q:'現存最早的琴譜、中國最早的記譜法是哪首琴曲？',opts:['廣陵散','高山流水','幽蘭','酒狂'],ans:2,e:'古琴曲「幽蘭」是南朝人丘明所傳授，由唐代人用文字記譜法記錄下來，是現存最早的琴譜，也是目前所知中國最早的記譜法。'},
+      {q:'南朝最重要的民間音樂「清商樂」是由哪種音樂形式演變而來？',opts:['鼓吹','相和歌','雅樂','散樂'],ans:1,e:'「清商樂」是由漢代的「相和歌」蛻變而來的音樂；加入管絃樂伴奏，在魏晉南北朝時期持續發展，後稱為「清商樂」，是南朝盛行的民間音樂。'}
+    ],
+    WORKS:[
+      {l:'廣陵散',r:'嵇康（古琴）'},{l:'幽蘭',r:'丘明（現存最早琴譜）'},{l:'代面',r:'蘭陵王入陣曲'},{l:'酒狂',r:'阮籍（古琴）'}
+    ],
+    TITLES:[
+      {l:'嵇康',r:'竹林七賢・古琴家'},{l:'阮咸',r:'創制圓形阮樂器'},{l:'減字譜',r:'唐代曹柔所創'},{l:'聲無哀樂論',r:'嵇康的音樂觀'}
+    ],
+    QREF:{era:'魏晉南北朝',tables:[
+      {title:'竹林七賢音樂相關',headers:['人物','特長','代表作品'],rows:[
+        ['嵇康','古琴、音樂思想家','廣陵散、《琴賦》、聲無哀樂論'],
+        ['阮咸','琵琶演奏家','創制「阮」樂器'],
+        ['阮籍','嵇康好友（大阮）','琴曲「酒狂」']
+      ]},
+      {title:'中國傳統記譜法比較',headers:['記譜法','功能','相關人物/時代'],rows:[
+        ['文字譜','記載音高、指法和位置','西周已有（南北朝碣石調・幽蘭最早）'],
+        ['減字譜','文字譜的簡化，標明指法','唐代曹柔所創'],
+        ['工尺譜','符號音高記譜','唐代已有，宋代出現系統，元代廣泛使用'],
+        ['俗字譜','固定調記譜','宋代使用']
+      ]}
+    ]},
+    TIMELINE:[
+      {y:'220 年',t:'魏晉時代開始，清商樂發展，相和歌演變為清商樂'},
+      {y:'263 年',t:'嵇康被殺，臨刑前彈奏廣陵散，感嘆「廣陵散於今絕矣」'},
+      {y:'南北朝',t:'丘明傳授「幽蘭」琴曲（現存最早琴譜）；天竺樂、龜茲樂大量傳入'},
+      {y:'南北朝末',t:'「代面（蘭陵王入陣曲）」成為歌舞音樂代表；百戲更加豐富'}
+    ]
+  },
+  e:{
+    bg:'隋唐五代（581～960 年）：唐代是中古時期音樂發展最高峰。宮廷中設立「大樂署」（掌雅樂和燕樂）和「鼓吹署」（掌鼓吹樂）；另有「梨園」為音樂表演人才訓練所；「教坊」為負責管理教習音樂（俗樂）、曲調創作、音樂採集、樂器改制與培養音樂人才。唐代最盛行的樂器是梨形琵琶。',
+    features:[
+      {f:'梨園與教坊',d:'梨園：音樂表演人才訓練所，以「法曲」為主，唐玄宗選拔學生於梨園，稱「皇帝梨園弟子」；教坊：負責俗樂管理與音樂人才培養'},
+      {f:'燕樂（讌樂）',d:'宴客娛樂時使用的歌舞音樂。唐初分雅樂、俗樂、胡樂三部分，後來胡樂與俗樂融合為燕（宴）樂'},
+      {f:'十部伎',d:'唐太宗將九部伎擴充為十部伎，成為宮廷宴饗時的大型歌舞組曲'},
+      {f:'大曲',d:'結合歌、舞和器樂的大型舞樂，結構完整且龐大，曲式多是變奏曲形式'},
+      {f:'變文',d:'唐代用於講唱佛經故事的變文，是現存最早的說唱本子'}
+    ],
+    genres:[
+      {n:'清商樂（清樂）',d:'由漢代相和歌蛻變而來，是唐初的重要民間音樂'},
+      {n:'燕樂',d:'宴客娛樂歌舞音樂，分「立部伎」（室外，人數多）和「坐部伎」（室內，人數少，技巧高）'},
+      {n:'大曲',d:'結合歌舞器樂的大型舞樂，曲式多是變奏曲形式，如「霓裳羽衣曲」'},
+      {n:'法曲',d:'宮廷典禮儀式音樂及宗教音樂，風格典雅'},
+      {n:'教坊曲',d:'為培養音樂舞蹈人才的樂曲'},
+      {n:'雜曲',d:'收集自民間的音樂'},
+      {n:'變文',d:'講唱佛經故事的說唱藝術，是現存最早的說唱本子'}
+    ],
+    terms:[
+      {t:'梨園',z:'唐代宮廷音樂訓練機構，以法曲為主，唐玄宗親自教授，「皇帝梨園弟子」的典故由此而來'},
+      {t:'教坊',z:'負責俗樂管理、曲調創作、音樂採集、樂器改制的機構'},
+      {t:'大曲',z:'唐代最大型的音樂形式，分散序、中序（歌唱部分）、破（舞蹈部分）三段'},
+      {t:'立部伎',z:'在室外演奏，人數較多，以打鼓、吹管、雜戲等演出為主'},
+      {t:'坐部伎',z:'在室內演奏，技巧較高，坐著演奏，人數較少，演出典雅新曲為主'},
+      {t:'十部伎',z:'唐太宗將九部伎擴充為十部伎，由燕、清商、西涼、高昌等十套樂組成'},
+      {t:'敦煌琵琶譜',z:'西元 933 年的手抄古譜，原藏於敦煌莫高窟，著名琵琶獨奏曲「長沙女引」'},
+      {t:'霓裳羽衣曲',z:'唐玄宗作曲，大曲的代表作，描述仙境的大型歌舞樂'}
+    ],
+    listen:[
+      {t:'霓裳羽衣曲',c:'唐玄宗名曲',q:'霓裳羽衣曲 古曲 演奏'},
+      {t:'春江花月夜',c:'唐代名曲',q:'春江花月夜 琵琶 古典'},
+      {t:'陽關三疊',c:'唐代琴歌',q:'陽關三疊 古琴 唐代'},
+      {t:'長沙女引（琵琶）',c:'敦煌琵琶譜名曲',q:'長沙女引 琵琶 敦煌'}
+    ],
+    REF:[
+      {name:'唐玄宗（李隆基）',dates:'685～762 年',period:'唐',facts:['設立「梨園」擴充「教坊」','作有「霓裳羽衣曲」、「春光好」等名曲','從西域傳入大量胡樂，使唐代成為歷史上吸收外族音樂的最高潮','親自選拔梨園學生，被稱為「皇帝梨園弟子」']},
+      {name:'曹柔',dates:'唐代（生卒不詳）',period:'唐',facts:['唐代古琴名家','發明了「減字譜」以文字的部分筆畫為代表，來表示彈琴的指法','使得大量整理記錄琴譜成為可能，促進了琴樂的傳播','明清兩代的琴譜多是用此方式記錄']},
+      {name:'段善本',dates:'唐代（生卒不詳）',period:'唐',facts:['唐代著名琵琶名家，技巧高超','擅長於移調演奏','作有「西梁州」等曲']},
+      {name:'康崑崙',dates:'唐代（生卒不詳）',period:'唐',facts:['唐代來自西域的音樂家，為琵琶名家','曾拜段善本為師','著有琵琶曲「王宴宮調」']},
+      {name:'李謩',dates:'唐代（生卒不詳）',period:'唐',facts:['唐代著名吹笛名家','有非常好的聽音能力和記憶力，能記住一首曲子的每個音']}
+    ],
+    TF:[
+      {q:'唐代「梨園」是負責管理教習俗樂、曲調創作的機構。',ans:false,e:'「梨園」是為音樂表演人才的訓練所，尤其是以「法曲」為主；唐玄宗選拔學生於梨園，稱他們為「皇帝梨園弟子」。負責管理教習俗樂（俗樂）、曲調創作的是「教坊」。'},
+      {q:'唐代「立部伎」是在室外演奏，人數較多；「坐部伎」在室內演奏，技巧較高，人數較少。',ans:true,e:'正確！「立部伎」在室外演奏，人數較多，以打鼓、吹笙、雜戲等演出為主；「坐部伎」在室內演奏，技巧較高需坐著演奏，人數較少，以演出典雅新曲為主。'},
+      {q:'「霓裳羽衣曲」是唐玄宗所作的大曲代表作。',ans:true,e:'正確！唐玄宗（李隆基）作有「霓裳羽衣曲」（大曲）和「春光好」等名曲。霓裳羽衣曲是描述仙境的大型歌舞樂，是唐代大曲的代表作。'},
+      {q:'「敦煌琵琶譜」原藏於北京故宮博物院。',ans:false,e:'「敦煌琵琶譜」是一卷西元 933 年的手抄古譜，原藏於敦煌莫高窟的藏經洞中，是欣賞及研究唐代音樂風格的寶貴資料，著名的有琵琶獨奏曲「長沙女引」。'},
+      {q:'唐代音樂（尤其是燕樂）對亞洲國家產生很大的影響，尤其是日本。',ans:true,e:'正確！唐代由於唐太宗和玄宗特別愛好音樂，又從西域傳入大量胡樂，使唐代成為歷史上吸收外族音樂的最高潮，並對亞洲國家產生很大的影響，尤其是日本有許多留學生來中學習，因此日本音樂受我國唐代影響最甚（如現今日本演歌、能劇）。'}
+    ],
+    MC:[
+      {q:'唐代「減字譜」是哪位音樂家所發明？',opts:['李謩','段善本','康崑崙','曹柔'],ans:3,e:'曹柔是唐代古琴名家，發明了「減字譜」以文字的部分筆畫為代表，來表示彈琴的指法。使得大量整理記錄琴譜成為可能，促進了琴樂的傳播。明清兩代的琴譜多是用此方式記錄。'},
+      {q:'唐代「大曲」的結構分為哪三部分？',opts:['序、主題、尾聲','散序、中序、破','開場、正戲、結尾三大段','引子、主體、尾奏'],ans:1,e:'唐代「大曲」是結合歌、舞和器樂的大型舞樂，結構分為三部分：散序（器樂）、中序（歌唱部分）、破（舞蹈部分）。曲式多是變奏曲形式。'},
+      {q:'唐代最盛行的樂器是？',opts:['古琴','笛子','梨形琵琶','阮'],ans:2,e:'唐代最盛行的樂器是傳自西域的梨形琵琶（曲頸琵琶）。唐代由於大量引入西域胡樂，琵琶成為最重要的器樂，有許多著名的琵琶演奏家，如段善本、康崑崙等。'},
+      {q:'唐代「變文」是什麼類型的音樂？',opts:['大型歌舞音樂','現存最早的說唱本子','宮廷典禮音樂','民間器樂合奏'],ans:1,e:'「變文」是唐代用於講唱佛經故事的變文，是現存最早的說唱本子。說唱音樂由此發展至宋代，產生了許多不同的形式，如鼓子詞、諸宮調等。'}
+    ],
+    WORKS:[
+      {l:'霓裳羽衣曲',r:'唐玄宗（大曲）'},{l:'春光好',r:'唐玄宗作曲'},{l:'長沙女引',r:'敦煌琵琶譜名曲'},{l:'王宴宮調',r:'康崑崙（琵琶曲）'}
+    ],
+    TITLES:[
+      {l:'梨園',r:'宮廷音樂訓練機構'},{l:'教坊',r:'俗樂管理培養人才'},{l:'大樂署',r:'掌雅樂和燕樂'},{l:'鼓吹署',r:'掌鼓吹樂'}
+    ],
+    QREF:{era:'隋唐五代',tables:[
+      {title:'唐代四大樂曲類型',headers:['類型','特色','代表'],rows:[
+        ['大曲','歌舞器樂大型舞樂，三段式','霓裳羽衣曲'],
+        ['法曲','宮廷典禮儀式，風格典雅','清商樂'],
+        ['教坊曲','培養音樂舞蹈人才','宴客娛樂'],
+        ['雜曲','民間音樂收集','散樂']
+      ]},
+      {title:'隋唐宮廷音樂機構',headers:['機構名稱','功能','特點'],rows:[
+        ['大樂署','掌雅樂和燕樂','宮廷最高音樂機構'],
+        ['鼓吹署','掌鼓吹樂','軍樂儀仗'],
+        ['梨園','音樂人才訓練','以法曲為主，玄宗親授'],
+        ['教坊','俗樂管理與人才培養','音樂採集創作']
+      ]}
+    ]},
+    TIMELINE:[
+      {y:'581 年',t:'隋文帝統一中國，修訂雅樂、整理清商樂，設七部伎'},
+      {y:'610 年',t:'隋煬帝將音樂分成九部伎'},
+      {y:'627 年',t:'唐太宗即位，將九部伎擴充為十部伎'},
+      {y:'712 年',t:'唐玄宗即位，設立梨園、擴充教坊，大量引入胡樂'},
+      {y:'755 年',t:'安史之亂後，音樂中心逐漸轉移至民間'},
+      {y:'907 年',t:'五代因戰亂，音樂無法發展'}
+    ]
+  },
+  f:{
+    bg:'宋代（960～1279 年）：宋代音樂的發展從宮廷為中心的情形，漸漸轉為以民間為中心。表演形式由隋唐的大型歌舞轉為小型的、室內樂的形式。民間音樂的表演場所稱「勾欄」（場地四周以許多欄干圍起來）或遊棚。宋代重視文教發展，並由於印刷術進步而留下許多音樂的著作。',
+    features:[
+      {f:'民間音樂發展',d:'唱賺、詞調音樂（词）、說唱音樂（鼓子詞、諸宮調）、戲曲音樂（雜劇）蓬勃發展'},
+      {f:'勾欄文化',d:'民間音樂表演場所「勾欄」（四周有欄干的場地）或遊棚，是宋代城市娛樂中心'},
+      {f:'姜夔（白石道人）',d:'創作十七首歌曲，稱《自度曲》，創「俗字譜」（旁譜）；《白石道人歌曲》是研究宋代詞樂的珍貴資料'},
+      {f:'胡琴傳入中原',d:'此時稱為「奚琴」（稽琴），為胡琴的前身，內外絃 D、A'},
+      {f:'工尺譜發展',d:'宋代出現有系統的工尺譜，但真正被廣泛使用則在元代'}
+    ],
+    genres:[
+      {n:'唱賺',d:'結構較大型的藝術歌曲，是敘事性的歌曲，由同一個調的若干首曲子組成，有引子和尾聲'},
+      {n:'詞（詞調音樂）',d:'五代以後的音樂文學；南宋白石道人姜夔為古曲配上歌詞，留下十七首旁譜'},
+      {n:'鼓子詞',d:'一首歌曲反覆演唱多次，中間夾有唱詞不同的說白，用鼓、笛和絃樂器伴奏'},
+      {n:'諸宮調',d:'以同一個調的若干樂曲成為一組，集合許多不同調的各組來敘述故事，是長篇的說唱音樂'},
+      {n:'雜劇（戲曲音樂）',d:'綜合性戲曲，分豔段（熱身）、正雜劇（二段故事）、雜扮（丑戲）三部分'}
+    ],
+    terms:[
+      {t:'勾欄',z:'宋代民間音樂表演場所，四周以欄干圍起來的場地'},
+      {t:'唱賺',z:'宋代大型藝術歌曲，分「纏令」（轉踏）和「纏達」（傳踏）兩種形式'},
+      {t:'纏令（轉踏）',z:'由同一個調的若干首曲子組成，有引子和尾聲'},
+      {t:'纏達（傳踏）',z:'在引子之後，由兩個曲調輪流重複演唱而成'},
+      {t:'諸宮調',z:'長篇說唱音樂，代表作有董解元《西廂記諸宮調》'},
+      {t:'俗字譜',z:'宋代姜夔創立，在歌詞旁注有「旁譜」，用文字以表示音高'},
+      {t:'工尺譜',z:'宋代出現有系統的工尺譜，元代廣泛使用'},
+      {t:'奚琴（稽琴）',z:'胡琴傳入中原後的名稱，是現代胡琴的前身，內外絃 D、A'}
+    ],
+    listen:[
+      {t:'白石道人歌曲',c:'姜夔自度曲',q:'白石道人歌曲 姜夔 宋代'},
+      {t:'瀟湘水雲（古琴）',c:'郭沔名曲',q:'瀟湘水雲 古琴 郭沔'},
+      {t:'西廂記諸宮調',c:'董解元名作',q:'西廂記諸宮調 宋代說唱'},
+      {t:'大晟雅樂',c:'宋代宮廷雅樂',q:'大晟雅樂 宋代 雅樂'}
+    ],
+    REF:[
+      {name:'姜夔（白石道人）',dates:'南宋（1155～1221 年）',period:'宋',facts:['別號白石道人，南宋著名音樂家','曾創作了十七首歌曲，稱為《自度曲》','創「俗字譜」（旁譜），在歌詞旁注有表示音高的符號','其作品集《白石道人歌曲》是研究宋代詞樂及記譜法的珍貴資料','著作《大樂議》、《琴瑟考古圖》、《續書譜》等；另有琵琶曲「醉吟商」']},
+      {name:'朱熹',dates:'南宋（1130～1200 年）',period:'宋',facts:['著名理學家，對音樂理論和樂律有很深的研究','著有《儀禮經傳通辭》、12 首《風雅頌詩譜》','是儒家禮樂思想的重要繼承者']},
+      {name:'蔡元定',dates:'南宋（1135～1198 年）',period:'宋',facts:['著有《律呂新書》','對樂律研究很有貢獻']},
+      {name:'郭沔',dates:'南宋（約 1190～1260 年）',period:'宋',facts:['號楚望，又稱郭楚望','古琴曲「瀟湘水雲」是他的代表作','是南宋最重要的古琴演奏家之一']},
+      {name:'陳暘',dates:'宋代（生卒不詳）',period:'宋',facts:['著有《樂書》（宋代的音樂百科全書）','《樂書》是中國歷史上最重要的音樂理論著作之一']}
+    ],
+    TF:[
+      {q:'宋代「諸宮調」的代表作品是董解元《西廂記諸宮調》。',ans:true,e:'正確！「諸宮調」是以同一個調的若干樂曲成為一組，集合許多不同調的各組來敘述故事，以「唱」為主、「說」為輔，是長篇的說唱音樂。重要作品有董解元《西廂記諸宮調》。'},
+      {q:'宋代民間音樂表演場所稱為「瓦市」。',ans:false,e:'宋代民間音樂表演場所稱「勾欄」（場地四周以許多欄干圍起來）或「遊棚」，是宋代城市重要的娛樂中心，類似今日的劇場或表演廳。'},
+      {q:'「工尺譜」雖然唐代已有，但到宋代才出現有系統的工尺譜，而真正被廣泛使用則在元代。',ans:true,e:'正確！工尺譜在唐代已有，但到宋代才出現有系統的工尺譜，而真正被廣泛使用則在元代。工尺譜使用上、尺、工、凡、六、五、乙等字來表示音高。'},
+      {q:'姜夔別號「白石道人」，他創作的十七首歌曲合稱《自度曲》。',ans:true,e:'正確！姜夔（白石道人）曾創作了十七首歌曲，稱為《自度曲》，並留下了在歌詞旁注有表示音高「旁譜」的俗字譜，是研究宋代詞樂及記譜法的珍貴資料。'}
+    ],
+    MC:[
+      {q:'宋代「鼓子詞」的伴奏樂器是？',opts:['琵琶、胡琴','鼓、笛和絃樂器','箜篌、笛子','管風琴、古琴'],ans:1,e:'「鼓子詞」是一首歌曲反覆演唱多次，中間夾有唱詞不同的說白，用鼓、笛和絃樂器伴奏，是宋代說唱音樂的重要形式。'},
+      {q:'宋代陳暘著有哪部被稱為「音樂百科全書」的著作？',opts:['《律呂新書》','《白石道人歌曲》','《樂書》','《大樂議》'],ans:2,e:'陳暘著有《樂書》，是宋代的音樂百科全書，也是中國歷史上最重要的音樂理論著作之一，收錄了大量音樂相關知識。'},
+      {q:'「奚琴（稽琴）」是什麼樂器的前身？',opts:['古箏','古琴','胡琴（二胡）','琵琶'],ans:2,e:'「奚琴（稽琴）」是胡琴傳入中原後的名稱，是現代胡琴（二胡、板胡等）的前身，內外弦調音為 D、A。宋代開始流行，之前的文獻中稱為「奚琴」。'}
+    ],
+    WORKS:[
+      {l:'西廂記諸宮調',r:'董解元（說唱）'},{l:'瀟湘水雲',r:'郭沔（古琴）'},{l:'醉吟商',r:'姜夔（琵琶）'},{l:'《樂書》',r:'陳暘（百科全書）'}
+    ],
+    TITLES:[
+      {l:'姜夔',r:'白石道人・自度曲'},{l:'勾欄',r:'民間音樂表演場所'},{l:'諸宮調',r:'長篇說唱音樂'},{l:'奚琴',r:'胡琴前身'}
+    ],
+    QREF:{era:'宋代',tables:[
+      {title:'宋代說唱音樂種類',headers:['種類','特色','代表作'],rows:[
+        ['鼓子詞','一曲反覆，夾說白','鼓笛弦樂器伴奏'],
+        ['諸宮調','多調複合，長篇敘事','董解元《西廂記諸宮調》'],
+        ['唱賺','大型敘事歌曲','纏令、纏達兩種']
+      ]},
+      {title:'宋代重要音樂家',headers:['人物','重要著作','特色'],rows:[
+        ['姜夔（白石道人）','《白石道人歌曲》','創俗字譜，自度曲十七首'],
+        ['陳暘','《樂書》（音樂百科全書）','音樂理論大成'],
+        ['朱熹','《儀禮經傳通辭》','儒家禮樂思想'],
+        ['蔡元定','《律呂新書》','樂律研究'],
+        ['郭沔','瀟湘水雲（古琴）','南宋古琴名家']
+      ]}
+    ]},
+    TIMELINE:[
+      {y:'960 年',t:'宋太祖建立宋朝，音樂中心逐漸從宮廷轉向民間'},
+      {y:'北宋',t:'勾欄遊棚出現；陳暘著《樂書》；工尺譜系統化'},
+      {y:'南宋',t:'姜夔（白石道人）創作自度曲，留下旁譜；宋代音樂傳至韓國（高麗）'},
+      {y:'1279 年',t:'蒙古滅南宋，宋代音樂文化被保存於韓國和日本'}
+    ]
+  },
+  g:{
+    bg:'元代（1279～1368 年）：元代最重要的音樂型式為說唱藝術。三弦、雲鑼（當時稱雲璈）等樂器在元代是第一次出現。宮廷燕樂滲入佛教及喇嘛教的舞樂，變成了音樂與雜曲相結合的態勢。一般器樂演奏是以絃樂合奏為主，多是用來為戲曲伴奏。',
+    features:[
+      {f:'雜劇（北曲/元曲）',d:'盛行於北方，由七聲音階組成，以工尺譜記譜，伴奏為鑼鼓和管絃，每齣分四幕，每一幕限定只能由主角擔任演唱'},
+      {f:'南戲',d:'產生比雜劇晚，盛行於南方，又稱「南曲」，以民間生活為題材，由五聲音階組成，風格細膩、節奏平穩柔婉'},
+      {f:'散曲',d:'由雜劇蛻化而成，主要用於抒情、寫景、敘事，近乎清唱的風格；分小令、過帶曲、散套三類'},
+      {f:'元曲四大家',d:'關漢卿、馬致遠、白樸、鄭光祖（六大家再加王實甫與喬吉甫）'}
+    ],
+    genres:[
+      {n:'雜劇（北曲）',d:'又稱「元曲」，七聲音階，每齣四幕，以工尺譜記譜，鑼鼓管絃伴奏，節奏流暢、風格雄健'},
+      {n:'南戲（南曲）',d:'五聲音階，以民間生活為題材，風格細膩、節奏平穩；高明的《琵琶記》最為傑出'},
+      {n:'散曲',d:'由雜劇蛻化，分小令（單隻曲子）、過帶曲（兩三個隻曲）、散套（同宮調連結，有尾奏）'},
+      {n:'說唱',d:'民間流行的說唱音樂，包括「貨郎兒」和「陶真」等形式'}
+    ],
+    terms:[
+      {t:'雜劇',z:'元代盛行於北方的綜合戲曲，又稱「北曲」或「元曲」，每齣分四幕'},
+      {t:'南戲',z:'盛行於南方的戲曲，又稱「南曲」，由五聲音階組成，高明《琵琶記》最傑出'},
+      {t:'散曲',z:'由雜劇蛻化的歌曲，分小令、過帶曲、散套三種類型'},
+      {t:'曲（唱詞）',z:'雜劇中演員演唱的部分'},
+      {t:'科（動作）',z:'雜劇中演員做動作的部分'},
+      {t:'白（說白）',z:'雜劇中說話的部分，「一人曰白，二人曰賓」'},
+      {t:'貨郎兒',z:'採用小販叫賣聲創作，後用於說唱曲調的元代說唱形式'},
+      {t:'陶真',z:'使用七字句歌詞，附加「蓮花落」和聲的農村說唱音樂'}
+    ],
+    listen:[
+      {t:'竇娥冤',c:'關漢卿雜劇',q:'竇娥冤 元曲 關漢卿'},
+      {t:'西廂記（王實甫）',c:'元代雜劇',q:'西廂記 王實甫 元曲'},
+      {t:'琵琶記（南戲）',c:'高明南戲代表作',q:'琵琶記 高明 南戲 崑曲'},
+      {t:'秋思（馬致遠）',c:'元代散曲',q:'馬致遠 秋思 散曲 天淨沙'}
+    ],
+    REF:[
+      {name:'關漢卿',dates:'元代（約 1220～1307 年）',period:'元',facts:['元曲四大家之首','代表作：《竇娥冤》（冤案悲劇）、《救風塵》、《單刀會》等','被後人譽為「東方的莎士比亞」']},
+      {name:'王實甫',dates:'元代（約 1260～1336 年）',period:'元',facts:['代表作：《西廂記》（故事內容與董解元《西廂記諸宮調》相同）','北曲以王實甫的《西廂記》最為傑出','《西廂記》是元代最著名的愛情故事']},
+      {name:'馬致遠',dates:'元代（約 1250～1324 年）',period:'元',facts:['元曲四大家之一','代表作：雜劇《漢宮秋》、散曲《天淨沙・秋思》','《天淨沙・秋思》是最著名的元代散曲小令']},
+      {name:'高明',dates:'元末明初（約 1305～1359 年）',period:'元',facts:['南戲以高明的《琵琶記》最為傑出','《琵琶記》是元代南戲的最高成就','故事敘述書生蔡伯喈赴京趕考，功成名就後忘妻的悲劇']}
+    ],
+    TF:[
+      {q:'元代「雜劇」由五聲音階組成，以工尺譜記譜。',ans:false,e:'元代「雜劇」是由「七聲音階」組成，以工尺譜記譜；伴奏樂器為鑼鼓和管絃；每齣分四幕；節奏流暢、風格雄健。由「五聲音階」組成的是「南戲（南曲）」，風格細膩、節奏平穩柔婉。'},
+      {q:'元代散曲分為三類：小令、過帶曲、散套。',ans:true,e:'正確！散曲依形式分為三類：小令（由隻曲構成，結構短小）；過帶曲（由兩或三個隻曲組成，無引子和尾奏）；散套（由兩個以上同宮調的隻曲連結而成，有尾奏）。'},
+      {q:'「元曲四大家」是關漢卿、馬致遠、白樸、鄭光祖。',ans:true,e:'正確！元曲四大家為：關漢卿、馬致遠、白樸和鄭光祖。若再加上王實甫與喬吉甫兩人，則合稱「元曲六大家」。'},
+      {q:'南戲以王實甫的《西廂記》最為傑出。',ans:false,e:'《西廂記》是王實甫的「雜劇（北曲）」作品，北曲以王實甫的《西廂記》最為傑出。「南戲」則以高明的《琵琶記》最為傑出。'}
+    ],
+    MC:[
+      {q:'元代雜劇中，「科」指的是什麼？',opts:['歌唱部分','說白部分','動作部分','器樂伴奏'],ans:2,e:'元代雜劇有曲（歌唱）、科（動作）、白（說白，一人曰白，二人曰賓）三個基本要素。「科」指的是演員的動作部分。'},
+      {q:'元代哪種樂器是第一次出現的？',opts:['琵琶、古琴','三弦、雲鑼（雲璈）','笛子、笙','箜篌、胡琴'],ans:1,e:'元代三弦、雲鑼（當時稱雲璈）等樂器是第一次出現。這兩種樂器後來成為中國傳統音樂中的重要樂器，三弦廣泛用於說唱和戲曲伴奏。'},
+      {q:'馬致遠最著名的散曲小令是？',opts:['《竇娥冤》','《西廂記》','《天淨沙・秋思》','《琵琶記》'],ans:2,e:'馬致遠最著名的作品是散曲小令《天淨沙・秋思》：「枯藤老樹昏鴉，小橋流水人家，古道西風瘦馬，夕陽西下，斷腸人在天涯。」是中國文學史上最著名的散曲之一。'}
+    ],
+    WORKS:[
+      {l:'竇娥冤',r:'關漢卿（雜劇）'},{l:'西廂記',r:'王實甫（雜劇）'},{l:'漢宮秋',r:'馬致遠（雜劇）'},{l:'琵琶記',r:'高明（南戲）'}
+    ],
+    TITLES:[
+      {l:'關漢卿',r:'元曲四大家之首'},{l:'散曲・小令',r:'隻曲，結構短小'},{l:'散曲・散套',r:'同宮調連結，有尾奏'},{l:'三弦',r:'元代首次出現的樂器'}
+    ],
+    QREF:{era:'元代',tables:[
+      {title:'元代雜劇 vs 南戲比較',headers:['比較項目','雜劇（北曲）','南戲（南曲）'],rows:[
+        ['音階','七聲音階','五聲音階'],
+        ['風格','節奏流暢、風格雄健','風格細膩、節奏平穩柔婉'],
+        ['流行地區','北方','南方'],
+        ['代表作','王實甫《西廂記》','高明《琵琶記》'],
+        ['結構','每齣四幕','無固定幕數']
+      ]},
+      {title:'元曲四大家（六大家）',headers:['人物','代表作','類型'],rows:[
+        ['關漢卿','竇娥冤','雜劇'],
+        ['馬致遠','漢宮秋、天淨沙・秋思','雜劇/散曲'],
+        ['白樸','梧桐雨','雜劇'],
+        ['鄭光祖','情女離魂','雜劇'],
+        ['王實甫（六大家）','西廂記','雜劇'],
+        ['喬吉甫（六大家）','揚州夢','雜劇']
+      ]}
+    ]},
+    TIMELINE:[
+      {y:'1279 年',t:'元朝建立，雜劇（元曲）盛行，說唱藝術蓬勃發展'},
+      {y:'元初',t:'關漢卿創作《竇娥冤》；王實甫創作《西廂記》'},
+      {y:'元中',t:'三弦、雲鑼（雲璈）等樂器首次出現'},
+      {y:'元末',t:'高明創作《琵琶記》（南戲最高成就）；散曲文學盛行'}
+    ]
+  },
+  h:{
+    bg:'明代（1369～1650 年）：明代音樂藝術中最具代表性的是戲曲音樂。除了繼承元代的雜劇、宋代的南戲（明代稱傳奇）之外，明代還興起了昆曲，對中國往後三百年的音樂造成很大的影響。明代傳教士利瑪竇（Ricci Matteo, 1552-1610）於萬曆年間傳入古鋼琴，明代可說是接受西洋近代音樂文化之始。',
+    features:[
+      {f:'昆曲',d:'由「崑山腔」演變而來，魏良輔創立，融合「北曲」（七聲）及「南曲」（五聲），稱「水磨腔」，音樂節奏平穩，主要伴奏樂器為曲笛'},
+      {f:'傳奇',d:'明人對元代南戲的稱呼；演出時分開場、正戲、結尾三部分，曲調由五聲音階組成'},
+      {f:'明代五大傳奇',d:'《白兔記》、《拜月亭》、《金釵記》、《殺狗記》、《琵琶記》（高明）'},
+      {f:'西洋音樂傳入',d:'利瑪竇（Ricci Matteo）傳入古鋼琴；之後逐漸有管風琴、絃樂器的輸入'},
+      {f:'十二平均律',d:'朱載堉創十二平均等比算法的樂律理論，記載於《律呂精義》，是世界上最早的十二平均律理論'}
+    ],
+    genres:[
+      {n:'昆曲（崑腔）',d:'由魏良輔創立，融合北曲七聲及南曲五聲，稱「水磨腔」，以曲笛為主要伴奏'},
+      {n:'傳奇',d:'明代南戲，演出分開場、正戲、結尾，曲調由五聲音階組成，唱腔以弋陽腔和海鹽腔為主'},
+      {n:'說唱音樂',d:'分「彈詞」（南方，以琵琶為伴奏）和「鼓詞」（北方，以鼓和拍板伴奏）'},
+      {n:'器樂曲',d:'「古琴曲」朱權於 1425 年編了《神奇秘譜》；「十番鑼鼓」流行於江蘇'}
+    ],
+    terms:[
+      {t:'昆曲',z:'又稱崑腔或崑曲，嘉靖年間產生，由魏良輔創立，流行於明清兩朝'},
+      {t:'水磨腔',z:'昆曲的唱法特色，融合北曲七聲及南曲五聲，唱法細膩，稱水磨腔'},
+      {t:'傳奇',z:'明代對元代南戲的稱呼，演出分開場、正戲、結尾三部分'},
+      {t:'弋陽腔',z:'傳奇的主要唱腔之一，盛行於中南地區'},
+      {t:'海鹽腔',z:'傳奇的主要唱腔之一，起源於浙江海鹽'},
+      {t:'十二平均律',z:'朱載堉發明，是世界最早的十二平均律理論，記載於《律呂精義》'},
+      {t:'《神奇秘譜》',z:'朱權於 1425 年編著，是重要的古琴曲譜集，其中「流水」一曲描寫俞伯牙與鐘子期的故事'},
+      {t:'十番鑼鼓',z:'流行於江蘇的器樂合奏，演奏時將管絃樂器及打擊樂器做不同配置'}
+    ],
+    listen:[
+      {t:'牡丹亭・遊園驚夢',c:'湯顯祖昆曲名作',q:'牡丹亭 遊園驚夢 崑曲'},
+      {t:'流水（古琴）',c:'《神奇秘譜》名曲',q:'流水 古琴 俞伯牙'},
+      {t:'長生殿（崑曲）',c:'洪昇清代名作',q:'長生殿 崑曲 洪昇'},
+      {t:'桃花扇（崑曲）',c:'孔尚任清代名作',q:'桃花扇 崑曲 孔尚任'}
+    ],
+    REF:[
+      {name:'朱載堉',dates:'明代（1536～1611 年）',period:'明',facts:['創十二平均等比算法的樂律理論，記載於《律呂精義》','是世界上第一個提出十二平均律完整理論的人','其著作統編為《樂律全書》','比西方數學家提出十二平均律早了約 30 年']},
+      {name:'魏良輔',dates:'明代（約 1489～1566 年）',period:'明',facts:['明代江蘇崑山人，崑曲的創始人','根據崑山土劇的曲調，將當時不統一的各種唱腔，加以改良為悠揚細膩婉轉動聽的崑曲','劇本之文學性強、音樂和傳統表演藝術都有豐富的內涵及呈現']},
+      {name:'湯顯祖',dates:'明代（1550～1616 年）',period:'明',facts:['明代著名劇作家','代表作：《牡丹亭》（「遊園驚夢」是其中一部分）、《南柯記》','《牡丹亭》是中國最著名的崑曲劇作之一']}
+    ],
+    TF:[
+      {q:'「昆曲」是由魏良輔創立的，又稱「水磨腔」。',ans:true,e:'正確！昆曲（崑腔）由「崑山腔」演變而來，明代江蘇崑山人魏良輔創立，融合「北曲」（七聲）及「南曲」（五聲），唱法細膩稱「水磨腔」；主要伴奏樂器為曲笛。'},
+      {q:'十二平均律是由明代音樂家利瑪竇發明的。',ans:false,e:'十二平均律是由明代音樂家朱載堉所創，記載於《律呂精義》，是世界上第一個完整的十二平均律理論。利瑪竇（Ricci Matteo）是義大利傳教士，於萬曆年間傳入古鋼琴到中國。'},
+      {q:'《神奇秘譜》中的古琴曲「流水」是描寫俞伯牙與鐘子期相知相惜的故事。',ans:true,e:'正確！朱權於 1425 年編著《神奇秘譜》，其中「流水」一曲是在描寫春秋時代鐘子期和俞伯牙相知相惜的故事（即「高山流水覓知音」的典故）。'},
+      {q:'明代五大傳奇包括《牡丹亭》、《拜月亭》、《金釵記》、《殺狗記》、《琵琶記》。',ans:false,e:'明代五大傳奇是《白兔記》、《拜月亭》、《金釵記》、《殺狗記》、《琵琶記》（高明）。《牡丹亭》是湯顯祖的重要昆曲作品，但不在五大傳奇之列。'}
+    ],
+    MC:[
+      {q:'昆曲的主要伴奏樂器是？',opts:['古琴','二胡','曲笛','琵琶'],ans:2,e:'昆曲的主要伴奏樂器為「曲笛」，再加以簫、笙、琵琶、鼓、板和鑼。昆曲唱法細膩，稱「水磨腔」，音樂節奏平穩，腔調婉轉動聽，十分注重吐字和發音，唱詞典雅優美。'},
+      {q:'朱載堉發明十二平均律的理論記載於哪部著作？',opts:['《律呂新書》','《樂律全書》','《律呂精義》','《神奇秘譜》'],ans:2,e:'朱載堉創十二平均等比算法的樂律理論，記載於《律呂精義》；其著作統編為《樂律全書》。他是世界上第一個提出十二平均律完整理論的人。'},
+      {q:'誰是在萬曆年間將古鋼琴傳入中國的傳教士？',opts:['張騫','南懷仁','利瑪竇（Ricci Matteo）','康熙傳教士湯若望'],ans:2,e:'明代傳教士利瑪竇（Ricci Matteo, 1552-1610，義大利人）於萬曆年間傳入古鋼琴，之後逐漸有管風琴、絃樂器的輸入；明代可說是接受西洋近代音樂文化之始。'}
+    ],
+    WORKS:[
+      {l:'牡丹亭',r:'湯顯祖（昆曲）'},{l:'《神奇秘譜》',r:'朱權（1425，古琴曲譜）'},{l:'《律呂精義》',r:'朱載堉（十二平均律）'},{l:'流水',r:'描寫俞伯牙與鐘子期'}
+    ],
+    TITLES:[
+      {l:'魏良輔',r:'昆曲創始人'},{l:'朱載堉',r:'發明十二平均律'},{l:'水磨腔',r:'昆曲的唱腔特色'},{l:'利瑪竇',r:'傳入古鋼琴的傳教士'}
+    ],
+    QREF:{era:'明代',tables:[
+      {title:'明代五大傳奇',headers:['戲曲名','特色'],rows:[
+        ['白兔記','劉知遠與李三娘的故事'],
+        ['拜月亭','關漢卿與施惠合作'],
+        ['金釵記','韓壽與賈充女兒的愛情'],
+        ['殺狗記','兄弟情義教化'],
+        ['琵琶記（高明）','南戲最高成就，書生蔡伯喈忘妻故事']
+      ]},
+      {title:'崑曲重要作品',headers:['作品','作者','朝代'],rows:[
+        ['牡丹亭','湯顯祖','明'],['南柯記','湯顯祖','明'],
+        ['浣紗記','梁辰魚','明'],['長生殿','洪昇','清'],['桃花扇','孔尚任','清']
+      ]}
+    ]},
+    TIMELINE:[
+      {y:'1368 年',t:'明朝建立，繼承元代雜劇與宋代南戲（傳奇）'},
+      {y:'約 1520',t:'魏良輔創立昆曲（崑腔），稱「水磨腔」'},
+      {y:'1550 年',t:'湯顯祖出生，後創作《牡丹亭》等著名昆曲'},
+      {y:'1583 年',t:'利瑪竇來華，1601 年進入北京，傳入古鋼琴'},
+      {y:'1596 年',t:'朱載堉完成《律呂精義》，提出十二平均律理論'}
+    ]
+  },
+  i:{
+    bg:'清代（1644～1911 年）：清初復古風盛行，音樂家多致力於雅樂的考訂，鑽研古代音樂理論。清初西洋傳教士帶來了西洋音樂，康熙時代所編的《律呂正義》是第一本有關西洋樂理的書，到了乾隆時代編的《律呂正義續編》更收錄了許多相關資料。',
+    features:[
+      {f:'平劇（京戲）形成',d:'乾隆五十五年（1790年）徽班進京，結合崑曲、弋陽腔及亂彈，後與漢劇融合演變成京戲（平劇），主要唱腔為「西皮」（活潑快速）和「二黃（黃）」（抒情慢速）'},
+      {f:'平劇四大名旦',d:'梅蘭芳、尚小雲、程豔秋、荀慧生為平劇四大名旦'},
+      {f:'平劇行當',d:'生（男）、旦（女）、淨（大花臉）、丑（小粉塊）四大行當'},
+      {f:'說唱音樂',d:'彈詞（南方，三絃和琵琶伴奏）、鼓詞（北方，又稱「大鼓」，著名有「京韻大鼓」、「梨花大鼓」）'}
+    ],
+    genres:[
+      {n:'平劇（京戲）',d:'又稱「國劇」、「皮黃」，唱腔以西皮（活潑快速）和二黃（抒情慢速）為主；角色有生、旦、淨、丑'},
+      {n:'崑腔',z:'流傳於文人階級，後被平劇取代'},
+      {n:'弋陽腔',d:'在江西一帶流傳，流傳於農民階級後漸漸消失'},
+      {n:'彈詞',d:'南方說唱音樂，以三絃和琵琶伴奏，歌詞多為七言詩，著名有「蘇州彈詞」'},
+      {n:'鼓詞（大鼓）',d:'北方說唱音樂，由唱者擊鼓，有時加入拍板、三絃和琵琶，著名有「京韻大鼓」、「梨花大鼓」'}
+    ],
+    terms:[
+      {t:'平劇（京戲）',z:'又稱國劇、皮黃；清乾隆 55 年（1790）徽班進京後逐漸形成'},
+      {t:'西皮',z:'平劇主要唱腔之一，活潑快速，發源於陝、甘一帶'},
+      {t:'二黃',z:'平劇主要唱腔之一，抒情慢速，發源於黃岡、黃陂二地'},
+      {t:'行當',z:'稱為「行當」，是中國戲曲特有的體制，為劇中人物的類型'},
+      {t:'文場',z:'平劇伴奏以胡琴為首，加上笛子、笙、簫等管樂器及絃樂器'},
+      {t:'武場',z:'以嗩吶（文場時必備）和小鑼為首，加上大鑼、雲鑼、鈸等打擊樂器'},
+      {t:'砌末',z:'京劇舞臺上各種道具的統稱，道具具有獨特意義（如「車旗」代表車）'},
+      {t:'行頭',z:'京劇服裝的統稱，以古代日常生活服裝為基礎，不受時代、地域和季節限制'},
+      {t:'蘇州彈詞',z:'南方最著名的彈詞，以蘇州方言演唱，以三絃和琵琶伴奏'},
+      {t:'京韻大鼓',z:'北方著名的鼓詞（大鼓），以京音演唱，節奏鮮明'}
+    ],
+    listen:[
+      {t:'霸王別姬',c:'平劇名作',q:'霸王別姬 梅蘭芳 京劇'},
+      {t:'梅蘭芳・貴妃醉酒',c:'平劇四大名旦',q:'貴妃醉酒 梅蘭芳 京劇'},
+      {t:'蘇州彈詞',c:'南方說唱音樂',q:'蘇州彈詞 傳統音樂'},
+      {t:'京韻大鼓',c:'北方說唱音樂',q:'京韻大鼓 傳統音樂'}
+    ],
+    REF:[
+      {name:'梅蘭芳',dates:'清末民初（1894～1961 年）',period:'清/民國',facts:['平劇四大名旦之首','以旦角（女性角色）表演聞名世界','代表作：《霸王別姬》、《貴妃醉酒》、《鳳還巢》等','曾赴蘇聯、美國等地演出，對推廣中國戲曲貢獻巨大','其表演藝術被稱為「梅派」']},
+      {name:'李漁（字笠翁）',dates:'清初（1611～1680 年）',period:'清',facts:['清初錢塘人，對音律很有研究','作有《傳奇十六種》，大多是愛情故事，其中十種最為流行（「李笠翁十種曲」）','另著有《李笠翁曲譜》']}
+    ],
+    TF:[
+      {q:'平劇主要唱腔「西皮」活潑快速，「二黃」抒情慢速。',ans:true,e:'正確！平劇（又稱京戲、國劇、皮黃）的主要唱腔是「西皮」（活潑快速，發源於陝、甘一帶）和「二黃（黃）」（抒情慢速，發源於黃岡、黃陂二地）。'},
+      {q:'平劇四大名旦是梅蘭芳、尚小雲、程豔秋、張君秋。',ans:false,e:'平劇四大名旦是梅蘭芳、尚小雲、程豔秋、荀慧生（不是張君秋）。這四位是清末民初最著名的平劇旦角演員。'},
+      {q:'康熙時代所編的《律呂正義》是第一本有關西洋樂理的書。',ans:true,e:'正確！清初西洋傳教士帶來了西洋音樂，康熙時代所編的《律呂正義》是第一本有關西洋樂理的書；到了乾隆時代編的《律呂正義續編》更收錄了許多相關資料。'},
+      {q:'平劇（京戲）形成於清乾隆五十五年（1790年），當時是徽班進京慶祝乾隆壽誕。',ans:true,e:'正確！清乾隆五十五年（1790年）為慶祝生日，下詔徽戲班進京演戲，徽班進京後結合當時風行北京的崑曲、弋陽腔及亂彈，並與隨後進京的漢劇相互融合，演變成京戲（又稱平劇）。'}
+    ],
+    MC:[
+      {q:'平劇行當中，「淨」指的是什麼？',opts:['專指女性角色','專指男性角色','需要勾化臉譜的角色，又稱大花臉','臉上塗有小粉塊的角色'],ans:2,e:'「淨」指需要勾化臉譜的角色，又稱「大花臉」；「旦」指女性角色；「生」指男性角色；「丑」指臉上塗有小粉塊的角色，又可分為文丑和武丑。'},
+      {q:'清代南方著名的說唱音樂「蘇州彈詞」是用什麼樂器伴奏？',opts:['鼓和拍板','三絃和琵琶','胡琴和笛子','古琴'],ans:1,e:'「彈詞」是流行於明清時代的南方說唱音樂，使用三絃和琵琶為說書伴奏，歌詞多為七言詩，並且使用方言演唱，最著名的有「蘇州彈詞」。'},
+      {q:'平劇中「文場」的主要領奏樂器是？',opts:['嗩吶','小鑼','胡琴','月琴'],ans:2,e:'平劇的伴奏分文場和武場：文場以「胡琴」為首，加上笛子、笙、簫等管樂器及月琴、三絃等絃樂器；武場以嗩吶（屬文場但武場時必備）和小鑼為首，加上大鑼、雲鑼、鈸等打擊樂器。'}
+    ],
+    WORKS:[
+      {l:'霸王別姬',r:'梅蘭芳（平劇）'},{l:'蘇州彈詞',r:'南方說唱音樂'},{l:'京韻大鼓',r:'北方鼓詞代表'},{l:'《律呂正義》',r:'康熙時代（西洋樂理）'}
+    ],
+    TITLES:[
+      {l:'梅蘭芳',r:'平劇四大名旦之首'},{l:'西皮',r:'平劇唱腔（活潑快速）'},{l:'砌末',r:'京劇舞臺道具統稱'},{l:'行頭',r:'京劇服裝統稱'}
+    ],
+    QREF:{era:'清代',tables:[
+      {title:'平劇四大行當',headers:['行當','含義','細分'],rows:[
+        ['生','男性角色','老生、小生、武生、紅生'],
+        ['旦','女性角色','青衣、花旦、刀馬旦、武旦'],
+        ['淨','大花臉（需勾臉譜）','又稱大花臉'],
+        ['丑','臉上塗小粉塊','文丑、武丑']
+      ]},
+      {title:'清代戲曲唱腔',headers:['唱腔','流傳地','特色'],rows:[
+        ['崑腔','文人階級','典雅精緻，後被平劇取代'],
+        ['弋陽腔','江西農民階級','後漸漸消失'],
+        ['梆子腔','中國北方（山西等）','使用梆子打節拍'],
+        ['皮黃腔（西皮+二黃）','全國','平劇主要唱腔']
+      ]}
+    ]},
+    TIMELINE:[
+      {y:'1644 年',t:'清朝建立，清初復古風盛行，致力於雅樂考訂'},
+      {y:'康熙年間',t:'西洋傳教士帶來西洋音樂；《律呂正義》編成（第一本西洋樂理書）'},
+      {y:'1790 年',t:'乾隆五十五年，徽班進京，平劇（京戲）逐漸形成'},
+      {y:'1818 年',t:'華秋蘋的《琵琶譜》是最早被正式刊印的琵琶曲集'},
+      {y:'清末',t:'西洋音樂影響漸增；清末設立新式學堂教授「樂歌」（音樂課）'}
+    ]
+  },
+  j:{
+    bg:'民國（1911 年～至今）：繼唐代以後，民國為西洋音樂傳入的另一鼎盛期。民國 32 年政府公佈我國的樂徽是排簫（又稱鳳簫，在八音中屬於竹製的樂器）；並訂定 4 月 5 日為音樂節，目的是為了紀念黃帝。蕭友梅、劉天華、黃自等為重要音樂家。',
+    features:[
+      {f:'蕭友梅',d:'現代中國音樂的先驅，留學德國專研理論作曲，創立第一所音樂院（現國立上海音樂專科學校），是新式音樂教育的創始人'},
+      {f:'劉天華',d:'畢生致力改進和發揚國樂，（1）運用西樂技巧改進中國樂器（2）提升二胡和琵琶的地位（3）創辦音樂雜誌社（4）組織國樂改進社（5）整理民間音樂並用西洋記譜法記錄'},
+      {f:'黃自',d:'留美，使用五聲音階，運用西方和聲，是運用西方新音樂作曲的第一人；為我國「國旗歌」譜曲'},
+      {f:'國樂徽與音樂節',d:'民國 32 年定排簫為樂徽；4 月 5 日為音樂節（紀念黃帝）；國歌作詞為孫中山先生，作曲為程懋筠；國旗歌作詞為戴傳賢，作曲為黃自'}
+    ],
+    genres:[
+      {n:'藝術歌曲（西式）',d:'黃自創作「踏雪尋梅」、「玫瑰三願」、「天倫歌」等，運用西方和聲和五聲音階'},
+      {n:'清唱劇',d:'黃自的「長恨歌」是我國第一齣清唱劇，以白居易的長恨歌內容和章瀚章的詞'},
+      {n:'國樂演奏',d:'劉天華的胡琴十大名曲（空山鳥語、燭影搖紅、光明行等）'},
+      {n:'愛國歌曲',d:'黃自作有「旗正飄飄」、「熱血」、「抗敵歌」（為我國第一首用合唱形式寫成的愛國歌曲）'}
+    ],
+    terms:[
+      {t:'排簫',z:'又稱鳳簫，民國 32 年定為我國樂徽，在八音中屬竹製樂器'},
+      {t:'音樂節',z:'訂定 4 月 5 日為音樂節，目的是為了紀念黃帝'},
+      {t:'清唱劇',z:'黃自的「長恨歌」是我國第一齣清唱劇'},
+      {t:'國歌',z:'作詞為孫中山先生（三民主義，吾黨所宗…），作曲為程懋筠'},
+      {t:'國旗歌',z:'作詞為戴傳賢，作曲為黃自'},
+      {t:'胡琴十大名曲',z:'劉天華創作的十首胡琴曲，包括空山鳥語、燭影搖紅、光明行等'}
+    ],
+    listen:[
+      {t:'空山鳥語（劉天華）',c:'胡琴十大名曲之一',q:'空山鳥語 劉天華 二胡'},
+      {t:'踏雪尋梅（黃自）',c:'藝術歌曲',q:'踏雪尋梅 黃自 藝術歌曲'},
+      {t:'玫瑰三願（黃自）',c:'黃自藝術歌曲',q:'玫瑰三願 黃自'},
+      {t:'長恨歌（黃自）',c:'第一齣清唱劇',q:'長恨歌 黃自 清唱劇'},
+      {t:'光明行（劉天華）',c:'胡琴名曲',q:'光明行 劉天華 二胡'}
+    ],
+    REF:[
+      {name:'蕭友梅',dates:'1884～1940 年',period:'民國',facts:['現代中國音樂的先驅，留學日本研究教育和音樂，後到德國專研理論作曲','民國 11 年將清末「樂歌」一詞改名為「音樂」，成為小學的必修科','著作有《普通樂學》、《和聲學》、歌曲集《今樂初集》和《新歌初集》','藝術歌曲有「問」、「覓裳羽衣曲」、「楊花」（韋翰章詞）等','創立我國第一所音樂院（現今的國立上海音樂專科學校），是我國新式音樂教育的創始人']},
+      {name:'劉天華',dates:'1895～1932 年',period:'民國',facts:['畢生致力於改進和發揚國樂：運用西樂演奏技巧改進中國樂器的演奏技巧；提升二胡和琵琶的地位；創辦音樂雜誌社；組織國樂改進社；整理民間音樂並用西洋記譜法紀錄','著名的胡琴十大名曲：「空山鳥語」、「燭影搖紅」、「光明行」、「良宵」、「病中吟」、「悲歌」、「苦悶之軀」、「月夜」、「獨絃操」、「閒居吟」','著名的琵琶曲「歌舞引」等三首']},
+      {name:'黃自',dates:'1904～1938 年',period:'民國',facts:['留美學習心理學、音樂、理論作曲','是我國運用西方新音樂作曲的第一人，使用五聲音階，運用西方和聲','愛國歌曲：「旗正飄飄」、「熱血」、「抗敵歌」（我國第一首用合唱形式寫成的愛國歌曲）','藝術歌曲：「踏雪尋梅」、「玫瑰三願」、「天倫歌」、「花非花」等','清唱劇「長恨歌」（我國第一齣清唱劇；以白居易長恨歌內容和章瀚章的詞，學生林聲翕補充完成）','黃自也為我國「國旗歌」譜曲']},
+      {name:'王光祈',dates:'1892～1936 年',period:'民國',facts:['早年留德，不僅研究西洋音樂，更鑽研中國音樂和東方音樂','為我國研究民族音樂學的先驅，也是我國留學生獲音樂博士的第一人','著有第一本的《中國音樂史》，其他重要著作有《東方民族之音樂》、《西洋音樂史綱要》等']}
+    ],
+    TF:[
+      {q:'民國 32 年訂定排簫（鳳簫）為我國樂徽，4 月 5 日為音樂節。',ans:true,e:'正確！民國 32 年政府公佈我國的樂徽是排簫（又稱鳳簫，在八音中屬於竹製的樂器）；並訂定 4 月 5 日為音樂節，目的是為了紀念黃帝。'},
+      {q:'黃自的「長恨歌」是我國第一首用合唱形式寫成的愛國歌曲。',ans:false,e:'黃自的「抗敵歌」才是我國第一首用合唱形式寫成的愛國歌曲；「長恨歌」是我國第一齣「清唱劇」，以白居易的長恨歌內容和章瀚章的詞，並由學生林聲翕補充完成。'},
+      {q:'劉天華提升了二胡和琵琶在音樂中的地位。',ans:true,e:'正確！劉天華畢生致力於改進和發揚國樂，其貢獻包括：（1）運用西樂演奏技巧改進中國樂器的演奏技巧、（2）提升二胡和琵琶的地位、（3）創辦音樂雜誌社、（4）組織國樂改進社、（5）整理民間音樂並用西洋記譜法紀錄。'},
+      {q:'蕭友梅將清末「樂歌」改名為「音樂」，並創立了我國第一所音樂院。',ans:true,e:'正確！蕭友梅（現代中國音樂先驅）留學日本研究教育和音樂，後到德國專研理論作曲；民國 11 年將清末「樂歌」一詞改名為「音樂」，成為小學的必修科；創立我國第一所音樂院（現今的國立上海音樂專科學校），是我國新式音樂教育的創始人。'},
+      {q:'我國的「國旗歌」作詞是孫中山先生，作曲是程懋筠。',ans:false,e:'「國歌」是作詞為孫中山先生（三民主義歌詞），作曲為程懋筠；「國旗歌」（青天白日旗歌）則是作詞為戴傳賢，作曲為黃自。兩者不要混淆！'}
+    ],
+    MC:[
+      {q:'黃自哪首作品是我國第一首用「合唱形式」寫成的愛國歌曲？',opts:['踏雪尋梅','玫瑰三願','抗敵歌','旗正飄飄'],ans:2,e:'黃自的「抗敵歌」是為我國第一首用合唱形式寫成的愛國歌曲；此外他還有「旗正飄飄」、「熱血」等愛國歌曲；「長恨歌」是我國第一齣清唱劇。'},
+      {q:'劉天華胡琴十大名曲中，哪首最為著名？',opts:['燭影搖紅','空山鳥語','光明行','月夜'],ans:1,e:'劉天華的「空山鳥語」是胡琴十大名曲中最著名的一首，以二胡模仿山中鳥鳴聲，技巧超群；此外「光明行」也很著名，是曲風雄壯昂揚的代表作。（各人喜好不同，但空山鳥語最常見）'},
+      {q:'王光祈著有《中國音樂史》，是什麼樣的音樂研究先驅？',opts:['西洋音樂的先驅','民族音樂學的先驅，也是留學生獲音樂博士第一人','流行音樂的先驅','鋼琴音樂的先驅'],ans:1,e:'王光祈早年留德，為我國研究民族音樂學的先驅，也是我國留學生獲音樂博士的第一人；著有第一本的《中國音樂史》，及《東方民族之音樂》、《西洋音樂史綱要》等重要著作。'}
+    ],
+    WORKS:[
+      {l:'空山鳥語',r:'劉天華（二胡）'},{l:'踏雪尋梅',r:'黃自（藝術歌曲）'},{l:'長恨歌',r:'黃自（清唱劇）'},{l:'抗敵歌',r:'黃自（第一首合唱愛國歌曲）'}
+    ],
+    TITLES:[
+      {l:'蕭友梅',r:'現代中國音樂先驅'},{l:'劉天華',r:'提升國樂地位'},{l:'黃自',r:'第一位用西方作曲法'},{l:'王光祈',r:'民族音樂學先驅'}
+    ],
+    QREF:{era:'民國至今',tables:[
+      {title:'民國四大音樂家比較',headers:['音樂家','主要貢獻','代表作品'],rows:[
+        ['蕭友梅','創立第一所音樂院，推廣音樂教育','「問」、「覓裳羽衣曲」'],
+        ['劉天華','改進國樂，提升二胡地位','空山鳥語、光明行（胡琴十大名曲）'],
+        ['黃自','第一位用西方法作曲，為國旗歌譜曲','踏雪尋梅、玫瑰三願、長恨歌'],
+        ['王光祈','著《中國音樂史》，民族音樂學先驅','《東方民族之音樂》']
+      ]},
+      {title:'重要歌曲分類',headers:['類型','代表作','作曲者'],rows:[
+        ['國歌（三民主義）','三民主義，吾黨所宗…','程懋筠'],
+        ['國旗歌（青天白日旗歌）','山川壯麗，物產豐隆…','黃自'],
+        ['第一首合唱愛國歌曲','抗敵歌','黃自'],
+        ['第一齣清唱劇','長恨歌','黃自']
+      ]}
+    ]},
+    TIMELINE:[
+      {y:'1911 年',t:'民國成立，西洋音樂傳入再度盛行，蕭友梅開創現代音樂教育'},
+      {y:'1922 年',t:'蕭友梅將「樂歌」改名為「音樂」，成為小學必修科'},
+      {y:'1920s',t:'劉天華組織國樂改進社，改進中國樂器的演奏技巧'},
+      {y:'1930s',t:'黃自創作大量藝術歌曲及清唱劇「長恨歌」'},
+      {y:'民國 32 年',t:'政府公佈排簫為樂徽，訂 4 月 5 日為音樂節'}
+    ]
+  }
+};
+
+// ===== UTILITY =====
+let curEra=null,mode=null,gs={};
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function sfl(a){let b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function pk(a,n){return sfl(a).slice(0,n);}
+function pb(t,i){const segs=Array.from({length:t},(_,j)=>{let c=j<i?'pd':j===i?'pc':'';return`<div class="prog-seg ${c}"></div>`;}).join('');return`<div class="prog-bar">${segs}</div>`;}
+function ytl(lab,q){return`<a class="yt-btn" href="https://www.youtube.com/results?search_query=${encodeURIComponent(q)}" target="_blank">▶ ${lab}</a>`;}
+const app=document.getElementById('app');
+
+// ===== SCREENS =====
+function showEras(){
+  curEra=null;mode=null;
+  const btns=ERAS.map(e=>`<div class="era-btn" style="--ec:${e.color}" onclick="enterEra('${e.id}')"><div class="eicon">${e.icon}</div><div class="elabel">${e.name}</div><div class="eyrs">${e.years}</div></div>`).join('');
+  const tip=`<div class="tip">點選任一朝代進入學習模式。每個單元包含：📖 速查手冊（音樂家、重要知識）、🕒 時間軸、🎵 時代導覽（特色、重要術語、必聽曲目）、⭕ 是非題練習、📝 選擇題練習、配對遊戲。</div>`;
+  app.innerHTML=`<div class="era-grid">${btns}</div>${tip}`;
+}
+
+function enterEra(id){
+  curEra=id;mode=null;
+  const era=ERAS.find(e=>e.id===id);
+  const modes=[
+    {id:'intro',icon:'🎵',l:'時代導覽',d:'特色・術語・必聽'},
+    {id:'ref',icon:'📖',l:'速查手冊',d:'音樂家・知識整理'},
+    {id:'qref',icon:'📋',l:'速查表格',d:'重要知識一覽表'},
+    {id:'tl',icon:'🕒',l:'時間軸',d:'大事紀'},
+    {id:'tf',icon:'⭕',l:'是非題',d:'正誤判斷練習'},
+    {id:'mc',icon:'📝',l:'選擇題',d:'單選題測驗'},
+    {id:'mW',icon:'🔗',l:'作品配對',d:'作品與人物'},
+    {id:'mT',icon:'🏷️',l:'稱號配對',d:'名詞解釋對應'}
+  ];
+  const mbtns=modes.map(m=>`<div class="mode-btn" onclick="sm('${m.id}')"><div class="micon">${m.icon}</div><div class="mlabel">${m.l}</div><div class="mdesc">${m.d}</div></div>`).join('');
+  app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="showEras()">← 返回</button></div>
+  <div class="era-banner" style="--ec:${era.color}">
+    <div class="esub">${era.sub}</div>
+    <h2>${era.icon} ${era.name}　${era.years}</h2>
+    <div class="eintro">${era.intro}</div>
+  </div>
+  <div class="mode-grid">${mbtns}</div>`;
+}
+
+function sm(m){
+  mode=m;
+  if(m==='intro')showIntro();
+  else if(m==='ref')showRef();
+  else if(m==='qref')showQRef();
+  else if(m==='tl')showTL();
+  else if(m==='tf')iTF();
+  else if(m==='mc')iMC();
+  else if(m==='mW'||m==='mT')iMT();
+}
+
+function showIntro(){
+  const era=ERAS.find(e=>e.id===curEra);
+  const d=DATA[curEra];
+  const c=era.color;
+  const bg=`<div class="intro-sec"><div class="intro-h" style="--ec:${c}">📜 時代背景</div><div class="intro-body">${d.bg}</div></div>`;
+  const ft=`<div class="intro-sec"><div class="intro-h" style="--ec:${c}">🎼 音樂特色</div><div class="feat-grid">${d.features.map(x=>`<div class="feat-card" style="--ec:${c}"><div class="ft">${x.f}</div><div class="fd">${x.d}</div></div>`).join('')}</div></div>`;
+  const gn=`<div class="intro-sec"><div class="intro-h" style="--ec:${c}">🎵 重要曲種／形式</div><div class="feat-grid">${d.genres.map(x=>`<div class="feat-card" style="--ec:${c}"><div class="ft">${x.n}</div><div class="fd">${x.d}</div></div>`).join('')}</div></div>`;
+  const tm=`<div class="intro-sec"><div class="intro-h" style="--ec:${c}">📚 重要術語</div><div class="term-grid">${d.terms.map(x=>`<div class="term-card"><div class="tt" style="color:${c}">${x.t}</div><div class="tz">${x.z}</div></div>`).join('')}</div></div>`;
+  const ls=`<div class="intro-sec"><div class="intro-h" style="--ec:${c}">🎬 必聽曲目（點 ▶ 連結至 YouTube）</div><div>${d.listen.map(x=>`<div class="listen-item"><div class="listen-title">${x.t}</div><div class="listen-comp">${x.c}</div>${ytl('YouTube 搜尋',x.q)}</div>`).join('')}</div></div>`;
+  app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title" style="--ec:${era.color}">🎵 ${era.name} 時代導覽</span></div>${bg}${ft}${gn}${tm}${ls}`;
+}
+
+function showRef(){
+  const era=ERAS.find(e=>e.id===curEra);
+  const d=DATA[curEra];
+  const items=d.REF.map((c,i)=>{
+    return`<div class="ref-item"><div class="ref-head" onclick="tgRef(${i})"><div class="ref-av" style="background:${era.color}">${c.name[0]}</div><div style="flex:1"><div class="ref-name">${c.name}</div><div class="ref-sub">${c.dates}</div></div><div class="ref-badge" style="background:${era.color}">${c.period}</div><div class="ref-arr" id="a${i}">▼</div></div><div id="b${i}" style="display:none"><ul class="ref-body" style="--ec:${era.color}">${c.facts.map(f=>`<li>${f}</li>`).join('')}</ul></div></div>`;
+  }).join('');
+  app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title" style="--ec:${era.color}">📖 速查手冊</span></div><div class="card"><div style="font-size:.78rem;color:#666;margin-bottom:10px;font-weight:600">點擊音樂家 / 人物展開重點整理</div>${items}</div>`;
+}
+
+function showQRef(){
+  const era=ERAS.find(e=>e.id===curEra);
+  const qr=DATA[curEra].QREF;
+  const tables=qr.tables.map(t=>{
+    const thead=`<tr>${t.headers.map(h=>`<th>${h}</th>`).join('')}</tr>`;
+    const tbody=t.rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('');
+    return`<div class="qref-sec"><div class="qref-title">${t.title}</div><table class="qref-table"><thead>${thead}</thead><tbody>${tbody}</tbody></table></div>`;
+  }).join('');
+  app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title" style="--ec:${era.color}">📋 速查表格</span></div><div class="card">${tables}</div>`;
+}
+
+function showTL(){
+  const era=ERAS.find(e=>e.id===curEra);
+  const items=era.TIMELINE.map(t=>`<div class="tl-item"><span class="tl-yr">${t.y}</span><div class="tl-tx">${t.t}</div></div>`).join('');
+  app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title" style="--ec:${era.color}">🕒 時間軸</span></div><div class="card" style="--ec:${era.color}"><div style="font-size:.8rem;color:#666;margin-bottom:10px;text-align:center;font-weight:700">${era.sub}</div><div class="tl">${items}</div></div>`;
+}
+
+function tgRef(i){
+  const b=document.getElementById('b'+i);const a=document.getElementById('a'+i);
+  if(!b)return;
+  const o=b.style.display!=='none';
+  b.style.display=o?'none':'block';
+  if(a)a.textContent=o?'▼':'▲';
+}
+
+function showResult(s,t){
+  const p=Math.round(s/t*100);
+  const ic=p>=90?"🏆":p>=70?"⭐":"🎵";
+  const st=p>=90?"完美！":p>=70?"還不錯！":"繼續努力！";
+  const era=ERAS.find(e=>e.id===curEra);
+  app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><button class="restart-btn" onclick="sm('${mode}')">↺ 再來一次</button></div><div class="card"><div class="result-box"><div class="ri">${ic}</div><div class="rs">${st}</div><div class="rsc">得分 ${s} / ${t}</div><div class="rp">正確率 ${p}%</div></div></div>`;
+}
+
+function getD(){return DATA[curEra];}
+
+function iTF(){const d=getD();gs={qs:sfl(d.TF).slice(0,Math.min(10,d.TF.length)),i:0,s:0,a:null};rTF();}
+function rTF(){
+  const{qs,i,s,a}=gs;
+  if(i>=qs.length){showResult(s,qs.length);return;}
+  const q=qs[i];
+  const era=ERAS.find(e=>e.id===curEra);
+  let t0='',t1='';
+  if(a!==null){t0=q.ans===true?'tc':(a===true?'tw':'');t1=q.ans===false?'tc':(a===false?'tw':'');}
+  const ex=a!==null?`<div class="explain ${a===q.ans?'eo':'en'}"><span class="${a===q.ans?'eho':'ehn'}">${a===q.ans?'✅ 答對了！':'❌ 答錯了'}</span>${q.e}<br><button class="next-btn" onclick="nTF()">${i+1<qs.length?'下一題 →':'查看結果 ✨'}</button></div>`:'';
+  app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title" style="--ec:${era.color}">⭕ 是非題</span><button class="restart-btn" onclick="iTF()">↺ 重來</button></div>${pb(qs.length,i)}<div class="stat-row"><div class="chip">第 <strong>${i+1}</strong>/${qs.length} 題</div><div class="chip">答對 <strong>${s}</strong></div></div><div class="card"><div class="q-box">${q.q}</div><div class="tf-btns"><button class="tf-btn ${t0}" ${a!==null?'disabled':''} onclick="aTF(true)">○ 正確</button><button class="tf-btn ${t1}" ${a!==null?'disabled':''} onclick="aTF(false)">✗ 錯誤</button></div>${ex}</div>`;
+}
+function aTF(v){if(gs.a!==null)return;const ok=v===gs.qs[gs.i].ans;gs.a=v;if(ok)gs.s++;rTF();}
+function nTF(){gs.i++;gs.a=null;rTF();}
+
+function iMC(){const d=getD();gs={qs:sfl(d.MC).slice(0,Math.min(8,d.MC.length)),i:0,s:0,c:null};rMC();}
+function rMC(){
+  const{qs,i,s,c}=gs;
+  if(i>=qs.length){showResult(s,qs.length);return;}
+  const q=qs[i];
+  const era=ERAS.find(e=>e.id===curEra);
+  const ob=q.opts.map((o,j)=>{let cl='';if(c!==null){cl=j===q.ans?'mc':(j===c?'mw':'');}return`<button class="mc-btn ${cl}" ${c!==null?'disabled':''} onclick="cMC(${j})"><span class="abadge">${['甲','乙','丙','丁'][j]}</span>${o}</button>`;}).join('');
+  const ex=c!==null?`<div class="explain ${c===q.ans?'eo':'en'}"><span class="${c===q.ans?'eho':'ehn'}">${c===q.ans?'✅ 答對了！':'❌ 答錯了'}</span>${q.e}<br><button class="next-btn" onclick="nMC()">${i+1<qs.length?'下一題 →':'查看結果 ✨'}</button></div>`:'';
+  app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title" style="--ec:${era.color}">📝 選擇題</span><button class="restart-btn" onclick="iMC()">↺ 重來</button></div>${pb(qs.length,i)}<div class="stat-row"><div class="chip">第 <strong>${i+1}</strong>/${qs.length} 題</div><div class="chip">答對 <strong>${s}</strong></div></div><div class="card"><div class="q-box">${q.q}</div>${ob}${ex}</div>`;
+}
+function cMC(j){if(gs.c!==null)return;gs.c=j;if(j===gs.qs[gs.i].ans)gs.s++;rMC();}
+function nMC(){gs.i++;gs.c=null;rMC();}
+
+function iMT(){
+  const d=getD();
+  const src=mode==='mW'?d.WORKS:d.TITLES;
+  const n=Math.min(6,src.length);
+  const pairs=pk(src,n);
+  gs={pairs,L:sfl(pairs.map(p=>p.l)),R:sfl(pairs.map(p=>p.r)),lS:null,rS:null,M:{},W:{},s:0,at:0};
+  rMT();
+}
+function rMT(){
+  const{pairs,L,R,lS,rS,M,W,s,at}=gs;
+  const era=ERAS.find(e=>e.id===curEra);
+  const lbl=mode==='mW'?'🎵 作品配對':'🏷️ 術語配對';
+  const lhdr=mode==='mW'?'作　品':'術　語';
+  function mi(v,sd,idx){
+    const isSel=sd==='L'?lS===v:rS===v;
+    const isM=M[v],isW=W[v];
+    let cl='mi';
+    if(isM)cl+=' mi-m';else if(isW)cl+=' mi-w';else if(isSel)cl+=' mi-s';
+    const oc=isM?'':` onclick="selM('${sd}',${idx})"`;
+    return`<div class="${cl}"${oc}>${esc(v)}</div>`;
+  }
+  let cells='';
+  const n=Math.max(L.length,R.length);
+  for(let i=0;i<n;i++){if(L[i])cells+=mi(L[i],'L',i);if(R[i])cells+=mi(R[i],'R',i);}
+  const dm=s===pairs.length?`<div class="done-msg">🎉 全部配對完成！共嘗試 ${at} 次</div>`:'';
+  app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title" style="--ec:${era.color}">${lbl}</span><button class="restart-btn" onclick="iMT()">↺ 重來</button></div><div class="stat-row"><div class="chip">已配對 <strong>${s}</strong>/${pairs.length}</div><div class="chip">嘗試 <strong>${at}</strong> 次</div></div><div class="card"><div class="match-hdr"><div>${lhdr}</div><div>人物 ／ 解釋</div></div><div class="match-grid">${cells}</div>${dm}</div>`;
+}
+function selM(sd,idx){
+  const g=gs;
+  const v=sd==='L'?g.L[idx]:g.R[idx];
+  if(!v||g.M[v])return;
+  if(sd==='L')g.lS=g.lS===v?null:v;
+  else g.rS=g.rS===v?null:v;
+  if(g.lS&&g.rS){
+    const p=g.pairs.find(x=>x.l===g.lS);
+    const ok=p&&p.r===g.rS;
+    g.at++;
+    if(ok){g.M[g.lS]=true;g.M[g.rS]=true;g.s++;g.lS=null;g.rS=null;g.W={};}
+    else{g.W={[g.lS]:true,[g.rS]:true};setTimeout(()=>{g.W={};g.lS=null;g.rS=null;rMT();},700);}
+  }
+  rMT();
+}
+
+showEras();
+</script>
+
+<div id="ai-messages"></div>
+    
+    
+  </div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="../assets/js/shared.js"></script>
+<script>window.UNIT_CONTEXT="中國音樂史";</script>
+</body>
+</html>

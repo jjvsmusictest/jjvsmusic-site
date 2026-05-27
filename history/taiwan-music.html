@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>台灣戲曲與音樂史 · 互動學習手冊</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+:root{
+  --ink:#1a1a1a;
+  --paper:#FEF9F0;
+  --red:#C0392B;
+  --darkred:#8B1A1A;
+  --gold:#E6A817;
+  --green:#1E7A4A;
+  --blue:#1B5E8A;
+  --purple:#5B2D8E;
+}
+body{
+  background:var(--paper);
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(198,71,33,.04) 0, transparent 60%),
+    radial-gradient(circle at 80% 80%, rgba(27,94,138,.04) 0, transparent 60%),
+    repeating-linear-gradient(0deg,transparent,transparent 29px,rgba(160,100,40,.08) 29px,rgba(160,100,40,.08) 30px);
+  font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;
+  color:var(--ink);padding:14px;min-height:100vh;font-weight:500
+}
+/* HEADER */
+.hd{text-align:center;margin-bottom:18px}
+.hd-title{display:inline-block;position:relative}
+.hd-title h1{
+  font-size:1.85rem;color:#fff;
+  background:linear-gradient(135deg,#7D1A1A 0%,#C0392B 50%,#7D1A1A 100%);
+  padding:10px 28px 10px 24px;
+  border:3px solid #5D0E0E;border-radius:3px;
+  box-shadow:5px 5px 0 #5D0E0E,0 0 0 6px rgba(192,57,43,.12);
+  font-weight:900;letter-spacing:.1em;
+  font-family:'Noto Serif TC',serif;line-height:1.25
+}
+.hd-deco{font-size:1.15rem;opacity:.75;margin:0 6px;vertical-align:middle}
+.sub{display:inline-block;margin-top:11px;background:var(--gold);color:#5D0E0E;
+  padding:4px 18px;border:2.5px solid #5D0E0E;border-radius:2px;
+  font-size:.75rem;font-weight:800;box-shadow:3px 3px 0 #5D0E0E;letter-spacing:.1em}
+
+/* ERA GRID */
+.era-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:13px;margin:18px 0 14px}
+.era-btn{
+  padding:15px 10px;border-radius:3px;cursor:pointer;text-align:center;
+  background:var(--ec);border:3px solid rgba(0,0,0,.55);
+  box-shadow:5px 5px 0 rgba(0,0,0,.45);
+  transition:all .13s;color:#fff;position:relative;overflow:hidden
+}
+.era-btn::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 5px,rgba(255,255,255,.05) 5px,rgba(255,255,255,.05) 10px);pointer-events:none}
+.era-btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 rgba(0,0,0,.45)}
+.era-btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 rgba(0,0,0,.45)}
+.eicon{font-size:1.9rem;margin-bottom:5px;filter:drop-shadow(2px 2px 0 rgba(0,0,0,.4))}
+.elabel{font-weight:900;font-size:.9rem;margin-bottom:4px;line-height:1.3;text-shadow:2px 2px 0 rgba(0,0,0,.4);font-family:'Noto Serif TC',serif;letter-spacing:.05em}
+.eyrs{font-size:.65rem;background:rgba(0,0,0,.72);padding:2px 8px;border-radius:2px;display:inline-block;font-weight:700;letter-spacing:.04em}
+
+/* MODE GRID */
+.mode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(126px,1fr));gap:9px;margin-bottom:12px}
+.mode-btn{padding:13px 9px;border-radius:3px;cursor:pointer;text-align:center;
+  background:#fff;border:3px solid #333;box-shadow:4px 4px 0 #333;transition:all .12s;font-weight:800}
+.mode-btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #333}
+.mode-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #333}
+.micon{font-size:1.55rem;margin-bottom:4px}
+.mlabel{font-weight:900;font-size:.85rem;color:var(--ink);margin-bottom:2px;font-family:'Noto Serif TC',serif}
+.mdesc{color:#666;font-size:.65rem;font-weight:600}
+
+/* CARD / BANNER */
+.card{background:#fff;border:3px solid #333;border-radius:3px;padding:14px;box-shadow:4px 4px 0 #333}
+.era-banner{padding:13px 15px;border-radius:3px;margin-bottom:13px;background:var(--ec);
+  border:3px solid rgba(0,0,0,.5);color:#fff;box-shadow:5px 5px 0 rgba(0,0,0,.4);position:relative;overflow:hidden}
+.era-banner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 7px,rgba(255,255,255,.04) 7px,rgba(255,255,255,.04) 14px);pointer-events:none}
+.era-banner h2{font-size:1.15rem;margin-bottom:3px;font-weight:900;text-shadow:2px 2px 0 rgba(0,0,0,.4);line-height:1.3;font-family:'Noto Serif TC',serif;letter-spacing:.07em}
+.era-banner .esub{display:inline-block;background:rgba(0,0,0,.7);padding:2px 10px;border-radius:2px;font-size:.7rem;font-weight:700;letter-spacing:.05em;margin-bottom:7px}
+.era-banner .eintro{font-size:.79rem;line-height:1.65;font-weight:600}
+
+/* TOP BAR */
+.top-bar{display:flex;align-items:center;gap:9px;margin-bottom:13px;flex-wrap:wrap}
+.back-btn,.restart-btn{padding:7px 14px;border-radius:2px;cursor:pointer;font-size:.76rem;
+  background:#fff;border:2.5px solid #333;color:var(--ink);font-family:inherit;
+  font-weight:800;box-shadow:3px 3px 0 #333;transition:all .1s}
+.back-btn:hover,.restart-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #333}
+.back-btn:active,.restart-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #333}
+.restart-btn{margin-left:auto;background:var(--gold);color:#5D0E0E}
+.mode-title{font-weight:900;font-size:.9rem;color:#fff;background:var(--ec,#8B1A1A);
+  padding:5px 13px;border:2.5px solid rgba(0,0,0,.5);border-radius:2px;
+  box-shadow:3px 3px 0 rgba(0,0,0,.38);font-family:'Noto Serif TC',serif;letter-spacing:.05em}
+
+/* TIP */
+.tip{background:#fff;border:3px solid #333;border-radius:3px;padding:13px 16px;
+  font-size:.8rem;color:var(--ink);line-height:1.7;font-weight:600;box-shadow:4px 4px 0 #333;
+  position:relative;margin-top:8px}
+.tip::before{content:"📜 學習小提示";position:absolute;top:-13px;left:16px;background:var(--gold);
+  color:#5D0E0E;padding:2px 11px;border:2.5px solid #333;border-radius:2px;font-size:.7rem;font-weight:900}
+
+/* PROGRESS */
+.prog-bar{display:flex;gap:3px;margin-bottom:13px;background:#fff;padding:5px;
+  border:2.5px solid #333;border-radius:3px;box-shadow:3px 3px 0 #333}
+.prog-seg{flex:1;height:8px;border-radius:2px;background:#eee;border:1.5px solid #aaa;transition:background .3s}
+.pd{background:#2aab6f!important}.pc{background:var(--gold)!important}
+.stat-row{display:flex;justify-content:center;gap:9px;margin-bottom:12px;flex-wrap:wrap}
+.chip{background:#fff;border:2.5px solid #333;border-radius:2px;padding:4px 12px;
+  font-size:.76rem;color:var(--ink);font-weight:800;box-shadow:2px 2px 0 #333}
+.chip strong{color:var(--red)}
+
+/* QUIZ */
+.q-box{background:var(--paper);border:3px solid #333;border-radius:3px;padding:13px 16px;
+  font-size:.9rem;color:var(--ink);line-height:1.75;margin-bottom:13px;font-weight:600;
+  box-shadow:3px 3px 0 #333;position:relative}
+.q-box::before{content:"問";position:absolute;top:-14px;left:13px;background:var(--red);color:#fff;
+  width:28px;height:28px;border:2.5px solid #333;border-radius:50%;font-weight:900;font-size:.85rem;
+  font-family:'Noto Serif TC',serif;display:flex;align-items:center;justify-content:center;box-shadow:2px 2px 0 #333}
+.tf-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tf-btn{padding:13px;border-radius:3px;border:3px solid #333;background:#fff;color:var(--ink);
+  font-size:.95rem;cursor:pointer;font-family:inherit;font-weight:900;transition:all .1s;
+  box-shadow:4px 4px 0 #333}
+.tf-btn:hover:not(:disabled){transform:translate(-1px,-1px);box-shadow:5px 5px 0 #333}
+.tf-btn:active:not(:disabled){transform:translate(2px,2px);box-shadow:1px 1px 0 #333}
+.tc{background:#2aab6f!important;color:#fff!important;text-shadow:1px 1px 0 rgba(0,0,0,.3)}
+.tw{background:var(--red)!important;color:#fff!important;text-shadow:1px 1px 0 rgba(0,0,0,.3)}
+.mc-btn{display:flex;align-items:center;gap:9px;width:100%;padding:10px 13px;border-radius:3px;
+  margin-bottom:8px;border:3px solid #333;background:#fff;color:var(--ink);font-size:.84rem;
+  cursor:pointer;font-family:inherit;text-align:left;transition:all .1s;font-weight:700;
+  box-shadow:3px 3px 0 #333}
+.mc-btn:hover:not(:disabled){transform:translate(-1px,-1px);box-shadow:4px 4px 0 #333}
+.mc-btn:active:not(:disabled){transform:translate(2px,2px);box-shadow:1px 1px 0 #333}
+.mc{background:#2aab6f!important;color:#fff!important;text-shadow:1px 1px 0 rgba(0,0,0,.3)}
+.mw{background:var(--red)!important;color:#fff!important;text-shadow:1px 1px 0 rgba(0,0,0,.3)}
+.abadge{width:25px;height:25px;border-radius:50%;background:var(--gold);border:2px solid #333;
+  display:inline-flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;flex-shrink:0;color:#5D0E0E}
+.mc .abadge,.mw .abadge{background:rgba(255,255,255,.85);color:#333}
+.explain{margin-top:11px;padding:13px 15px;border-radius:3px;font-size:.8rem;line-height:1.65;
+  font-weight:600;border:3px solid #333;box-shadow:3px 3px 0 #333}
+.eo{background:#D6FFE6}.en{background:#FFE0E3}
+.eho,.ehn{font-weight:900;display:block;margin-bottom:4px;font-size:.88rem}
+.eho{color:#0F8C40}.ehn{color:var(--red)}
+.next-btn{margin-top:9px;padding:7px 20px;border-radius:2px;cursor:pointer;
+  background:var(--gold);border:2.5px solid #333;color:#5D0E0E;font-size:.82rem;
+  font-family:inherit;font-weight:900;box-shadow:3px 3px 0 #333;transition:all .1s}
+.next-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 #333}
+.next-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #333}
+
+/* MATCH */
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.match-hdr{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:7px;text-align:center;font-size:.76rem;font-weight:900;color:var(--darkred)}
+.mi{padding:9px 8px;border-radius:3px;border:2.5px solid #bbb;background:#f9f9f9;
+  font-size:.76rem;text-align:center;cursor:pointer;transition:all .12s;font-weight:700;min-height:42px;display:flex;align-items:center;justify-content:center;line-height:1.4}
+.mi:hover{border-color:var(--red)}
+.mi-s{border-color:var(--red)!important;background:#FEF5F5!important;box-shadow:2px 2px 0 var(--red)}
+.mi-m{background:#D6FFE6!important;border-color:#2aab6f!important;cursor:default}
+.mi-w{background:#FFE0E3!important;border-color:var(--red)!important}
+.done-msg{text-align:center;padding:13px;font-weight:900;color:#2aab6f;font-size:.92rem;margin-top:9px;font-family:'Noto Serif TC',serif}
+.result-box{text-align:center;padding:18px 10px}
+.ri{font-size:3.2rem;margin-bottom:7px}.rs{font-size:1.25rem;font-weight:900;margin-bottom:5px;font-family:'Noto Serif TC',serif}
+.rsc{font-size:.98rem;font-weight:700;color:var(--red);margin-bottom:4px}.rp{font-size:.88rem;color:#666;font-weight:700}
+
+/* INTRO STYLES */
+.intro-sec{margin-bottom:16px}
+.intro-h{background:var(--ec,#8B1A1A);color:#fff;padding:7px 13px;border-radius:2px;
+  font-weight:900;font-size:.86rem;margin-bottom:9px;border:2.5px solid rgba(0,0,0,.45);
+  box-shadow:3px 3px 0 rgba(0,0,0,.35);font-family:'Noto Serif TC',serif;letter-spacing:.05em}
+.intro-body{background:#fff;border:2.5px solid #ddd;border-radius:3px;padding:11px;
+  font-size:.8rem;line-height:1.75;font-weight:600;box-shadow:2px 2px 0 #ddd;color:#333}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:9px}
+.feat-card{background:#fff;border:2.5px solid #ddd;border-radius:3px;padding:10px;box-shadow:2px 2px 0 #ddd}
+.ft{font-weight:900;font-size:.83rem;color:var(--ec,#8B1A1A);margin-bottom:4px;font-family:'Noto Serif TC',serif}
+.fd{font-size:.76rem;line-height:1.65;color:#444;font-weight:600}
+.term-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:7px}
+.term-card{background:var(--paper);border:2px solid #e8d5a0;border-radius:3px;padding:8px 11px;display:flex;gap:7px;align-items:flex-start}
+.tt{font-weight:900;font-size:.83rem;color:var(--ec,#8B1A1A);white-space:nowrap;min-width:fit-content;font-family:'Noto Serif TC',serif}
+.tz{font-size:.74rem;line-height:1.6;color:#555;font-weight:600}
+.listen-item{display:flex;align-items:center;gap:9px;padding:9px 11px;border-bottom:1.5px dashed #ddd;flex-wrap:wrap}
+.listen-item:last-child{border-bottom:none}
+.listen-title{font-weight:900;font-size:.83rem;color:var(--ink);flex:1;min-width:110px;font-family:'Noto Serif TC',serif}
+.listen-comp{font-size:.74rem;color:#666;font-weight:600;margin-right:3px}
+.yt-btn{display:inline-block;background:var(--red);color:#fff;padding:3px 11px;border-radius:2px;
+  font-size:.7rem;font-weight:900;text-decoration:none;white-space:nowrap;
+  border:2px solid var(--darkred);box-shadow:2px 2px 0 var(--darkred);transition:all .1s}
+.yt-btn:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--darkred)}
+
+/* REF */
+.ref-item{border:2.5px solid #ddd;border-radius:3px;margin-bottom:7px;overflow:hidden;box-shadow:2px 2px 0 #ddd}
+.ref-head{display:flex;align-items:center;gap:9px;padding:10px 13px;cursor:pointer;background:#fafafa;transition:background .1s}
+.ref-head:hover{background:var(--paper)}
+.ref-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:900;font-size:.95rem;font-family:'Noto Serif TC',serif;flex-shrink:0;border:2px solid rgba(0,0,0,.28)}
+.ref-name{font-weight:900;font-size:.86rem;color:var(--ink);font-family:'Noto Serif TC',serif}
+.ref-sub{font-size:.7rem;color:#777;font-weight:600}
+.ref-badge{display:inline-block;color:#fff;font-size:.64rem;font-weight:900;padding:2px 8px;border-radius:2px;margin-left:auto;white-space:nowrap}
+.ref-arr{font-size:.82rem;color:#aaa;margin-left:7px}
+.ref-body{padding:11px 15px;background:#fff;font-size:.78rem;line-height:1.75;font-weight:600}
+.ref-body li{margin-bottom:5px;padding-left:11px;position:relative;color:#333}
+.ref-body li::before{content:'◆';position:absolute;left:0;color:var(--ec,#8B1A1A);font-size:.58rem;top:5px}
+
+/* TIMELINE */
+.tl{padding:6px 0}
+.tl-item{display:flex;gap:11px;align-items:flex-start;margin-bottom:13px;position:relative;padding-left:3px}
+.tl-item::before{content:'';position:absolute;left:48px;top:17px;bottom:-13px;width:2px;background:var(--ec,#8B1A1A);opacity:.28}
+.tl-item:last-child::before{display:none}
+.tl-yr{background:var(--ec,#8B1A1A);color:#fff;padding:3px 7px;border-radius:2px;font-size:.7rem;font-weight:900;white-space:nowrap;min-width:50px;text-align:center;flex-shrink:0;margin-top:2px;box-shadow:2px 2px 0 rgba(0,0,0,.32);font-family:'Noto Serif TC',serif}
+.tl-tx{font-size:.78rem;line-height:1.7;font-weight:600;color:#333;background:#fff;border:2px solid #e0d0b0;border-radius:3px;padding:7px 11px;box-shadow:2px 2px 0 #e0d0b0;flex:1}
+
+/* QREF TABLE */
+.qref-sec{margin-bottom:15px}
+.qref-title{font-weight:900;font-size:.83rem;color:var(--ec,#8B1A1A);background:var(--paper);
+  padding:6px 11px;border:2px solid var(--ec,#8B1A1A);border-radius:2px;margin-bottom:7px;font-family:'Noto Serif TC',serif}
+.qref-table{width:100%;border-collapse:collapse;font-size:.76rem}
+.qref-table th{background:var(--ec,#8B1A1A);color:#fff;padding:6px 9px;text-align:left;font-weight:900;font-family:'Noto Serif TC',serif;font-size:.74rem}
+.qref-table td{padding:6px 9px;border-bottom:1.5px solid #eee;font-weight:600;color:#333;vertical-align:top;line-height:1.6;font-size:.74rem}
+.qref-table tr:nth-child(even) td{background:var(--paper)}
+.qref-table tr:hover td{background:#fef8ee}
+
+/* COMPARE TABLE */
+.cmp-table{width:100%;border-collapse:collapse;font-size:.73rem;margin-top:6px}
+.cmp-table th{background:var(--ec,#8B1A1A);color:#fff;padding:5px 8px;text-align:center;font-weight:900;font-family:'Noto Serif TC',serif}
+.cmp-table td{padding:5px 8px;border:1.5px solid #ddd;font-weight:600;color:#333;vertical-align:top;line-height:1.5;text-align:center}
+.cmp-table tr:nth-child(even) td{background:var(--paper)}
+
+/* TAG BADGE */
+.tag{display:inline-block;font-size:.65rem;font-weight:900;padding:1px 7px;border-radius:10px;border:1.5px solid;margin-right:3px;margin-bottom:3px}
+.tag-red{background:#FFE0E0;color:var(--red);border-color:var(--red)}
+.tag-blue{background:#E0EEFF;color:var(--blue);border-color:var(--blue)}
+.tag-green{background:#E0FFE8;color:var(--green);border-color:var(--green)}
+.tag-gold{background:#FFF4CC;color:#886600;border-color:#E6A817}
+.tag-purple{background:#F0E8FF;color:var(--purple);border-color:var(--purple)}
+</style>
+
+<link rel="stylesheet" href="../assets/css/shared.css">
+<style>
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="../index.html" class="nav-logo"><span>🎵</span>莊敬音樂科</a>
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link home">首頁</a>
+    <a href="index.html" class="nav-link active-h">音樂史</a>
+    <a href="../theory/index.html" class="nav-link">樂理</a>
+    <a href="teacher-resources.html" class="nav-link">教師資源</a>
+  </div>
+
+  <div id="nav-auth" style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+    <button id="login-btn" onclick="teacherLogin()" style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;border:1.5px solid var(--border,rgba(0,0,0,.12));background:#fff;cursor:pointer;font-size:.78rem;font-weight:700;font-family:inherit;">👤 教師登入</button>
+    <div id="user-info" style="display:none;align-items:center;gap:8px;">
+      <span style="font-size:.78rem;font-weight:700;">👋 <span id="user-name"></span></span>
+      <button onclick="teacherLogout()" style="padding:4px 10px;border-radius:12px;border:1.5px solid rgba(0,0,0,.12);background:transparent;cursor:pointer;font-size:.7rem;font-family:inherit;">登出</button>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumb" style="padding:8px 16px;font-size:.76rem;color:#888;display:flex;gap:5px;align-items:center;"><a href="../index.html" style="color:#666;text-decoration:none;">首頁</a><span>/</span><a href="index.html" style="color:#666;text-decoration:none;">音樂史</a><span>/</span>戲曲與台灣音樂史</span></div>
+<div class="hd">
+  <div class="hd-title">
+    <h1><span class="hd-deco">🎭</span>台灣戲曲與音樂史<span class="hd-deco">🎵</span></h1>
+  </div>
+  <div><span class="sub">互動學習手冊 · 高職音樂科專用</span></div>
+</div>
+<div id="app"></div>
+<script>
+// ===== ERA DATA =====
+const ERAS=[
+  {id:'puppet',name:'偶戲',icon:'🎪',years:'皮影・傀儡・掌中戲',color:'#7B3F00',sub:'台灣偶戲三大系統',
+   intro:'台灣偶戲包含皮影戲、傀儡戲和掌中戲（布袋戲），是最具台灣本土特色的傳統表演藝術。三種偶戲各有獨特音樂唱腔和操偶技巧，均已列為重要文化資產，其中掌中戲更發展出電視布袋戲等現代形式。'},
+  {id:'daxixi',name:'大戲',icon:'🏮',years:'南管・北管・四平・歌仔戲・京戲',color:'#8B1A1A',sub:'台灣大戲五大系統',
+   intro:'台灣大戲以南管音樂系統（梨園戲、高甲戲）和北管音樂系統（福祿戲、西皮戲、亂彈）為主，另有四平戲、歌仔戲（台灣本土產生）和京戲。歌仔戲是台灣唯一本土發展的劇種，2009年被政府列為文化資產之重要傳統藝術。'},
+  {id:'nanBei',name:'南北管比較',icon:'🎼',years:'南管音樂 vs 北管音樂',color:'#1B5E8A',sub:'台灣兩大傳統音樂系統',
+   intro:'南管音樂（又稱南音、絃管）承襲漢唐雅樂，音樂細膩優雅，以五聲音階為主；北管音樂激昂粗獷，是台灣傳統音樂中主要的民間音樂系統。兩者在來源、風格、樂器和用途上均有明顯差異。'},
+  {id:'minge',name:'台灣民歌',icon:'🎶',years:'客家・福佬・原住民民歌',color:'#1E7A4A',sub:'台灣三大族群音樂傳統',
+   intro:'台灣民歌分為客家民歌、福佬民歌和原住民民歌三大系統。客家山歌以「九腔十八調」著稱，福佬民歌按地區分布各有特色，原住民各族擁有豐富的歌舞傳統。民歌是台灣多元文化的重要音樂遺產。'},
+  {id:'liuxing',name:'台灣流行音樂',icon:'🎸',years:'1930s 至今',color:'#4B1A7A',sub:'台語流行音樂演進史',
+   intro:'台灣流行音樂從日治時期的台語歌謠（桃花泣血記）發展至今，歷經戒嚴管制、校園民歌、搖滾浪潮、偶像風潮等各時期蛻變，形成多元豐富的流行音樂生態，並對整個華語樂壇產生深遠影響。'},
+  {id:'composers',name:'重要音樂家',icon:'🎻',years:'台灣與華裔音樂家',color:'#2E6B4F',sub:'台灣音樂史關鍵人物',
+   intro:'台灣音樂史上有許多重要音樂家，包括張福興（第一位採集原住民音樂者）、江文也（亞洲首位獲得國際大獎的作曲家）、黃友棣（中國音樂啟蒙運動實踐者）、馬水龍（第一位在林肯中心個人發表會的台灣作曲家）等。'},
+  {id:'awards',name:'重要獎項',icon:'🏆',years:'國家文藝獎・吳三連獎・金曲獎',color:'#8B6914',sub:'台灣音樂相關獎項',
+   intro:'台灣設有多項音樂相關獎項：國家文藝獎（2007年起）、吳三連獎（終身成就獎）、金曲獎（台灣最具代表性的音樂獎項，涵蓋流行與傳統藝術音樂）。這些獎項對推動台灣音樂發展有重要貢獻。'}
+];
+
+// ===== DATA =====
+const DATA={
+  puppet:{
+    bg:'台灣偶戲可分為三大類：（一）皮影戲——又稱「皮猴戲」，是以光影演出的藝術，藝術內涵包括繪畫、雕偶、操演技巧、唱曲、口白、配樂。（二）傀儡戲——又稱「木偶戲」，狹義指懸絲傀儡，起源自福建；台灣分南派（喜慶）、北派（宗教儀式）、汀州客家語系派三派。（三）掌中戲——又稱「布袋戲」，「一口道出千秋事，十指弄成百萬兵」，最早來台的是泉州晉江的童全；後發展出電視布袋戲，由黃海岱家族的黃俊雄和第三代黃強華、黃文擇繼承發展。',
+    features:[
+      {f:'皮影戲音樂',d:'音樂為「潮調」（又稱「師公調」），樂器有胡琴、鼓、鑼；角色：生、旦、淨、末、丑、婀（丫環）、什（雜角色）'},
+      {f:'傀儡戲音樂',d:'南派：南管系統的傀儡調和潮調；北派：北管樂；汀州客家語系派：以娛人為主，異於以儀式功能為主的劇團'},
+      {f:'掌中戲音樂',d:'文武場配合對演出非常重要，有「三分前場，七分後場」之說；南管布袋戲以文戲為主；北管布袋戲以武功和俠義為表現重心'},
+      {f:'黃海岱家族',d:'黃海岱（有「通天教主」之稱）→黃俊雄（將金光布袋戲發展成電視布袋戲）→黃強華、黃文擇（加入高科技攝影、剪接及動畫技術）；黃海岱與其子黃俊雄皆曾獲全球中華文化藝術薪傳獎'}
+    ],
+    genres:[
+      {n:'皮影戲',d:'又稱皮猴戲、燈彩戲、影子戲，藝術內涵含繪畫、雕偶、操演、唱曲；基本動作：走、坐、站、跪、武打'},
+      {n:'傀儡戲（懸絲傀儡）',d:'又稱木偶戲、嘉禮戲；台灣分南派（台南高雄，喜慶場合）、北派（宜蘭，宗教儀式）、汀州客家語系派（桃園）'},
+      {n:'南管布袋戲',d:'以文戲為主，《孟姜女》、《西廂記》、《陳三五娘》、《董永別仙》等為代表作'},
+      {n:'北管布袋戲',d:'以武功和俠義為表現重心，《過五關斬六將》、《精忠說岳》、《封劍春秋》、《大俠一江山》等'},
+      {n:'金光布袋戲',d:'黃俊雄創造雲州大儒俠史艷文，以流行音樂取代傳統南北管，進入「轟動武林，驚動萬教」的高峰'},
+      {n:'現代布袋戲',d:'黃強華、黃文擇加入高科技攝影、剪接及動畫技術，開創周邊商品並於國家戲劇院演出及推出掌中戲電影'}
+    ],
+    terms:[
+      {t:'皮影戲',z:'又稱皮猴戲、燈彩戲，以光影呈現的偶戲藝術，音樂用「潮調」'},
+      {t:'懸絲傀儡',z:'傀儡戲的主要形式，用絲線操控偶偶，狹義的傀儡戲'},
+      {t:'布袋戲',z:'掌中戲的通稱，演員將偶套於手掌上操控'},
+      {t:'翹鬍全',z:'最早來台的掌中戲（布袋戲）表演者，泉州晉江人童全，為台灣南管布袋戲開山始祖'},
+      {t:'許金水',z:'清末北管布袋戲先驅，「楚陽臺」劇團的創始人'},
+      {t:'黃海岱',z:'有「通天教主」之稱，帶動台灣布袋戲發展，與黃俊雄皆曾獲全球中華文化藝術薪傳獎'},
+      {t:'三分前場七分後場',z:'掌中戲的表演哲學，強調後場音樂對演出的重要性'},
+      {t:'觀目',z:'北管戲特殊表演技巧，指眼神技巧（「觀目」）'},
+      {t:'魁頭',z:'北管戲特殊表演技巧，指扮相架勢'}
+    ],
+    listen:[
+      {t:'布袋戲《雲州大儒俠》主題曲',c:'黃俊雄金光布袋戲',q:'雲州大儒俠 史艷文 布袋戲'},
+      {t:'台灣布袋戲音樂（南管）',c:'南管布袋戲音樂',q:'南管布袋戲 音樂 台灣'},
+      {t:'北管布袋戲（亂彈）',c:'北管布袋戲音樂',q:'北管布袋戲 亂彈 台灣'},
+      {t:'傀儡戲表演',c:'台灣傀儡戲',q:'台灣傀儡戲 懸絲傀儡 表演'}
+    ],
+    REF:[
+      {name:'黃海岱',dates:'1901～2007',period:'布袋戲',facts:['被尊稱為「通天教主」','帶領台灣布袋戲進入黃金時代','與其子黃俊雄皆曾獲全球中華文化藝術薪傳獎','「五洲園」戲棚上的對聯：「一聲呼出喜怒哀樂，十指動搖古今事由」']},
+      {name:'黃俊雄',dates:'1933～',period:'布袋戲',facts:['黃海岱之子，金光布袋戲代表人物','創造雲州大儒俠史艷文、藏鏡人、劉三、二齒、怪老子等角色','將金光布袋戲發展成電視布袋戲，進入「轟動武林，驚動萬教」的高峰','以流行音樂取代傳統南北管，作品「金光九天盤」的片頭曲改編自「布蘭詩歌」序曲']},
+      {name:'許王',dates:'生卒不詳',period:'掌中戲',facts:['新莊「小西園」的許王','曾獲全球中華文化藝術薪傳獎','被譽為「掌中戲的戲狀元」','小西園代表劇目「天波樓」']},
+      {name:'許建勳・許文漢父子',dates:'台北',period:'傀儡戲',facts:['同獲全球中華文化藝術薪傳獎','與「福龍軒」傀儡劇團合作','對台灣傀儡戲傳承貢獻卓越']},
+      {name:'秦振安',dates:'當代',period:'皮影戲',facts:['曾獲全球中華文化藝術薪傳獎','對皮影戲發展貢獻很大','保存傳統皮影戲藝術']},
+      {name:'張德成',dates:'當代',period:'皮影戲',facts:['與「東華」皮影戲劇團合作','對皮影戲發展貢獻很大','是台灣皮影戲的重要代表人物']}
+    ],
+    TF:[
+      {q:'皮影戲又稱「皮猴戲」，其音樂使用「潮調」（又稱師公調）。',ans:true,e:'正確！皮影戲又稱「皮猴戲」、「燈彩戲」、「影子戲」、「燈影戲」，音樂為「潮調」（又稱「師公調」），樂器有胡琴、鼓、鑼。'},
+      {q:'掌中戲（布袋戲）中，「三分前場，七分後場」強調後場音樂的重要性。',ans:true,e:'正確！掌中戲有「三分前場，七分後場」之說，代表後場音樂（文武場配合）對演出非常重要。'},
+      {q:'傀儡戲北派集中在台南和高雄一帶，多用於喜慶場合。',ans:false,e:'傀儡戲「南派」才是以台南、高雄為中心，在喜慶場合演出，戲偶精巧；「北派」則集中在宜蘭，多用在開廟臺、入層、送孤、呼魂除煞，講究道具和服飾。'},
+      {q:'黃海岱和其子黃俊雄皆曾獲全球中華文化藝術薪傳獎。',ans:true,e:'正確！黃海岱（有「通天教主」之稱）和其子黃俊雄（金光布袋戲代表人物）皆曾獲全球中華文化藝術薪傳獎，「五洲園」是他們的劇團。'},
+      {q:'最早將掌中戲（布袋戲）帶來台灣的是清末的許金水。',ans:false,e:'最早來台的是泉州晉江的童全（人稱「翹鬍全」），被稱為台灣南管布袋戲開山始祖；清末最知名的先驅者為「楚陽臺」的許金水，他改良了北管布袋戲。'},
+      {q:'台灣「南管布袋戲」以武戲和武功為表現重心。',ans:false,e:'「南管布袋戲」以「文戲」為主，代表作有《孟姜女》、《西廂記》、《陳三五娘》等；「北管布袋戲」才是以武功和俠義為表現重心，代表作有《過五關斬六將》、《精忠說岳》等。'}
+    ],
+    MC:[
+      {q:'掌中戲的角色中，「笑」指的是什麼角色？',opts:['旦','丑','淨','什（雜角色）'],ans:1,e:'掌中戲的角色包括：生、旦、笑（丑）、花（淨）、下七腳（缺嘴、憨童等腳色）。「笑」就是「丑」（丑角），是喜劇角色。'},
+      {q:'黃俊雄的金光布袋戲作品「金光九天盤」的片頭曲改編自哪首西方作品？',opts:['貝多芬《命運》','布蘭詩歌序曲','卡門序曲','威廉泰爾序曲'],ans:1,e:'黃俊雄的布袋戲作品「金光九天盤」的片頭曲即改編自「布蘭詩歌（Carmina Burana）」序曲，這是他以流行音樂取代傳統南北管的代表例子。'},
+      {q:'台灣傀儡戲的汀州客家語系派以哪個劇團為代表，演出以娛人為主？',opts:['宜蘭「聚興社」','桃園「同樂春」的張國才','台南「烏廉班」','台北「福龍軒」'],ans:1,e:'汀州客家語系派由桃園「同樂春」的張國才為代表，演出以娛人為主，異於其他以儀式功能為主的劇團。'}
+    ],
+    WORKS:[
+      {l:'《蘇雲》',r:'皮影戲代表作'},{l:'《孟姜女》',r:'南管布袋戲'},{l:'《過五關斬六將》',r:'北管布袋戲'},{l:'《天波樓》',r:'小西園許王（掌中戲）'}
+    ],
+    TITLES:[
+      {l:'黃海岱',r:'通天教主（布袋戲）'},{l:'翹鬍全',r:'最早來台的布袋戲演者'},{l:'三分前場七分後場',r:'後場音樂的重要性'},{l:'許王',r:'掌中戲的戲狀元'}
+    ],
+    QREF:{era:'偶戲',tables:[
+      {title:'台灣偶戲三大類比較',headers:['偶戲類型','別稱','起源','台灣派別','音樂'],rows:[
+        ['皮影戲','皮猴戲、燈彩戲、影子戲','潮汕地區','（台南高雄為主）','潮調（師公調），胡琴鼓鑼'],
+        ['傀儡戲（懸絲傀儡）','木偶戲、嘉禮戲','福建','南派（台南高雄）、北派（宜蘭）、汀州客家派（桃園）','南派南管系統；北派北管樂'],
+        ['掌中戲（布袋戲）','布袋戲、懸絲偶','泉州晉江','南管布袋戲（文戲）、北管布袋戲（武戲）、金光布袋戲','三分前場七分後場']
+      ]},
+      {title:'布袋戲發展脈絡',headers:['階段','代表人物','特色'],rows:[
+        ['傳統南管布袋戲','童全（翹鬍全）','台灣南管布袋戲開山始祖'],
+        ['北管布袋戲','許金水（楚陽臺）','清末，以武功俠義為主'],
+        ['金光布袋戲','黃俊雄（五洲園）','流行音樂取代傳統南北管，「轟動武林，驚動萬教」'],
+        ['電視布袋戲（現代）','黃強華、黃文擇','高科技攝影動畫，周邊商品，於國家戲劇院演出']
+      ]}
+    ]},
+    TIMELINE:[
+      {y:'清初',t:'泉州晉江人童全（翹鬍全）最早將南管布袋戲帶來台灣，成為開山始祖'},
+      {y:'清末',t:'「楚陽臺」的許金水改良北管布袋戲，成為最知名先驅者'},
+      {y:'日治時期',t:'傀儡戲、皮影戲和布袋戲在台灣各地蓬勃發展'},
+      {y:'1960s',t:'黃俊雄創作雲州大儒俠史艷文等角色，帶動金光布袋戲高峰'},
+      {y:'1970s',t:'電視布袋戲盛行，「轟動武林，驚動萬教」成為流行語'},
+      {y:'當代',t:'黃強華、黃文擇加入高科技技術；許王「小西園」獲全球中華文化藝術薪傳獎'}
+    ]
+  },
+  daxixi:{
+    bg:'台灣大戲可分為南管系統和北管系統兩大類：南管系統以梨園戲和高甲戲為代表；北管系統包括福祿戲、西皮戲和亂彈；另有四平戲（屬閩南四平戲）和歌仔戲（台灣唯一本土發展的劇種）及京戲（又稱外江戲、皮黃戲）。歌仔戲由台灣本土發展，吸收「亂彈」武場伴奏、「南管」身段和曲調、「高甲」戲曲的通俗走向、「京劇」造型，2009年被政府列為文化資產之重要傳統藝術，並譽為「東方歌劇」。',
+    features:[
+      {f:'梨園戲',d:'有大小梨園之分，大梨園又稱「老戲」，分「下南」和「上路」兩派；小梨園俗稱「戲仔」（台灣以小梨園為主）。是台灣劇種中唯一擁有「歌」、「舞」、「樂」、「劇」分庭抗禮的全面藝術。'},
+      {f:'高甲戲',d:'又稱「交加戲」、「戈甲戲」、「九甲戲」，由七子班轉化而成，是「南唱北打」的戲曲音樂，以泉州南管音樂為底，場面上吸收部份北管音樂。台灣高甲戲以文戲取勝，異於以武戲為主的大陸高甲戲。'},
+      {f:'歌仔戲演進',d:'演進順序：錦歌→落地掃→外台戲→內台戲，之後又結合廣播及電視、電影的演出。角色稱「八大柱」：小生和苦旦為最主要角色。'},
+      {f:'京戲在台灣',d:'又稱「外江戲」或「皮黃戲」，對歌仔戲和北管戲有極大影響。民國44年在國立藝專成立國劇科，46年成立復興劇校，到67年郭小莊女士成立「雅音小集」，台灣京劇逐漸轉型。'}
+    ],
+    genres:[
+      {n:'梨園戲（南管）',d:'唱腔屬「曲牌聯套體」，採用「字頭音唱法」（字頭佔最長音節）；表演時開場保留宋元南戲遺制，先打落地鼓→扮仙戲→跳加官'},
+      {n:'高甲戲（南管）',d:'「南唱北打」，唱腔含傀儡調、南管及民間小調，以南管為主，唱少白多；鑼鼓點採平劇打法'},
+      {n:'四平戲',d:'又稱「四柵戲」，屬福建四平戲中的閩南四平戲；1930年後以「改良四平」取代「老四平」；流行於客家人居住地區'},
+      {n:'歌仔戲',d:'台灣唯一本土發展形成的戲劇。演進：錦歌→落地掃→外台戲→內台戲。曲調以都馬調和七字調為主調；八大柱角色'},
+      {n:'福祿戲（北管）',d:'較早傳進台灣的北管戲劇，又稱舊路；子弟館閣概以「社」為名；信奉戲神西秦王爺；主要伴奏樂器為殼子絃（椰胡、提絃）'},
+      {n:'西皮戲（北管）',d:'稍晚傳進台灣的北管戲劇，又稱新路；信奉戲神田都元帥；主要伴奏樂器為吊規子（京胡）；唱腔中的各種板式皆與京劇相同'},
+      {n:'亂彈（北管）',d:'御賜「花部唱腔」，採用京腔、秦腔、弋陽腔、二黃腔、梆子腔，為台灣民間最盛行之傳統戲曲；俗語「吃肉吃三層，看戲看亂彈」'}
+    ],
+    terms:[
+      {t:'梨園戲七子班',z:'台灣南管戲便是以「小梨園」為主，於清代早期隨泉州移民傳至台灣，俗稱「七子班」'},
+      {t:'字頭音唱法',z:'梨園戲唱法，將「字頭」佔最長之音節，運轉細膩嚴密，講究節拍準確'},
+      {t:'南唱北打',z:'高甲戲的特色，以南管為底，唱腔（南）加上北管打擊樂（北）'},
+      {t:'八大柱',z:'歌仔戲角色系統：小生、副生、苦旦、副旦、大花、老婆（老旦）、三花（小丑）、彩旦（三八婆）'},
+      {t:'千金唸白，四兩唱',z:'歌仔戲的表演原則，強調口白的重要性'},
+      {t:'腔隨字轉',z:'歌仔戲演唱原則，演唱者可即興變化，唱腔隨字調而變化'},
+      {t:'福祿戲（舊路）',z:'較早傳進台灣的北管戲劇，信奉西秦王爺，子弟館以「社」為名'},
+      {t:'西皮戲（新路）',z:'稍晚傳進台灣的北管戲劇，信奉田都元帥，子弟館以「堂」為名'},
+      {t:'亂彈',z:'北管最盛行的戲曲，御賜「花部唱腔」，是台灣民間最盛行的傳統戲曲'},
+      {t:'落地掃',z:'歌仔戲早期戲班遇有平地廣場即就地演出的形式，在宜蘭發展'},
+      {t:'四大齣（四大柱戲）',z:'歌仔戲最受觀眾喜愛的四部作品：《陳三五娘》、《山伯英台》、《什細記》、《呂蒙正》'}
+    ],
+    listen:[
+      {t:'歌仔戲《陳三五娘》',c:'歌仔戲四大齣',q:'陳三五娘 歌仔戲 廖瓊枝'},
+      {t:'梨園戲《陳三五娘》',c:'梨園戲南管',q:'梨園戲 陳三五娘 南管'},
+      {t:'廖瓊枝歌仔戲',c:'台灣第一苦旦',q:'廖瓊枝 歌仔戲 苦旦'},
+      {t:'北管戲亂彈',c:'台灣北管戲曲',q:'北管 亂彈 台灣 戲曲'},
+      {t:'四平戲',c:'台灣四平戲',q:'四平戲 台灣 戲曲'},
+      {t:'京戲霸王別姬',c:'台灣京劇',q:'霸王別姬 國光劇團 台灣京劇'}
+    ],
+    REF:[
+      {name:'廖瓊枝',dates:'1935～',period:'歌仔戲',facts:['台灣第一苦旦，其擅長的「哭調」被譽為「東方最美的詠嘆調」','曾獲全球中華文化藝術薪傳獎','身分證藝師，薪傳歌仔戲劇團的靈魂人物','1998年榮獲國家文藝獎（戲劇類）']},
+      {name:'楊麗花',dates:'1944～',period:'歌仔戲',facts:['曾組成台視歌仔戲團並培養出陳亞蘭、潘麗麗、紀麗如等歌仔戲名伶','是台灣電視歌仔戲最具代表性的演員','其表演將歌仔戲帶入電視媒體，影響深遠']},
+      {name:'魏海敏',dates:'1952～',period:'京戲',facts:['台灣第一名旦，曾獲全球中華文化藝術薪傳獎','2007年榮獲國家文藝獎（表演藝術類）','是台灣京劇最重要的旦角演員']},
+      {name:'顏正秋',dates:'1928～',period:'京戲',facts:['與「顏劇團」合作','是台灣重要的京劇演員','對台灣京劇的保存與傳承有重要貢獻']},
+      {name:'郭小莊',dates:'1950～',period:'京戲',facts:['1977年成立「雅音小集」，台灣京劇逐漸轉型的關鍵人物','以嶄新的呈現方式推廣京劇','致力於京劇的現代化與普及化']}
+    ],
+    TF:[
+      {q:'歌仔戲是台灣唯一本土發展形成的戲劇，2009年被政府列為文化資產之重要傳統藝術。',ans:true,e:'正確！歌仔戲是唯一本土發展形成的戲劇，吸收亂彈武場伴奏、南管身段和曲調、高甲戲的通俗走向、京劇華麗造型；2009年政府須定歌仔戲為台灣文化資產之重要傳統藝術類，並譽為「東方歌劇」。'},
+      {q:'梨園戲使用「板式變化體」的唱腔系統。',ans:false,e:'梨園戲音樂唱腔屬於「曲牌聯套體」（其體式有慢、引、小令），不是板式變化體；採用「字頭音唱法」（將「字頭」佔最長之音節）。北管戲的唱腔才是「板式變化體」。'},
+      {q:'「亂彈」是北管音樂中最盛行的戲曲，俗語說「吃肉吃三層，看戲看亂彈」。',ans:true,e:'正確！亂彈御賜「花部唱腔」，採用京腔、秦腔、弋陽腔、二黃腔、梆子腔，通稱「亂彈」，內容通俗受一般民眾喜愛，為台灣民間最盛行之傳統戲曲，因此有俗諺說「吃肉吃三層，看戲看亂彈」。'},
+      {q:'北管「福祿戲」信奉的戲神是田都元帥。',ans:false,e:'北管「福祿戲（舊路）」信奉的戲神是「西秦王爺」，子弟館閣概以「社」為名；「西皮戲（新路）」才是信奉「田都元帥」，子弟館概以「堂」為名。'},
+      {q:'歌仔戲的演進順序是：落地掃→錦歌→外台戲→內台戲。',ans:false,e:'歌仔戲正確的演進順序是：「錦歌→落地掃→外台戲→內台戲」，之後又結合廣播及電視、電影的演出。錦歌（什錦歌）是歌仔戲的起源，流行於閩南漳州附近農村。'}
+    ],
+    MC:[
+      {q:'歌仔戲「八大柱」中哪兩個是最主要的角色？',opts:['小生和副生','苦旦和副旦','小生和苦旦','大花和三花'],ans:2,e:'歌仔戲「八大柱」包括：小生、副生、苦旦、副旦、大花、老婆（老旦）、三花（小丑）、彩旦（三八婆），其中「小生和苦旦」為最主要角色。廖瓊枝是台灣最著名的苦旦。'},
+      {q:'台灣高甲戲以什麼取勝，與大陸高甲戲不同？',opts:['武戲和武功','文戲','特技表演','歌唱技巧'],ans:1,e:'台灣高甲戲以「文戲」取勝，以文戲為主，這與大陸高甲戲以武戲及丑戲為主的特色大不同。高甲戲以泉州南管音樂為底，唱少白多。'},
+      {q:'梨園戲表演時，開場的順序正確的是？',opts:['打落地鼓→跳加官→扮仙戲','扮仙戲→打落地鼓→跳加官','打落地鼓→扮仙戲→跳加官','跳加官→扮仙戲→打落地鼓'],ans:2,e:'梨園戲表演時開場保留宋元南戲遺制：先「打落地鼓」（全體落棚腳作演出準備）→再上演「扮仙戲」→然後「跳加官」，接著按規定「頭出生」、「二出旦」輪番上台。'}
+    ],
+    WORKS:[
+      {l:'《陳三五娘》',r:'歌仔戲四大齣'},{l:'《山伯英台》',r:'歌仔戲四大齣'},{l:'《封劍春秋》',r:'北管（西皮戲）'},{l:'《蘇武牧羊》',r:'北管（福祿戲）'}
+    ],
+    TITLES:[
+      {l:'廖瓊枝',r:'台灣第一苦旦'},{l:'亂彈',r:'台灣民間最盛行傳統戲曲'},{l:'八大柱',r:'歌仔戲角色系統'},{l:'落地掃',r:'歌仔戲早期演出形式'}
+    ],
+    QREF:{era:'大戲',tables:[
+      {title:'台灣南管戲比較（梨園戲 vs 高甲戲）',headers:['比較','梨園戲','高甲戲'],rows:[
+        ['別名','老戲（大梨園）、戲仔（小梨園）','交加戲、戈甲戲、九甲戲'],
+        ['音樂特色','曲牌聯套體','南唱北打（南管為底+北管打擊）'],
+        ['唱腔唱法','字頭音唱法（字頭佔最長音節）','唱少白多'],
+        ['角色','生旦淨末丑貼外（老旦稱「夫」）','生旦丑北（淨）雜'],
+        ['代表作','《陳三五娘（茹鏡記）》《十八送》《呂蒙正》','《思釵》《孫龍門智》《金錢花》']
+      ]},
+      {title:'北管戲三大系統比較',headers:['系統','別名','戲神','主要伴奏','特色'],rows:[
+        ['福祿戲','舊路','西秦王爺','殼子絃（椰胡、提絃）','較早傳入，館閣以「社」為名'],
+        ['西皮戲','新路','田都元帥','吊規子（京胡）','稍晚傳入，館閣以「堂」為名，板式同京劇'],
+        ['亂彈','花部唱腔','—','—','御賜花部唱腔，民間最盛行，兩路劇目通唱']
+      ]},
+      {title:'歌仔戲十大曲調體系',headers:['體系','代表曲調'],rows:[
+        ['歌仔體系','七字仔、雜念仔'],
+        ['哭調體系','宜蘭哭、三聲無奈、望月詞'],
+        ['車鼓體系','桃花過渡、水車調、花鼓調、十月懷胎、病子調'],
+        ['都馬體系','都馬調（萬能唱腔）、蘇州調、都馬尾'],
+        ['亂彈體系','梆子腔、四空仔、陰調'],
+        ['南管體系','慢頭、牽君手上、緊疊仔']
+      ]}
+    ]},
+    TIMELINE:[
+      {y:'清代早期',t:'梨園戲（小梨園/七子班）隨泉州移民傳至台灣；南管和北管音樂逐漸在台灣落地生根'},
+      {y:'清代中期',t:'福祿戲（舊路）傳入台灣；北管音樂成為台灣主要民間音樂系統'},
+      {y:'清代後期',t:'西皮戲（新路）傳入；北管福祿與西皮之間的「分角頭」（打架）事件'},
+      {y:'日治初期',t:'歌仔戲從錦歌→落地掃發展，宜蘭為發源地'},
+      {y:'1930s',t:'歌仔戲進入內台戲時期，成為最受歡迎的表演藝術'},
+      {y:'1950s後',t:'台灣京劇隨國民政府遷台而盛行；電視媒體使歌仔戲、布袋戲走入千家萬戶'},
+      {y:'1967年',t:'台視引進歌仔戲，楊麗花等人成為家喻戶曉的歌仔戲明星'},
+      {y:'2009年',t:'政府列定歌仔戲為台灣文化資產之重要傳統藝術，並譽為「東方歌劇」'}
+    ]
+  },
+  nanBei:{
+    bg:'南管音樂（又稱南音、南曲、南樂、絃管、五音或郎君樂）承襲漢唐雅樂，保留古老的音樂形制與演奏型態；許多音樂學家認為南管音樂是中國傳統音樂的「活化石」。北管音樂激昂高亢、粗獷強勁，演奏形式分坐唱和走唱兩種，含「歌樂」、「器樂曲」、「戲曲」三部分，是台灣傳統音樂中主要的民間音樂系統。',
+    features:[
+      {f:'南管音樂特色',d:'音樂呈現著「定、靜、慢」的清雅特色；演奏時演奏者座位成八字形，中間執拍板者為總指揮；彈奏琵琶者採橫抱的方式（保留唐代遺制）'},
+      {f:'南管三種曲目',d:'「指」（套曲）——有詞有譜有琵琶指法的套曲，只做器樂演奏；「譜」（器樂曲）——承有序的多樂章標題式獨立器樂曲；「曲」（散曲）——有伴奏的唱曲，以男女離愁相思為主題'},
+      {f:'北管音樂特色',d:'激昂高亢、粗獷強勁；「歌樂」以絲竹樂隊伴奏的「細曲」；「器樂曲」包括牌子、鼓介、絃譜；「戲曲」分扮仙戲、福祿戲、西皮戲和亂彈'},
+      {f:'南北管比較',d:'南管：有「清音」之稱，以絲竹樂為主，多用於宗教祭儀；北管：有「子弟戲」之稱，以鼓吹樂為主，多用於戲曲後台音樂'}
+    ],
+    genres:[
+      {n:'南管「指」（套曲）',d:'又稱指套（俗稱「喫仔指」），包含曲詞、曲調和「滾門」，雖有唱詞卻只做器樂演奏，少有演唱；曲目示例：棉搭絮'},
+      {n:'南管「譜」（器樂曲）',d:'俗稱「舊譜」，用「上四管」演奏，以自然景物的描寫以表達別離情緒；風格清新柔和、古雅清幽；曲目：四時景、梅花操、八駿馬'},
+      {n:'南管「曲」（散曲）',d:'又稱「草曲」或「唱曲」，用上四管伴奏，歌者站立中央並執拍板；保存漢代「相和歌」的遺風；以男女離愁相思為主題'},
+      {n:'北管「細曲」（歌樂）',d:'以絲竹樂隊伴奏，又稱「崑腔」，以「正音」（官話）演唱，屬於北管音樂中較高藝術層次'},
+      {n:'北管「牌子」（器樂曲）',d:'以嗩吶主奏的鼓吹樂，用於過場、排場、出陣、烘托角色及扮仙；代表：《鳳入松》、《鳳陽花鼓》、《將軍令》'},
+      {n:'北管「鼓介」（打擊樂）',d:'為清鑼鼓樂，以打單皮鼓為中心，用於戲劇表演節奏控制'},
+      {n:'北管「絃譜」（絲竹合奏）',d:'又稱「謠」或「絃仔點」，是絲竹樂演奏的合奏曲；著名北管樂曲《百家春》即為此類音樂，被填入歌詞，以供演唱的少數例子'}
+    ],
+    terms:[
+      {t:'南管/南音',z:'又稱南曲、南樂、絃管、五音、郎君樂；承襲漢唐雅樂，被稱為中國傳統音樂的「活化石」'},
+      {t:'上四管',z:'南管樂器組合：洞蕭（為主）、琵琶、二絃、三絃、拍板；共五人'},
+      {t:'下四管（十音）',z:'南管下四管：響盞、四塊、叫鑼、雙鐘，加上玉噯（小型嗩吶）或品仔（橫笛）；加上四管共十人，稱「十音合奏」或「十音會奏」'},
+      {t:'定靜慢',z:'南管音樂的三個核心特色：定（穩定）、靜（沉靜）、慢（緩慢）'},
+      {t:'郎君子弟',z:'台灣南管音樂傳自福建泉州，南管社團音樂人稱為「郎君子弟」，聚會練習與演奏場所稱為「管閣」'},
+      {t:'彰化梨春園',z:'現存最古老北管子弟閣（2009年被文化部指定為台灣重要傳統藝術北管音樂保存團體）'},
+      {t:'百家春',z:'著名北管樂曲《百家春》是「絃譜」類音樂，被填入歌詞，以供演唱；是少數例子'},
+      {t:'御前清客、五少芳賢',z:'演奏南管戲曲的樂手被雅稱為「御前清客」、「五少芳賢」，故南管戲曲亦被稱為「御前清音」'}
+    ],
+    listen:[
+      {t:'南管「四時景」',c:'南管謂（器樂曲）',q:'南管 四時景 台灣'},
+      {t:'南管「梅花操」',c:'南管謂（器樂曲）',q:'南管 梅花操 台灣'},
+      {t:'南管「百鳥歸巢」',c:'南管名曲',q:'南管 百鳥歸巢 台灣'},
+      {t:'北管《百家春》',c:'北管絃譜代表作',q:'北管 百家春 台灣'},
+      {t:'北管《鳳入松》',c:'北管牌子',q:'北管 鳳入松 牌子 台灣'},
+      {t:'南管社演出',c:'台南南聲社',q:'台南南聲社 南管 演出'}
+    ],
+    REF:[
+      {name:'王心心',dates:'當代',period:'南管',facts:['南管名家，技藝精湛','曾旅居海外推廣南管音樂','是南管音樂國際化的重要推動者']},
+      {name:'陳美娥',dates:'當代',period:'南管',facts:['與「漢唐樂府」合作','將南管音樂與舞蹈結合，推向國際舞台','著力於南管音樂的現代詮釋']},
+      {name:'鹿港黃承祧',dates:'當代',period:'南管',facts:['與「雅正齋」合作（最古老的南管館閣，已存在逾200年）','雅正齋是台灣保存最完整的南管館閣之一']},
+      {name:'李錦順',dates:'當代',period:'北管',facts:['與「真樂軒」合作','北管音樂的重要傳承者']},
+      {name:'劉亦萬',dates:'當代',period:'北管',facts:['有「文武狀元」、「全能五合手」美譽','北管音樂的傑出演奏家']},
+      {name:'陳助麟・葉阿木',dates:'當代',period:'北管',facts:['皆曾獲全球中華文化藝術薪傳獎','對北管音樂傳承有卓越貢獻']}
+    ],
+    TF:[
+      {q:'南管音樂演奏時，彈奏琵琶者採橫抱的方式，保留唐代遺制。',ans:true,e:'正確！南管音樂保留古老的音樂形制與演奏型態，其中彈奏琵琶者採橫抱的方式，保留了唐代的演奏遺制；演奏時演奏者座位成八字形，中間執拍板者為總指揮。'},
+      {q:'南管「譜」是有伴奏的唱曲，歌者站立中央執拍板演唱。',ans:false,e:'南管「曲」（散曲）才是有伴奏的唱曲，歌者站立中央並執拍板，保存漢代「相和歌」的遺風；「譜」（器樂曲）是獨立器樂曲，俗稱「舊譜」，用「上四管」演奏，風格清新柔和。'},
+      {q:'北管音樂有「子弟戲」之稱，以鼓吹樂為主，多用於戲曲後台音樂。',ans:true,e:'正確！北管音樂有「子弟戲」之稱，以鼓吹樂為主，多用於戲曲後台音樂；而南管音樂有「清音」之稱，以絲竹樂為主，多用於宗教祭儀音樂。'},
+      {q:'「彰化梨春園」是現存最古老北管子弟閣，2009年被文化部指定為台灣重要傳統藝術北管音樂保存團體。',ans:true,e:'正確！彰化梨春園是現存最古老北管子弟閣，2009年被文化部指定為台灣「重要傳統藝術北管音樂保存團體」，是北管音樂傳承的重要機構。'}
+    ],
+    MC:[
+      {q:'南管「上四管」的樂器組合正確的是？',opts:['響盞、四塊、叫鑼、雙鐘、玉噯','洞蕭（為主）、琵琶、二絃、三絃、拍板','二絃、三絃、秦琴、揚琴、嗩吶','洞蕭、琵琶、二胡、三絃、嗩吶'],ans:1,e:'南管「上四管」的組合是：洞蕭（為主）、琵琶、二絃、三絃、外加一持拍板，共五人。選項A是「下四管」的內容；下四管加上上四管共十人，稱「十音合奏」或「十音會奏」。'},
+      {q:'南管音樂三種曲目中，「指（套曲）」的特色是？',opts:['有伴奏的唱曲，以男女離愁為主題','承有序的多樂章標題式獨立器樂曲','有唱詞卻只做器樂演奏，少有演唱','以自然景物的描寫表達別離情緒'],ans:2,e:'南管「指（套曲）」包含曲詞、曲調和「滾門」，是有詞、有譜和琵琶彈奏指法的套曲，雖有唱詞卻只做器樂演奏，少有演唱；多以男女愛情、悲歡離合為主題。'},
+      {q:'台灣南管音樂傳自哪個地方？南管社團音樂人稱為什麼？',opts:['廣東潮汕；稱「御前清客」','福建泉州；稱「郎君子弟」','浙江杭州；稱「子弟戲」','江蘇蘇州；稱「清音社」'],ans:1,e:'台灣南管音樂傳自福建泉州，南管社團音樂人稱為「郎君子弟」，聚會練習與演奏場所稱為「管閣」；演奏南管戲曲的樂手被雅稱為「御前清客」、「五少芳賢」。'}
+    ],
+    WORKS:[
+      {l:'四時景',r:'南管謂（器樂曲）'},{l:'梅花操',r:'南管謂（器樂曲）'},{l:'百家春',r:'北管絃譜'},{l:'鳳入松',r:'北管牌子'}
+    ],
+    TITLES:[
+      {l:'南管「指」',r:'套曲，器樂演奏（不唱）'},{l:'南管「譜」',r:'多樂章器樂曲（上四管演奏）'},{l:'南管「曲」',r:'有伴奏唱曲（散曲）'},{l:'北管「牌子」',r:'嗩吶主奏鼓吹樂'}
+    ],
+    QREF:{era:'南北管比較',tables:[
+      {title:'台灣南管 vs 北管全面比較',headers:['比較項目','南管','北管'],rows:[
+        ['淵源','流傳於閩南地區隨移民傳入台灣的音樂','傳入台灣的各種非閩、客族群之漢族音樂'],
+        ['稱號','有「清音」之稱','有「子弟戲」之稱'],
+        ['風格','音樂細膩、藝術水準較高','熱鬧通俗，一般民眾喜愛'],
+        ['用途','多用於宗教祭儀音樂','多用於戲曲後台音樂'],
+        ['主要樂器','「上四管」洞蕭（主）、琵琶、二絃、三絃；「下四管」叫鑼、響盞、雙音、四塊；以絲竹樂為主','「文場」二絃、三絃、秦琴、揚琴、嗩吶、海笛、蕭、笛；「武場」單皮鼓、通鼓、梆子、拍板、大銅鑼、響盞、小鑼、大鼓、小鼓；以鼓吹樂為主'],
+        ['代表戲曲','梨園戲、高甲戲','扮仙戲、福祿戲、西皮戲、亂彈']
+      ]}
+    ]},
+    TIMELINE:[
+      {y:'清代初期',t:'南管音樂隨閩南移民傳入台灣，建立館閣文化，鹿港雅正齋等著名館閣相繼成立'},
+      {y:'清代中期',t:'北管音樂傳入，福祿戲（舊路）先傳入，後有西皮戲（新路）；南北管形成台灣傳統音樂兩大系統'},
+      {y:'清代後期',t:'北管音樂非常盛行，福祿西皮分角頭；南管音樂轉型為宗教儀式和藝術音樂'},
+      {y:'日治時期',t:'南管受到日本保存的重視；北管音樂持續在民間活動中扮演重要角色'},
+      {y:'2009年',t:'文化部指定彰化梨春園為台灣重要傳統藝術北管音樂保存團體'},
+      {y:'當代',t:'南管被UNESCO列為人類非物質文化遺產；漢唐樂府等團體推動南管的現代化與國際化'}
+    ]
+  },
+  minge:{
+    bg:'台灣民歌分為（一）客家民歌：桃竹苗山歌素有「九腔十八調」之稱，曲調依發展順序分老山歌→山歌仔→平板；（二）福佬民歌：按地區分布，如彰南地區（乞食調、卜卦調）、嘉南平原（五更鼓調、桃花過渡）、恆春地區（思想起、四季春）、北宜地區（蘭陽平原：丟丟銅仔）等；（三）原住民民歌：各族均有豐富的歌舞傳統，代表曲目因族而異。',
+    features:[
+      {f:'客家民歌三大類',d:'老山歌（又稱「大山歌」，最古老原始，曲調悠揚豪放，節奏流暢自由）→山歌仔（又稱「山歌指」，由老山歌變化而來）→平板（又稱「改良調」，山歌由荒山原野走進茶園、家庭、戲院的產物）'},
+      {f:'福佬民歌分布',d:'彰南地區：乞食調、卜卦調；嘉南平原：五更鼓調、桃花過渡；恆春地區：思想起、四季春、台東調；北宜地區：丟丟銅仔（宜蘭）、台北調（北部）'},
+      {f:'原住民各族民歌',d:'泰雅族：美麗的角板山、懷念歌；阿美族：老人飲酒歌、捕魚歌、海洋歌、賞月舞；排灣族：捉迷藏之歌、歡樂舞；布農族：祈禱小米豐收歌；邵族：快樂的聚會'},
+      {f:'創作民歌',d:'作詞作曲家自當代民間音樂擷取元素，譜寫出富含時代特色之樂曲。客家：《客家本色》；福佬：《望春風》、《天黑黑》；原住民：《懷念年祭》、《豐年》（後改名《美麗的稻穗》）'}
+    ],
+    genres:[
+      {n:'客家老山歌',d:'又稱「大山歌」，是客家民歌中最古老原始者，曲調悠揚豪放，節奏流暢自由。桃竹苗地區最具代表性。'},
+      {n:'客家山歌仔',d:'又稱「山歌指」，由「老山歌」變化而來，也是曲牌名稱；節奏較規整'},
+      {n:'客家平板',d:'又稱「改良調」，由老山歌、山歌仔改變而來；山歌走進茶園、家庭、戲院的產物；是曲牌而非固定某一首歌詞'},
+      {n:'福佬恆春調',d:'以「思想起」最具代表性，是恆春地區最著名的民謠；陳達（1906-1981）是日治時代恆春的民間說唱藝人，以「思想起」、「恆春調」著名'},
+      {n:'福佬宜蘭調',d:'「丟丟銅仔」是宜蘭平原最著名的民謠；「五工工」也是蘭陽地區民謠'},
+      {n:'原住民複音歌唱',d:'布農族的「祈禱小米豐收歌」是著名的複音合唱，被聯合國列為重要無形文化遺產；阿美族老人飲酒歌以歡樂著稱'}
+    ],
+    terms:[
+      {t:'九腔十八調',z:'客家山歌（桃竹苗）的別稱，意指內容豐富；含老山歌、山歌仔、平板三大類和許多「小調」'},
+      {t:'老山歌',z:'又稱「大山歌」，客家民歌中最古老原始者，曲調悠揚豪放，節奏流暢自由'},
+      {t:'平板',z:'又稱「改良調」，由老山歌、山歌仔改變而來；山歌從荒山走進茶園的產物；是曲牌非固定歌詞'},
+      {t:'插字',z:'客家民歌演唱時即興創作，加入「ㄋㄚ」「ㄋㄚ」「ㄛ」或「ㄋㄚ　ㄇ一ㄋㄚ」等單音或句子'},
+      {t:'念歌仔',z:'以說唱藝術方式呈現的福佬民歌，內容以生動的口白說唱台灣民間的傳說故事'},
+      {t:'思想起',z:'恆春地區最具代表性的民謠，音樂學家史惟亮推崇陳達為「中國音樂最後時期之唱遊詩人的一個典型」'},
+      {t:'丟丟銅仔',z:'宜蘭蘭陽平原最著名的民謠，歌詞活潑，節奏輕快'},
+      {t:'陳達',z:'日治時代恆春的民間說唱藝人，把「思想起」、「恆春調」等民謠曲調搭配即興的歌詞，唱出令人心動的歌謠'}
+    ],
+    listen:[
+      {t:'客家山歌（老山歌）',c:'客家民歌',q:'客家老山歌 台灣'},
+      {t:'賴碧霞客家山歌',c:'客家山歌國寶',q:'賴碧霞 客家山歌 台灣'},
+      {t:'陳達・思想起',c:'恆春調代表',q:'陳達 思想起 恆春調'},
+      {t:'丟丟銅仔',c:'宜蘭民謠',q:'丟丟銅仔 宜蘭民謠 台灣'},
+      {t:'布農族祈禱小米豐收歌',c:'原住民複音合唱',q:'布農族 祈禱小米豐收歌 pasibutbut'},
+      {t:'阿美族老人飲酒歌',c:'阿美族民謠',q:'阿美族 老人飲酒歌 台灣原住民'}
+    ],
+    REF:[
+      {name:'賴碧霞',dates:'1932～2015',period:'客家民謠',facts:['客家民謠藝師，畢生致力於推廣客家山歌文化','被尊稱為「客家山歌國寶」','曾獲全球中華文化藝術薪傳獎及國家文藝獎（第16屆，2012）']},
+      {name:'陳達',dates:'1906～1981',period:'福佬民謠',facts:['日治時代恆春的民間說唱藝人','把「思想起」、「恆春調」等民謠曲調搭配即興想出的歌詞，唱出令人心動的歌謠','音樂學家史惟亮推崇其為「中國音樂最後時期之唱遊詩人的一個典型」']},
+      {name:'胡德夫',dates:'1950～',period:'原住民/民歌',facts:['卑南、排灣族混血，被稱為「現代民歌之父」及「原住民民謠之父」','是1970年代校園民歌運動的重要推動者','代表作有《美麗島》、《牛背上的小孩》等']}
+    ],
+    TF:[
+      {q:'客家山歌「平板」又稱「改良調」，是由老山歌、山歌仔改變而來。',ans:true,e:'正確！「平板」又稱「改良調」，是由「老山歌」、「山歌仔」改變而來；是山歌由荒山原野走進茶園、家庭、戲院的產物；也是指一種曲牌而非固定的某一首歌詞。'},
+      {q:'「思想起」是宜蘭蘭陽地區最著名的民謠。',ans:false,e:'「思想起」是恆春地區最著名的民謠；宜蘭蘭陽平原最著名的民謠是「丟丟銅仔」（宜蘭）和「五工工」（蘭陽地區）。'},
+      {q:'客家山歌（桃竹苗）素有「九腔十八調」之稱，意指內容豐富。',ans:true,e:'正確！桃竹苗山歌素有「九腔十八調」之稱，意指內容豐富。曲調依發展順序分為老山歌→山歌仔→平板，其他的客家民歌俗稱「小調」，大多有歌名，如採茶謠、撐船調、病子歌、桃花開等。'}
+    ],
+    MC:[
+      {q:'被尊稱為「客家山歌國寶」並獲得國家文藝獎的藝師是？',opts:['陳達','胡德夫','賴碧霞','楊秀卿'],ans:2,e:'賴碧霞（1932-2015）是客家民謠藝師，畢生致力於推廣客家山歌文化，被尊稱為「客家山歌國寶」；曾獲全球中華文化藝術薪傳獎及第16屆（2012）國家文藝獎（表演藝術類）。'},
+      {q:'福佬民歌「思想起」流行於台灣哪個地區？',opts:['彰化南部','宜蘭','恆春半島','嘉南平原'],ans:2,e:'「思想起」流行於恆春地區（恆春半島），是恆春地區最具代表性的民謠。著名的民間說唱藝人陳達（1906-1981）以「思想起」、「恆春調」著名，史惟亮推崇其為「中國音樂最後時期之唱遊詩人的一個典型」。'}
+    ],
+    WORKS:[
+      {l:'思想起',r:'福佬・恆春調（陳達）'},{l:'丟丟銅仔',r:'福佬・宜蘭民謠'},{l:'老山歌',r:'客家民歌最古老類型'},{l:'祈禱小米豐收歌',r:'布農族複音合唱'}
+    ],
+    TITLES:[
+      {l:'賴碧霞',r:'客家山歌國寶'},{l:'陳達',r:'恆春民間說唱藝人'},{l:'九腔十八調',r:'客家山歌的別稱'},{l:'平板',r:'客家民歌改良調'}
+    ],
+    QREF:{era:'台灣民歌',tables:[
+      {title:'客家民歌三大類',headers:['類型','別名','特色','備註'],rows:[
+        ['老山歌','大山歌','曲調悠揚豪放，節奏流暢自由，最古老原始','又稱「大山歌」'],
+        ['山歌仔','山歌指','由老山歌變化而來，節奏較規整','也是曲牌名稱'],
+        ['平板','改良調','由荒山走進茶園、家庭、戲院；曲牌名，非固定歌詞','老山歌、山歌仔的改良版']
+      ]},
+      {title:'福佬民歌主要地區',headers:['地區','代表民謠'],rows:[
+        ['彰南地區','乞食調、卜卦調、牛犁歌、天黑黑、六月田水'],
+        ['嘉南平原','五更鼓調、桃花過渡、勸世歌、病子歌'],
+        ['恆春地區','思想起、四季春、台東調、耕農歌、牛尾擺、甘蔗好吃'],
+        ['宜蘭蘭陽','丟丟銅仔、五工工'],
+        ['台北地區','台北調、白鷺鷥']
+      ]},
+      {title:'原住民各族代表民歌',headers:['族群','代表曲目'],rows:[
+        ['泰雅族','美麗的角板山、懷念歌'],
+        ['阿美族','老人飲酒歌、捕魚歌、歡樂歌、海洋歌、賞月舞'],
+        ['排灣族','捉迷藏之歌、歡樂舞'],
+        ['布農族','祈禱小米豐收歌（複音合唱）'],
+        ['魯凱族','山上的孩子'],
+        ['鄒族','捉螃蟹'],
+        ['邵族','快樂的聚會'],
+        ['太魯閣族','歡迎歌、歡樂歌']
+      ]}
+    ]},
+    TIMELINE:[
+      {y:'清代至日治',t:'客家、福佬民歌在台灣各地蓬勃發展；原住民各族維持豐富的歌舞傳統'},
+      {y:'日治時期',t:'民間藝人陳達等人活躍於恆春地區；民謠隨生活與儀式傳承'},
+      {y:'1960s',t:'史惟亮、許常惠等人進行民歌田野採集；賴碧霞推廣客家山歌'},
+      {y:'1970s',t:'校園民歌運動興起，從民間素材創作新民歌；胡德夫（原住民民謠之父）活躍'},
+      {y:'2000年後',t:'布農族祈禱小米豐收歌被UNESCO列為人類非物質文化遺產；各族音樂持續在當代創作中被引用'}
+    ]
+  },
+  liuxing:{
+    bg:'台灣流行音樂發展歷程：（一）1950年以前：日治時期引進錄音技術，1932年上海電影《桃花泣血記》輸入台灣後，台語歌曲成為唱片界主流，但1937年「皇民化」政策禁止台語說唱；（二）1950-1970年：國民政府遷台宣布戒嚴，管制歌曲內容，大量台語翻唱日本演歌；（三）1970-1980年：1971年台灣退出聯合國，開始「校園民歌」時期；（四）1980-1990年：台灣經濟起飛，MTV卡拉OK興起，搖滾樂風潮，1987年解嚴；（五）1990-2000年：國際五大唱片公司進駐，偶像熱潮；（六）2000年後：網路音樂無國界流通，文創產業法通過。',
+    features:[
+      {f:'日治時期台語歌（1930s）',d:'鄧雨賢（作曲家）與李臨秋（作詞家）合作留下大量台語歌曲，《桃花泣血記》、《望春風》、《雨夜花》為代表；1937年日本「皇民化」政策禁止台語說唱'},
+      {f:'校園民歌時期（1970s）',d:'1971年台灣退出聯合國後，開始創作自己歌曲；李泰祥（作曲家）、齊豫、胡德夫、張艾嘉、鳳飛飛為代表；代表作《橄欖樹》、《龍的傳人》'},
+      {f:'搖滾解嚴時期（1980s）',d:'台灣經濟起飛，MTV、卡拉OK興起；1987年解嚴後地下樂團藉音樂表達政治不滿；代表歌手李宗盛、蔡琴、潘越雲、陳淑樺、林強'},
+      {f:'2000年後流行音樂',d:'唱片公司重視藝人風格與價值；周杰倫、孫燕姿、王力宏、五月天引領新一代；融入傳統藝術素材（如《天黑黑》使用天黑黑曲調、《暖暖》使用舒伯特「鱒魚」）'}
+    ],
+    genres:[
+      {n:'1950年前（日治台語歌謠）',d:'鄧雨賢、李臨秋、周添旺的創作；代表歌手純純、愛愛；代表作《桃花泣血記》、《望春風》、《雨夜花》、《月夜愁》、《河邊春夢》'},
+      {n:'1950-1970年（戒嚴時期）',d:'以台語翻唱日本演歌；代表歌手青山、姚蘇蓉、謝雷、鄧麗君；代表作《孤女的願望》、《高山青》、《月亮代表我的心》'},
+      {n:'1970-1980年（校園民歌）',d:'「校園民歌」時期和鄉土文學運動；李泰祥（作曲家）、胡德夫（原住民民謠之父）、張艾嘉、鳳飛飛；代表作《橄欖樹》、《龍的傳人》、《農村曲》'},
+      {n:'1980-1990年（搖滾）',d:'台灣經濟起飛，MTV、卡拉OK興起，搖滾樂風潮；李宗盛、蔡琴、潘越雲、陳淑樺、林強；代表作《一樣的月光》、《夢醒時分》、《明天會更好》'},
+      {n:'1990-2000年（偶像時代）',d:'國際五大唱片公司進駐，偶像熱潮；伍佰、江蕙、周華健、張學友、張雨生、小虎隊；代表作《酒後的心聲》、《花心》、《吻別》'},
+      {n:'2000年後（多元融合）',d:'周杰倫、孫燕姿、王力宏、五月天、梁靜茹、蔡依林引領新世代；融入傳統元素；2010年《文化創意產業發展法》通過'}
+    ],
+    terms:[
+      {t:'桃花泣血記',z:'1932年台語電影歌曲，是第一首被廣泛傳唱的台語流行歌曲，由鄧雨賢作曲'},
+      {t:'鄧雨賢',z:'日治時期台語歌謠最重要的作曲家，作品有《望春風》、《雨夜花》、《四季紅》等'},
+      {t:'李臨秋',z:'日治時期台語歌謠重要作詞家，作有《望春風》、《四季紅》、《補破網》詞'},
+      {t:'校園民歌',z:'1970年代台灣退出聯合國後興起的創作歌曲風潮，以「唱自己的歌」為精神'},
+      {t:'李泰祥',z:'1970年代校園民歌時期重要作曲家，馬蘭阿美族原住民，代表作有《橄欖樹》（詞：三毛）'},
+      {t:'胡德夫',z:'卑南、排灣族混血，被稱為「現代民歌之父」及「原住民民謠之父」，1970年代校園民歌運動重要推動者'},
+      {t:'《文化創意產業發展法》',z:'2010年通過立法，簡稱文創法，促進文創人才培育、錄音編創、音樂工程等音樂技術人才的發展'}
+    ],
+    listen:[
+      {t:'《望春風》鄧雨賢',c:'日治時期台語歌謠',q:'望春風 鄧雨賢 李臨秋 台語'},
+      {t:'《雨夜花》純純演唱',c:'日治時期台語歌謠',q:'雨夜花 純純 台語歌謠'},
+      {t:'《橄欖樹》齊豫',c:'校園民歌代表作',q:'橄欖樹 齊豫 三毛'},
+      {t:'《龍的傳人》侯德健',c:'校園民歌代表作',q:'龍的傳人 侯德健'},
+      {t:'《明天會更好》',c:'1980年代愛國歌曲',q:'明天會更好 1985 台灣'},
+      {t:'《天黑黑》周杰倫',c:'融入傳統民謠素材',q:'天黑黑 周杰倫 加入自然民歌'}
+    ],
+    REF:[
+      {name:'鄧雨賢',dates:'1906～1944',period:'1930s台語歌謠',facts:['日治時期台語歌謠最重要的作曲家','代表作：《望春風》、《四季紅》、《雨夜花》、《月夜愁》、《河邊春夢》、《滿面春風》等','與李臨秋（作詞家）合作創作大量優秀台語歌曲','1937年日本「皇民化」政策禁止台語說唱後，他的創作受到很大限制']},
+      {name:'李泰祥',dates:'1941～2014',period:'校園民歌',facts:['馬蘭阿美族原住民，1970年代校園民歌時期重要作曲家','代表作：《橄欖樹》（詞：三毛，齊豫演唱）、《錯誤》等','對現代音樂與傳統民謠的融合有重要貢獻','其生平傳記電影《戲夢人生》由導演侯孝賢拍攝']},
+      {name:'胡德夫',dates:'1950～',period:'校園民歌',facts:['卑南、排灣族混血，被稱為「現代民歌之父」及「原住民民謠之父」','1970年代校園民歌運動的重要推動者','代表作：《美麗島》、《牛背上的小孩》、《太平洋的風》等']},
+      {name:'江蕙',dates:'1961～',period:'台語流行音樂',facts:['台灣最具代表性的台語歌手之一','代表作：《酒後的心聲》、《傷心酒店》、《落雨聲》等','其音樂融合傳統歌仔戲曲調與現代流行樂，深受大眾喜愛']}
+    ],
+    TF:[
+      {q:'鄧雨賢是日治時期台語歌謠最重要的作曲家，《望春風》是他與李臨秋合作的作品。',ans:true,e:'正確！鄧雨賢是日治時期台語歌謠最重要的作曲家，代表作包括《望春風》（詞：李臨秋）、《四季紅》、《雨夜花》等；1937年日本「皇民化」政策禁止台語說唱，使台語歌曲逐漸沒落。'},
+      {q:'1971年台灣退出聯合國後，興起了「校園民歌」時期，以「唱自己的歌」為精神。',ans:true,e:'正確！1971年台灣退出聯合國並與美、日斷交，國內開始興起創作自己歌曲的風潮，在創作演唱會及歌唱比賽的推波助瀾下開始了「校園民歌」時期；胡德夫、李泰祥、張艾嘉等人是代表人物。'},
+      {q:'周杰倫的歌曲《知足》是使用舒伯特「鱒魚」曲調。',ans:false,e:'《暖暖》（蔡依林演唱）是使用舒伯特「鱒魚」曲調；《天黑黑》是加入自然民歌天黑黑曲調；《知足》（五月天）是使用小星星曲調；《身騎白馬》（徐佳瑩）是使用歌仔戲曲調。'}
+    ],
+    MC:[
+      {q:'日治時期1937年日本實施什麼政策，禁止台語說唱使台語歌曲沒落？',opts:['文化復興運動','皇民化政策','新生活運動','民族主義政策'],ans:1,e:'1937年日本政府提倡「皇民化」政策，禁止台語說唱，導致台語歌曲逐漸沒落。此後直到1950年代國民政府遷台宣布戒嚴，管制歌曲內容，又大量以台語翻唱日本演歌，使台語流行音樂進入一個特殊的歷史時期。'},
+      {q:'被稱為「現代民歌之父」及「原住民民謠之父」的音樂家是？',opts:['李泰祥','胡德夫','鄧雨賢','侯德健'],ans:1,e:'胡德夫是卑南、排灣族混血，被稱為「現代民歌之父」及「原住民民謠之父」，是1970年代校園民歌運動的重要推動者；代表作有《美麗島》、《太平洋的風》等。'}
+    ],
+    WORKS:[
+      {l:'《望春風》',r:'鄧雨賢（作曲）李臨秋（作詞）'},{l:'《橄欖樹》',r:'李泰祥（作曲）三毛（作詞）'},{l:'《龍的傳人》',r:'侯德健（作詞曲）'},{l:'《明天會更好》',r:'1985年台灣'}
+    ],
+    TITLES:[
+      {l:'鄧雨賢',r:'日治台語歌謠作曲家'},{l:'校園民歌',r:'1970年代唱自己的歌'},{l:'胡德夫',r:'現代民歌之父'},{l:'文創法',r:'2010年通過促進音樂產業'}
+    ],
+    QREF:{era:'台灣流行音樂',tables:[
+      {title:'台灣流行音樂六大時期',headers:['時期','重要背景','代表歌手','代表作品'],rows:[
+        ['1950年前（日治）','皇民化政策1937年禁台語','鄧雨賢（作曲）、純純、李臨秋','望春風、雨夜花、月夜愁'],
+        ['1950-1970（戒嚴）','國民政府遷台，大量翻唱日本演歌','青山、姚蘇蓉、謝雷、鄧麗君','孤女的願望、高山青、月亮代表我的心'],
+        ['1970-1980（校園民歌）','退出聯合國，唱自己的歌','李泰祥、胡德夫、張艾嘉、鳳飛飛','橄欖樹、龍的傳人、農村曲'],
+        ['1980-1990（搖滾解嚴）','經濟起飛，MTV/KTV，1987解嚴','李宗盛、蔡琴、潘越雲、陳淑樺、林強','夢醒時分、一樣的月光、明天會更好'],
+        ['1990-2000（偶像熱潮）','國際唱片公司進駐','伍佰、江蕙、周華健、張雨生、鄧麗君','酒後的心聲、花心、吻別'],
+        ['2000年後（多元融合）','網路無國界，文創法2010','周杰倫、孫燕姿、五月天、蔡依林','天黑黑、暖暖、身騎白馬']
+      ]}
+    ]},
+    TIMELINE:[
+      {y:'1932年',t:'上海電影《桃花泣血記》輸入台灣，創作同名台語歌曲，台語歌曲成為唱片界主流'},
+      {y:'1937年',t:'日本「皇民化」政策禁止台語說唱，台語歌曲逐漸沒落'},
+      {y:'1949年',t:'國民政府遷台宣布戒嚴，管制歌曲內容，大量台語翻唱日本演歌'},
+      {y:'1971年',t:'台灣退出聯合國，開始「校園民歌」時期，「唱自己的歌」精神興起'},
+      {y:'1987年',t:'台灣解除戒嚴，地下樂團藉音樂表達政治不滿，新台語歌興起'},
+      {y:'1990s',t:'國際五大唱片公司進駐，偶像熱潮興起'},
+      {y:'2010年',t:'《文化創意產業發展法》通過，促進音樂產業發展'}
+    ]
+  },
+  composers:{
+    bg:'台灣與華裔音樂重要名家（依出生年代排序）：從李叔同（弘一大師，1880-1942）到近代的李哲藝（1970-），跨越百餘年，有作曲家、演奏家、教育家、民族音樂學家等各種類型。其中張福興是台灣第一位採集原住民音樂的音樂家；江文也是亞洲第一位具有國際地位的作曲家；黃友棣是中國音樂啟蒙運動的實踐者；馬水龍是第一位在紐約林肯中心作整場個人作品發表會的台灣作曲家。',
+    features:[
+      {f:'張福興（1888-1954）',d:'第一位到日本留學；第一位採集整理原住民音樂的台灣音樂家；第一位編寫國民學校音樂課本；台灣第一個交響樂團的開拓者；整理本省第一本原住民族音樂田野採譜「水社化番的杵音與歌謠」'},
+      {f:'江文也（1910-1983）',d:'1936年以「台灣舞曲」獲得柏林第十一屆奧林匹克運動會文藝競賽二等獎，成為二十世紀亞洲第一位具有國際地位的作曲家，也是我國第一位得到國際大獎的音樂家'},
+      {f:'黃友棣（1912-2010）',d:'中國音樂啟蒙運動的實踐者，以「學堂樂歌」為基礎，投身音樂教育多年並大量創作；藝術歌曲「高雄禮讚」、「詩畫港都」、「木棉花之歌」等'},
+      {f:'馬水龍（1939-）',d:'第一位在紐約林肯中心作整場個人作品發表會的台灣作曲家（1986年）；曾被列入1991年「世界名人錄」及「五百名人錄」；協奏曲「梆笛協奏曲」廣受好評'}
+    ],
+    genres:[
+      {n:'台灣第一批音樂先驅（1880-1920s出生）',d:'李叔同（1880-1942）留日、弘一大師；張福興（1888-1954）第一位採集原住民音樂；蕭友梅（1884-1940）現代中國音樂先驅，創立第一所音樂院'},
+      {n:'日治/民國前期作曲家（1900-1915出生）',d:'陳泗治（1911-1992）、鄧雨賢（1906-1944）台語歌謠作曲家、張邱東松（1903-1959）、黃自（1904-1938）第一位用西方法作曲者'},
+      {n:'中期重要作曲家（1920-1940出生）',d:'黃友棣（1912-2010）、江文也（1910-1983）、郭芝苑（1921-2013）、許常惠（1929-2001）民族音樂學家、馬水龍（1939-）、潘皇龍（1945-）'},
+      {n:'民族音樂學家',d:'史惟亮（1925-1977）創立中國民族音樂研究中心；許常惠（1929-2001）創立亞洲作曲家聯盟；呂炳川（1929-1986）第一位真正以民族音樂學家身分研究台灣原住民音樂'}
+    ],
+    terms:[
+      {t:'張福興',z:'台灣第一位到日本留學的音樂家，第一位採集整理原住民音樂者，第一位編寫國民學校音樂課本'},
+      {t:'江文也',z:'1936年「台灣舞曲」獲柏林奧運文藝競賽二等獎，亞洲第一位具有國際地位的作曲家'},
+      {t:'郭芝苑',z:'1921-2013，第十屆（2006）國家文藝獎得主；藝術歌曲「紅薔薇」、「楓橋夜泊」；鋼琴曲「台灣古樂變奏曲與賦格」等'},
+      {t:'許常惠',z:'1929-2001，致力於民族音樂的研究及田野採集；創立亞洲作曲家聯盟；歌劇「國姓爺鄭成功」'},
+      {t:'史惟亮',z:'1925-1977，創立「中國民族音樂研究中心」，對提倡我國民族音樂不遺餘力；清唱劇「吳鳳」'},
+      {t:'馬水龍',z:'1939-，第一位在林肯中心作整場個人發表會的台灣作曲家；「梆笛協奏曲」、「梁山伯與祝英台協奏曲」'},
+      {t:'潘皇龍',z:'1945-，曾獲吳三連獎及國家文藝獎；五首傳統樂器六重奏「釋・道・儒」（使用南北管音樂素材）'},
+      {t:'鐘南章',z:'1948-，以「擊鼓」、「馬蘭姑娘」、「佛說阿彌陀經」及交響曲「號聲響起」奪下四屆金曲獎最佳作曲人'}
+    ],
+    listen:[
+      {t:'江文也「台灣舞曲」',c:'亞洲首位國際大獎',q:'江文也 台灣舞曲 管絃樂'},
+      {t:'馬水龍「梆笛協奏曲」',c:'台灣現代音樂代表作',q:'馬水龍 梆笛協奏曲'},
+      {t:'郭芝苑「台灣古樂變奏曲」',c:'台灣鋼琴曲代表作',q:'郭芝苑 台灣古樂變奏曲'},
+      {t:'許常惠「百家春」',c:'國樂協奏曲',q:'許常惠 百家春 協奏曲 南北管'},
+      {t:'潘皇龍「釋道儒」',c:'傳統樂器六重奏',q:'潘皇龍 釋道儒 南北管'},
+      {t:'黃友棣「木棉花之歌」',c:'藝術歌曲',q:'黃友棣 木棉花之歌 藝術歌曲'}
+    ],
+    REF:[
+      {name:'張福興',dates:'1888～1954',period:'台灣第一',facts:['第一位到日本留學的台灣音樂家','第一位採集整理原住民音樂的台灣音樂家','第一位編寫國民學校音樂課本','台灣第一個交響樂團的開拓者','整理本省第一本原住民族音樂田野採譜「水社化番的杵音與歌謠」','台灣第一本以工尺譜及五線譜對照之漢族民間音樂「女狀元」']},
+      {name:'江文也',dates:'1910～1983',period:'首位國際獎',facts:['出生於台北縣，足跡遍及日本與大陸，音樂才華過人','1936年以「台灣舞曲」獲柏林第十一屆奧林匹克運動會文藝競賽二等獎，並榮獲大指揮家溫格納爾銀牌獎','成為二十世紀亞洲第一位具有國際地位的作曲家','管絃樂曲：「白鷺的幻想」、「台灣舞曲」、「孔廟大成樂章」','交響詩：「汨羅沉流」']},
+      {name:'郭芝苑',dates:'1921～2013',period:'中生代',facts:['1921年生，2013年辭世，第十屆（2006）國家文藝獎（作曲家）','藝術歌曲：「紅薔薇」、「楓橋夜泊」、「懷城月夜」等','歌劇：輕歌劇「許仙與白娘娘」','交響曲：為鋼琴與管絃樂的狂想曲「高山族的幻想」','鋼琴曲：「台灣古樂變奏曲與賦格」等']},
+      {name:'許常惠',dates:'1929～2001',period:'民族音樂學',facts:['創立「製樂小集」、「現代音樂協會」、「亞洲作曲家聯盟」','致力於民族音樂的研究及田野採集，曾任國策顧問','清唱劇：「葬花吟」；歌劇：「國姓爺鄭成功」','管絃樂曲：「錦繡乾坤」、「百家春」（鋼琴與國樂團的協奏曲，使用南北管音樂素材）']},
+      {name:'馬水龍',dates:'1939～',period:'林肯中心',facts:['第一位在紐約林肯中心作整場個人作品發表會的台灣作曲家（1986年）','1991年被列入「世界名人錄」及「五百名人錄」','協奏曲：「梆笛協奏曲」（1983年由羅斯卓波維奇指揮美國國家交響樂團在台北國父紀念館演出）、「梁山伯與祝英台協奏曲」','舞劇：「廖添丁」、「寶娥冤」；說唱劇「霸王虞姬」']}
+    ],
+    TF:[
+      {q:'張福興是台灣第一位採集整理原住民音樂的音樂家。',ans:true,e:'正確！張福興（1888-1954）是台灣第一位到日本留學的音樂家，也是第一位採集整理原住民音樂的台灣音樂家；第一位編寫國民學校音樂課本；台灣第一個交響樂團的開拓者。'},
+      {q:'江文也以「台灣舞曲」獲得柏林奧運文藝競賽一等獎。',ans:false,e:'江文也以「台灣舞曲」獲得柏林第十一屆奧林匹克運動會文藝競賽「二等獎」（不是一等獎），並榮獲大指揮家溫格納爾銀牌獎；他成為二十世紀亞洲第一位具有國際地位的作曲家。'},
+      {q:'馬水龍的「梆笛協奏曲」曾在台北國父紀念館由羅斯卓波維奇指揮美國國家交響樂團演出。',ans:true,e:'正確！馬水龍的「梆笛協奏曲」在1983年由羅斯卓波維奇指揮美國國家交響樂團於台北國父紀念館演出，並以衛星實況轉播至美國PBS公共電視網，深獲中外人士好評。'},
+      {q:'許常惠創立了「中國民族音樂研究中心」，致力於民歌田野採集。',ans:false,e:'「中國民族音樂研究中心」是由史惟亮（1925-1977）所創立；許常惠（1929-2001）則創立了「製樂小集」、「現代音樂協會」、「亞洲作曲家聯盟」，他們兩位都致力於民族音樂的田野採集工作。'}
+    ],
+    MC:[
+      {q:'哪位音樂家是「台灣第一個交響樂團的開拓者」，並整理了第一本原住民族音樂田野採譜？',opts:['江文也','蕭友梅','張福興','許常惠'],ans:2,e:'張福興（1888-1954）是台灣第一個交響樂團的開拓者，並整理了本省第一本原住民族音樂田野採譜「水社化番的杵音與歌謠」；他還是第一位到日本留學的台灣音樂家，第一位採集整理原住民音樂者，第一位編寫國民學校音樂課本。'},
+      {q:'「第一位在紐約林肯中心作整場個人作品發表會的台灣作曲家」是誰？',opts:['郭芝苑','許常惠','潘皇龍','馬水龍'],ans:3,e:'馬水龍（1939-）是第一位在紐約林肯中心作整場個人作品發表會的台灣作曲家（1986年），並曾被列入1991年「世界名人錄」及「五百名人錄」；他的「梆笛協奏曲」廣受國際樂壇好評。'}
+    ],
+    WORKS:[
+      {l:'台灣舞曲',r:'江文也（1936柏林奧運）'},{l:'梆笛協奏曲',r:'馬水龍（代表作）'},{l:'百家春（協奏曲）',r:'許常惠（使用南北管）'},{l:'台灣古樂變奏曲與賦格',r:'郭芝苑（鋼琴）'}
+    ],
+    TITLES:[
+      {l:'張福興',r:'台灣第一位採集原住民音樂者'},{l:'江文也',r:'亞洲第一位國際大獎作曲家'},{l:'史惟亮',r:'創立中國民族音樂研究中心'},{l:'馬水龍',r:'首位林肯中心個人發表會作曲家'}
+    ],
+    QREF:{era:'重要音樂家',tables:[
+      {title:'台灣重要音樂家一覽（部分）',headers:['姓名','生卒年','重要成就','代表作'],rows:[
+        ['李叔同（弘一大師）','1880-1942','最早話劇團體「春柳社」','憶兒時、送別'],
+        ['張福興','1888-1954','台灣音樂多項「第一」','水社化番的杵音與歌謠'],
+        ['鄧雨賢','1906-1944','日治台語歌謠作曲家','望春風、雨夜花、四季紅'],
+        ['黃自','1904-1938','第一位用西方法作曲者（中國）','踏雪尋梅、長恨歌（清唱劇）'],
+        ['江文也','1910-1983','亞洲第一位國際大獎作曲家','台灣舞曲（柏林奧運二等獎）'],
+        ['黃友棣','1912-2010','中國音樂啟蒙運動實踐者','木棉花之歌、詩畫港都'],
+        ['郭芝苑','1921-2013','國家文藝獎作曲家','紅薔薇、台灣古樂變奏曲'],
+        ['史惟亮','1925-1977','創立民族音樂研究中心','琵琶行（女聲獨唱曲）、清唱劇吳鳳'],
+        ['許常惠','1929-2001','亞洲作曲家聯盟創辦人','國姓爺鄭成功、百家春協奏曲'],
+        ['馬水龍','1939-','林肯中心個人發表會','梆笛協奏曲、梁山伯與祝英台'],
+        ['李泰祥','1941-2014','馬蘭阿美族，校園民歌作曲家','橄欖樹、龍舞'],
+        ['潘皇龍','1945-','國家文藝獎、吳三連獎','釋道儒（南北管素材）'],
+        ['鐘南章','1948-','四屆金曲獎最佳作曲人','號聲響起（第一號交響曲）']
+      ]}
+    ]},
+    TIMELINE:[
+      {y:'1888-1910年代',t:'張福興第一位赴日留學；蕭友梅赴德國；李叔同留日，組織春柳社'},
+      {y:'1930年代',t:'鄧雨賢、李臨秋創作台語歌謠；江文也在日本崛起，1936年柏林奧運獲獎'},
+      {y:'1940-1950年代',t:'光復後，蕭友梅、黃自等人對音樂教育的影響延續；陳泗治等人在台灣活躍'},
+      {y:'1960-1970年代',t:'史惟亮、許常惠進行民歌田野採集；黃友棣在香港活躍；郭芝苑創作'},
+      {y:'1980-1990年代',t:'馬水龍在林肯中心個人發表會；潘皇龍獲國際聲譽；鐘南章獲金曲獎'},
+      {y:'2000年後',t:'李哲藝、劉學軒等年輕世代承繼傳統；台灣作曲家在國際樂壇持續發光'}
+    ]
+  },
+  awards:{
+    bg:'台灣設有三大重要音樂相關獎項：（一）國家文藝獎：由財團法人國家文化藝術基金會於2007年（實際上1997年開始設立）開始設立，分文學、美術、音樂、舞蹈、戲劇、建築、電影七類；（二）吳三連獎：屬於「終身成就獎」，民間性的獎項，以在各獎項領域內有傑出成就、有繼續創造潛力者為贈獎對象；（三）金曲獎：台灣最具代表性的音樂獎項，涵蓋流行音樂和傳統暨藝術音樂。',
+    features:[
+      {f:'國家文藝獎重要獲獎者',d:'第一屆（1997）音樂類：杜黑；第二屆戲劇類：廖瓊枝（歌仔戲）；第三屆音樂類：馬水龍；第七屆：潘皇龍；第八屆：蕭泰然；第十屆：郭芝苑（作曲家）、黃俊雄（布袋戲）；第十七屆：陳茂萱'},
+      {f:'吳三連獎重要獲獎者',d:'第2屆（1979）音樂類：許常惠；第3屆：馬水龍；第7屆（1984）：賴德和；第10屆（1987）：潘皇龍；第16屆（1993）：郭芝苑'},
+      {f:'金曲獎傳統藝術音樂',d:'第12屆（2001）：譚盾（臥虎藏龍電影原聲帶）；第13屆（2002）：鐘南章（佛說阿彌陀經）；第15屆（2004）：蕭泰然（清唱劇浪子）；第16屆（2005）：鐘南章（號聲響起）'},
+      {f:'金曲獎流行音樂',d:'台灣最具代表性的音樂獎項，每年舉辦，評選最佳演唱人、最佳專輯、最佳作曲人等獎項；為台灣流行音樂產業提供重要的肯定與推廣平台'}
+    ],
+    genres:[
+      {n:'國家文藝獎',d:'由國家文化藝術基金會2007年（1997年開始）設立，分七類（文學、美術、音樂、舞蹈、戲劇、建築、電影）；為出版傳記，保存藝文人才'},
+      {n:'吳三連獎',d:'屬「終身成就獎」，民間性獎項，性質類似國家文藝獎；以各領域有傑出成就、有繼續創造潛力，並認同台灣之人士或團體為贈獎對象'},
+      {n:'金曲獎',d:'台灣最具代表性的音樂大獎，涵蓋流行音樂和傳統暨藝術音樂；為台灣音樂產業最重要的年度盛事'},
+      {n:'全球中華文化藝術薪傳獎',d:'表彰傳統藝術在全球的傳承者，包括布袋戲、歌仔戲、南北管、客家民謠等各類傳統藝術人才'}
+    ],
+    terms:[
+      {t:'國家文藝獎',z:'財團法人國家文化藝術基金會設立，1997年開始，七類，最高國家藝術榮譽'},
+      {t:'吳三連獎',z:'終身成就獎，民間性質，以繼續創造潛力及認同台灣者為對象'},
+      {t:'金曲獎',z:'台灣最重要的音樂獎項，每年舉辦，涵蓋流行與傳統藝術音樂'}
+    ],
+    listen:[
+      {t:'廖瓊枝歌仔戲',c:'國家文藝獎・第二屆戲劇類',q:'廖瓊枝 歌仔戲'},
+      {t:'馬水龍管絃樂作品',c:'國家文藝獎・第三屆音樂類',q:'馬水龍 梆笛協奏曲 管絃樂'},
+      {t:'蕭泰然「1947序曲」',c:'金曲獎得主作品',q:'蕭泰然 1947序曲 台灣'},
+      {t:'鐘南章「號聲響起」',c:'金曲獎多屆得主',q:'鐘南章 號聲響起 台灣交響曲'}
+    ],
+    REF:[
+      {name:'廖瓊枝',dates:'1935～',period:'戲劇/歌仔戲',facts:['第二屆（1998）國家文藝獎戲劇類','台灣第一苦旦，曾獲全球中華文化藝術薪傳獎','其「哭調」被譽為「東方最美的詠嘆調」']},
+      {name:'馬水龍',dates:'1939～',period:'音樂',facts:['第三屆（1999）國家文藝獎音樂類','第三屆（1980）吳三連獎藝術獎音樂類','第一位在紐約林肯中心作整場個人作品發表會的台灣作曲家']},
+      {name:'鐘南章',dates:'1948～',period:'音樂',facts:['以「擊鼓」、「馬蘭姑娘」、「佛說阿彌陀經」及交響曲「號聲響起」奪下四屆金曲獎最佳作曲人','第九屆（2005）國家文藝獎作曲家']},
+      {name:'黃俊雄',dates:'1933～',period:'布袋戲',facts:['第十屆（2006）國家文藝獎偶戲藝師','金光布袋戲代表人物','帶動台灣布袋戲在電視媒體的發展']},
+      {name:'楊秀卿',dates:'1934～',period:'說唱藝術',facts:['第十一屆（2007）國家文藝獎說唱藝術家','對「歌仔」文化的貢獻：（1）保存與宏揚傳統說唱曲藝（2）發揚「口白歌仔」（3）致力於廣播說唱的推廣','曾獲全球中華文化藝術薪傳獎及國家文藝獎']}
+    ],
+    TF:[
+      {q:'國家文藝獎在2007年開始設立，分文學、美術、音樂、舞蹈、戲劇、建築、電影七類。',ans:true,e:'正確！財團法人國家文化藝術基金會為鼓勵具有藝術卓越性與累積性成就、且持續創作或展演之傑出藝文工作者，於2007年開始設立了國家文藝獎（實際上1997年就開始了）；分七類，除公開頒獎表彰外，也為這些藝文工作者出版傳記。'},
+      {q:'「吳三連獎」屬於「終身成就獎」，是由國家文化藝術基金會設立的官方獎項。',ans:false,e:'「吳三連獎」屬於「終身成就獎」，但它是「民間性的獎項」（不是官方的），性質類似國家文藝獎，以在各獎項領域內有傑出成就、有繼續創造潛力，並認同台灣之人士或團體為贈獎對象；而「國家文藝獎」才是國家文化藝術基金會設立的官方獎項。'}
+    ],
+    MC:[
+      {q:'第一屆（1997）國家文藝獎音樂類得主是誰？',opts:['馬水龍','盧炎','郭芝苑','杜黑'],ans:3,e:'第一屆（1997）國家文藝獎音樂類得主是「杜黑」；第二屆（1998）音樂類是「盧炎」，戲劇類是「廖瓊枝（歌仔戲）」；第三屆（1999）音樂類是「馬水龍」。'},
+      {q:'金曲獎中「傳統暨藝術音樂作品類」，第12屆（2001）最佳作曲人是哪部作品的作曲者？',opts:['蕭泰然《浪子》清唱劇','譚盾《臥虎藏龍》電影原聲帶','鐘南章《佛說阿彌陀經》','鐘南章《號聲響起》第一號交響曲'],ans:1,e:'金曲獎第12屆（2001）傳統暨藝術音樂作品類最佳作曲人獎由「譚盾」以《The Eternal Vow 永恒的誓約》（臥虎藏龍電影原聲帶）獲得；第13屆才是鐘南章《佛說阿彌陀經》，第15屆是蕭泰然《浪子》清唱劇。'}
+    ],
+    WORKS:[
+      {l:'第1屆國家文藝獎音樂類',r:'杜黑（1997）'},{l:'第3屆國家文藝獎音樂類',r:'馬水龍（1999）'},{l:'第10屆國家文藝獎偶戲',r:'黃俊雄（2006）'},{l:'第12屆金曲獎傳統類',r:'譚盾臥虎藏龍（2001）'}
+    ],
+    TITLES:[
+      {l:'國家文藝獎',r:'國家最高藝術榮譽（1997起）'},{l:'吳三連獎',r:'民間終身成就獎'},{l:'金曲獎',r:'台灣最重要音樂大獎'},{l:'全球中華文化藝術薪傳獎',r:'傳統藝術傳承最高榮譽'}
+    ],
+    QREF:{era:'重要獎項',tables:[
+      {title:'國家文藝獎音樂/戲劇類歷屆得主（1997-2014）',headers:['屆次（年）','音樂類','戲劇/表演類'],rows:[
+        ['第1屆（1997）','杜黑','—'],
+        ['第2屆（1998）','盧炎','廖瓊枝（歌仔戲）'],
+        ['第3屆（1999）','馬水龍','—'],
+        ['第4屆（2000）','朱宗慶','王海玲（豫劇）'],
+        ['第5屆（2001）','—','許王（布袋戲）'],
+        ['第6屆（2002）','—','黃海岱（布袋戲）'],
+        ['第7屆（2003）','潘皇龍','—'],
+        ['第8屆（2004）','蕭泰然（作曲家）','—'],
+        ['第9屆（2005）','鐘南章（作曲家）','—'],
+        ['第10屆（2006）','郭芝苑（作曲家）','黃俊雄（布袋戲）'],
+        ['第11屆（2007）','—','楊秀卿（說唱）；魏海敏（京劇）'],
+        ['第12屆（2008）','李泰祥（作曲家）','—'],
+        ['第16屆（2012）','—','唐美雲（歌仔戲）；賴碧霞（客家民謠）'],
+        ['第17屆（2013）','陳茂萱（作曲家）','—'],
+        ['第18屆（2014）','—','簡文彬（指揮家）']
+      ]},
+      {title:'金曲獎傳統暨藝術音樂類歷屆最佳作曲人（選錄）',headers:['屆次（年）','得獎作品','作曲人'],rows:[
+        ['第3屆（1992）','春天從愛情來','李泰祥（最佳編曲人）'],
+        ['第8屆（1997）','擊鼓','鐘南章'],
+        ['第9屆（1998）','馬蘭姑娘','鐘南章'],
+        ['第12屆（2001）','臥虎藏龍（永恒的誓約）','譚盾'],
+        ['第13屆（2002）','佛說阿彌陀經','鐘南章'],
+        ['第15屆（2004）','清唱劇：浪子','蕭泰然'],
+        ['第16屆（2005）','號聲響起（第一號交響曲）','鐘南章']
+      ]}
+    ]},
+    TIMELINE:[
+      {y:'1979年',t:'吳三連獎第2屆藝術獎音樂類：許常惠'},
+      {y:'1980年',t:'吳三連獎第3屆音樂類：馬水龍'},
+      {y:'1984年',t:'吳三連獎第7屆音樂類：賴德和'},
+      {y:'1997年',t:'第一屆國家文藝獎設立，音樂類：杜黑'},
+      {y:'1998年',t:'第二屆國家文藝獎：盧炎（音樂）；廖瓊枝（戲劇）'},
+      {y:'1999年',t:'第三屆國家文藝獎音樂類：馬水龍'},
+      {y:'2006年',t:'第十屆國家文藝獎：郭芝苑（作曲）；黃俊雄（布袋戲）'},
+      {y:'2012年',t:'第十六屆：唐美雲（歌仔戲）；賴碧霞（客家民謠）'}
+    ]
+  }
+};
+
+// ===== UTILITY =====
+let curEra=null,mode=null,gs={};
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function sfl(a){let b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function pk(a,n){return sfl(a).slice(0,n);}
+function pb(t,i){const segs=Array.from({length:t},(_,j)=>{let c=j<i?'pd':j===i?'pc':'';return`<div class="prog-seg ${c}"></div>`;}).join('');return`<div class="prog-bar">${segs}</div>`;}
+function ytl(lab,q){return`<a class="yt-btn" href="https://www.youtube.com/results?search_query=${encodeURIComponent(q)}" target="_blank">▶ ${lab}</a>`;}
+const app=document.getElementById('app');
+
+// ===== SCREENS =====
+function showEras(){
+  curEra=null;mode=null;
+  const btns=ERAS.map(e=>`<div class="era-btn" style="--ec:${e.color}" onclick="enterEra('${e.id}')"><div class="eicon">${e.icon}</div><div class="elabel">${e.name}</div><div class="eyrs">${e.years}</div></div>`).join('');
+  const tip=`<div class="tip">點選任一單元進入學習模式。每個單元包含：🎵 特色導覽（特色、術語、必看影片）、📖 速查手冊（重要人物）、📋 速查表格、🕒 時間軸、⭕ 是非題、📝 選擇題、🔗 配對遊戲。<br><br>⚠️ 注意：各單元傳入台灣的順序由左至右排列（唯歌仔戲是台灣本土產生）。</div>`;
+  app.innerHTML=`<div class="era-grid">${btns}</div>${tip}`;
+}
+
+function enterEra(id){
+  curEra=id;mode=null;
+  const era=ERAS.find(e=>e.id===id);
+  const modes=[
+    {id:'intro',icon:'🎵',l:'時代導覽',d:'特色・術語・必看'},
+    {id:'ref',icon:'📖',l:'速查手冊',d:'人物・重點整理'},
+    {id:'qref',icon:'📋',l:'速查表格',d:'重要知識一覽'},
+    {id:'tl',icon:'🕒',l:'時間軸',d:'大事紀年表'},
+    {id:'tf',icon:'⭕',l:'是非題',d:'正誤判斷練習'},
+    {id:'mc',icon:'📝',l:'選擇題',d:'單選題測驗'},
+    {id:'mW',icon:'🔗',l:'作品配對',d:'作品與出處'},
+    {id:'mT',icon:'🏷️',l:'術語配對',d:'名詞解釋對應'}
+  ];
+  const mbtns=modes.map(m=>`<div class="mode-btn" onclick="sm('${m.id}')"><div class="micon">${m.icon}</div><div class="mlabel">${m.l}</div><div class="mdesc">${m.d}</div></div>`).join('');
+  app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="showEras()">← 返回</button></div>
+  <div class="era-banner" style="--ec:${era.color}">
+    <div class="esub">${era.sub}</div>
+    <h2>${era.icon} ${era.name}　<span style="font-size:.85rem;font-weight:700;letter-spacing:.02em">${era.years}</span></h2>
+    <div class="eintro">${era.intro}</div>
+  </div>
+  <div class="mode-grid">${mbtns}</div>`;
+}
+
+function sm(m){
+  mode=m;
+  if(m==='intro')showIntro();
+  else if(m==='ref')showRef();
+  else if(m==='qref')showQRef();
+  else if(m==='tl')showTL();
+  else if(m==='tf')iTF();
+  else if(m==='mc')iMC();
+  else if(m==='mW'||m==='mT')iMT();
+}
+
+function showIntro(){
+  const era=ERAS.find(e=>e.id===curEra);
+  const d=DATA[curEra];
+  const c=era.color;
+  const bg=`<div class="intro-sec"><div class="intro-h" style="--ec:${c}">📜 時代背景與概述</div><div class="intro-body">${d.bg}</div></div>`;
+  const ft=`<div class="intro-sec"><div class="intro-h" style="--ec:${c}">🎼 特色重點</div><div class="feat-grid">${d.features.map(x=>`<div class="feat-card" style="--ec:${c}"><div class="ft">${x.f}</div><div class="fd">${x.d}</div></div>`).join('')}</div></div>`;
+  const gn=`<div class="intro-sec"><div class="intro-h" style="--ec:${c}">🎵 重要曲種／類型</div><div class="feat-grid">${d.genres.map(x=>`<div class="feat-card" style="--ec:${c}"><div class="ft">${x.n}</div><div class="fd">${x.d}</div></div>`).join('')}</div></div>`;
+  const tm=`<div class="intro-sec"><div class="intro-h" style="--ec:${c}">📚 重要術語</div><div class="term-grid">${d.terms.map(x=>`<div class="term-card"><div class="tt" style="color:${c}">${x.t}</div><div class="tz">${x.z}</div></div>`).join('')}</div></div>`;
+  const ls=`<div class="intro-sec"><div class="intro-h" style="--ec:${c}">🎬 必看影片（點 ▶ 連結至 YouTube）</div><div>${d.listen.map(x=>`<div class="listen-item"><div class="listen-title">${x.t}</div><div class="listen-comp">${x.c}</div>${ytl('YouTube 搜尋',x.q)}</div>`).join('')}</div></div>`;
+  app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title" style="--ec:${era.color}">🎵 ${era.name} 導覽</span></div>${bg}${ft}${gn}${tm}${ls}`;
+}
+
+function showRef(){
+  const era=ERAS.find(e=>e.id===curEra);
+  const d=DATA[curEra];
+  const items=d.REF.map((c,i)=>{
+    return`<div class="ref-item"><div class="ref-head" onclick="tgRef(${i})"><div class="ref-av" style="background:${era.color}">${c.name[0]}</div><div style="flex:1"><div class="ref-name">${c.name}</div><div class="ref-sub">${c.dates}</div></div><div class="ref-badge" style="background:${era.color}">${c.period}</div><div class="ref-arr" id="a${i}">▼</div></div><div id="b${i}" style="display:none"><ul class="ref-body" style="--ec:${era.color}">${c.facts.map(f=>`<li>${f}</li>`).join('')}</ul></div></div>`;
+  }).join('');
+  app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title" style="--ec:${era.color}">📖 速查手冊</span></div><div class="card"><div style="font-size:.76rem;color:#666;margin-bottom:9px;font-weight:600">點擊人物展開重點整理 ▼</div>${items}</div>`;
+}
+
+function showQRef(){
+  const era=ERAS.find(e=>e.id===curEra);
+  const qr=DATA[curEra].QREF;
+  const tables=qr.tables.map(t=>{
+    const thead=`<tr>${t.headers.map(h=>`<th>${h}</th>`).join('')}</tr>`;
+    const tbody=t.rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('');
+    return`<div class="qref-sec"><div class="qref-title">${t.title}</div><div style="overflow-x:auto"><table class="qref-table"><thead>${thead}</thead><tbody>${tbody}</tbody></table></div></div>`;
+  }).join('');
+  app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title" style="--ec:${era.color}">📋 速查表格</span></div><div class="card">${tables}</div>`;
+}
+
+function showTL(){
+  const era=ERAS.find(e=>e.id===curEra);
+  const d=DATA[curEra];
+  const items=era.TIMELINE.map(t=>`<div class="tl-item"><span class="tl-yr">${t.y}</span><div class="tl-tx">${t.t}</div></div>`).join('');
+  app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title" style="--ec:${era.color}">🕒 時間軸</span></div><div class="card" style="--ec:${era.color}"><div style="font-size:.78rem;color:#666;margin-bottom:9px;text-align:center;font-weight:700">${era.sub}</div><div class="tl">${items}</div></div>`;
+}
+
+function tgRef(i){
+  const b=document.getElementById('b'+i);const a=document.getElementById('a'+i);
+  if(!b)return;const o=b.style.display!=='none';
+  b.style.display=o?'none':'block';if(a)a.textContent=o?'▼':'▲';
+}
+
+function showResult(s,t){
+  const p=Math.round(s/t*100);
+  const ic=p>=90?"🏆":p>=70?"⭐":"🎵";
+  const st=p>=90?"完美！":p>=70?"很不錯！":"繼續努力！";
+  app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><button class="restart-btn" onclick="sm('${mode}')">↺ 再試一次</button></div><div class="card"><div class="result-box"><div class="ri">${ic}</div><div class="rs">${st}</div><div class="rsc">得分 ${s} / ${t}</div><div class="rp">正確率 ${p}%</div></div></div>`;
+}
+
+function getD(){return DATA[curEra];}
+
+function iTF(){const d=getD();gs={qs:sfl(d.TF).slice(0,Math.min(8,d.TF.length)),i:0,s:0,a:null};rTF();}
+function rTF(){
+  const{qs,i,s,a}=gs;
+  if(i>=qs.length){showResult(s,qs.length);return;}
+  const q=qs[i];
+  const era=ERAS.find(e=>e.id===curEra);
+  let t0='',t1='';
+  if(a!==null){t0=q.ans===true?'tc':(a===true?'tw':'');t1=q.ans===false?'tc':(a===false?'tw':'');}
+  const ex=a!==null?`<div class="explain ${a===q.ans?'eo':'en'}"><span class="${a===q.ans?'eho':'ehn'}">${a===q.ans?'✅ 答對了！':'❌ 答錯了'}</span>${q.e}<br><button class="next-btn" onclick="nTF()">${i+1<qs.length?'下一題 →':'查看結果 ✨'}</button></div>`:'';
+  app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title" style="--ec:${era.color}">⭕ 是非題</span><button class="restart-btn" onclick="iTF()">↺ 重來</button></div>${pb(qs.length,i)}<div class="stat-row"><div class="chip">第 <strong>${i+1}</strong>/${qs.length} 題</div><div class="chip">答對 <strong>${s}</strong></div></div><div class="card"><div class="q-box">${q.q}</div><div class="tf-btns"><button class="tf-btn ${t0}" ${a!==null?'disabled':''} onclick="aTF(true)">○ 正確</button><button class="tf-btn ${t1}" ${a!==null?'disabled':''} onclick="aTF(false)">✗ 錯誤</button></div>${ex}</div>`;
+}
+function aTF(v){if(gs.a!==null)return;const ok=v===gs.qs[gs.i].ans;gs.a=v;if(ok)gs.s++;rTF();}
+function nTF(){gs.i++;gs.a=null;rTF();}
+
+function iMC(){const d=getD();gs={qs:sfl(d.MC).slice(0,Math.min(6,d.MC.length)),i:0,s:0,c:null};rMC();}
+function rMC(){
+  const{qs,i,s,c}=gs;
+  if(i>=qs.length){showResult(s,qs.length);return;}
+  const q=qs[i];
+  const era=ERAS.find(e=>e.id===curEra);
+  const ob=q.opts.map((o,j)=>{let cl='';if(c!==null){cl=j===q.ans?'mc':(j===c?'mw':'');}return`<button class="mc-btn ${cl}" ${c!==null?'disabled':''} onclick="cMC(${j})"><span class="abadge">${['甲','乙','丙','丁'][j]}</span>${o}</button>`;}).join('');
+  const ex=c!==null?`<div class="explain ${c===q.ans?'eo':'en'}"><span class="${c===q.ans?'eho':'ehn'}">${c===q.ans?'✅ 答對了！':'❌ 答錯了'}</span>${q.e}<br><button class="next-btn" onclick="nMC()">${i+1<qs.length?'下一題 →':'查看結果 ✨'}</button></div>`:'';
+  app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title" style="--ec:${era.color}">📝 選擇題</span><button class="restart-btn" onclick="iMC()">↺ 重來</button></div>${pb(qs.length,i)}<div class="stat-row"><div class="chip">第 <strong>${i+1}</strong>/${qs.length} 題</div><div class="chip">答對 <strong>${s}</strong></div></div><div class="card"><div class="q-box">${q.q}</div>${ob}${ex}</div>`;
+}
+function cMC(j){if(gs.c!==null)return;gs.c=j;if(j===gs.qs[gs.i].ans)gs.s++;rMC();}
+function nMC(){gs.i++;gs.c=null;rMC();}
+
+function iMT(){
+  const d=getD();
+  const src=mode==='mW'?d.WORKS:d.TITLES;
+  const n=Math.min(6,src.length);
+  const pairs=pk(src,n);
+  gs={pairs,L:sfl(pairs.map(p=>p.l)),R:sfl(pairs.map(p=>p.r)),lS:null,rS:null,M:{},W:{},s:0,at:0};
+  rMT();
+}
+function rMT(){
+  const{pairs,L,R,lS,rS,M,W,s,at}=gs;
+  const era=ERAS.find(e=>e.id===curEra);
+  const lbl=mode==='mW'?'🔗 作品配對':'🏷️ 術語配對';
+  const lhdr=mode==='mW'?'作品／名稱':'術語／名詞';
+  function mi(v,sd,idx){
+    const isSel=sd==='L'?lS===v:rS===v;
+    const isM=M[v],isW=W[v];
+    let cl='mi';
+    if(isM)cl+=' mi-m';else if(isW)cl+=' mi-w';else if(isSel)cl+=' mi-s';
+    const oc=isM?'':` onclick="selM('${sd}',${idx})"`;
+    return`<div class="${cl}"${oc}>${esc(v)}</div>`;
+  }
+  let cells='';
+  const n=Math.max(L.length,R.length);
+  for(let i=0;i<n;i++){if(L[i])cells+=mi(L[i],'L',i);if(R[i])cells+=mi(R[i],'R',i);}
+  const dm=s===pairs.length?`<div class="done-msg">🎉 全部配對完成！共嘗試 ${at} 次</div>`:'';
+  app.innerHTML=`<div class="top-bar"><button class="back-btn" onclick="enterEra('${curEra}')">← 返回</button><span class="mode-title" style="--ec:${era.color}">${lbl}</span><button class="restart-btn" onclick="iMT()">↺ 重來</button></div><div class="stat-row"><div class="chip">已配對 <strong>${s}</strong>/${pairs.length}</div><div class="chip">嘗試 <strong>${at}</strong> 次</div></div><div class="card"><div class="match-hdr"><div>${lhdr}</div><div>人物 ／ 解釋</div></div><div class="match-grid">${cells}</div>${dm}</div>`;
+}
+function selM(sd,idx){
+  const g=gs;
+  const v=sd==='L'?g.L[idx]:g.R[idx];
+  if(!v||g.M[v])return;
+  if(sd==='L')g.lS=g.lS===v?null:v;
+  else g.rS=g.rS===v?null:v;
+  if(g.lS&&g.rS){
+    const p=g.pairs.find(x=>x.l===g.lS);
+    const ok=p&&p.r===g.rS;
+    g.at++;
+    if(ok){g.M[g.lS]=true;g.M[g.rS]=true;g.s++;g.lS=null;g.rS=null;g.W={};}
+    else{g.W={[g.lS]:true,[g.rS]:true};setTimeout(()=>{g.W={};g.lS=null;g.rS=null;rMT();},700);}
+  }
+  rMT();
+}
+
+showEras();
+</script>
+
+<div id="ai-messages"></div>
+    
+    
+  </div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="../assets/js/shared.js"></script>
+<script>window.UNIT_CONTEXT="戲曲與台灣音樂史";</script>
+</body>
+</html>

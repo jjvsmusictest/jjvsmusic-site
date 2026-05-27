@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>莊敬音樂科學習互動平台 · 互動學習平台</title>
+<link rel="stylesheet" href="assets/css/shared.css">
+<style>
+:root{--bg-main:#FDFAF4}
+.hero-home{
+  padding:60px 24px 48px;text-align:center;
+  background:
+    radial-gradient(ellipse at 20% 60%, rgba(192,57,43,.06) 0,transparent 55%),
+    radial-gradient(ellipse at 80% 30%, rgba(124,58,237,.06) 0,transparent 55%),
+    repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(0,0,0,.03) 39px,rgba(0,0,0,.03) 40px);
+  position:relative;overflow:hidden;
+}
+.hero-home::before{
+  content:'♩ ♫ ♪ ♬';
+  position:absolute;font-size:8rem;opacity:.025;
+  top:-10px;left:0;pointer-events:none;letter-spacing:60px;
+}
+.hero-badge{
+  display:inline-block;background:linear-gradient(135deg,#C0392B,#7c3aed);
+  color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.12em;
+  padding:5px 16px;border-radius:20px;margin-bottom:18px;
+}
+.hero-home h1{
+  font-family:'Noto Serif TC',serif;font-size:2.8rem;font-weight:900;
+  line-height:1.2;margin-bottom:12px;
+}
+.hero-home h1 em{
+  background:linear-gradient(135deg,#C0392B,#7c3aed);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  font-style:normal;
+}
+.hero-home p{color:var(--text2);font-size:.95rem;max-width:500px;margin:0 auto 28px;}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.hero-btn{
+  padding:12px 28px;border-radius:25px;font-weight:700;font-size:.9rem;
+  text-decoration:none;transition:all .2s;display:flex;align-items:center;gap:8px;
+}
+.hero-btn.h{background:var(--accent-history);color:#fff;box-shadow:var(--shadow);}
+.hero-btn.t{background:var(--accent-theory);color:#fff;box-shadow:var(--shadow);}
+.hero-btn:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow-lg);}
+
+/* STATS */
+.stats-row{
+  display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+  padding:24px 20px 0;
+}
+.stat-chip{
+  background:var(--bg-card);border:1.5px solid var(--border);
+  border-radius:12px;padding:14px 20px;text-align:center;
+  box-shadow:var(--shadow);min-width:110px;
+}
+.stat-n{font-family:'Noto Serif TC',serif;font-size:1.8rem;font-weight:900;}
+.stat-l{font-size:.72rem;color:var(--text2);margin-top:2px;}
+
+/* BIG CARDS */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:24px 20px;max-width:900px;margin:0 auto;}
+.big-card{
+  background:var(--bg-card);border-radius:var(--radius);
+  border:2px solid var(--border);padding:24px;
+  box-shadow:var(--shadow);text-decoration:none;color:var(--text);
+  transition:all .2s;position:relative;overflow:hidden;
+}
+.big-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+}
+.big-card.h::before{background:linear-gradient(90deg,#C0392B,#E6A817);}
+.big-card.t::before{background:linear-gradient(90deg,#7c3aed,#06b6d4);}
+.big-card:hover{transform:translate(-3px,-4px);box-shadow:var(--shadow-lg);}
+.bc-icon{font-size:3rem;margin-bottom:12px;}
+.bc-title{font-family:'Noto Serif TC',serif;font-size:1.3rem;font-weight:900;margin-bottom:6px;}
+.bc-desc{font-size:.82rem;color:var(--text2);line-height:1.7;margin-bottom:14px;}
+.bc-list{display:flex;flex-wrap:wrap;gap:6px;}
+.bc-tag{
+  font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:10px;
+  background:rgba(0,0,0,.06);color:var(--text2);
+}
+.bc-arrow{
+  position:absolute;bottom:18px;right:20px;
+  font-size:1.4rem;opacity:.3;transition:all .2s;
+}
+.big-card:hover .bc-arrow{opacity:.7;transform:translate(3px,-3px);}
+
+/* FEATURES */
+.features{padding:8px 20px 40px;max-width:900px;margin:0 auto;}
+.feat-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;}
+.feat-item{
+  background:var(--bg-card);border:1.5px solid var(--border);
+  border-radius:var(--radius-sm);padding:16px;
+  box-shadow:2px 2px 0 var(--border);
+}
+.feat-ico{font-size:1.6rem;margin-bottom:8px;}
+.feat-title{font-weight:700;font-size:.88rem;margin-bottom:4px;}
+.feat-desc{font-size:.74rem;color:var(--text2);line-height:1.6;}
+
+@media(max-width:600px){
+  .hero-home h1{font-size:2rem;}
+  .two-col{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <a href="index.html" class="nav-logo"><span>🎵</span>莊敬音樂科</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link home active-h">首頁</a>
+    <a href="history/index.html" class="nav-link">音樂史</a>
+    <a href="theory/index.html"  class="nav-link">樂理</a>
+    <a href="history/teacher-resources.html" class="nav-link">教師資源</a>
+  </div>
+
+  <div id="nav-auth" style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+    <button id="login-btn" onclick="teacherLogin()" style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;border:1.5px solid var(--border,rgba(0,0,0,.12));background:#fff;cursor:pointer;font-size:.78rem;font-weight:700;font-family:inherit;">👤 教師登入</button>
+    <div id="user-info" style="display:none;align-items:center;gap:8px;">
+      <span style="font-size:.78rem;font-weight:700;">👋 <span id="user-name"></span></span>
+      <button onclick="teacherLogout()" style="padding:4px 10px;border-radius:12px;border:1.5px solid rgba(0,0,0,.12);background:transparent;cursor:pointer;font-size:.7rem;font-family:inherit;">登出</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-home">
+  <div class="hero-badge">🎵 莊敬音樂科學習互動平台</div>
+  <h1>莊敬高職<br><em>音樂科</em>學習互動平台</h1>
+  <p>莊敬高職音樂科專屬學習平台，涵蓋音樂史與樂理完整內容，配合 AI 助手、互動測驗與進度追蹤。</p>
+  <div class="hero-btns">
+    <a href="history/index.html" class="hero-btn h">🌍 音樂史</a>
+    <a href="theory/index.html"  class="hero-btn t">🎼 樂理</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat-chip"><div class="stat-n" style="color:var(--accent-history)">6</div><div class="stat-l">音樂史單元</div></div>
+  <div class="stat-chip"><div class="stat-n" style="color:var(--accent-theory)">5</div><div class="stat-l">樂理單元</div></div>
+  <div class="stat-chip"><div class="stat-n" style="color:var(--gold)">100+</div><div class="stat-l">互動測驗題</div></div>
+  <div class="stat-chip"><div class="stat-n" style="color:var(--green)">∞</div><div class="stat-l">AI 問答</div></div>
+</div>
+
+<!-- TWO BIG CARDS -->
+<div class="two-col">
+  <a href="history/index.html" class="big-card h">
+    <div class="bc-icon">🌍</div>
+    <div class="bc-title">音樂史</div>
+    <div class="bc-desc">從西洋古典到台灣原住民，從中國傳統到世界各地，探索音樂如何跨越時空留下足跡。</div>
+    <div class="bc-list">
+      <span class="bc-tag">西洋音樂史</span>
+      <span class="bc-tag">世界音樂</span>
+      <span class="bc-tag">台灣原住民</span>
+      <span class="bc-tag">戲曲與台灣音樂</span>
+      <span class="bc-tag">中國音樂史</span>
+      <span class="bc-tag">中國樂器</span>
+    </div>
+    <div class="bc-arrow">→</div>
+  </a>
+  <a href="theory/index.html" class="big-card t">
+    <div class="bc-icon">🎼</div>
+    <div class="bc-title">樂理</div>
+    <div class="bc-desc">從最基礎的音名到複雜的和聲調性，循序漸進建立紮實的音樂理論基礎。</div>
+    <div class="bc-list">
+      <span class="bc-tag">基礎音名</span>
+      <span class="bc-tag">音程與音階</span>
+      <span class="bc-tag">和弦與調性</span>
+      <span class="bc-tag">移調樂器</span>
+      <span class="bc-tag">記號與術語</span>
+    </div>
+    <div class="bc-arrow">→</div>
+  </a>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+  <div class="section-title h">平台功能</div>
+  <div class="feat-row">
+    <div class="feat-item">
+      <div class="feat-ico">🤖</div>
+      <div class="feat-title">AI 音樂助手</div>
+      <div class="feat-desc">任何不懂的問題，直接問 AI！依照你正在讀的單元提供精準解答。</div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-ico">🧠</div>
+      <div class="feat-title">互動測驗</div>
+      <div class="feat-desc">每個單元附有隨堂測驗，即時顯示答案解析，幫助鞏固記憶。</div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-ico">📊</div>
+      <div class="feat-title">學習進度追蹤</div>
+      <div class="feat-desc">用 Google 帳號登入，進度自動儲存，跨裝置同步，隨時掌握學習狀況。</div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-ico">📁</div>
+      <div class="feat-title">教師資源庫</div>
+      <div class="feat-desc">老師可上傳講義、補充資料，學生直接在線上查看，資料隨時更新。</div>
+    </div>
+  </div>
+</div>
+
+<div id="ai-messages"></div>
+    
+    
+  </div>
+</div>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>window.UNIT_CONTEXT = "高職音樂課程首頁";</script>
+<script src="assets/js/shared.js"></script>
+</body>
+</html>

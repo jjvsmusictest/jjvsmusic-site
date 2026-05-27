@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>臺灣原住民音樂史 · 互動學習</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+
+:root{
+  --ink:#1a1a1a;
+  --paper:#FDF6EC;
+  --warm:#F5EAD4;
+  --accent1:#C84B31;
+  --accent2:#2E7D6B;
+  --accent3:#8B4513;
+  --gold:#D4920A;
+  --shadow:rgba(0,0,0,0.15);
+}
+
+body{
+  background:var(--paper);
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(200,75,49,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(46,125,107,0.04) 0%, transparent 50%),
+    repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(0,0,0,0.04) 39px, rgba(0,0,0,0.04) 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(0,0,0,0.03) 39px, rgba(0,0,0,0.03) 40px);
+  font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;
+  color:var(--ink);padding:16px;min-height:100vh;font-weight:500;
+  max-width:760px;margin:0 auto;
+}
+
+/* HEADER */
+.hd{text-align:center;margin-bottom:20px;padding:20px 0 10px}
+.hd-badge{display:inline-block;background:var(--accent1);color:#fff;font-size:.7rem;font-weight:900;
+  padding:4px 14px;border-radius:20px;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+  margin-bottom:10px;letter-spacing:.1em;transform:rotate(-1deg)}
+h1{font-family:'Noto Serif TC',serif;font-size:1.9rem;font-weight:900;color:var(--ink);
+  line-height:1.3;margin-bottom:8px;letter-spacing:.02em}
+h1 span{color:var(--accent1)}
+.hd-sub{font-size:.78rem;color:#666;font-weight:600;letter-spacing:.06em;
+  background:var(--warm);border:2px solid var(--ink);border-radius:12px;
+  padding:4px 14px;display:inline-block;box-shadow:2px 2px 0 var(--ink)}
+
+/* TRIBE GRID */
+.tribe-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:18px 0}
+.tribe-btn{padding:16px 10px;border-radius:16px;cursor:pointer;text-align:center;
+  background:var(--ec,#888);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);
+  transition:all .12s;color:#fff;position:relative;overflow:hidden}
+.tribe-btn::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.08);
+  opacity:0;transition:opacity .2s}
+.tribe-btn:hover::before{opacity:1}
+.tribe-btn:nth-child(3n+1){transform:rotate(-1.2deg)}
+.tribe-btn:nth-child(3n+2){transform:rotate(.8deg)}
+.tribe-btn:nth-child(3n){transform:rotate(-0.5deg)}
+.tribe-btn:hover{transform:translate(-2px,-3px) rotate(0)!important;box-shadow:7px 8px 0 var(--ink)}
+.tribe-btn:active{transform:translate(3px,3px) rotate(0)!important;box-shadow:1px 1px 0 var(--ink)}
+.t-icon{font-size:2rem;margin-bottom:6px;filter:drop-shadow(2px 2px 0 rgba(0,0,0,.4))}
+.t-name{font-weight:900;font-size:1rem;margin-bottom:3px;text-shadow:2px 2px 0 rgba(0,0,0,.3);font-family:'Noto Serif TC',serif}
+.t-en{font-size:.65rem;background:rgba(0,0,0,.7);padding:2px 8px;border-radius:8px;font-weight:700}
+.t-num{font-size:.62rem;margin-top:4px;background:rgba(255,255,255,.2);padding:1px 6px;border-radius:6px}
+
+/* OVERVIEW SECTION */
+.overview-card{background:#fff;border:3px solid var(--ink);border-radius:16px;padding:16px;
+  box-shadow:5px 5px 0 var(--ink);margin-bottom:18px;position:relative;transform:rotate(-.3deg)}
+.ov-title{font-family:'Noto Serif TC',serif;font-weight:900;font-size:1rem;
+  background:var(--accent1);color:#fff;padding:5px 14px;border:2.5px solid var(--ink);
+  border-radius:10px;box-shadow:3px 3px 0 var(--ink);display:inline-block;margin-bottom:12px}
+.ov-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ov-item{background:var(--warm);border:2px solid var(--ink);border-radius:10px;padding:10px 12px}
+.ov-h{font-weight:900;font-size:.8rem;color:var(--accent1);margin-bottom:5px}
+.ov-list{font-size:.75rem;line-height:1.7;color:#333}
+.ov-list li{list-style:none;padding-left:10px;position:relative}
+.ov-list li::before{content:'▸';position:absolute;left:0;color:var(--accent2)}
+
+/* QUICK REF TABLE */
+.qref-wrap{overflow-x:auto;margin-top:10px}
+.qref-table{width:100%;border-collapse:collapse;font-size:.72rem}
+.qref-table th{background:var(--accent1);color:#fff;padding:7px 10px;border:2px solid var(--ink);
+  font-weight:900;text-align:center;white-space:nowrap}
+.qref-table td{padding:6px 10px;border:1.5px solid rgba(0,0,0,.25);vertical-align:top;line-height:1.6}
+.qref-table tr:nth-child(even) td{background:var(--warm)}
+.qref-table tr:hover td{background:rgba(200,75,49,.08)}
+
+/* TOP BAR */
+.top-bar{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.back-btn{padding:8px 16px;border-radius:22px;cursor:pointer;font-size:.78rem;
+  background:#fff;border:2.5px solid var(--ink);color:var(--ink);font-family:inherit;
+  font-weight:800;box-shadow:3px 3px 0 var(--ink);transition:all .1s}
+.back-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.back-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.mode-title{font-weight:900;font-size:.95rem;color:var(--ink);background:var(--gold);
+  padding:5px 14px;border:2.5px solid var(--ink);border-radius:11px;box-shadow:3px 3px 0 var(--ink);
+  color:#fff;text-shadow:1px 1px 0 rgba(0,0,0,.4)}
+
+/* TRIBE BANNER */
+.tribe-banner{padding:16px;border-radius:16px;margin-bottom:14px;background:var(--ec);
+  border:3px solid var(--ink);color:#fff;box-shadow:6px 6px 0 var(--ink);
+  position:relative;transform:rotate(-.4deg);overflow:hidden}
+.tribe-banner::after{content:'';position:absolute;top:-20px;right:-20px;
+  width:100px;height:100px;border:3px solid rgba(255,255,255,.2);border-radius:50%}
+.tribe-banner h2{font-family:'Noto Serif TC',serif;font-size:1.4rem;margin-bottom:4px;
+  font-weight:900;text-shadow:2px 2px 0 rgba(0,0,0,.3)}
+.tribe-banner .t-sub{display:inline-block;background:rgba(0,0,0,.7);padding:3px 12px;
+  border-radius:8px;font-size:.72rem;font-weight:700;margin-bottom:8px}
+.tribe-banner .t-intro{font-size:.82rem;line-height:1.65;font-weight:600;
+  background:rgba(0,0,0,.15);border-radius:10px;padding:8px 12px;margin-top:6px}
+
+/* MODE BUTTONS */
+.mode-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:14px}
+.mode-btn{padding:14px 10px;border-radius:14px;cursor:pointer;text-align:center;
+  background:#fff;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);
+  transition:all .12s;font-family:inherit}
+.mode-btn:hover{transform:translate(-1px,-2px);box-shadow:5px 6px 0 var(--ink)}
+.mode-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.m-icon{font-size:1.7rem;margin-bottom:6px}
+.m-label{font-weight:900;font-size:.88rem;color:var(--ink);margin-bottom:3px}
+.m-desc{color:#777;font-size:.67rem;font-weight:600}
+
+/* INTRO SECTIONS */
+.intro-sec{background:#fff;border:3px solid var(--ink);border-radius:16px;margin-bottom:14px;
+  overflow:hidden;box-shadow:4px 4px 0 var(--ink)}
+.intro-h{padding:10px 16px;font-weight:900;font-size:.9rem;color:#fff;
+  background:var(--ec,var(--accent1));text-shadow:1px 1px 0 rgba(0,0,0,.3)}
+.intro-body{padding:14px 16px;font-size:.82rem;line-height:1.8;color:#333}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;padding:12px}
+.feat-card{background:var(--warm);border:2px solid var(--ink);border-radius:10px;padding:10px 12px}
+.ft{font-weight:900;font-size:.85rem;margin-bottom:5px;color:var(--accent1)}
+.fd{font-size:.76rem;line-height:1.65;color:#444}
+
+/* INSTRUMENTS */
+.inst-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;padding:12px}
+.inst-card{background:var(--warm);border:2px solid var(--ink);border-radius:10px;padding:10px 12px;text-align:center}
+.inst-icon{font-size:1.6rem;margin-bottom:5px}
+.inst-name{font-weight:900;font-size:.85rem;color:var(--accent2);margin-bottom:4px}
+.inst-desc{font-size:.72rem;color:#555;line-height:1.6}
+
+/* LISTEN ITEMS */
+.listen-item{padding:10px 16px;border-bottom:1.5px solid rgba(0,0,0,.12);display:flex;
+  align-items:center;gap:12px;flex-wrap:wrap}
+.listen-item:last-child{border-bottom:none}
+.listen-info{flex:1;min-width:160px}
+.listen-title{font-weight:900;font-size:.85rem;margin-bottom:2px;color:var(--ink)}
+.listen-detail{font-size:.72rem;color:#666;line-height:1.5}
+.yt-btn{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;
+  border-radius:10px;background:#FF0000;color:#fff;font-size:.72rem;font-weight:900;
+  text-decoration:none;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+  transition:all .1s;white-space:nowrap;flex-shrink:0}
+.yt-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+
+/* TERM GRID */
+.term-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;padding:12px}
+.term-card{background:var(--warm);border:2px solid var(--ink);border-radius:10px;padding:9px 12px}
+.tt{font-weight:900;font-size:.85rem;color:var(--accent3);margin-bottom:3px}
+.tz{font-size:.73rem;color:#444;line-height:1.6}
+
+/* QUICK REF */
+.ref-item{border-bottom:2px solid rgba(0,0,0,.12)}
+.ref-item:last-child{border-bottom:none}
+.ref-head{display:flex;align-items:center;gap:10px;padding:12px 14px;cursor:pointer;
+  transition:background .15s;border-radius:4px}
+.ref-head:hover{background:var(--warm)}
+.ref-av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;font-weight:900;color:#fff;border:2.5px solid var(--ink);flex-shrink:0}
+.ref-name{font-weight:900;font-size:.9rem}
+.ref-detail{font-size:.7rem;color:#666;margin-top:1px}
+.ref-badge{padding:3px 10px;border-radius:8px;font-size:.65rem;font-weight:900;color:#fff;
+  margin-left:auto;border:1.5px solid var(--ink);white-space:nowrap;flex-shrink:0}
+.ref-arr{font-size:.8rem;color:#888;flex-shrink:0}
+.ref-body{padding:0 16px 14px 60px}
+.ref-body li{font-size:.78rem;line-height:1.8;color:#333;list-style:none;padding-left:14px;position:relative}
+.ref-body li::before{content:'♪';position:absolute;left:0;color:var(--accent2)}
+
+/* QUIZ */
+.q-box{background:var(--warm);border:3px solid var(--ink);border-radius:14px;padding:14px 17px;
+  font-size:.9rem;color:var(--ink);line-height:1.7;margin-bottom:14px;font-weight:600;
+  box-shadow:3px 3px 0 var(--ink)}
+.tf-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tf-btn{padding:14px;border-radius:13px;border:3px solid var(--ink);background:#fff;color:var(--ink);
+  font-size:1rem;cursor:pointer;font-family:inherit;font-weight:900;transition:all .1s;
+  box-shadow:4px 4px 0 var(--ink)}
+.tf-btn:hover:not(:disabled){transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}
+.tf-btn:active:not(:disabled){transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.tc{background:#2ED573!important;color:#fff!important}
+.tw{background:#FF4757!important;color:#fff!important}
+.mc-btn{display:flex;align-items:center;gap:10px;width:100%;padding:11px 14px;border-radius:12px;
+  margin-bottom:9px;border:3px solid var(--ink);background:#fff;color:var(--ink);font-size:.85rem;
+  cursor:pointer;font-family:inherit;text-align:left;transition:all .1s;font-weight:700;
+  box-shadow:3px 3px 0 var(--ink)}
+.mc-btn:hover:not(:disabled){transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.mc{background:#2ED573!important;color:#fff!important}
+.mw{background:#FF4757!important;color:#fff!important}
+.abadge{width:26px;height:26px;border-radius:50%;background:var(--gold);border:2px solid var(--ink);
+  display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:900;flex-shrink:0;color:#fff}
+.mc .abadge,.mw .abadge{background:rgba(255,255,255,.3)}
+.explain{margin-top:12px;padding:14px 16px;border-radius:12px;font-size:.8rem;line-height:1.65;
+  font-weight:600;border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.eo{background:#D6FFE6}.en{background:#FFE0E3}
+.eho,.ehn{font-weight:900;display:block;margin-bottom:5px;font-size:.9rem}
+.eho{color:#0F8C40}.ehn{color:#C8243A}
+.next-btn{margin-top:10px;padding:8px 22px;border-radius:18px;cursor:pointer;
+  background:var(--gold);border:2.5px solid var(--ink);color:#fff;font-size:.84rem;
+  font-family:inherit;font-weight:900;box-shadow:3px 3px 0 var(--ink);transition:all .1s;
+  text-shadow:1px 1px 0 rgba(0,0,0,.3)}
+.next-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.next-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.prog-bar{display:flex;gap:4px;margin-bottom:14px;background:#fff;padding:5px;
+  border:2.5px solid var(--ink);border-radius:10px;box-shadow:3px 3px 0 var(--ink)}
+.prog-seg{flex:1;height:9px;border-radius:3px;background:#ddd;border:1.5px solid var(--ink);transition:background .3s}
+.pd{background:#2ED573!important}.pc{background:var(--gold)!important}
+.stat-row{display:flex;justify-content:center;gap:10px;margin-bottom:13px;flex-wrap:wrap}
+.chip{background:#fff;border:2.5px solid var(--ink);border-radius:14px;padding:5px 14px;
+  font-size:.78rem;color:var(--ink);font-weight:800;box-shadow:2px 2px 0 var(--ink)}
+.chip strong{color:var(--accent1)}
+.result-box{text-align:center;padding:20px}
+.ri{font-size:3.5rem;margin-bottom:8px}
+.rs{font-family:'Noto Serif TC',serif;font-size:1.5rem;font-weight:900;margin-bottom:4px}
+.rsc{font-size:1rem;font-weight:700;color:var(--accent1);margin-bottom:4px}
+.rp{font-size:.85rem;color:#666;font-weight:600}
+
+.card{background:#fff;border:3px solid var(--ink);border-radius:16px;padding:14px;box-shadow:4px 4px 0 var(--ink)}
+
+/* MATCH GAME */
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.match-hdr{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;
+  text-align:center;font-size:.78rem;font-weight:900;color:#fff}
+.match-hdr div{background:var(--accent2);border:2px solid var(--ink);border-radius:8px;padding:5px;box-shadow:2px 2px 0 var(--ink)}
+.mi{padding:10px;border-radius:10px;border:2.5px solid var(--ink);background:#fff;
+  cursor:pointer;font-size:.78rem;font-weight:700;text-align:center;transition:all .15s;
+  box-shadow:3px 3px 0 var(--ink);line-height:1.4;min-height:44px;display:flex;align-items:center;justify-content:center}
+.mi:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.mi-s{background:var(--gold)!important;color:#fff!important;text-shadow:1px 1px 0 rgba(0,0,0,.3)}
+.mi-m{background:#2ED573!important;color:#fff!important;cursor:default;box-shadow:none;transform:none}
+.mi-w{background:#FF4757!important;color:#fff!important}
+.done-msg{text-align:center;padding:14px;font-weight:900;font-size:1rem;color:var(--accent2);
+  background:#D6FFE6;border:2px solid var(--ink);border-radius:10px;margin-top:10px}
+
+/* TIP BOX */
+.tip{background:#fff;border:3px solid var(--ink);border-radius:16px;padding:14px 18px;
+  font-size:.8rem;color:var(--ink);line-height:1.7;font-weight:600;box-shadow:4px 4px 0 var(--ink);
+  margin-top:8px;position:relative}
+.tip::before{content:"💡 學習提示";position:absolute;top:-13px;left:18px;background:var(--gold);
+  color:#fff;padding:2px 12px;border:2.5px solid var(--ink);border-radius:10px;font-size:.72rem;font-weight:900;
+  text-shadow:1px 1px 0 rgba(0,0,0,.3)}
+
+/* SCROLL TO TOP */
+.scroll-top{position:fixed;bottom:20px;right:20px;background:var(--accent1);color:#fff;
+  border:2.5px solid var(--ink);border-radius:50%;width:44px;height:44px;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  font-size:1.2rem;box-shadow:3px 3px 0 var(--ink);transition:all .1s;z-index:100}
+.scroll-top:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+
+/* CATEGORY TAG */
+.cat-tag{display:inline-block;font-size:.65rem;font-weight:900;padding:2px 8px;
+  border-radius:8px;border:1.5px solid var(--ink);margin-left:6px;vertical-align:middle}
+
+@media(max-width:500px){
+  h1{font-size:1.5rem}
+  .tribe-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+  .ov-grid{grid-template-columns:1fr}
+}
+</style>
+
+<link rel="stylesheet" href="../assets/css/shared.css">
+<style>
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="../index.html" class="nav-logo"><span>🎵</span>莊敬音樂科</a>
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link home">首頁</a>
+    <a href="index.html" class="nav-link active-h">音樂史</a>
+    <a href="../theory/index.html" class="nav-link">樂理</a>
+    <a href="teacher-resources.html" class="nav-link">教師資源</a>
+  </div>
+
+  <div id="nav-auth" style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+    <button id="login-btn" onclick="teacherLogin()" style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;border:1.5px solid var(--border,rgba(0,0,0,.12));background:#fff;cursor:pointer;font-size:.78rem;font-weight:700;font-family:inherit;">👤 教師登入</button>
+    <div id="user-info" style="display:none;align-items:center;gap:8px;">
+      <span style="font-size:.78rem;font-weight:700;">👋 <span id="user-name"></span></span>
+      <button onclick="teacherLogout()" style="padding:4px 10px;border-radius:12px;border:1.5px solid rgba(0,0,0,.12);background:transparent;cursor:pointer;font-size:.7rem;font-family:inherit;">登出</button>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumb" style="padding:8px 16px;font-size:.76rem;color:#888;display:flex;gap:5px;align-items:center;"><a href="../index.html" style="color:#666;text-decoration:none;">首頁</a><span>/</span><a href="index.html" style="color:#666;text-decoration:none;">音樂史</a><span>/</span>台灣原住民音樂史</span></div>
+<div id="app"></div>
+<div class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+<script>
+// ============================================================
+//  DATA — Tribe definitions
+// ============================================================
+const TRIBES = [
+  {id:'atayal', name:'泰雅族', en:'Atayal, Tayal', icon:'🏹', num:'第一族', color:'#C84B31',
+   intro:'最早來臺的民族之一，以傳統狩獵和游耕維生。日據時代抗日受創嚴重，傳統文化流失最多。脸部有族群標記的刺黥，被稱為「北番」、「黥面番」。',
+   social:['最早來臺的民族之一，以狩獵和游耕維生','日據時代抗日受創嚴重，傳統文化流失最多','傳統儀式服飾技術繁複，花色精美，有貝殼珠鑲織','臉部有族群標記的刺黥（黥面）'],
+   music:['音域狹窄、曲調簡單，有蒼涼孤獨的感覺','以吟誦性歌曲為主','口傳心授，缺乏記錄'],
+   instruments:['口黃琴（傳話、舞蹈伴奏、吹奏樂器）','口笛','木鼓','木琴'],
+   festivals:['祖靈祭（農曆7月）','豐年祭','播種祭'],
+   listen:[
+     {title:'泰雅族口黃琴演奏',detail:'口黃琴（竹簧琴）是泰雅族最具代表性的傳話樂器',q:'泰雅族 口黃琴'},
+     {title:'泰雅族吟唱',detail:'泰雅族傳統吟唱，音域狹窄但蒼涼深遠',q:'泰雅族 傳統歌謠'},
+     {title:'泰雅族豐年祭歌舞',detail:'豐年祭是重要的農耕祭典',q:'泰雅族 豐年祭'},
+   ],
+   terms:[
+     {t:'黥面文化',z:'臉部刺黥為族群標記，代表成年與勇氣'},
+     {t:'口黃琴',z:'竹製彈撥樂器，用口腔為共鳴箱，重要傳話工具'},
+     {t:'吟誦性歌曲',z:'泰雅族音樂主要特色，音域窄、曲調簡單'},
+   ],
+   TF:[
+     {q:'泰雅族是最早來臺的民族之一，以傳統狩獵和游耕維生。',ans:true,e:'正確。泰雅族是臺灣最早來臺的原住民族之一，傳統維生方式以狩獵和游耕為主。'},
+     {q:'泰雅族音樂以寬廣的音域和複雜的曲調見長。',ans:false,e:'錯誤。泰雅族音樂恰好相反——音域狹窄、曲調簡單，有蒼涼孤獨的感覺，以吟誦性歌曲為主。'},
+     {q:'口黃琴是泰雅族最具代表性的傳話樂器。',ans:true,e:'正確。口黃琴（竹簧琴）是泰雅族用於傳話、舞蹈伴奏的重要樂器。'},
+     {q:'日據時代泰雅族的傳統文化保存最為完整。',ans:false,e:'錯誤。泰雅族日據時代抗日受創嚴重，因此傳統文化流失最多。'},
+   ],
+   MC:[
+     {q:'泰雅族音樂的主要特色是什麼？',opts:['音域寬廣、曲調複雜','音域狹窄、曲調簡單，蒼涼孤獨','複音合唱、和聲豐富','歌舞並重、節奏強烈'],ans:1,e:'泰雅族音樂以吟誦性歌曲為主，音域狹窄、曲調簡單，帶有蒼涼孤獨的感覺。'},
+     {q:'泰雅族最具代表性的樂器是？',opts:['排笛','鼻笛','口黃琴','弓琴'],ans:2,e:'口黃琴是泰雅族最具代表性的樂器，可用於傳話、舞蹈伴奏和吹奏。'},
+     {q:'泰雅族臉部的「刺黥」習俗代表什麼意義？',opts:['宗教信仰標誌','族群身分與成年標記','婚姻狀態','社會階級'],ans:1,e:'泰雅族臉部刺黥（黥面）是族群標記，代表成年、勇氣與族群身分。'},
+   ],
+   MATCH:[{l:'口黃琴',r:'竹簧彈撥傳話樂器'},{l:'吟誦性',r:'泰雅族音樂風格特徵'},{l:'黥面番',r:'泰雅族的別稱'},{l:'祖靈祭',r:'泰雅族農曆7月祭典'}],
+  },
+
+  {id:'saisiyat', name:'賽夏族', en:'Saysiyat, Saysiat', icon:'🌙', num:'第二族', color:'#6B4E9E',
+   intro:'與泰雅族為最早移入臺灣的族群，日人稱「獅設族」。為父系小家庭制，本族有「缺齒」習俗。矮靈祭（Pastaai）是最重要的祭典。',
+   social:['與泰雅族為最早移入臺灣的族群，日人稱「獅設族」','為父系小家庭制，各氏族有圖騰象徵物','本族有「缺齒」習俗','文化受泰雅族影響，亦有黥面、編織技術'],
+   music:['矮靈祭（Pastaai）為本族最重要祭典','平時禁唱，祭祀前五日才准習唱','曲風冗長沉緩、哀傷掙扎','祭典共分五天：迎神一天、祭神三天、送神一天','歌詞共十六章，每一句為七音節','除迎神之外皆有搭配五種不同步調的舞蹈'],
+   instruments:['臀鈴','曾使用口琴、縱笛、弓琴等，但現已失傳'],
+   festivals:['播種祭','祖靈祭','矮靈祭/巴斯答愛祭（農曆10/15，二年一小祭，十年一大祭）','麻斯巴絡祭'],
+   listen:[
+     {title:'矮靈祭歌舞（巴斯答愛）',detail:'賽夏族最重要祭典，哀傷曲風，平時禁唱',q:'賽夏族 矮靈祭 Pastaai'},
+     {title:'賽夏族傳統歌謠',detail:'賽夏族歌謠風格沉緩哀傷',q:'賽夏族 傳統歌謠'},
+   ],
+   terms:[
+     {t:'矮靈祭（Pastaai）',z:'賽夏族最重要的祭典，哀傷沉緩，每二年一小祭'},
+     {t:'缺齒習俗',z:'賽夏族的成年儀式習俗'},
+     {t:'臀鈴',z:'賽夏族代表性樂器，現存最具特色者'},
+   ],
+   TF:[
+     {q:'矮靈祭（Pastaai）是賽夏族最重要的祭典。',ans:true,e:'正確。矮靈祭是賽夏族最重要的祭典，平時禁唱，祭祀前五日才准習唱。'},
+     {q:'賽夏族矮靈祭的歌詞共有八章，每句八音節。',ans:false,e:'錯誤。矮靈祭歌詞共十六章，每一句為七音節。'},
+     {q:'矮靈祭每五年舉辦一次大祭。',ans:false,e:'錯誤。矮靈祭是二年一小祭，十年一大祭。'},
+     {q:'賽夏族臀鈴是目前保存最具代表性的傳統樂器。',ans:true,e:'正確。賽夏族的臀鈴是目前最具代表性的傳統樂器。'},
+   ],
+   MC:[
+     {q:'賽夏族矮靈祭的祭典程序為？',opts:['迎神三天、送神兩天','迎神一天、祭神三天、送神一天','祭神五天','迎神兩天、祭神兩天、送神一天'],ans:1,e:'矮靈祭共五天，順序是迎神一天、祭神三天、送神一天。'},
+     {q:'賽夏族矮靈祭歌詞每句有幾個音節？',opts:['五音節','六音節','七音節','八音節'],ans:2,e:'矮靈祭歌詞共十六章，每一句為七音節。'},
+     {q:'賽夏族的音樂風格如何？',opts:['歡快活潑，節奏強勁','冗長沉緩、哀傷掙扎','宏亮高亢，音域寬廣','簡短輕快，易於傳唱'],ans:1,e:'賽夏族矮靈祭音樂曲風冗長沉緩、哀傷掙扎，具有獨特的哀悼氣氛。'},
+   ],
+   MATCH:[{l:'矮靈祭',r:'賽夏族最重要祭典'},{l:'臀鈴',r:'賽夏族代表性樂器'},{l:'十六章',r:'矮靈祭歌詞章節數'},{l:'七音節',r:'每句歌詞音節數'}],
+  },
+
+  {id:'amis', name:'阿美族', en:'Pangcah, Amis', icon:'🌊', num:'第三族', color:'#1E7D6B',
+   intro:'原住民族人口最多的一族，生產方式以種植水稻為主、漁獵為副。擅長製陶，文化較高，音樂水準也較高。母系氏族為部落制度的主軸。',
+   social:['原住民族人口最多的一族','生產方式以種植水稻為主、漁獵為副','擅長製陶，文化較高，音樂水準也較高','母系氏族為部落制度的主軸，行族內婚並從妻居'],
+   music:['歌謠內容豐富、旋律優美、音域較寬','歌舞除使用於祭儀和聚宴，並搭以杵白及腳踝鈴鐺','1996年亞特蘭大奧運由阿美族人郭英男以「老人飲酒歌」作為大會開幕領唱','「老人飲酒歌」原為「豐年祭」儀式開始前由部落長老唱的莊重肅穆歌曲','重要音樂家：李泰祥','知名歌手：張震嶽、高勝美、范逸臣'],
+   instruments:['口黃琴','雙管鼻笛','竹笛','杵白','木鼓','竹鼓','竹鐘','木琴','鈴','弓琴','腰鈴'],
+   festivals:['捕魚祭（5月）','豐年祭（7月）','海祭'],
+   listen:[
+     {title:'郭英男「老人飲酒歌」',detail:'1996年亞特蘭大奧運開幕曲，阿美族豐年祭長老歌謠',q:'郭英男 老人飲酒歌'},
+     {title:'阿美族豐年祭歌舞',detail:'阿美族最盛大的豐年祭，歌舞多元豐富',q:'阿美族 豐年祭 Ilisin'},
+     {title:'李泰祥 橄欖樹',detail:'阿美族重要音樂家李泰祥代表作',q:'李泰祥 橄欖樹'},
+     {title:'張震嶽 愛我別走',detail:'阿美族知名歌手張震嶽代表作',q:'張震嶽 愛我別走'},
+   ],
+   terms:[
+     {t:'老人飲酒歌',z:'阿美族豐年祭儀式歌曲，1996年奧運開幕曲'},
+     {t:'豐年祭（Ilisin）',z:'阿美族最重要的祭典，7月舉行'},
+     {t:'李泰祥',z:'阿美族重要音樂家、作曲家'},
+     {t:'複音唱法',z:'一人領唱，其他聲部即興和腔的特有唱法'},
+   ],
+   TF:[
+     {q:'阿美族是臺灣原住民族中人口最多的一族。',ans:true,e:'正確。阿美族是臺灣原住民族中人口最多的一族。'},
+     {q:'郭英男在1996年亞特蘭大奧運以「豐年祭」作為開幕領唱。',ans:false,e:'錯誤。郭英男是以「老人飲酒歌」（非「豐年祭」）作為1996年亞特蘭大奧運大會開幕領唱。'},
+     {q:'阿美族是父系氏族社會，以男性長者為部落領導。',ans:false,e:'錯誤。阿美族是母系氏族社會，以女性為部落制度主軸，行族內婚並從妻居。'},
+     {q:'李泰祥是阿美族重要的音樂家。',ans:true,e:'正確。李泰祥是阿美族重要的音樂家和作曲家。'},
+   ],
+   MC:[
+     {q:'1996年亞特蘭大奧運開幕的那首阿美族歌謠是？',opts:['豐年祭','捕魚歌','老人飲酒歌','海祭歌'],ans:2,e:'郭英男以「老人飲酒歌」作為1996年亞特蘭大奧運大會開幕領唱。'},
+     {q:'阿美族是哪種家族社會制度？',opts:['父系社會','母系社會','雙系社會','氏族聯盟制'],ans:1,e:'阿美族是母系氏族社會，以女性為部落制度主軸，行族內婚並從妻居。'},
+     {q:'下列哪位歌手不是阿美族出身？',opts:['張震嶽','高勝美','范逸臣','動力火車'],ans:3,e:'動力火車（陳忠和、游鴻明）是排灣族出身，張震嶽、高勝美、范逸臣才是阿美族知名歌手。'},
+   ],
+   MATCH:[{l:'郭英男',r:'老人飲酒歌演唱者'},{l:'李泰祥',r:'阿美族重要作曲家'},{l:'張震嶽',r:'阿美族知名歌手'},{l:'豐年祭',r:'阿美族7月重要祭典'}],
+  },
+
+  {id:'paiwan', name:'排灣族', en:'Paiwan', icon:'🐍', num:'第四族', color:'#8B4513',
+   intro:'圖騰以百步蛇及人頭紋為主，青銅刀、古陶壺、琉璃珠為貴族傳家寶。嚴格的階級制度，行長子女雙系世襲繼承制。知名歌手：動力火車。',
+   social:['圖騰以百步蛇及人頭紋為主','青銅刀、古陶壺、琉璃珠為貴族傳家寶','母系家族、沿用嚴格的階級制度','行長子女雙系世襲繼承制，嚴禁貴族平民通婚','不同身分服裝及用品的裝飾也有所不同'],
+   music:['排灣族音樂自日治時期以來，因傳統生活方式逐漸消失','現多以「模擬傳統」或「表演」的形式呈現','知名歌手：動力火車'],
+   instruments:['木鼓','口弓琴（竹製）','口簧琴','雙管鼻笛','口笛'],
+   festivals:['五年祭（竹竿祭）','毛蟹祭（3～6月捕毛蟹前）','收穫祭'],
+   listen:[
+     {title:'動力火車 無樂不作',detail:'排灣族知名歌手組合動力火車代表作',q:'動力火車 無樂不作'},
+     {title:'排灣族鼻笛演奏',detail:'排灣族雙管鼻笛是最具代表性的樂器之一',q:'排灣族 鼻笛'},
+     {title:'排灣族五年祭',detail:'排灣族五年一次的重要祭典「竹竿祭」',q:'排灣族 五年祭 竹竿祭'},
+   ],
+   terms:[
+     {t:'五年祭（竹竿祭）',z:'排灣族五年舉辦一次的重要祭典'},
+     {t:'百步蛇圖騰',z:'排灣族最重要的圖騰象徵'},
+     {t:'琉璃珠',z:'排灣族貴族傳家寶，每顆皆有名稱與故事'},
+     {t:'雙管鼻笛',z:'排灣族最具代表性的管樂器'},
+   ],
+   TF:[
+     {q:'排灣族是以父系長子繼承的社會制度。',ans:false,e:'錯誤。排灣族行長子女雙系世襲繼承制（非單純父系），即不論男女，由長子或長女繼承。'},
+     {q:'百步蛇是排灣族最重要的圖騰之一。',ans:true,e:'正確。排灣族圖騰以百步蛇及人頭紋為主，百步蛇被視為祖靈象徵。'},
+     {q:'動力火車是排灣族出身的知名歌手組合。',ans:true,e:'正確。動力火車（陳忠和、游鴻明）是排灣族出身的知名歌手組合。'},
+     {q:'排灣族音樂目前仍以傳統形式在日常生活中大量使用。',ans:false,e:'錯誤。排灣族音樂自日治時期以來傳統生活方式逐漸消失，現多以「模擬傳統」或「表演」形式呈現。'},
+   ],
+   MC:[
+     {q:'排灣族的傳家寶三大珍品是？',opts:['弓箭、木盾、皮衣','青銅刀、古陶壺、琉璃珠','口黃琴、鼻笛、木鼓','百步蛇、人頭紋、竹竿'],ans:1,e:'排灣族貴族傳家寶為青銅刀、古陶壺及琉璃珠，每件皆有傳承意義。'},
+     {q:'排灣族的「五年祭」又稱為什麼？',opts:['豐年祭','竹竿祭','矮靈祭','豐漁祭'],ans:1,e:'排灣族的五年祭又稱「竹竿祭」，是排灣族最重要的五年祭典。'},
+   ],
+   MATCH:[{l:'動力火車',r:'排灣族知名歌手'},{l:'五年祭',r:'竹竿祭，五年一次'},{l:'琉璃珠',r:'排灣族貴族傳家寶'},{l:'雙管鼻笛',r:'排灣族代表性管樂器'}],
+  },
+
+  {id:'rukai', name:'魯凱族', en:'Rukai', icon:'🌺', num:'第五族', color:'#2E5E8E',
+   intro:'早期被歸為排灣族其中一支，二族在體質、社會組織、百合花和百步蛇的信仰等方面極為相近。以長男承家，行貴族階級社會制；音樂以持續低音式的複音唱法為特色。',
+   social:['早期被歸為排灣族其中一支','二族在體質、社會組織、百合花和百步蛇的信仰等方面極為相近','二族差異在於語言、祭典、頭目繼承制度及埋葬方式','以長男承家，行貴族階級社會制','百步蛇圖案為貴族祖靈象徵','由於環境變遷，發展出五種不同的方言','女性編織及男性木雕皆有極高藝術價值'],
+   music:['受到鄰近排灣族影響，以持續低音式的複音唱法為特色','「下三社魯凱族群」有不協和式二部複音唱法，是以大2度參和著大3度，為其特殊複音現象'],
+   instruments:['鼻笛','口笛','口琴'],
+   festivals:['小米收穫祭（8/15）','買沙呼魯祭（3～4月）','搭巴嗄魘望祭（黑米祭）'],
+   listen:[
+     {title:'魯凱族複音歌唱',detail:'以持續低音式複音唱法為特色，與排灣族相近',q:'魯凱族 傳統歌謠 複音'},
+     {title:'魯凱族小米收穫祭',detail:'魯凱族最重要的農耕祭典',q:'魯凱族 小米收穫祭'},
+   ],
+   terms:[
+     {t:'持續低音式複音',z:'魯凱族音樂最大特色，受排灣族影響發展'},
+     {t:'不協和二部複音',z:'下三社魯凱族群特有，以大2度參和大3度的複音現象'},
+     {t:'黑米祭',z:'魯凱族特有的搭巴嗄魘望祭'},
+   ],
+   TF:[
+     {q:'魯凱族和排灣族在語言和祭典上完全相同。',ans:false,e:'錯誤。魯凱族和排灣族雖在體質、信仰上相近，但二族差異在於語言、祭典、頭目繼承制度及埋葬方式。'},
+     {q:'魯凱族音樂以持續低音式的複音唱法為特色。',ans:true,e:'正確。魯凱族受到鄰近排灣族影響，以持續低音式的複音唱法為音樂特色。'},
+     {q:'下三社魯凱族群有不協和式二部複音唱法。',ans:true,e:'正確。「下三社魯凱族群」有不協和式二部複音唱法，以大2度參和著大3度，為特殊複音現象。'},
+   ],
+   MC:[
+     {q:'魯凱族音樂最主要的特色是？',opts:['單音吟唱，音調高昂','持續低音式複音唱法','即興對唱','搖擺節奏'],ans:1,e:'魯凱族受到鄰近排灣族影響，以持續低音式的複音唱法為音樂最大特色。'},
+     {q:'下三社魯凱族群的複音唱法特殊之處在於？',opts:['三部合唱','四部合唱','以大2度參和大3度的不協和二部複音','完全協和的自然和絃'],ans:2,e:'下三社魯凱族群有不協和式二部複音唱法，是以大2度參和著大3度，為其特殊複音現象。'},
+   ],
+   MATCH:[{l:'持續低音式',r:'魯凱族複音特色'},{l:'大2度＋大3度',r:'不協和二部複音組成'},{l:'黑米祭',r:'搭巴嗄魘望祭'},{l:'小米收穫祭',r:'8月15日舉行'}],
+  },
+
+  {id:'puyuma', name:'卑南族', en:'Puyuma', icon:'🦅', num:'第六族', color:'#5C6B2A',
+   intro:'採母系族長世裝制度，各部落皆為自主社群。嚴格的會所制度及階級訓練為最大特色。重要音樂家：陸森寶（卑南音樂之父）。知名歌手：陳建年、張惠妹、紀曉君。',
+   social:['採母系族長世裝制度，各部落皆為自主社群','嚴格的會所制度及階級訓練為最大特色','山墾農業為主、漁獵為副','女性有習巫傳統'],
+   music:['音樂吸收魯凱族、排灣族和阿美族等各族風格','保有較原始的詠誦曲調','卑南族除鈴類樂器外，現在少有傳統樂器之使用，多引進新式樂器','重要音樂家：陸森寶（卑南音樂之父）','知名歌手：陳建年（陸森寶的傳人）、張惠妹、紀曉君'],
+   instruments:['背鈴','排鈴','盾牌','曾使用口琴、弓琴、縱笛、橫笛、牛皮太鼓、趕鳥竹器等','現多引進新式樂器'],
+   festivals:['除草祭（4月）','海祭（收穫祭，7月）','年祭（含大獵祭、猴祭、聯合年祭）','發祥地祭祖活動（3～4月）','狩獵祭（戰祭，12/29～1/1）','除喪祭（1/1）','澆水祈雨祭（3～6月）'],
+   listen:[
+     {title:'陸森寶 美麗的稻穗',detail:'卑南族音樂之父陸森寶最具代表性的創作',q:'陸森寶 美麗的稻穗'},
+     {title:'張惠妹 姊妹',detail:'卑南族國際巨星張惠妹代表作',q:'張惠妹 姊妹'},
+     {title:'陳建年 海洋',detail:'卑南族歌手陳建年，陸森寶傳人',q:'陳建年 海洋'},
+     {title:'紀曉君 野火春風',detail:'卑南族歌手紀曉君傳統與流行的融合',q:'紀曉君 野火春風'},
+   ],
+   terms:[
+     {t:'陸森寶',z:'卑南音樂之父，創作大量兼具傳統與現代的歌謠'},
+     {t:'會所制度',z:'卑南族嚴格的年齡組織訓練制度'},
+     {t:'猴祭',z:'卑南族青少年的成年儀式'},
+   ],
+   TF:[
+     {q:'陸森寶被稱為「卑南音樂之父」。',ans:true,e:'正確。陸森寶是卑南族最重要的音樂家，被尊稱為「卑南音樂之父」。'},
+     {q:'張惠妹是阿美族出身的歌手。',ans:false,e:'錯誤。張惠妹是卑南族出身，不是阿美族。'},
+     {q:'卑南族採用父系社會制度。',ans:false,e:'錯誤。卑南族採母系族長世裝制度，各部落皆為自主社群。'},
+     {q:'陳建年是陸森寶的傳人。',ans:true,e:'正確。陳建年是陸森寶的傳人，也是著名的卑南族歌手。'},
+   ],
+   MC:[
+     {q:'下列哪位不是卑南族出身的歌手？',opts:['張惠妹','陳建年','紀曉君','高勝美'],ans:3,e:'高勝美是阿美族出身，張惠妹、陳建年和紀曉君才是卑南族出身的歌手。'},
+     {q:'陸森寶的音樂地位在卑南族中如何被稱呼？',opts:['卑南族音樂守護者','卑南音樂之父','卑南歌謠傳承人','卑南音樂大師'],ans:1,e:'陸森寶被尊稱為「卑南音樂之父」，是卑南族最重要的音樂家。'},
+   ],
+   MATCH:[{l:'陸森寶',r:'卑南音樂之父'},{l:'張惠妹',r:'卑南族國際巨星'},{l:'陳建年',r:'陸森寶的傳人'},{l:'猴祭',r:'卑南族青少年成年儀式'}],
+  },
+
+  {id:'tsou', name:'鄒族', en:'Tsou, Cou', icon:'🦁', num:'第七族', color:'#B5631A',
+   intro:'父系氏族社會，男尊女卑色彩濃厚。鄒族男子喜愛穿著皮革服飾，故揉皮和製造是特有的工藝。音樂分北鄒（協和合唱）與南鄒（古樸質實單音唱法）。',
+   social:['父系氏族社會，男尊女卑色彩濃厚','鄒族男子喜愛穿著皮革服飾，揉皮和製造是特有工藝','早期女性的製陶與紡織技術現已失傳'],
+   music:['音樂結構與布農族相近','歌謠分祭歌、歷史歌謠（由老人吟唱，有分離歌和驅瘟神之歌）、生活歌謠等','祭歌的演唱方式：北鄒以協和式合唱為主，南鄒以古樸質實的單音唱法見長'],
+   instruments:['口琴','鼻笛','竹笛','弓琴'],
+   festivals:['播種祭','收成祭（小米收穫祭，7～8月）','馬亞士比祭（敵首祭、凱族祭、戰祭，2/15）','子安貝祭（祖靈祭，二年一次）'],
+   listen:[
+     {title:'鄒族馬亞士比祭歌',detail:'鄒族重要的戰祭歌謠，男性唯一可參與祭典',q:'鄒族 馬亞士比 戰祭'},
+     {title:'鄒族傳統歌謠',detail:'鄒族古樸深沉的傳統歌謠',q:'鄒族 傳統歌謠'},
+   ],
+   terms:[
+     {t:'馬亞士比祭',z:'鄒族敵首祭、凱族祭、戰祭，每年2月15日'},
+     {t:'北鄒vs南鄒',z:'北鄒以協和合唱為主，南鄒以單音唱法見長'},
+   ],
+   TF:[
+     {q:'鄒族北鄒以協和式合唱為主，南鄒以古樸質實的單音唱法見長。',ans:true,e:'正確。鄒族祭歌的演唱方式因地域而異，北鄒以協和式合唱為主，南鄒以古樸質實的單音唱法見長。'},
+     {q:'鄒族是母系氏族社會。',ans:false,e:'錯誤。鄒族是父系氏族社會，男尊女卑色彩濃厚。'},
+   ],
+   MC:[
+     {q:'鄒族南鄒的祭歌唱法特色是？',opts:['複音協和合唱','古樸質實的單音唱法','即興對唱','自由合唱'],ans:1,e:'南鄒以古樸質實的單音唱法見長，北鄒則以協和式合唱為主。'},
+   ],
+   MATCH:[{l:'北鄒',r:'協和式合唱'},{l:'南鄒',r:'古樸質實單音唱法'},{l:'馬亞士比',r:'戰祭，2月15日'},{l:'口琴',r:'鄒族代表性樂器'}],
+  },
+
+  {id:'bunun', name:'布農族', en:'Bunun', icon:'🎵', num:'第八族', color:'#1A5276',
+   intro:'布農族人將個人生命融入整個族群，以歌唱為生活文化的中心。最著名的是「八部合唱」——祈禱小米豐收歌（Pasi but but），已送至聯合國教科文組織（UNESCO）。',
+   social:['農耕和狩獵是此族人物質生活的兩大憑恃','娛樂對族人是奢侈的行為','「個人精靈能力必須在團體行為中被大家所肯定」的觀念','屬於個人性、娛樂性或功能性的音樂少之又少','早期族人在成年過程中，有刺青及缺齒的風俗'],
+   music:['歌唱是本族生活文化的中心','曲調平緩穩定、虔誠自然','搭配最主要的伴奏樂器弓琴和口簧琴','多為農耕、狩獵之歌','自然和音為其音樂特色','歌謠音階只採用 do、mi、sol、la 四個音（唯「祈禱小米豐收歌」再加上 re 音）','方式有獨唱、重唱、合唱（泛音式複音合唱，特色為不同音高而同節奏）、呼喊式唱法及朗誦式唱和','少有情歌和舞蹈，是與其他族最不同之處','知名歌手：秀蘭瑪雅、王宏恩'],
+   instruments:['弓琴（最主要；有月桃絃弓琴和鐵絲弓琴二種）','口簧琴（有單簧竹臺金屬黃的拉繩口簧和金屬臺金屬黃二種）','五絃琴','木杵（部落有「杵樂」）','搖搖器（僅屬於祭司的儀式法器）','敲擊棒（Kidondon）'],
+   festivals:['打耳祭（4月初）','嬰兒祭（7、8、9月圓）','播種祭（祈禱小米豐收歌，11～12月）'],
+   listen:[
+     {title:'布農族八部合唱（祈禱小米豐收歌）',detail:'Pasi but but，送至UNESCO，為布農族最重要的音樂遺產',q:'布農族 八部合唱 祈禱小米豐收歌'},
+     {title:'秀蘭瑪雅 布農族歌謠',detail:'布農族知名女歌手秀蘭瑪雅演唱',q:'秀蘭瑪雅 布農族'},
+     {title:'王宏恩 流浪記',detail:'布農族知名歌手王宏恩代表作',q:'王宏恩 流浪記'},
+   ],
+   terms:[
+     {t:'八部合唱（Pasi but but）',z:'布農族祈禱小米豐收歌，泛音式複音合唱，已送至UNESCO'},
+     {t:'自然和音',z:'布農族音樂最大特色，和諧天成的多聲部唱法'},
+     {t:'泛音式複音合唱',z:'不同音高但同節奏的合唱方式，布農族最著名'},
+     {t:'四音音階',z:'do、mi、sol、la，布農族歌謠基本音階（豐收歌再加re）'},
+   ],
+   TF:[
+     {q:'布農族的八部合唱「祈禱小米豐收歌」已送至UNESCO。',ans:true,e:'正確。1951年日本音樂學者黑澤隆朝在臺東縣海端鄉崙頂村採集到這首歌，並送至聯合國教科文組織（UNESCO）。'},
+     {q:'布農族歌謠音階採用do、re、mi、sol、la五個音。',ans:false,e:'錯誤。布農族歌謠音階只採用do、mi、sol、la四個音，唯有「祈禱小米豐收歌」才再加上re音。'},
+     {q:'布農族有大量的情歌和舞蹈，是原住民族中最豐富的。',ans:false,e:'錯誤。布農族少有情歌和舞蹈，這是與其他族最不同之處。'},
+     {q:'布農族音樂的主要特色之一是「自然和音」。',ans:true,e:'正確。自然和音是布農族音樂最重要的特色，也是其著名八部合唱的基礎。'},
+   ],
+   MC:[
+     {q:'布農族最著名的音樂「Pasi but but」是指什麼？',opts:['豐年祭舞曲','祈禱小米豐收歌','狩獵凱旋歌','驅除惡靈咒歌'],ans:1,e:'Pasi but but是「祈禱小米豐收歌」，即著名的「八部合唱」，是布農族最重要的音樂遺產，已送至UNESCO。'},
+     {q:'布農族歌謠的基本音階為？',opts:['do re mi fa','do mi sol la','re fa la do','mi sol la re'],ans:1,e:'布農族歌謠音階只採用 do、mi、sol、la 四個音，唯有「祈禱小米豐收歌」才再加上 re 音。'},
+     {q:'布農族「八部合唱」的合唱特色為？',opts:['不同節奏但同音高','不同音高且不同節奏','不同音高但同節奏（泛音式）','相同音高和節奏的齊唱'],ans:2,e:'布農族八部合唱是泛音式複音合唱，特色為不同音高而同節奏。'},
+     {q:'以下哪位不是布農族知名歌手？',opts:['秀蘭瑪雅','王宏恩','郭英男','以上皆是布農族'],ans:2,e:'郭英男是阿美族的演唱者，以「老人飲酒歌」著名。秀蘭瑪雅和王宏恩才是布農族知名歌手。'},
+   ],
+   MATCH:[{l:'Pasi but but',r:'祈禱小米豐收歌'},{l:'秀蘭瑪雅',r:'布農族知名女歌手'},{l:'自然和音',r:'布農族音樂最大特色'},{l:'do mi sol la',r:'布農族基本音階'}],
+  },
+
+  {id:'thao', name:'邵族', en:'Thao', icon:'🎣', num:'第九族', color:'#6B8E5A',
+   intro:'分布於日月潭附近，曾被認為是阿里山鄒族的一支。漢化雖深，仍保有其固有語言和傳統風俗。邵族著名的「杵歌」含杵音及歌舞，多由婦女演奏。',
+   social:['分布於日月潭附近，曾被認為是阿里山鄒族的一支或原住民與平埔族之間的「化番」','漢化難深，仍保有其固有語言和傳統風俗','因人口稀少、傳說淀滅，是研究資料最少的一族','邵族人創造「公媽籃」（祖靈籃），籃中為祖先遺物，象徵祖靈住所','邵族人刳木手藝精良，可製作木白、木杵、湯匙等日常用品及獨木舟'],
+   music:['邵族著名的「杵歌」含杵音及歌舞，多由婦女演奏'],
+   instruments:['杵音（木杵敲石板發出聲音）'],
+   festivals:['播種祭（盪鞦韆儀式，農曆3月）','狩獵祭','拜鰻季（農曆7月）','豐年祭（農曆8月）'],
+   listen:[
+     {title:'邵族杵歌',detail:'邵族著名的杵音與歌舞結合，多由婦女演奏',q:'邵族 杵歌 杵音'},
+     {title:'邵族傳統歌謠',detail:'日月潭邵族珍貴的傳統歌謠',q:'邵族 傳統歌謠 日月潭'},
+   ],
+   terms:[
+     {t:'杵歌',z:'邵族最著名的音樂形式，含杵音及歌舞，多由婦女演奏'},
+     {t:'公媽籃（祖靈籃）',z:'邵族人創造，放置祖先遺物，象徵祖靈住所'},
+   ],
+   TF:[
+     {q:'邵族的「杵歌」主要由男性演奏。',ans:false,e:'錯誤。邵族「杵歌」含杵音及歌舞，多由婦女演奏。'},
+     {q:'邵族主要分布在日月潭附近地區。',ans:true,e:'正確。邵族分布於日月潭附近，是臺灣人口最少的原住民族之一。'},
+   ],
+   MC:[
+     {q:'邵族最具代表性的音樂形式是？',opts:['鼻笛獨奏','杵歌','八部合唱','矮靈祭歌'],ans:1,e:'邵族著名的「杵歌」含杵音及歌舞，多由婦女演奏，是邵族最具代表性的音樂形式。'},
+   ],
+   MATCH:[{l:'杵歌',r:'邵族婦女音樂舞蹈'},{l:'公媽籃',r:'邵族祖靈籃'},{l:'日月潭',r:'邵族主要分布地'},{l:'拜鰻季',r:'農曆7月祭典'}],
+  },
+
+  {id:'tao', name:'達悟族', en:'Tao, Yami', icon:'🐟', num:'第十族', color:'#2980B9',
+   intro:'居於蘭嶼島上的「雅美族」，為原住民族群中，唯一漁獵且最晚來臺的一族。與菲律賓Batan島和Ibayat島有近緣關係。族人生性和平，沒有任何爭戰。無傳統樂器發明及使用。',
+   social:['居於蘭嶼島上的「雅美族」，又稱「雅美」、「耶美」、「雅眉」','為原住民族群中，唯一漁獵且最晚來臺的一族','與菲律賓Batan島和Ibayat島有近緣關係','父系社會，族人生性和平，沒有任何爭戰和所謂的「頭目會所」','因鄰海而居，故在雕造板舟、打造銀器、捏製陶器、製作泥偶等工藝上皆有出色表現'],
+   music:['吟唱少有齊唱或單獨男聲，大致上男女都可唱','形式可分為：Anohod（一般生活中的唱歌）、Raod（跟祖靈交談或祖語傳達）、Vaci（感謝及安慰物靈並祈豐收）','舞蹈方面，除祖先之舞與鞦韆舞外，其餘皆由女人跳，著名的有竹竿舞、頭髮舞、三交叉腳等','無傳統樂器發明及使用（祭典時使用「杵」，但非樂器功能）'],
+   instruments:['無傳統樂器'],
+   festivals:['飛魚招魚祭','飛魚收藏祭','飛魚終食祭（每年中秋節後）','新船下水祭','小米豐收祭','新屋落成禮'],
+   listen:[
+     {title:'達悟族頭髮舞',detail:'達悟族女性傳統舞蹈，甩頭髮的獨特藝術表現',q:'達悟族 雅美族 頭髮舞'},
+     {title:'達悟族飛魚祭',detail:'達悟族重要的飛魚祭典',q:'達悟族 雅美族 飛魚祭'},
+   ],
+   terms:[
+     {t:'Anohod',z:'達悟族一般生活中的唱歌'},
+     {t:'Raod',z:'達悟族跟祖靈交談或祖語傳達的吟唱'},
+     {t:'Vaci',z:'達悟族感謝及安慰物靈並祈豐收的吟唱'},
+     {t:'頭髮舞',z:'達悟族女性著名的傳統舞蹈'},
+   ],
+   TF:[
+     {q:'達悟族是原住民族群中唯一漁獵且最晚來臺的一族。',ans:true,e:'正確。達悟族（雅美族）是居於蘭嶼島上的原住民族，也是唯一以漁獵為主且最晚來臺的一族。'},
+     {q:'達悟族有豐富的傳統樂器文化。',ans:false,e:'錯誤。達悟族沒有傳統樂器的發明及使用，祭典時使用的「杵」也非樂器功能。'},
+     {q:'達悟族的「頭髮舞」主要由男性表演。',ans:false,e:'錯誤。達悟族的舞蹈除祖先之舞與鞦韆舞外，其餘皆由女人跳，頭髮舞是著名的女性舞蹈。'},
+   ],
+   MC:[
+     {q:'達悟族的「Raod」是指什麼？',opts:['一般生活中的唱歌','跟祖靈交談或祖語傳達的吟唱','感謝物靈並祈豐收的吟唱','飛魚祭的儀式歌謠'],ans:1,e:'Raod是達悟族跟祖靈交談或祖語傳達的吟唱，與一般生活的Anohod不同。'},
+     {q:'達悟族主要居住在？',opts:['澎湖','綠島','蘭嶼','琉球嶼'],ans:2,e:'達悟族（雅美族）居於蘭嶼島上，與菲律賓Batan島有近緣關係。'},
+   ],
+   MATCH:[{l:'Anohod',r:'生活唱歌'},{l:'Raod',r:'祖靈交談吟唱'},{l:'Vaci',r:'祈豐收吟唱'},{l:'頭髮舞',r:'達悟族女性著名舞蹈'}],
+  },
+
+  {id:'kavalan', name:'噶瑪蘭族', en:'Kavalan', icon:'🌿', num:'第十一族（2002）', color:'#1F6B4E',
+   intro:'2002年行政院原住民委員會通過成為原住民第十一族。位居宜蘭、蘇澳、羅東，原屬平埔族之一。噶瑪蘭族的傳統文化中，歌、舞、樂三者不可分，傳統歌謠中可聽到祖先遷移與墾植的歷程。',
+   social:['噶瑪蘭族位居宜蘭、蘇澳、羅東，原屬平埔族之一','語言受阿美族影響極深，但文化也在逐漸消失中','噶瑪蘭人是平埔族中漢化最晚的一支','聚落型態是濱水而居的小型集村，女耕男獵','為沒有階級的母系平等社會','宗教活動以祖靈崇拜為中心，相信靈界有鬼神能保佑或懲罰凡人'],
+   music:['在噶瑪蘭族的傳統文化中，歌、舞、樂三者不可分','傳統歌謠中可聽到祖先遷移與墾植的歷程','曾使用口黃琴、木鼓'],
+   instruments:['口黃琴（已少用）','木鼓（已少用）'],
+   festivals:['海祭（3～4月）','歲末祭祖'],
+   listen:[
+     {title:'噶瑪蘭族傳統歌謠',detail:'噶瑪蘭族珍貴的傳統歌舞，歌舞樂三者不可分',q:'噶瑪蘭族 傳統歌謠'},
+   ],
+   terms:[
+     {t:'歌舞樂三位一體',z:'噶瑪蘭族傳統文化中，歌、舞、樂三者不可分'},
+   ],
+   TF:[
+     {q:'噶瑪蘭族是2002年成為官方認定的原住民族第十一族。',ans:true,e:'正確。2002年行政院原住民委員會通過，噶瑪蘭族成為原住民第十一族。'},
+     {q:'噶瑪蘭族的傳統文化中，歌、舞、樂三者可以分開進行。',ans:false,e:'錯誤。在噶瑪蘭族的傳統文化中，歌、舞、樂三者不可分，是其音樂文化的重要特色。'},
+   ],
+   MC:[
+     {q:'噶瑪蘭族在哪一年成為官方認定的原住民族？',opts:['1996年','2000年','2002年','2004年'],ans:2,e:'2002年行政院原住民委員會通過，噶瑪蘭族正式成為原住民第十一族。'},
+   ],
+   MATCH:[{l:'噶瑪蘭族',r:'2002年第十一族'},{l:'宜蘭、蘇澳',r:'噶瑪蘭族主要分布地'},{l:'歌舞樂三位一體',r:'噶瑪蘭傳統音樂特色'},{l:'海祭',r:'3至4月舉行祭典'}],
+  },
+
+  {id:'truku', name:'太魯閣族', en:'Turoko, Truku', icon:'🏔️', num:'第十二族（2004）', color:'#555E6B',
+   intro:'2004年1月14日行政院原住民委員會通過成為原住民第十二族。太魯閣族與泰雅族文化習俗略有相似，原屬泰雅族之賽德克亞族太魯閣群。太魯閣族跳舞歌使用輪唱法。',
+   social:['太魯閣族與泰雅族文化習俗略有相似','原屬泰雅族之賽德克亞族太魯閣群','分佈地雖相近但彼此之間很少往來','傳統織布是女性婚前必備的能力','獵首及狩獵能力則是男性的主要婚姻條件'],
+   music:['太魯閣族跳舞歌使用輪唱法','以兩聲部方式進行，由女性擔任，一人領唱，眾人回應','歌詞內容即興'],
+   instruments:['木琴','口簧琴','獵首琴'],
+   festivals:['祖靈祭（7月）','獵首祭'],
+   listen:[
+     {title:'太魯閣族傳統歌謠',detail:'太魯閣族以輪唱法為特色的傳統歌舞',q:'太魯閣族 傳統歌謠'},
+   ],
+   terms:[
+     {t:'輪唱法',z:'太魯閣族跳舞歌的特色，以兩聲部方式，一人領唱眾人回應'},
+     {t:'獵首琴',z:'太魯閣族特有的代表性樂器'},
+   ],
+   TF:[
+     {q:'太魯閣族是2004年成為官方認定的原住民族第十二族。',ans:true,e:'正確。2004年1月14日行政院原住民委員會通過，太魯閣族成為原住民第十二族。'},
+     {q:'太魯閣族的跳舞歌由男性領唱，女性回應。',ans:false,e:'錯誤。太魯閣族跳舞歌以兩聲部方式進行，由女性擔任，一人領唱，眾人回應。'},
+   ],
+   MC:[
+     {q:'太魯閣族跳舞歌使用什麼唱法？',opts:['齊唱法','輪唱法','複音唱法','對唱法'],ans:1,e:'太魯閣族跳舞歌使用輪唱法，以兩聲部方式進行，由女性擔任，一人領唱，眾人回應，歌詞內容即興。'},
+   ],
+   MATCH:[{l:'太魯閣族',r:'2004年第十二族'},{l:'輪唱法',r:'跳舞歌特色唱法'},{l:'獵首琴',r:'太魯閣族代表樂器'},{l:'獵首及狩獵',r:'男性主要婚姻條件'}],
+  },
+];
+
+// ============================================================
+//  GENERAL DATA
+// ============================================================
+const SONG_TYPES = [
+  {name:'勞動歌',desc:'多為農業勞動歌，反映生活勞作'},
+  {name:'生活歌',desc:'酒歌、舞歌、兒歌等日常生活歌謠'},
+  {name:'儀式歌',desc:'又分禮俗歌、祭典歌、巫咒歌'},
+  {name:'敘事歌',desc:'緬懷祖先與頌揚部落族人，演唱方式較為複雜多變，像是應答唱法、持續音唱法、半音階唱法等'},
+];
+const SINGING_STYLES = [
+  {name:'單音歌謠',desc:'領唱與和腔唱法、朗誦唱法、民謠唱法'},
+  {name:'和聲歌謠',desc:'協和音唱法、自然和絃唱法、自由合唱法'},
+  {name:'複音歌謠',desc:'平行唱法、輪唱法、頑固低音唱法、對位唱法'},
+];
+const INSTRUMENTS_OVERVIEW = [
+  {cat:'擊樂器',icon:'🥁',items:'木琴、竹琴、鈴、鼓、樂杵、口簧琴'},
+  {cat:'絃樂器',icon:'🎻',items:'弓琴、五絃琴'},
+  {cat:'管樂器',icon:'🎶',items:'橫笛、鼻笛、縱笛'},
+  {cat:'注意',icon:'⚠️',items:'達悟族未有樂器（除外）'},
+];
+
+// ============================================================
+//  STATE
+// ============================================================
+let curTribe = null, curMode = null, gs = {};
+
+// ============================================================
+//  UTILS
+// ============================================================
+function sfl(a){return [...a].sort(()=>Math.random()-.5);}
+function pk(a,n){return sfl(a).slice(0,n);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function ytBtn(q){return`<a class="yt-btn" href="https://www.youtube.com/results?search_query=${encodeURIComponent(q)}" target="_blank">▶ YouTube</a>`;}
+function pb(t,i){
+  const segs=Array.from({length:t},(_,j)=>`<div class="prog-seg ${j<i?'pd':j===i?'pc':''}"></div>`).join('');
+  return`<div class="prog-bar">${segs}</div>`;
+}
+
+// ============================================================
+//  HOME SCREEN
+// ============================================================
+function showHome(){
+  curTribe=null;curMode=null;gs={};
+  const grid=TRIBES.map(t=>`<div class="tribe-btn" style="--ec:${t.color}" onclick="enterTribe('${t.id}')">
+    <div class="t-icon">${t.icon}</div>
+    <div class="t-name">${t.name}</div>
+    <div class="t-en">${t.en}</div>
+    <div class="t-num">${t.num}</div>
+  </div>`).join('');
+
+  document.getElementById('app').innerHTML=`
+  <div class="hd">
+    <div class="hd-badge">🎓 高職音樂科 · 互動學習</div>
+    <h1>臺灣<span>原住民</span>音樂史</h1>
+    <div class="hd-sub">第五章 · 壹、原住民與音樂</div>
+  </div>
+
+  <div class="overview-card">
+    <div class="ov-title">📋 概述速查</div>
+    <div class="ov-grid">
+      <div class="ov-item">
+        <div class="ov-h">依內容分類</div>
+        <ul class="ov-list">${SONG_TYPES.map(s=>`<li><strong>${s.name}</strong>：${s.desc}</li>`).join('')}</ul>
+      </div>
+      <div class="ov-item">
+        <div class="ov-h">依歌唱形式分類</div>
+        <ul class="ov-list">${SINGING_STYLES.map(s=>`<li><strong>${s.name}</strong>：${s.desc}</li>`).join('')}</ul>
+      </div>
+      <div class="ov-item">
+        <div class="ov-h">常見樂器</div>
+        <ul class="ov-list">${INSTRUMENTS_OVERVIEW.map(i=>`<li>${i.icon} <strong>${i.cat}</strong>：${i.items}</li>`).join('')}</ul>
+      </div>
+      <div class="ov-item">
+        <div class="ov-h">傳承方式</div>
+        <ul class="ov-list">
+          <li>無文字民族，以口耳相傳為主</li>
+          <li>音樂以歌謠為主、器樂為輔</li>
+          <li>屬南島語系（Austronesian Family）印度尼西安支系</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:1rem;margin-bottom:10px;color:var(--accent1)">
+    ↓ 選擇族群開始學習
+  </div>
+  <div class="tribe-grid">${grid}</div>
+
+  <div style="margin-top:18px;">
+    <div class="ov-title" style="background:var(--accent2)">📊 各族速查對照表</div>
+    <div class="qref-wrap">
+      <table class="qref-table" style="margin-top:10px">
+        <thead><tr><th>族群</th><th>最重要祭典</th><th>音樂特色</th><th>代表樂器</th><th>知名人物</th></tr></thead>
+        <tbody>
+          <tr><td>泰雅族</td><td>祖靈祭</td><td>吟誦性歌曲，音域狹窄</td><td>口黃琴</td><td>—</td></tr>
+          <tr><td>賽夏族</td><td>矮靈祭（Pastaai）</td><td>沉緩哀傷，十六章七音節</td><td>臀鈴</td><td>—</td></tr>
+          <tr><td>阿美族</td><td>豐年祭（7月）</td><td>音域寬廣，複音唱法</td><td>口黃琴、雙管鼻笛</td><td>郭英男、李泰祥、張震嶽</td></tr>
+          <tr><td>排灣族</td><td>五年祭（竹竿祭）</td><td>模擬傳統為主</td><td>雙管鼻笛</td><td>動力火車</td></tr>
+          <tr><td>魯凱族</td><td>小米收穫祭</td><td>持續低音式複音</td><td>鼻笛、口笛</td><td>—</td></tr>
+          <tr><td>卑南族</td><td>年祭（大獵祭）</td><td>融合多族風格</td><td>背鈴、排鈴</td><td>陸森寶、張惠妹、陳建年</td></tr>
+          <tr><td>鄒族</td><td>馬亞士比祭（2/15）</td><td>北鄒協和合唱 / 南鄒單音</td><td>口琴、鼻笛</td><td>—</td></tr>
+          <tr><td>布農族</td><td>播種祭（11-12月）</td><td>八部合唱，自然和音，do mi sol la</td><td>弓琴、口簧琴</td><td>秀蘭瑪雅、王宏恩</td></tr>
+          <tr><td>邵族</td><td>豐年祭（農曆8月）</td><td>杵歌（婦女演奏）</td><td>杵音</td><td>—</td></tr>
+          <tr><td>達悟族</td><td>飛魚招魚祭</td><td>Anohod/Raod/Vaci分類</td><td>無傳統樂器</td><td>—</td></tr>
+          <tr><td>噶瑪蘭族</td><td>海祭（3-4月）</td><td>歌舞樂三者不可分</td><td>口黃琴、木鼓</td><td>—</td></tr>
+          <tr><td>太魯閣族</td><td>祖靈祭（7月）</td><td>輪唱法，女性領唱</td><td>木琴、口簧琴</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="tip" style="margin-top:18px">
+    本教材以課本內容為主軸，點擊各族群進入互動學習，包含族群介紹、重要樂器、祭典、必聽曲目（連結至YouTube）、速查手冊、是非題與選擇題練習。
+  </div>
+  `;
+}
+
+// ============================================================
+//  TRIBE HOME
+// ============================================================
+function enterTribe(id){
+  curTribe=id;curMode=null;gs={};
+  const t=TRIBES.find(x=>x.id===id);
+  const modeItems=[
+    {id:'intro',icon:'📖',label:'族群導覽',desc:'社會、音樂特色'},
+    {id:'ref',icon:'📋',label:'速查手冊',desc:'重點整理懶人包'},
+    {id:'listen',icon:'🎬',label:'必聽曲目',desc:'連結至YouTube'},
+    {id:'tf',icon:'⭕',label:'是非練習',desc:'鞏固基礎知識'},
+    {id:'mc',icon:'📝',label:'選擇練習',desc:'深入測驗'},
+    {id:'match',icon:'🔗',label:'配對遊戲',desc:'趣味配對挑戰'},
+  ];
+  const modes=modeItems.map(m=>`<div class="mode-btn" onclick="enterMode('${m.id}')">
+    <div class="m-icon">${m.icon}</div>
+    <div class="m-label">${m.label}</div>
+    <div class="m-desc">${m.desc}</div>
+  </div>`).join('');
+  document.getElementById('app').innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="showHome()">← 返回總覽</button>
+    <span class="mode-title">${t.icon} ${t.name}</span>
+  </div>
+  <div class="tribe-banner" style="--ec:${t.color}">
+    <h2>${t.icon} ${t.name} <span style="font-size:.8rem;font-weight:600">${t.en}</span></h2>
+    <div class="t-sub">${t.num}</div>
+    <div class="t-intro">${t.intro}</div>
+  </div>
+  <div class="mode-grid">${modes}</div>
+  `;
+}
+
+function enterMode(mode){
+  curMode=mode;
+  if(mode==='intro') showIntro();
+  else if(mode==='ref') showRef();
+  else if(mode==='listen') showListen();
+  else if(mode==='tf') initTF();
+  else if(mode==='mc') initMC();
+  else if(mode==='match') initMatch();
+}
+
+// ============================================================
+//  INTRO VIEW
+// ============================================================
+function showIntro(){
+  const t=TRIBES.find(x=>x.id===curTribe);
+  const c=t.color;
+
+  const social=`<div class="intro-sec">
+    <div class="intro-h" style="--ec:${c}">🏘️ 社會與宗教特色</div>
+    <div class="intro-body"><ul style="list-style:none;padding:0">
+    ${t.social.map(s=>`<li style="padding-left:14px;position:relative;margin-bottom:5px;font-size:.82rem;line-height:1.7;color:#333"><span style="position:absolute;left:0;color:${c}">▸</span>${s}</li>`).join('')}
+    </ul></div>
+  </div>`;
+
+  const music=`<div class="intro-sec">
+    <div class="intro-h" style="--ec:${c}">🎵 音樂與舞蹈特色</div>
+    <div class="intro-body"><ul style="list-style:none;padding:0">
+    ${t.music.map(s=>`<li style="padding-left:14px;position:relative;margin-bottom:5px;font-size:.82rem;line-height:1.7;color:#333"><span style="position:absolute;left:0;color:${c}">♪</span>${s}</li>`).join('')}
+    </ul></div>
+  </div>`;
+
+  const instruments=`<div class="intro-sec">
+    <div class="intro-h" style="--ec:${c}">🎼 常用樂器</div>
+    <div class="inst-grid">
+    ${t.instruments.map(i=>`<div class="inst-card"><div class="inst-name">${i}</div></div>`).join('')}
+    </div>
+  </div>`;
+
+  const festivals=`<div class="intro-sec">
+    <div class="intro-h" style="--ec:${c}">🎉 重要祭典</div>
+    <div class="intro-body"><ul style="list-style:none;padding:0">
+    ${t.festivals.map(f=>`<li style="padding-left:14px;position:relative;margin-bottom:4px;font-size:.82rem;color:#333"><span style="position:absolute;left:0;color:${c}">★</span>${f}</li>`).join('')}
+    </ul></div>
+  </div>`;
+
+  const terms=`<div class="intro-sec">
+    <div class="intro-h" style="--ec:${c}">📚 重要術語</div>
+    <div class="term-grid">
+    ${t.terms.map(x=>`<div class="term-card"><div class="tt">${x.t}</div><div class="tz">${x.z}</div></div>`).join('')}
+    </div>
+  </div>`;
+
+  document.getElementById('app').innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterTribe('${curTribe}')">← 返回</button>
+    <span class="mode-title">📖 ${t.name}族群導覽</span>
+  </div>
+  ${social}${music}${instruments}${festivals}${terms}
+  `;
+}
+
+// ============================================================
+//  LISTEN VIEW
+// ============================================================
+function showListen(){
+  const t=TRIBES.find(x=>x.id===curTribe);
+  const items=t.listen.map(l=>`<div class="listen-item">
+    <div class="listen-info">
+      <div class="listen-title">🎵 ${l.title}</div>
+      <div class="listen-detail">${l.detail}</div>
+    </div>
+    ${ytBtn(l.q)}
+  </div>`).join('');
+  document.getElementById('app').innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterTribe('${curTribe}')">← 返回</button>
+    <span class="mode-title">🎬 必聽曲目</span>
+  </div>
+  <div class="card">
+    <div style="font-size:.75rem;color:#888;margin-bottom:10px;font-weight:600">點擊 ▶ YouTube 按鈕在新視窗觀看影片</div>
+    ${items}
+  </div>
+  `;
+}
+
+// ============================================================
+//  QUICK REF VIEW
+// ============================================================
+function showRef(){
+  const t=TRIBES.find(x=>x.id===curTribe);
+  const c=t.color;
+  const sections=[
+    {title:'🏘️ 社會特色',items:t.social},
+    {title:'🎵 音樂特色',items:t.music},
+    {title:'🎼 常用樂器',items:t.instruments},
+    {title:'🎉 重要祭典',items:t.festivals},
+  ];
+  const cards=sections.map((s,i)=>`
+  <div class="ref-item">
+    <div class="ref-head" onclick="tgRef(${i})">
+      <div class="ref-av" style="background:${c}">${s.title.slice(0,2)}</div>
+      <div style="flex:1"><div class="ref-name">${s.title}</div>
+      <div class="ref-detail">${s.items.length} 個重點</div></div>
+      <div class="ref-arr" id="a${i}">▼</div>
+    </div>
+    <div id="b${i}" style="display:none">
+      <ul class="ref-body">${s.items.map(x=>`<li>${x}</li>`).join('')}</ul>
+    </div>
+  </div>`).join('');
+  const termCards=t.terms.map(x=>`<div class="term-card"><div class="tt">${x.t}</div><div class="tz">${x.z}</div></div>`).join('');
+
+  document.getElementById('app').innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterTribe('${curTribe}')">← 返回</button>
+    <span class="mode-title">📋 速查手冊</span>
+  </div>
+  <div class="card" style="margin-bottom:12px">
+    <div style="font-size:.75rem;color:#888;margin-bottom:10px;font-weight:600">點擊項目展開重點整理</div>
+    ${cards}
+  </div>
+  <div class="intro-sec">
+    <div class="intro-h" style="--ec:${c}">📚 重要術語速查</div>
+    <div class="term-grid">${termCards}</div>
+  </div>
+  `;
+}
+function tgRef(i){
+  const b=document.getElementById('b'+i),a=document.getElementById('a'+i);
+  if(!b)return;
+  const o=b.style.display!=='none';
+  b.style.display=o?'none':'block';
+  if(a)a.textContent=o?'▼':'▲';
+}
+
+// ============================================================
+//  TF QUIZ
+// ============================================================
+function initTF(){
+  const t=TRIBES.find(x=>x.id===curTribe);
+  gs={qs:sfl(t.TF).slice(0,Math.min(8,t.TF.length)),i:0,s:0,a:null};
+  renderTF();
+}
+function renderTF(){
+  const{qs,i,s,a}=gs;
+  if(i>=qs.length){showResult(s,qs.length);return;}
+  const q=qs[i];
+  let t0='',t1='';
+  if(a!==null){t0=q.ans===true?'tc':(a===true?'tw':'');t1=q.ans===false?'tc':(a===false?'tw':'');}
+  const ex=a!==null?`<div class="explain ${a===q.ans?'eo':'en'}">
+    <span class="${a===q.ans?'eho':'ehn'}">${a===q.ans?'✅ 答對啦！':'❌ 答錯了'}</span>${q.e}
+    <br><button class="next-btn" onclick="nextTF()">${i+1<qs.length?'下一題 →':'查看結果 ✨'}</button>
+  </div>`:'';
+  document.getElementById('app').innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterTribe('${curTribe}')">← 返回</button>
+    <span class="mode-title">⭕ 是非練習</span>
+    <button class="back-btn" onclick="initTF()" style="margin-left:auto;background:var(--warm)">↺ 重來</button>
+  </div>
+  ${pb(qs.length,i)}
+  <div class="stat-row"><div class="chip">第 <strong>${i+1}</strong>/${qs.length} 題</div><div class="chip">答對 <strong>${s}</strong></div></div>
+  <div class="card">
+    <div class="q-box" style="background:var(--warm)">${q.q}</div>
+    <div class="tf-btns">
+      <button class="tf-btn ${t0}" ${a!==null?'disabled':''} onclick="ansTF(true)">○ 正確</button>
+      <button class="tf-btn ${t1}" ${a!==null?'disabled':''} onclick="ansTF(false)">✗ 錯誤</button>
+    </div>
+    ${ex}
+  </div>`;
+}
+function ansTF(v){if(gs.a!==null)return;const ok=v===gs.qs[gs.i].ans;gs.a=v;if(ok)gs.s++;renderTF();}
+function nextTF(){gs.i++;gs.a=null;renderTF();}
+
+// ============================================================
+//  MC QUIZ
+// ============================================================
+function initMC(){
+  const t=TRIBES.find(x=>x.id===curTribe);
+  gs={qs:sfl(t.MC).slice(0,Math.min(8,t.MC.length)),i:0,s:0,c:null};
+  renderMC();
+}
+function renderMC(){
+  const{qs,i,s,c}=gs;
+  if(i>=qs.length){showResult(s,qs.length);return;}
+  const q=qs[i];
+  const opts=q.opts.map((o,j)=>{
+    let cl='';if(c!==null){cl=j===q.ans?'mc':(j===c?'mw':'');}
+    return`<button class="mc-btn ${cl}" ${c!==null?'disabled':''} onclick="ansMC(${j})">
+      <span class="abadge">${['A','B','C','D'][j]}</span>${o}
+    </button>`;
+  }).join('');
+  const ex=c!==null?`<div class="explain ${c===q.ans?'eo':'en'}">
+    <span class="${c===q.ans?'eho':'ehn'}">${c===q.ans?'✅ 答對啦！':'❌ 答錯了'}</span>${q.e}
+    <br><button class="next-btn" onclick="nextMC()">${i+1<qs.length?'下一題 →':'查看結果 ✨'}</button>
+  </div>`:'';
+  document.getElementById('app').innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterTribe('${curTribe}')">← 返回</button>
+    <span class="mode-title">📝 選擇練習</span>
+    <button class="back-btn" onclick="initMC()" style="margin-left:auto;background:var(--warm)">↺ 重來</button>
+  </div>
+  ${pb(qs.length,i)}
+  <div class="stat-row"><div class="chip">第 <strong>${i+1}</strong>/${qs.length} 題</div><div class="chip">答對 <strong>${s}</strong></div></div>
+  <div class="card">
+    <div class="q-box" style="background:var(--warm)">${q.q}</div>
+    ${opts}${ex}
+  </div>`;
+}
+function ansMC(j){if(gs.c!==null)return;gs.c=j;if(j===gs.qs[gs.i].ans)gs.s++;renderMC();}
+function nextMC(){gs.i++;gs.c=null;renderMC();}
+
+// ============================================================
+//  MATCH GAME
+// ============================================================
+function initMatch(){
+  const t=TRIBES.find(x=>x.id===curTribe);
+  const pairs=pk(t.MATCH,Math.min(6,t.MATCH.length));
+  gs={pairs,L:sfl(pairs.map(p=>p.l)),R:sfl(pairs.map(p=>p.r)),lS:null,rS:null,M:{},W:{},s:0,at:0};
+  renderMatch();
+}
+function renderMatch(){
+  const{pairs,L,R,lS,rS,M,W,s,at}=gs;
+  function mi(v,sd,idx){
+    const isSel=sd==='L'?lS===v:rS===v;
+    const isM=M[v],isW=W[v];
+    let cl='mi';
+    if(isM)cl+=' mi-m';else if(isW)cl+=' mi-w';else if(isSel)cl+=' mi-s';
+    const oc=isM?'':` onclick="selMatch('${sd}',${idx})"`;
+    return`<div class="${cl}"${oc}>${esc(v)}</div>`;
+  }
+  const n=Math.max(L.length,R.length);
+  let cells='';
+  for(let i=0;i<n;i++){
+    if(L[i])cells+=mi(L[i],'L',i);
+    if(R[i])cells+=mi(R[i],'R',i);
+  }
+  const dm=s===pairs.length?`<div class="done-msg">🎉 全部配對完成！共嘗試 ${at} 次</div>`:'';
+  const t=TRIBES.find(x=>x.id===curTribe);
+  document.getElementById('app').innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterTribe('${curTribe}')">← 返回</button>
+    <span class="mode-title">🔗 配對遊戲</span>
+    <button class="back-btn" onclick="initMatch()" style="margin-left:auto;background:var(--warm)">↺ 重來</button>
+  </div>
+  <div class="stat-row"><div class="chip">已配對 <strong>${s}</strong>/${pairs.length}</div><div class="chip">嘗試 <strong>${at}</strong> 次</div></div>
+  <div class="card">
+    <div class="match-hdr"><div>左欄詞彙</div><div>右欄說明</div></div>
+    <div class="match-grid">${cells}</div>
+    ${dm}
+  </div>`;
+}
+function selMatch(sd,idx){
+  const g=gs;
+  const v=sd==='L'?g.L[idx]:g.R[idx];
+  if(!v||g.M[v])return;
+  if(sd==='L')g.lS=g.lS===v?null:v;
+  else g.rS=g.rS===v?null:v;
+  if(g.lS&&g.rS){
+    const p=g.pairs.find(x=>x.l===g.lS);
+    const ok=p&&p.r===g.rS;
+    g.at++;
+    if(ok){g.M[g.lS]=true;g.M[g.rS]=true;g.s++;g.lS=null;g.rS=null;g.W={};}
+    else{g.W={[g.lS]:true,[g.rS]:true};setTimeout(()=>{g.W={};g.lS=null;g.rS=null;renderMatch();},700);}
+  }
+  renderMatch();
+}
+
+// ============================================================
+//  RESULT
+// ============================================================
+function showResult(s,t){
+  const p=Math.round(s/t*100);
+  const ic=p>=90?'🏆':p>=70?'⭐':p>=50?'🎵':'📖';
+  const st=p>=90?'完美！滿分達成！':p>=70?'很不錯！繼續加油！':p>=50?'還可以，再複習一下':p>=10?'需要加強，多看幾次！':'加油！重新挑戰！';
+  document.getElementById('app').innerHTML=`
+  <div class="top-bar">
+    <button class="back-btn" onclick="enterTribe('${curTribe}')">← 返回族群</button>
+  </div>
+  <div class="card">
+    <div class="result-box">
+      <div class="ri">${ic}</div>
+      <div class="rs">${st}</div>
+      <div class="rsc">得分 ${s} / ${t}</div>
+      <div class="rp">正確率 ${p}%</div>
+      <br>
+      <button class="next-btn" onclick="enterMode('${curMode}')">↺ 再練習一次</button>
+      <button class="next-btn" onclick="enterMode('ref')" style="margin-left:8px;background:var(--accent2)">📋 查看速查手冊</button>
+    </div>
+  </div>`;
+}
+
+// Start
+showHome();
+</script>
+
+<div id="ai-messages"></div>
+    
+    
+  </div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="../assets/js/shared.js"></script>
+<script>window.UNIT_CONTEXT="台灣原住民音樂史";</script>
+</body>
+</html>

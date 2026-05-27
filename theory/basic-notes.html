@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>01 基礎音名 — 樂理教學</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff9f5;--coral:#ff6b6b;--mint:#52c5a0;--lav:#a78bfa;--sky:#38bdf8;--peach:#ffb347;--text:#2d2d2d;--text2:#6b6b6b;--text3:#aaa;--card:#fff;--border:rgba(0,0,0,.08);--r:18px;--rs:10px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:"Noto Sans TC",sans-serif;min-height:100vh;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#fff5f0,#fff0fa 50%,#f0f8ff);padding:52px 28px 40px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:"♩ ♫ ♪";position:absolute;font-size:8rem;opacity:.04;top:-10px;left:0;pointer-events:none;letter-spacing:30px;}
+.htag{display:inline-block;background:linear-gradient(135deg,var(--coral),var(--peach));color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.15em;padding:4px 14px;border-radius:20px;margin-bottom:12px;}
+.hero h1{font-family:"DM Serif Display",serif;font-size:2.6rem;line-height:1.2;margin-bottom:8px;}
+.hero h1 em{color:var(--coral);font-style:normal;}
+.hero p{color:var(--text2);font-size:.88rem;margin-bottom:20px;}
+
+/* SIDEBAR LAYOUT */
+.layout{display:flex;max-width:1100px;margin:0 auto;padding:0 20px 80px;gap:24px;min-height:80vh;}
+.sidebar{width:200px;flex-shrink:0;position:sticky;top:20px;align-self:flex-start;margin-top:28px;}
+.main-content{flex:1;min-width:0;padding-top:28px;}
+
+/* SIDEBAR NAV */
+.side-nav{background:var(--card);border-radius:var(--r);border:1.5px solid var(--border);overflow:hidden;box-shadow:0 3px 20px rgba(255,107,107,.06);}
+.side-nav-title{padding:14px 16px 10px;font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--text3);text-transform:uppercase;border-bottom:1px solid var(--border);}
+.side-btn{display:flex;align-items:center;gap:8px;width:100%;padding:11px 16px;font-size:.8rem;color:var(--text2);background:transparent;border:none;text-align:left;cursor:pointer;font-family:"Noto Sans TC",sans-serif;transition:all .2s;border-left:3px solid transparent;}
+.side-btn:hover{background:rgba(255,107,107,.05);color:var(--text);}
+.side-btn.act{background:rgba(255,107,107,.08);color:var(--coral);border-left-color:var(--coral);font-weight:700;}
+.side-btn .sb-icon{font-size:1rem;flex-shrink:0;width:20px;text-align:center;}
+
+/* PANELS */
+.panel{display:none;animation:fu .35s ease;}
+.panel.act{display:block;}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* CARD */
+.card{background:var(--card);border-radius:var(--r);border:1.5px solid var(--border);padding:24px;margin-bottom:18px;box-shadow:0 3px 20px rgba(255,107,107,.06);}
+.card:hover{box-shadow:0 6px 28px rgba(255,107,107,.1);}
+.ctitle{font-family:"DM Serif Display",serif;font-size:1.1rem;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.ctitle::before{content:"";display:inline-block;width:4px;height:18px;border-radius:2px;background:var(--coral);}
+
+/* PIANO */
+.piano-section{background:linear-gradient(135deg,#fff5f0,#fff0fa);border-radius:var(--r);padding:24px;border:1.5px solid rgba(255,107,107,.15);}
+.piano-wrap{overflow-x:auto;padding:8px 0 12px;}
+.piano{display:flex;position:relative;height:148px;width:fit-content;user-select:none;margin:0 auto;}
+.wk{width:40px;height:138px;background:linear-gradient(180deg,#fefefe,#fff);border:1.5px solid #ddd;border-radius:0 0 8px 8px;position:relative;cursor:pointer;transition:all .12s;flex-shrink:0;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding-bottom:6px;}
+.wk:hover,.wk.lit{background:linear-gradient(180deg,#ffe8e0,#ffd0c0);}
+.wk.c1m{background:linear-gradient(180deg,#fff0e8,#ffddd0);border-color:rgba(255,107,107,.4);}
+.wk .wl{font-size:.58rem;font-weight:700;color:#555;text-align:center;line-height:1.2;}
+.wk .ws{font-size:.48rem;color:var(--coral);font-weight:600;}
+.bk{width:26px;height:86px;background:linear-gradient(180deg,#2d2d2d,#111);border-radius:0 0 5px 5px;position:absolute;top:0;z-index:2;cursor:pointer;transition:all .12s;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px;}
+.bk:hover,.bk.lit{background:linear-gradient(180deg,var(--coral),#cc4444);}
+.bk .bl{font-size:.4rem;color:#aaa;text-align:center;line-height:1.2;}
+#key-display{margin-top:14px;text-align:center;min-height:52px;padding:10px;background:rgba(255,107,107,.04);border-radius:var(--rs);}
+.kd-note{font-family:"DM Serif Display",serif;font-size:2rem;color:var(--coral);}
+.kd-info{font-size:.78rem;color:var(--text2);margin-top:3px;}
+
+/* OCTAVE TABLE */
+.otable{width:100%;border-collapse:separate;border-spacing:0 4px;font-size:.82rem;}
+.otable th{background:linear-gradient(135deg,var(--coral),var(--peach));color:#fff;padding:10px 14px;text-align:left;font-size:.75rem;font-weight:600;}
+.otable th:first-child{border-radius:10px 0 0 10px;}
+.otable th:last-child{border-radius:0 10px 10px 0;}
+.otable td{padding:9px 14px;background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);color:var(--text2);}
+.otable td:first-child{border-left:1px solid var(--border);border-radius:8px 0 0 8px;}
+.otable td:last-child{border-right:1px solid var(--border);border-radius:0 8px 8px 0;}
+.otable tr.hl td{background:rgba(255,107,107,.06);}
+.onote sup{font-size:.55em;font-weight:900;color:var(--coral);}
+.onote sub{font-size:.55em;font-weight:900;color:var(--text3);}
+
+/* ACC */
+.acc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;}
+.acc-card{background:#fff8f5;border:1.5px solid rgba(255,107,107,.15);border-radius:var(--rs);padding:14px;text-align:center;cursor:pointer;transition:all .2s;}
+.acc-card:hover,.acc-card.sel{border-color:var(--coral);background:#fff0ec;transform:translateY(-2px);}
+.acc-sym{font-size:2.2rem;color:var(--coral);line-height:1.1;margin-bottom:6px;}
+.acc-name{font-size:.76rem;font-weight:700;}
+.acc-semi{font-size:.65rem;color:var(--mint);margin-top:4px;font-weight:600;}
+#acc-detail{margin-top:14px;background:#fff5f0;border-radius:var(--rs);padding:14px;font-size:.82rem;color:var(--text2);line-height:1.7;display:none;border-left:4px solid var(--coral);}
+
+/* SOL */
+.sol-compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.sol-f{background:linear-gradient(135deg,rgba(255,107,107,.08),rgba(255,179,71,.05));border:1.5px solid rgba(255,107,107,.2);border-radius:var(--rs);padding:18px;}
+.sol-m{background:linear-gradient(135deg,rgba(82,197,160,.08),rgba(56,189,248,.05));border:1.5px solid rgba(82,197,160,.2);border-radius:var(--rs);padding:18px;}
+.sol-title{font-weight:700;font-size:.9rem;margin-bottom:10px;}
+.sol-row{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px;}
+.sn{padding:3px 9px;border-radius:20px;font-size:.72rem;font-weight:600;}
+.snf{background:rgba(255,107,107,.1);color:var(--coral);}
+.snm{background:rgba(82,197,160,.1);color:var(--mint);}
+
+/* GERMAN */
+.gtable{width:100%;border-collapse:collapse;font-size:.82rem;}
+.gtable th{background:rgba(167,139,250,.12);color:var(--lav);padding:9px 14px;text-align:left;border-bottom:2px solid rgba(167,139,250,.25);font-size:.75rem;}
+.gtable td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text2);}
+.gtable tr:hover td{background:rgba(167,139,250,.04);}
+
+/* CLEF */
+.clef-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;}
+.clef-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--rs);padding:16px;text-align:center;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;}
+.clef-card::after{content:"";position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity .2s;}
+.clef-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.08);}
+.clef-card:hover::after,.clef-card.sel::after{opacity:1;}
+.clef-card.co::after{background:linear-gradient(90deg,var(--coral),var(--peach));}
+.clef-card.mi::after{background:linear-gradient(90deg,var(--mint),var(--sky));}
+.clef-card.la::after{background:linear-gradient(90deg,var(--lav),#c4b5fd);}
+.clef-card.sk::after{background:linear-gradient(90deg,var(--sky),var(--mint));}
+.clef-card.gr::after{background:linear-gradient(90deg,#999,#ccc);}
+.cn{font-weight:700;font-size:.84rem;margin-top:8px;}
+.cs{font-size:.7rem;color:var(--text2);margin-top:4px;line-height:1.5;}
+.cbadge{display:inline-block;margin-top:7px;padding:2px 10px;border-radius:10px;font-size:.62rem;font-weight:700;}
+.cb-green{background:rgba(82,197,160,.12);color:var(--mint);}
+.cb-yellow{background:rgba(255,179,71,.15);color:var(--peach);}
+.cb-grey{background:rgba(0,0,0,.05);color:var(--text3);}
+#clef-detail{margin-top:14px;background:#fff5f0;border-radius:var(--rs);padding:14px 18px;font-size:.82rem;color:var(--text2);line-height:1.7;display:none;border-left:4px solid var(--coral);}
+
+/* GRAND */
+.grand-wrap{background:#fffaf8;border-radius:var(--r);border:1.5px solid rgba(255,107,107,.12);padding:16px;overflow-x:auto;}
+
+/* INFO */
+.info{background:linear-gradient(135deg,rgba(82,197,160,.08),rgba(56,189,248,.04));border-left:4px solid var(--mint);border-radius:0 var(--rs) var(--rs) 0;padding:13px 16px;margin:12px 0;font-size:.82rem;color:var(--text2);line-height:1.7;}
+.info strong{color:var(--mint);}
+.warn{background:linear-gradient(135deg,rgba(255,107,107,.08),rgba(255,179,71,.04));border-left:4px solid var(--coral);border-radius:0 var(--rs) var(--rs) 0;padding:13px 16px;margin:12px 0;font-size:.82rem;color:var(--text2);line-height:1.7;}
+.warn strong{color:var(--coral);}
+
+/* QUIZ */
+.quiz-wrap{background:linear-gradient(135deg,#fff5f0,#fff0fa);border-radius:var(--r);padding:26px;border:1.5px solid rgba(255,107,107,.15);}
+.qnum{font-size:.72rem;color:var(--text3);margin-bottom:8px;}
+.qq{font-weight:700;font-size:.95rem;margin-bottom:16px;line-height:1.5;}
+.qopts{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.qopt{padding:11px 16px;border-radius:var(--rs);border:1.5px solid var(--border);background:var(--card);font-size:.82rem;color:var(--text);cursor:pointer;text-align:left;transition:all .2s;font-family:"Noto Sans TC",sans-serif;}
+.qopt:hover:not(:disabled){border-color:var(--coral);background:rgba(255,107,107,.04);}
+.qopt.ok{border-color:var(--mint);background:rgba(82,197,160,.1);color:var(--mint);}
+.qopt.ng{border-color:var(--coral);background:rgba(255,107,107,.1);color:var(--coral);}
+.qexp{margin-top:12px;padding:12px 16px;border-radius:var(--rs);background:rgba(82,197,160,.08);font-size:.79rem;color:var(--text2);display:none;line-height:1.7;}
+.qexp.show{display:block;animation:fu .3s ease;}
+.qnav{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap;}
+.qbtn{padding:8px 20px;border-radius:20px;border:none;font-size:.8rem;font-weight:700;cursor:pointer;font-family:"Noto Sans TC",sans-serif;transition:all .2s;}
+.qbtn.p{background:var(--coral);color:#fff;}
+.qbtn.s{background:rgba(255,107,107,.08);color:var(--text2);border:1.5px solid var(--border);}
+.qprog{font-size:.74rem;color:var(--text3);margin-left:auto;}
+.qsc{font-size:.82rem;font-weight:700;color:var(--coral);}
+
+/* PROGRESS BAR */
+.progress-bar{height:3px;background:rgba(255,107,107,.12);border-radius:2px;margin-bottom:20px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--coral),var(--peach));border-radius:2px;transition:width .4s ease;}
+
+@media(max-width:750px){.layout{flex-direction:column;}.sidebar{width:100%;position:static;}.side-nav{display:flex;flex-wrap:nowrap;overflow-x:auto;border-radius:var(--rs);}.side-btn{border-left:none;border-bottom:3px solid transparent;white-space:nowrap;}.side-btn.act{border-left:none;border-bottom-color:var(--coral);}.sol-compare,.qopts{grid-template-columns:1fr;}}
+</style>
+
+<link rel="stylesheet" href="../assets/css/shared.css">
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="../index.html" class="nav-logo"><span>🎵</span>莊敬音樂科</a>
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link home">首頁</a>
+    <a href="../history/index.html" class="nav-link">音樂史</a>
+    <a href="index.html" class="nav-link active-t">樂理</a>
+    <a href="teacher-resources.html" class="nav-link">教師資源</a>
+  </div>
+
+  <div id="nav-auth" style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+    <button id="login-btn" onclick="teacherLogin()" style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;border:1.5px solid var(--border,rgba(0,0,0,.12));background:#fff;cursor:pointer;font-size:.78rem;font-weight:700;font-family:inherit;">👤 教師登入</button>
+    <div id="user-info" style="display:none;align-items:center;gap:8px;">
+      <span style="font-size:.78rem;font-weight:700;">👋 <span id="user-name"></span></span>
+      <button onclick="teacherLogout()" style="padding:4px 10px;border-radius:12px;border:1.5px solid rgba(0,0,0,.12);background:transparent;cursor:pointer;font-size:.7rem;font-family:inherit;">登出</button>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumb" style="padding:8px 16px;font-size:.76rem;color:#888;display:flex;gap:5px;align-items:center;"><a href="../index.html" style="color:#666;text-decoration:none;">首頁</a><span>/</span><a href="index.html" style="color:#666;text-decoration:none;">樂理</a><span>/</span>基礎音名與唱名</span></div>
+<div class="hero">
+  <div class="htag">UNIT 01</div>
+  <h1>基礎<em>音名</em>與<em>唱名</em></h1>
+  <p>Absolute Pitch Names · Solfège · Octave System · Clefs</p>
+</div>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="side-nav">
+      <div class="side-nav-title">單元目錄</div>
+      <button class="side-btn act" onclick="showPanel('piano',this)"><span class="sb-icon">🎹</span>互動鋼琴</button>
+      <button class="side-btn" onclick="showPanel('octave',this)"><span class="sb-icon">📊</span>八度系統</button>
+      <button class="side-btn" onclick="showPanel('accidental',this)"><span class="sb-icon">♯</span>升降記號</button>
+      <button class="side-btn" onclick="showPanel('solfege',this)"><span class="sb-icon">🎵</span>唱名比較</button>
+      <button class="side-btn" onclick="showPanel('clef',this)"><span class="sb-icon">𝄞</span>各式譜表</button>
+      <button class="side-btn" onclick="showPanel('grandstaff',this)"><span class="sb-icon">📋</span>大譜表</button>
+      <button class="side-btn" onclick="showPanel('quiz',this)"><span class="sb-icon">🧠</span>隨堂測驗</button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main-content">
+    <div class="progress-bar"><div class="progress-fill" id="prog" style="width:14%"></div></div>
+
+    <!-- 鋼琴 -->
+    <div class="panel act" id="panel-piano">
+      <div class="card">
+        <div class="ctitle">互動鋼琴鍵盤</div>
+        <div class="piano-section">
+          <p style="text-align:center;font-size:.83rem;color:var(--text2);margin-bottom:14px;">點擊琴鍵查看音名 · 橘色 = <strong>c¹ 中央 Do</strong></p>
+          <div class="piano-wrap"><div class="piano" id="piano"></div></div>
+          <div id="key-display"><p style="font-size:.78rem;color:var(--text3);">👆 點擊任意琴鍵</p></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ctitle">英文音名與固定唱名</div>
+        <table class="gtable">
+          <tr><th>音名</th><th>德文</th><th>固定唱名</th><th>音階位置</th></tr>
+          <tr><td><strong>C</strong></td><td>C</td><td>Do</td><td>1</td></tr>
+          <tr><td><strong>D</strong></td><td>D</td><td>Re</td><td>2</td></tr>
+          <tr><td><strong>E</strong></td><td>E</td><td>Mi</td><td>3</td></tr>
+          <tr><td><strong>F</strong></td><td>F</td><td>Fa</td><td>4</td></tr>
+          <tr><td><strong>G</strong></td><td>G</td><td>Sol</td><td>5</td></tr>
+          <tr><td><strong>A</strong></td><td>A</td><td>La</td><td>6</td></tr>
+          <tr><td><strong>B♮</strong></td><td style="color:var(--lav);font-weight:700;">H</td><td>Si / Ti</td><td>7</td></tr>
+          <tr><td><strong>B♭</strong></td><td style="color:var(--lav);font-weight:700;">B</td><td>Si♭</td><td>7降</td></tr>
+        </table>
+        <div class="info"><strong>💡 德文特殊：</strong>德文 B = 英文 B♭；德文 H = 英文 B♮。BACH（巴哈）= B♭ A C H(B♮)，常出現在巴哈作品主題中！</div>
+      </div>
+    </div>
+
+    <!-- 八度 -->
+    <div class="panel" id="panel-octave">
+      <div class="card">
+        <div class="ctitle">八度標記系統（音樂班小字組）</div>
+        <p style="font-size:.83rem;color:var(--text2);margin-bottom:16px;"><strong style="color:var(--coral)">中央 Do = c¹（小字一組）</strong>　上標數字在右上角（小字組）；下標在右下角（大字組）</p>
+        <div style="overflow-x:auto;">
+        <table class="otable">
+          <tr><th>組別</th><th>C 音</th><th>A 音</th><th>範圍</th><th>位置</th></tr>
+          <tr><td>大字二組</td><td><span class="onote">C<sub>2</sub></span></td><td>A<sub>2</sub></td><td>C<sub>2</sub>～B<sub>2</sub></td><td>鋼琴最低</td></tr>
+          <tr><td>大字一組</td><td><span class="onote">C<sub>1</sub></span></td><td>A<sub>1</sub></td><td>C<sub>1</sub>～B<sub>1</sub></td><td>低音下段</td></tr>
+          <tr><td>大字組</td><td><strong>C</strong></td><td>A</td><td>C ～ B</td><td>低音譜中段</td></tr>
+          <tr><td>小字組</td><td><strong>c</strong></td><td>a</td><td>c ～ b</td><td>低音譜上段</td></tr>
+          <tr class="hl"><td><strong style="color:var(--coral)">小字一組 ★</strong></td><td><span class="onote" style="color:var(--coral);font-size:1.1rem;font-weight:900;">c<sup>1</sup></span></td><td style="color:var(--coral);font-weight:700;">a<sup>1</sup> = 440Hz</td><td>c<sup>1</sup>～b<sup>1</sup></td><td><strong style="color:var(--coral)">中央Do！</strong></td></tr>
+          <tr><td>小字二組</td><td><strong>c<sup>2</sup></strong></td><td>a<sup>2</sup></td><td>c<sup>2</sup>～b<sup>2</sup></td><td>高音譜中段</td></tr>
+          <tr><td>小字三組</td><td><strong>c<sup>3</sup></strong></td><td>a<sup>3</sup></td><td>c<sup>3</sup>～b<sup>3</sup></td><td>女高音高音</td></tr>
+          <tr><td>小字四組</td><td style="color:var(--text3);">c<sup>4</sup></td><td>a<sup>4</sup></td><td>c<sup>4</sup>～</td><td>短笛極高</td></tr>
+        </table>
+        </div>
+        <div class="warn"><strong>⚠️ 對照：</strong>音樂班 c¹ = 科學音高記譜法 C4（同音不同寫法）</div>
+      </div>
+    </div>
+
+    <!-- 升降 -->
+    <div class="panel" id="panel-accidental">
+      <div class="card">
+        <div class="ctitle">升降記號 — 點擊查看詳細說明</div>
+        <div class="acc-grid" id="acc-grid"></div>
+        <div id="acc-detail"></div>
+      </div>
+      <div class="card">
+        <div class="ctitle">德文音名系統</div>
+        <table class="gtable">
+          <tr><th>英文</th><th>德文</th><th>升號（+is）</th><th>降號（+es/s）</th><th>特殊說明</th></tr>
+          <tr><td><strong>C</strong></td><td>C</td><td>Cis</td><td>Ces</td><td></td></tr>
+          <tr><td><strong>D</strong></td><td>D</td><td>Dis</td><td>Des</td><td></td></tr>
+          <tr><td><strong>E</strong></td><td>E</td><td>Eis</td><td>Es</td><td>降E省略e</td></tr>
+          <tr><td><strong>F</strong></td><td>F</td><td>Fis</td><td>Fes</td><td></td></tr>
+          <tr><td><strong>G</strong></td><td>G</td><td>Gis</td><td>Ges</td><td></td></tr>
+          <tr><td><strong>A</strong></td><td>A</td><td>Ais</td><td>As</td><td>降A省略e</td></tr>
+          <tr><td><strong>B♭</strong></td><td style="color:var(--lav);font-weight:700;">B</td><td>His</td><td>—</td><td style="color:var(--lav);">德文 B = B♭</td></tr>
+          <tr><td><strong>B♮</strong></td><td style="color:var(--lav);font-weight:700;">H</td><td>His</td><td>—</td><td style="color:var(--lav);">德文 H = B♮</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- 唱名 -->
+    <div class="panel" id="panel-solfege">
+      <div class="card">
+        <div class="ctitle">固定唱名 vs 首調唱名</div>
+        <div class="sol-compare">
+          <div class="sol-f">
+            <div class="sol-title" style="color:var(--coral)">固定唱名法（Fixed Do）</div>
+            <p style="font-size:.8rem;color:var(--text2);">Do 永遠 = C，不隨調性改變。台灣音樂班、法義使用，利於絕對音感訓練。</p>
+            <div class="sol-row"><span class="sn snf">Do=C</span><span class="sn snf">Re=D</span><span class="sn snf">Mi=E</span><span class="sn snf">Fa=F</span><span class="sn snf">Sol=G</span><span class="sn snf">La=A</span><span class="sn snf">Si=B</span></div>
+          </div>
+          <div class="sol-m">
+            <div class="sol-title" style="color:var(--mint)">首調唱名法（Movable Do）</div>
+            <p style="font-size:.8rem;color:var(--text2);">Do 隨主音移動。G大調 Do=G。利於理解音階功能，英美部分使用。</p>
+            <div class="sol-row"><span class="sn snm">G調 Do=G</span><span class="sn snm">Re=A</span><span class="sn snm">Mi=B</span><span class="sn snm">Fa=C</span><span class="sn snm">Sol=D</span></div>
+          </div>
+        </div>
+        <div class="info" style="margin-top:16px;"><strong>台灣音樂班使用固定唱名法</strong>，Do 固定在 C。升降音唱名：C♯=Di、D♯=Ri、F♯=Fi、G♯=Si、A♯=Li</div>
+      </div>
+    </div>
+
+    <!-- 譜表 -->
+    <div class="panel" id="panel-clef">
+      <div class="card">
+        <div class="ctitle">各式譜表 — 點擊查看說明</div>
+        <div class="clef-grid" id="clef-grid"></div>
+        <div id="clef-detail"></div>
+      </div>
+    </div>
+
+    <!-- 大譜表 -->
+    <div class="panel" id="panel-grandstaff">
+      <div class="card">
+        <div class="ctitle">大譜表（Grand Staff）完整音名</div>
+        <p style="font-size:.82rem;color:var(--text2);margin-bottom:12px;"><span style="color:var(--coral);font-weight:700;">紅色加線 = c¹ 中央Do</span>｜粗體=線｜斜體=間</p>
+        <div class="grand-wrap"><div id="grand-staff"></div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;">
+          <div class="info"><strong>高音譜線（↑）：</strong>e¹ g¹ b¹ d² f²<br><strong>高音譜間（↑）：</strong>f¹ a¹ c² e²</div>
+          <div class="info" style="border-left-color:var(--lav);"><strong>低音譜線（↑）：</strong>G B d f a<br><strong>低音譜間（↑）：</strong>A c e g</div>
+        </div>
+        <div class="warn"><strong>★ c¹</strong> = 高音譜第一線下方加線 = 低音譜第五線上方加線</div>
+      </div>
+    </div>
+
+    <!-- 測驗 -->
+    <div class="panel" id="panel-quiz">
+      <div class="quiz-wrap" id="quiz-wrap"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── PANEL SWITCH ──────────────────────────────
+const totalPanels = 7;
+const panelOrder = ['piano','octave','accidental','solfege','clef','grandstaff','quiz'];
+function showPanel(id, btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('act'));
+  document.querySelectorAll('.side-btn').forEach(b=>b.classList.remove('act'));
+  document.getElementById('panel-'+id).classList.add('act');
+  if(btn) btn.classList.add('act');
+  const idx = panelOrder.indexOf(id);
+  document.getElementById('prog').style.width = ((idx+1)/totalPanels*100)+'%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── PIANO ──────────────────────────────────────
+(function(){
+  const whites=[
+    {n:"C",s:"do",o:"",oct:"大字組"},{n:"D",s:"re",o:"",oct:"大字組"},{n:"E",s:"mi",o:"",oct:"大字組"},
+    {n:"F",s:"fa",o:"",oct:"大字組"},{n:"G",s:"sol",o:"",oct:"大字組"},{n:"A",s:"la",o:"",oct:"大字組"},{n:"B",s:"si",o:"",oct:"大字組"},
+    {n:"c",s:"do",o:"",oct:"小字組"},{n:"d",s:"re",o:"",oct:"小字組"},{n:"e",s:"mi",o:"",oct:"小字組"},
+    {n:"f",s:"fa",o:"",oct:"小字組"},{n:"g",s:"sol",o:"",oct:"小字組"},{n:"a",s:"la",o:"",oct:"小字組"},{n:"b",s:"si",o:"",oct:"小字組"},
+    {n:"c",s:"do",o:"¹",oct:"小字一組",c1:true},{n:"d",s:"re",o:"¹",oct:"小字一組"},{n:"e",s:"mi",o:"¹",oct:"小字一組"},
+    {n:"f",s:"fa",o:"¹",oct:"小字一組"},{n:"g",s:"sol",o:"¹",oct:"小字一組"},{n:"a",s:"la",o:"¹",oct:"小字一組"},{n:"b",s:"si",o:"¹",oct:"小字一組"},
+    {n:"c",s:"do",o:"²",oct:"小字二組"},
+  ];
+  const blacks=[
+    {n:"C♯/D♭",off:28,oct:"大字組"},{n:"D♯/E♭",off:68,oct:"大字組"},{n:"F♯/G♭",off:148,oct:"大字組"},
+    {n:"G♯/A♭",off:188,oct:"大字組"},{n:"A♯/B♭",off:228,oct:"大字組"},
+    {n:"c♯/d♭",off:308,oct:"小字組"},{n:"d♯/e♭",off:348,oct:"小字組"},{n:"f♯/g♭",off:428,oct:"小字組"},
+    {n:"g♯/a♭",off:468,oct:"小字組"},{n:"a♯/b♭",off:508,oct:"小字組"},
+    {n:"c♯¹/d♭¹",off:588,oct:"小字一組"},{n:"d♯¹/e♭¹",off:628,oct:"小字一組"},{n:"f♯¹/g♭¹",off:708,oct:"小字一組"},
+    {n:"g♯¹/a♭¹",off:748,oct:"小字一組"},{n:"a♯¹/b♭¹",off:788,oct:"小字一組"},
+    {n:"c♯²/d♭²",off:868,oct:"小字二組"},
+  ];
+  const piano=document.getElementById("piano");
+  const disp=document.getElementById("key-display");
+  function showKey(note,oct,sol,c1){
+    disp.innerHTML=`<div class="kd-note">${note}</div><div class="kd-info">${oct}　固定唱名：<strong>${sol}</strong>${c1?" ⭐ 中央 Do":""}</div>`;
+  }
+  whites.forEach(w=>{
+    const k=document.createElement("div");
+    k.className="wk"+(w.c1?" c1m":"");
+    k.innerHTML=`<div class="ws">${w.s}</div><div class="wl">${w.n}${w.o}</div>`;
+    k.onclick=()=>{document.querySelectorAll(".wk").forEach(x=>x.classList.remove("lit"));k.classList.add("lit");showKey(w.n+w.o,w.oct,w.s,w.c1);};
+    piano.appendChild(k);
+  });
+  blacks.forEach(b=>{
+    const k=document.createElement("div");k.className="bk";k.style.left=b.off+"px";
+    k.innerHTML=`<div class="bl">${b.n.split("/")[0]}</div>`;
+    k.onclick=(e)=>{e.stopPropagation();document.querySelectorAll(".bk").forEach(x=>x.classList.remove("lit"));k.classList.add("lit");showKey(b.n,b.oct,"—（半音）");};
+    piano.appendChild(k);
+  });
+})();
+
+// ── ACCIDENTALS ──────────────────────────────
+(function(){
+  const accs=[
+    {sym:"♯",name:"升號 Sharp",semi:"+1半音",detail:"將音高升高一個半音。書寫於音符左方。C♯ = C 升高半音，介於 C 與 D 之間。小節內有效，下一小節自動失效。"},
+    {sym:"♭",name:"降號 Flat",semi:"−1半音",detail:"將音高降低一個半音。B♭ = B 降低半音，介於 A 與 B 之間。"},
+    {sym:"𝄪",name:"重升號 ×",semi:"+2半音",detail:"升高兩個半音（= 一個全音）。記號為 × 形。Cx = D（等音）。"},
+    {sym:"𝄫",name:"重降號 𝄫",semi:"−2半音",detail:"降低兩個半音（= 一個全音）。B𝄫 = A（等音）。"},
+    {sym:"♮",name:"還原號 Natural",semi:"取消效果",detail:"取消前面的升降記號，恢復自然音高。小節內有效。"},
+  ];
+  const grid=document.getElementById("acc-grid");
+  const detail=document.getElementById("acc-detail");
+  accs.forEach(a=>{
+    const card=document.createElement("div");card.className="acc-card";
+    card.innerHTML=`<div class="acc-sym">${a.sym}</div><div class="acc-name">${a.name}</div><div class="acc-semi">${a.semi}</div>`;
+    card.onclick=()=>{
+      document.querySelectorAll(".acc-card").forEach(c=>c.classList.remove("sel"));
+      card.classList.add("sel");
+      detail.style.display="block";
+      detail.innerHTML=`<strong style="color:var(--coral)">${a.name}</strong>（${a.sym}）：${a.detail}`;
+      detail.style.animation="none";detail.offsetHeight;detail.style.animation="fu .3s ease";
+    };
+    grid.appendChild(card);
+  });
+})();
+
+// ── CLEFS ──────────────────────────────────────
+(function(){
+  const clefs=[
+    {sym:"𝄞",col:"co",colHex:"#ff6b6b",name:"高音譜號 G Clef",sub:"第二線 = g¹",badge:"🟢 最常用",bc:"cb-green",detail:"G譜號從第二線螺旋形狀定義。常用：鋼琴右手、小提琴、長笛、雙簧管。記憶音名：EGBDF（線）、FACE（間）。"},
+    {sym:"𝄢",col:"la",colHex:"#a78bfa",name:"低音譜號 F Clef",sub:"第四線 = f（小字組）",badge:"🟢 常用",bc:"cb-green",detail:"F譜號兩點夾住第四線代表 f（小字組）。常用：鋼琴左手、大提琴、低音管。記憶：GBDFA（線）、ACEG（間）。"},
+    {sym:"𝄡",col:"mi",colHex:"#52c5a0",name:"中音譜號 Alto C Clef",sub:"c¹ 在第三線",badge:"🟢 常用",bc:"cb-green",detail:"C譜號所在線 = c¹ 中央Do。第三線 Alto Clef = 女低音譜號，中提琴（Viola）主要使用。"},
+    {sym:"𝄡",col:"sk",colHex:"#38bdf8",name:"次中音譜號 Tenor Clef",sub:"c¹ 在第四線",badge:"🟡 次常用",bc:"cb-yellow",detail:"第四線 = c¹。大提琴高音域、低音管高音域、長號高音域使用。"},
+    {sym:"𝄡",col:"co",colHex:"#ffb347",name:"女高音譜號 Soprano Clef",sub:"c¹ 在第一線",badge:"⚫ 歷史用",bc:"cb-grey",detail:"第一線 = c¹。巴洛克時期女高音聲部使用，現代幾乎廢棄。"},
+    {sym:"𝄡",col:"co",colHex:"#ffb347",name:"女中音譜號 Mezzo-Soprano",sub:"c¹ 在第二線",badge:"⚫ 歷史用",bc:"cb-grey",detail:"第二線 = c¹。巴洛克女中音聲部，現代廢棄。"},
+    {sym:"𝄡",col:"gr",colHex:"#999",name:"男低音譜號 Baritone Clef",sub:"c¹ 在第五線",badge:"⚫ 歷史用",bc:"cb-grey",detail:"第五線 = c¹。巴洛克低男中音，現代廢棄。"},
+    {sym:"𝄠",col:"gr",colHex:"#999",name:"打擊譜號 Percussion",sub:"無固定音高",badge:"🟢 常用",bc:"cb-green",detail:"無固定音高，各線代表不同打擊樂器。鼓組、鑼鼓譜使用。"},
+  ];
+  const grid=document.getElementById("clef-grid");
+  const detail=document.getElementById("clef-detail");
+  clefs.forEach(c=>{
+    const card=document.createElement("div");card.className="clef-card "+c.col;
+    card.innerHTML=`<div style="font-size:2.4rem;font-family:serif;color:${c.colHex};">${c.sym}</div><div class="cn">${c.name}</div><div class="cs">${c.sub}</div><span class="cbadge ${c.bc}">${c.badge}</span>`;
+    card.onclick=()=>{
+      document.querySelectorAll(".clef-card").forEach(x=>x.classList.remove("sel"));
+      card.classList.add("sel");
+      detail.style.display="block";
+      detail.innerHTML=`<strong style="color:var(--coral)">${c.name}：</strong>${c.detail}`;
+      detail.style.animation="none";detail.offsetHeight;detail.style.animation="fu .3s ease";
+    };
+    grid.appendChild(card);
+  });
+})();
+
+// ── GRAND STAFF SVG ──────────────────────────
+(function(){
+  const tl=[180,165,150,135,120],bl=[310,295,280,265,250],c1y=195,sl=80,sr=700;
+  let s=`<svg viewBox="0 0 760 360" width="100%" style="max-width:760px;display:block;margin:0 auto;">`;
+  s+=`<rect width="760" height="360" fill="#fffaf8" rx="12"/>`;
+  tl.forEach(y=>s+=`<line x1="${sl}" y1="${y}" x2="${sr}" y2="${y}" stroke="#bbb" stroke-width="1.4"/>`);
+  bl.forEach(y=>s+=`<line x1="${sl}" y1="${y}" x2="${sr}" y2="${y}" stroke="#bbb" stroke-width="1.4"/>`);
+  s+=`<line x1="${sl}" y1="${tl[4]}" x2="${sl}" y2="${bl[0]}" stroke="#888" stroke-width="2"/>`;
+  s+=`<line x1="${sr}" y1="${tl[4]}" x2="${sr}" y2="${bl[0]}" stroke="#888" stroke-width="2"/>`;
+  s+=`<text x="28" y="262" font-size="200" fill="#ddd" font-family="serif">{</text>`;
+  s+=`<text x="83" y="198" font-size="105" fill="#ff6b6b" font-family="serif" opacity=".85">𝄞</text>`;
+  s+=`<text x="87" y="285" font-size="72" fill="#a78bfa" font-family="serif" opacity=".85">𝄢</text>`;
+  s+=`<circle cx="170" cy="260" r="4.5" fill="#a78bfa"/><circle cx="170" cy="273" r="4.5" fill="#a78bfa"/>`;
+  s+=`<line x1="${sl-8}" y1="${c1y}" x2="${sr+8}" y2="${c1y}" stroke="#ff6b6b" stroke-width="2.5"/>`;
+  s+=`<line x1="${sl}" y1="105" x2="${sr}" y2="105" stroke="#ccc" stroke-width="1" stroke-dasharray="5,4"/>`;
+  s+=`<line x1="${sl}" y1="325" x2="${sr}" y2="325" stroke="#ccc" stroke-width="1" stroke-dasharray="5,4"/>`;
+  const tln=[{y:180,n:"e¹",l:"線1"},{y:165,n:"g¹",l:"線2"},{y:150,n:"b¹",l:"線3"},{y:135,n:"d²",l:"線4"},{y:120,n:"f²",l:"線5"}];
+  const tsp=[{y:172,n:"f¹"},{y:157,n:"a¹"},{y:142,n:"c²"},{y:127,n:"e²"},{y:112,n:"g²"}];
+  const bln=[{y:310,n:"G",l:"線1"},{y:295,n:"B",l:"線2"},{y:280,n:"d",l:"線3"},{y:265,n:"f",l:"線4★"},{y:250,n:"a",l:"線5"}];
+  const bsp=[{y:302,n:"A"},{y:287,n:"c"},{y:272,n:"e"},{y:257,n:"g"},{y:242,n:"b"}];
+  tln.forEach(({y,n,l})=>{
+    s+=`<text x="68" y="${y+4.5}" text-anchor="middle" font-size="11" fill="#c0622a" font-weight="bold" font-family="Noto Sans TC,sans-serif">${n}</text>`;
+    s+=`<text x="34" y="${y+4.5}" text-anchor="middle" font-size="8" fill="#bbb" font-family="Noto Sans TC,sans-serif">${l}</text>`;
+  });
+  tsp.forEach(({y,n})=>s+=`<text x="68" y="${y+4.5}" text-anchor="middle" font-size="10.5" fill="#e8904a" font-style="italic" font-family="Noto Sans TC,sans-serif">${n}</text>`);
+  bln.forEach(({y,n,l})=>{
+    s+=`<text x="68" y="${y+4.5}" text-anchor="middle" font-size="11" fill="#7a5bb5" font-weight="bold" font-family="Noto Sans TC,sans-serif">${n}</text>`;
+    s+=`<text x="34" y="${y+4.5}" text-anchor="middle" font-size="8" fill="#bbb" font-family="Noto Sans TC,sans-serif">${l}</text>`;
+  });
+  bsp.forEach(({y,n})=>s+=`<text x="68" y="${y+4.5}" text-anchor="middle" font-size="10.5" fill="#9a7dd0" font-style="italic" font-family="Noto Sans TC,sans-serif">${n}</text>`);
+  s+=`<text x="68" y="${c1y+4.5}" text-anchor="middle" font-size="12" fill="#ff6b6b" font-weight="bold" font-family="Noto Sans TC,sans-serif">c¹</text>`;
+  s+=`<text x="68" y="${c1y+16}" text-anchor="middle" font-size="7.5" fill="#ff6b6b" font-family="Noto Sans TC,sans-serif">中央Do★</text>`;
+  s+=`<text x="68" y="109" text-anchor="middle" font-size="10" fill="#c0622a" font-weight="bold" font-family="Noto Sans TC,sans-serif">a²</text>`;
+  s+=`<text x="34" y="109" text-anchor="middle" font-size="8" fill="#bbb" font-family="Noto Sans TC,sans-serif">上加1</text>`;
+  s+=`<text x="68" y="329" text-anchor="middle" font-size="10" fill="#7a5bb5" font-weight="bold" font-family="Noto Sans TC,sans-serif">E</text>`;
+  s+=`<text x="34" y="329" text-anchor="middle" font-size="8" fill="#bbb" font-family="Noto Sans TC,sans-serif">下加1</text>`;
+  s+=`<text x="720" y="155" font-size="11" fill="#ff6b6b" font-family="Noto Sans TC,sans-serif">高音譜</text>`;
+  s+=`<text x="720" y="285" font-size="11" fill="#a78bfa" font-family="Noto Sans TC,sans-serif">低音譜</text>`;
+  s+=`<text x="200" y="350" font-size="9" fill="#c0622a" font-weight="bold" font-family="Noto Sans TC,sans-serif">粗體=線</text>`;
+  s+=`<text x="270" y="350" font-size="9" fill="#e8904a" font-style="italic" font-family="Noto Sans TC,sans-serif">斜體=間</text>`;
+  s+=`<text x="345" y="350" font-size="9" fill="#ff6b6b" font-family="Noto Sans TC,sans-serif">紅=c¹中央Do</text>`;
+  s+=`<text x="450" y="350" font-size="9" fill="#ccc" font-family="Noto Sans TC,sans-serif">虛線=加線</text>`;
+  s+=`</svg>`;
+  document.getElementById("grand-staff").innerHTML=s;
+})();
+
+// ── QUIZ ──────────────────────────────────────
+(function(){
+  const qs=[
+    {q:"中央 Do 在小字組系統的正確寫法？",opts:["C1","c¹","c1","C¹"],ans:1,exp:"小字組用小寫字母，數字右上角：c¹。大字組才用大寫（C₁等）。"},
+    {q:"a¹ 的標準音高是？",opts:["392Hz","440Hz","480Hz","330Hz"],ans:1,exp:"a¹（La，小字一組）= 440Hz，國際標準音高，交響樂調音基準音。"},
+    {q:"德文音名「B」代表哪個音？",opts:["B♮","B♯","B♭","A"],ans:2,exp:"德文 B = 英文 B♭；德文 H = 英文 B♮。BACH = B♭ A C H(B♮)。"},
+    {q:"中音譜號（Alto Clef）最常用於？",opts:["大提琴","小提琴","中提琴","長笛"],ans:2,exp:"中音譜號（第三線=c¹）是中提琴（Viola）的標準譜號。"},
+    {q:"重升號（×）使音高改變？",opts:["+1半音","+2半音","-1半音","-2半音"],ans:1,exp:"重升號 = Double Sharp，升高2個半音（= 1個全音）。"},
+    {q:"高音譜號第三線的音名是？",opts:["g¹","a¹","b¹","c²"],ans:2,exp:"高音譜線由下至上：e¹ g¹ b¹ d² f²，第三線 = b¹。"},
+    {q:"台灣音樂班採用哪種唱名法？",opts:["首調唱名法","固定唱名法","數字唱名","字母唱名"],ans:1,exp:"台灣音樂班使用固定唱名法（Fixed Do），Do 永遠 = C。"},
+  ];
+  let cur=0,score=0,answered=false;
+  const wrap=document.getElementById("quiz-wrap");
+  function render(){
+    const q=qs[cur];
+    wrap.innerHTML=`<div class="qnum">第 ${cur+1} / ${qs.length} 題　<span class="qsc">✓ ${score}</span></div>
+      <div class="qq">${q.q}</div>
+      <div class="qopts">${q.opts.map((o,i)=>`<button class="qopt" onclick="ansQ(${i})">${o}</button>`).join("")}</div>
+      <div class="qexp" id="qexp">${q.exp}</div>
+      <div class="qnav"><button class="qbtn s" onclick="prevQ()" ${cur===0?"disabled":""}>← 上一題</button>
+      <button class="qbtn p" id="qnext" style="display:none" onclick="nextQ()">下一題 →</button>
+      <span class="qprog">${cur+1} / ${qs.length}</span></div>`;
+    answered=false;
+  }
+  window.ansQ=function(i){
+    if(answered)return;answered=true;
+    const q=qs[cur];
+    document.querySelectorAll(".qopt").forEach((o,j)=>{o.disabled=true;if(j===q.ans)o.classList.add("ok");else if(j===i&&i!==q.ans)o.classList.add("ng");});
+    if(i===q.ans)score++;
+    document.getElementById("qexp").classList.add("show");
+    const nb=document.getElementById("qnext");
+    if(cur<qs.length-1){nb.style.display="inline-block";}
+    else{nb.textContent="成績";nb.style.display="inline-block";nb.onclick=()=>{wrap.innerHTML=`<div style="text-align:center;padding:28px;"><div style="font-size:3rem;font-weight:900;color:var(--coral);">${score}/${qs.length}</div><div style="color:var(--text2);margin:10px 0 22px;">${score===qs.length?"🎉 全對！":"📖 再複習一次！"}</div><button class="qbtn p" onclick="restartQ()">再練一次</button></div>`;};}
+  };
+  window.nextQ=function(){if(cur<qs.length-1){cur++;render();}};
+  window.prevQ=function(){if(cur>0){cur--;render();}};
+  window.restartQ=function(){cur=0;score=0;render();};
+  render();
+})();
+</script>
+
+<div id="ai-messages"></div>
+    
+    
+  </div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="../assets/js/shared.js"></script>
+<script>window.UNIT_CONTEXT="樂理 — 基礎音名與唱名";</script>
+</body>
+</html>

@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>02 音程與音階 — 樂理教學</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5fff9;--mint:#2ec08a;--sky:#38bdf8;--coral:#ff6b6b;--lav:#a78bfa;--peach:#ffb347;--text:#1d2d25;--text2:#4a6b5a;--text3:#9ab5a5;--card:#fff;--border:rgba(0,0,0,.08);--r:18px;--rs:10px;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:"Noto Sans TC",sans-serif;min-height:100vh;}
+.hero{background:linear-gradient(135deg,#f0fff8,#f0faff 50%,#eff5ff);padding:52px 28px 40px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:"↑ ↕ ↓";position:absolute;font-size:8rem;opacity:.04;top:-10px;left:0;pointer-events:none;letter-spacing:40px;}
+.htag{display:inline-block;background:linear-gradient(135deg,var(--mint),var(--sky));color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.15em;padding:4px 14px;border-radius:20px;margin-bottom:12px;}
+.hero h1{font-family:"DM Serif Display",serif;font-size:2.6rem;line-height:1.2;margin-bottom:8px;}
+.hero h1 em{color:var(--mint);font-style:normal;}
+.hero p{color:var(--text2);font-size:.88rem;margin-bottom:20px;}
+.layout{display:flex;max-width:1100px;margin:0 auto;padding:0 20px 80px;gap:24px;min-height:80vh;}
+.sidebar{width:200px;flex-shrink:0;position:sticky;top:20px;align-self:flex-start;margin-top:28px;}
+.main-content{flex:1;min-width:0;padding-top:28px;}
+.side-nav{background:var(--card);border-radius:var(--r);border:1.5px solid var(--border);overflow:hidden;box-shadow:0 3px 20px rgba(46,192,138,.06);}
+.side-nav-title{padding:14px 16px 10px;font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--text3);text-transform:uppercase;border-bottom:1px solid var(--border);}
+.side-btn{display:flex;align-items:center;gap:8px;width:100%;padding:11px 16px;font-size:.8rem;color:var(--text2);background:transparent;border:none;text-align:left;cursor:pointer;font-family:"Noto Sans TC",sans-serif;transition:all .2s;border-left:3px solid transparent;}
+.side-btn:hover{background:rgba(46,192,138,.06);color:var(--text);}
+.side-btn.act{background:rgba(46,192,138,.1);color:var(--mint);border-left-color:var(--mint);font-weight:700;}
+.sb-icon{font-size:1rem;flex-shrink:0;width:20px;text-align:center;}
+.panel{display:none;animation:fu .35s ease;}
+.panel.act{display:block;}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.card{background:var(--card);border-radius:var(--r);border:1.5px solid var(--border);padding:24px;margin-bottom:18px;box-shadow:0 3px 20px rgba(46,192,138,.06);}
+.ctitle{font-family:"DM Serif Display",serif;font-size:1.1rem;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.ctitle::before{content:"";display:inline-block;width:4px;height:18px;border-radius:2px;background:var(--mint);}
+.progress-bar{height:3px;background:rgba(46,192,138,.12);border-radius:2px;margin-bottom:20px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--mint),var(--sky));border-radius:2px;transition:width .4s ease;}
+
+/* INTERVAL */
+.int-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.int-card{background:#f0fff8;border:1.5px solid rgba(46,192,138,.2);border-radius:var(--rs);padding:14px;text-align:center;cursor:pointer;transition:all .2s;}
+.int-card:hover,.int-card.sel{border-color:var(--mint);background:#e0fff4;transform:translateY(-2px);box-shadow:0 6px 20px rgba(46,192,138,.12);}
+.int-num{font-family:"DM Serif Display",serif;font-size:2rem;color:var(--mint);line-height:1;}
+.int-name{font-size:.74rem;font-weight:700;margin-top:4px;}
+.int-semi{font-size:.65rem;color:var(--text2);margin-top:3px;}
+#int-detail{margin-top:14px;background:#edfff7;border-left:4px solid var(--mint);border-radius:0 var(--rs) var(--rs) 0;padding:14px;font-size:.82rem;color:var(--text2);line-height:1.7;display:none;}
+
+/* SCALE */
+.scale-row{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin:10px 0;}
+.sn{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;border:2px solid;transition:all .2s;flex-shrink:0;cursor:pointer;}
+.sn:hover{transform:scale(1.12);}
+.sn-r{background:var(--mint);border-color:var(--mint);color:#fff;}
+.sn-n{background:rgba(46,192,138,.08);border-color:rgba(46,192,138,.3);color:var(--mint);}
+.sn-alt{background:rgba(255,107,107,.1);border-color:var(--coral);color:var(--coral);}
+.sn-aug{background:rgba(255,179,71,.1);border-color:var(--peach);color:var(--peach);}
+.sarrow{font-size:.72rem;color:var(--text3);flex-shrink:0;}
+.sh{color:var(--coral);font-weight:700;font-size:.72rem;flex-shrink:0;}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+.tab-btn{padding:7px 16px;border-radius:20px;border:1.5px solid var(--border);background:transparent;color:var(--text2);font-size:.78rem;cursor:pointer;transition:all .2s;font-family:"Noto Sans TC",sans-serif;}
+.tab-btn.act{background:var(--mint);color:#fff;border-color:var(--mint);}
+.tab-panel{display:none;animation:fu .3s ease;}
+.tab-panel.act{display:block;}
+
+/* COF */
+.cof-wrap{display:flex;justify-content:center;margin:16px 0;}
+
+/* OVERTONE */
+.ot-wrap{display:flex;align-items:flex-end;gap:8px;height:130px;margin:16px 0;flex-wrap:wrap;padding:0 4px;}
+.ot-bar{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:transform .15s;}
+.ot-bar:hover{transform:scale(1.08);}
+.ot-fill{width:28px;border-radius:5px 5px 0 0;}
+.ot-num{font-size:.58rem;color:var(--text3);}
+.ot-note{font-size:.62rem;color:var(--mint);font-weight:700;}
+#ot-info{margin-top:12px;background:#edfff7;border-radius:var(--rs);padding:12px 16px;font-size:.8rem;color:var(--text2);line-height:1.7;min-height:44px;border-left:4px solid var(--mint);}
+
+/* PENT */
+.pent-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--border);}
+.pent-row:last-child{border-bottom:none;}
+.pent-label{width:80px;font-size:.78rem;font-weight:700;color:var(--mint);}
+.pent-zh{width:110px;font-size:.74rem;color:var(--text2);}
+.pent-note{width:50px;height:42px;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;border:1.5px solid;flex-shrink:0;transition:all .2s;cursor:pointer;}
+.pent-note:hover{transform:scale(1.08);}
+.pent-root{background:var(--mint);border-color:var(--mint);color:#fff;}
+.pent-n{background:rgba(46,192,138,.08);border-color:rgba(46,192,138,.25);color:var(--mint);}
+.pent-bias{background:rgba(255,179,71,.1);border-color:var(--peach);color:var(--peach);}
+
+/* MODE */
+.mode-row{display:flex;align-items:center;padding:10px 8px;border-bottom:1px solid var(--border);gap:10px;cursor:pointer;transition:background .2s;border-radius:var(--rs);}
+.mode-row:last-child{border-bottom:none;}
+.mode-row:hover{background:rgba(46,192,138,.06);}
+.mode-name{width:130px;font-weight:700;color:var(--mint);font-size:.8rem;}
+.mode-zh{width:70px;font-size:.74rem;color:var(--text2);}
+.mode-notes{display:flex;gap:4px;flex-wrap:wrap;flex:1;}
+.mode-note{width:32px;height:32px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;transition:all .2s;}
+.mode-n{background:rgba(46,192,138,.08);color:var(--mint);border:1px solid rgba(46,192,138,.25);}
+.mode-h{background:rgba(255,107,107,.1);color:var(--coral);border:1px solid rgba(255,107,107,.3);}
+.mode-r{background:var(--mint);color:#fff;border:1px solid var(--mint);}
+.mode-char{font-size:.7rem;color:var(--text3);width:120px;}
+
+/* TABLE */
+.mtable{width:100%;border-collapse:collapse;font-size:.82rem;}
+.mtable th{background:linear-gradient(135deg,var(--mint),var(--sky));color:#fff;padding:9px 14px;text-align:left;font-size:.74rem;font-weight:600;}
+.mtable th:first-child{border-radius:10px 0 0 0;}
+.mtable th:last-child{border-radius:0 10px 0 0;}
+.mtable td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text2);}
+.mtable tr:hover td{background:rgba(46,192,138,.04);}
+
+/* INFO */
+.info{background:linear-gradient(135deg,rgba(46,192,138,.08),rgba(56,189,248,.04));border-left:4px solid var(--mint);border-radius:0 var(--rs) var(--rs) 0;padding:13px 16px;margin:12px 0;font-size:.82rem;color:var(--text2);line-height:1.7;}
+.info strong{color:var(--mint);}
+.warn{background:linear-gradient(135deg,rgba(255,107,107,.08),rgba(255,179,71,.04));border-left:4px solid var(--coral);border-radius:0 var(--rs) var(--rs) 0;padding:13px 16px;margin:12px 0;font-size:.82rem;color:var(--text2);line-height:1.7;}
+.warn strong{color:var(--coral);}
+
+/* QUIZ */
+.quiz-wrap{background:linear-gradient(135deg,#f0fff8,#f0faff);border-radius:var(--r);padding:26px;border:1.5px solid rgba(46,192,138,.15);}
+.qnum{font-size:.72rem;color:var(--text3);margin-bottom:8px;}
+.qq{font-weight:700;font-size:.95rem;margin-bottom:16px;line-height:1.5;}
+.qopts{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.qopt{padding:11px 16px;border-radius:var(--rs);border:1.5px solid var(--border);background:var(--card);font-size:.82rem;color:var(--text);cursor:pointer;text-align:left;transition:all .2s;font-family:"Noto Sans TC",sans-serif;}
+.qopt:hover:not(:disabled){border-color:var(--mint);background:rgba(46,192,138,.05);}
+.qopt.ok{border-color:var(--mint);background:rgba(46,192,138,.1);color:var(--mint);}
+.qopt.ng{border-color:var(--coral);background:rgba(255,107,107,.1);color:var(--coral);}
+.qexp{margin-top:12px;padding:12px 16px;border-radius:var(--rs);background:rgba(46,192,138,.08);font-size:.79rem;color:var(--text2);display:none;line-height:1.7;}
+.qexp.show{display:block;animation:fu .3s ease;}
+.qnav{display:flex;gap:10px;align-items:center;margin-top:16px;flex-wrap:wrap;}
+.qbtn{padding:8px 20px;border-radius:20px;border:none;font-size:.8rem;font-weight:700;cursor:pointer;font-family:"Noto Sans TC",sans-serif;transition:all .2s;}
+.qbtn.p{background:var(--mint);color:#fff;}
+.qbtn.s{background:rgba(46,192,138,.08);color:var(--text2);border:1.5px solid var(--border);}
+.qprog{font-size:.74rem;color:var(--text3);margin-left:auto;}
+.qsc{font-size:.82rem;font-weight:700;color:var(--mint);}
+@media(max-width:750px){.layout{flex-direction:column;}.sidebar{width:100%;position:static;}.side-nav{display:flex;flex-wrap:nowrap;overflow-x:auto;border-radius:var(--rs);}.side-btn{border-left:none;border-bottom:3px solid transparent;white-space:nowrap;padding:10px 12px;}.side-btn.act{border-left:none;border-bottom-color:var(--mint);}.int-grid{grid-template-columns:repeat(2,1fr);}.qopts{grid-template-columns:1fr;}}
+</style>
+
+<link rel="stylesheet" href="../assets/css/shared.css">
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="../index.html" class="nav-logo"><span>🎵</span>莊敬音樂科</a>
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link home">首頁</a>
+    <a href="../history/index.html" class="nav-link">音樂史</a>
+    <a href="index.html" class="nav-link active-t">樂理</a>
+    <a href="teacher-resources.html" class="nav-link">教師資源</a>
+  </div>
+
+  <div id="nav-auth" style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+    <button id="login-btn" onclick="teacherLogin()" style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;border:1.5px solid var(--border,rgba(0,0,0,.12));background:#fff;cursor:pointer;font-size:.78rem;font-weight:700;font-family:inherit;">👤 教師登入</button>
+    <div id="user-info" style="display:none;align-items:center;gap:8px;">
+      <span style="font-size:.78rem;font-weight:700;">👋 <span id="user-name"></span></span>
+      <button onclick="teacherLogout()" style="padding:4px 10px;border-radius:12px;border:1.5px solid rgba(0,0,0,.12);background:transparent;cursor:pointer;font-size:.7rem;font-family:inherit;">登出</button>
+    </div>
+  </div>
+</nav>
+<div class="breadcrumb" style="padding:8px 16px;font-size:.76rem;color:#888;display:flex;gap:5px;align-items:center;"><a href="../index.html" style="color:#666;text-decoration:none;">首頁</a><span>/</span><a href="index.html" style="color:#666;text-decoration:none;">樂理</a><span>/</span>音程與音階</span></div>
+<div class="hero">
+  <div class="htag">UNIT 02</div>
+  <h1><em>音程</em>與<em>音階</em></h1>
+  <p>Intervals · Scales · Modes · Harmonic Series</p>
+</div>
+<div class="layout">
+  <div class="sidebar">
+    <div class="side-nav">
+      <div class="side-nav-title">單元目錄</div>
+      <button class="side-btn act" onclick="showPanel('interval',this)"><span class="sb-icon">↕</span>音程</button>
+      <button class="side-btn" onclick="showPanel('scale',this)"><span class="sb-icon">🎼</span>大小音階</button>
+      <button class="side-btn" onclick="showPanel('pentatonic',this)"><span class="sb-icon">☯</span>五聲七聲</button>
+      <button class="side-btn" onclick="showPanel('mode',this)"><span class="sb-icon">⛩</span>教會調式</button>
+      <button class="side-btn" onclick="showPanel('overtone',this)"><span class="sb-icon">〰</span>泛音列</button>
+      <button class="side-btn" onclick="showPanel('quiz',this)"><span class="sb-icon">🧠</span>隨堂測驗</button>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="progress-bar"><div class="progress-fill" id="prog" style="width:16%"></div></div>
+
+    <!-- 音程 -->
+    <div class="panel act" id="panel-interval">
+      <div class="card">
+        <div class="ctitle">八種音程度數 — 點擊查看詳解</div>
+        <div class="int-grid" id="int-grid"></div>
+        <div id="int-detail"></div>
+      </div>
+      <div class="card">
+        <div class="ctitle">音程品質系統</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div><p style="font-size:.8rem;color:var(--mint);font-weight:700;margin-bottom:8px;">完全音程（1、4、5、8度）</p>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:8px 0;">
+              <div style="padding:6px 12px;border-radius:20px;background:rgba(255,107,107,.1);border:1.5px solid rgba(255,107,107,.3);color:var(--coral);font-size:.72rem;font-weight:700;">減</div>
+              <span style="color:var(--text3);">←1→</span>
+              <div style="padding:6px 12px;border-radius:20px;background:rgba(46,192,138,.15);border:1.5px solid var(--mint);color:var(--mint);font-size:.72rem;font-weight:700;">完全</div>
+              <span style="color:var(--text3);">←1→</span>
+              <div style="padding:6px 12px;border-radius:20px;background:rgba(255,179,71,.1);border:1.5px solid var(--peach);color:var(--peach);font-size:.72rem;font-weight:700;">增</div>
+            </div></div>
+          <div><p style="font-size:.8rem;color:var(--sky);font-weight:700;margin-bottom:8px;">大小音程（2、3、6、7度）</p>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:8px 0;">
+              <div style="padding:6px 12px;border-radius:20px;background:rgba(255,107,107,.1);border:1.5px solid rgba(255,107,107,.3);color:var(--coral);font-size:.72rem;font-weight:700;">減</div>
+              <span style="color:var(--text3);">←1→</span>
+              <div style="padding:6px 12px;border-radius:20px;background:rgba(167,139,250,.1);border:1.5px solid var(--lav);color:var(--lav);font-size:.72rem;font-weight:700;">小</div>
+              <span style="color:var(--text3);">←1→</span>
+              <div style="padding:6px 12px;border-radius:20px;background:rgba(56,189,248,.1);border:1.5px solid var(--sky);color:var(--sky);font-size:.72rem;font-weight:700;">大</div>
+              <span style="color:var(--text3);">←1→</span>
+              <div style="padding:6px 12px;border-radius:20px;background:rgba(255,179,71,.1);border:1.5px solid var(--peach);color:var(--peach);font-size:.72rem;font-weight:700;">增</div>
+            </div></div>
+        </div>
+        <div class="warn"><strong>轉位規則：</strong>度數和=9（2↔7，3↔6，4↔5）；品質互換：大↔小、增↔減、完全↔完全</div>
+      </div>
+      <div class="card">
+        <div class="ctitle">音程半音數速查</div>
+        <div style="overflow-x:auto;">
+        <table class="mtable">
+          <tr><th>度數</th><th>減</th><th>小</th><th>完全/大</th><th>增</th><th>例（C起）</th></tr>
+          <tr><td><strong>一度</strong></td><td>—</td><td>—</td><td>0</td><td>1</td><td>C→C</td></tr>
+          <tr><td><strong>二度</strong></td><td>0</td><td>1</td><td>2</td><td>3</td><td>C→D♭/D/D♯</td></tr>
+          <tr><td><strong>三度</strong></td><td>2</td><td>3</td><td>4</td><td>5</td><td>C→E♭/E</td></tr>
+          <tr><td><strong>四度</strong></td><td>4</td><td>—</td><td>5</td><td>6★</td><td>C→F/F♯</td></tr>
+          <tr><td><strong>五度</strong></td><td>6★</td><td>—</td><td>7</td><td>8</td><td>C→G♭/G</td></tr>
+          <tr><td><strong>六度</strong></td><td>7</td><td>8</td><td>9</td><td>10</td><td>C→A♭/A</td></tr>
+          <tr><td><strong>七度</strong></td><td>9</td><td>10</td><td>11</td><td>12</td><td>C→B♭/B</td></tr>
+          <tr><td><strong>八度</strong></td><td>11</td><td>—</td><td>12</td><td>13</td><td>C→C</td></tr>
+        </table>
+        </div>
+        <div class="info">★ 增四度 = 減五度 = 6半音 = <strong>三全音（Tritone）</strong>，中世紀稱「魔鬼音程」</div>
+      </div>
+    </div>
+
+    <!-- 音階 -->
+    <div class="panel" id="panel-scale">
+      <div class="card">
+        <div class="ctitle">五度圈 Circle of Fifths</div>
+        <div class="cof-wrap"><svg id="cof-svg" viewBox="0 0 440 440" width="400" height="400" style="max-width:100%;"></svg></div>
+        <div class="info"><strong>升號順序：</strong>F♯ C♯ G♯ D♯ A♯ E♯ B♯（Father Charles Goes Down And Ends Battle）<br><strong>降號順序：</strong>B♭ E♭ A♭ D♭ G♭ C♭ F♭（升號逆序）</div>
+      </div>
+      <div class="card">
+        <div class="ctitle">大音階結構（W W H W W W H）</div>
+        <div class="scale-row">
+          <div class="sn sn-r">C</div><span class="sarrow">W</span><div class="sn sn-n">D</div><span class="sarrow">W</span>
+          <div class="sn sn-n">E</div><span class="sh">H</span><div class="sn sn-n">F</div><span class="sarrow">W</span>
+          <div class="sn sn-n">G</div><span class="sarrow">W</span><div class="sn sn-n">A</div><span class="sarrow">W</span>
+          <div class="sn sn-n">B</div><span class="sh">H</span><div class="sn sn-r">C</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ctitle">四種小音階比較（以 a 小調）</div>
+        <div class="tabs">
+          <button class="tab-btn act" onclick="stab(this,'sc','nat')">自然小</button>
+          <button class="tab-btn" onclick="stab(this,'sc','har')">和聲小</button>
+          <button class="tab-btn" onclick="stab(this,'sc','mel')">旋律小</button>
+        </div>
+        <div id="sc">
+          <div class="tab-panel act" id="tab-nat">
+            <p style="font-size:.82rem;color:var(--text2);margin-bottom:10px;">W H W W H W W — 降Ⅲ、Ⅵ、Ⅶ級</p>
+            <div class="scale-row">
+              <div class="sn sn-r">a</div><span class="sarrow">W</span><div class="sn sn-n">b</div><span class="sh">H</span>
+              <div class="sn sn-n">c</div><span class="sarrow">W</span><div class="sn sn-n">d</div><span class="sarrow">W</span>
+              <div class="sn sn-n">e</div><span class="sh">H</span><div class="sn sn-n">f</div><span class="sarrow">W</span>
+              <div class="sn sn-n">g</div><span class="sarrow">W</span><div class="sn sn-r">a</div>
+            </div>
+            <div class="info">Ⅶ級為小七度，缺強導音。</div>
+          </div>
+          <div class="tab-panel" id="tab-har">
+            <p style="font-size:.82rem;color:var(--text2);margin-bottom:10px;">升高Ⅶ級（g→g♯）強化導音，VI→VII♯ = 增二度</p>
+            <div class="scale-row">
+              <div class="sn sn-r">a</div><span class="sarrow">W</span><div class="sn sn-n">b</div><span class="sh">H</span>
+              <div class="sn sn-n">c</div><span class="sarrow">W</span><div class="sn sn-n">d</div><span class="sarrow">W</span>
+              <div class="sn sn-n">e</div><span class="sh">H</span><div class="sn sn-n">f</div>
+              <span style="font-size:.65rem;color:var(--peach);font-weight:700;">+3</span>
+              <div class="sn sn-aug">g♯</div><span class="sh">H</span><div class="sn sn-r">a</div>
+            </div>
+            <div class="warn"><strong>增二度（3半音）：</strong>f→g♯，帶東方色彩，和聲功能強。</div>
+          </div>
+          <div class="tab-panel" id="tab-mel">
+            <p style="font-size:.82rem;color:var(--text2);margin-bottom:10px;">上行升Ⅵ、Ⅶ；下行恢復自然小</p>
+            <div class="scale-row" style="margin-bottom:8px;">
+              <span style="font-size:.68rem;color:var(--mint);width:32px;flex-shrink:0;">↑上行</span>
+              <div class="sn sn-r">a</div><span class="sarrow">W</span><div class="sn sn-n">b</div><span class="sh">H</span>
+              <div class="sn sn-n">c</div><span class="sarrow">W</span><div class="sn sn-n">d</div><span class="sarrow">W</span>
+              <div class="sn sn-n">e</div><span class="sarrow">W</span><div class="sn sn-alt">f♯</div><span class="sarrow">W</span>
+              <div class="sn sn-alt">g♯</div><span class="sh">H</span><div class="sn sn-r">a</div>
+            </div>
+            <div class="scale-row">
+              <span style="font-size:.68rem;color:var(--text3);width:32px;flex-shrink:0;">↓下行</span>
+              <div class="sn sn-r">a</div><span class="sarrow">W</span><div class="sn sn-n">g</div><span class="sarrow">W</span>
+              <div class="sn sn-n">f</div><span class="sh">H</span><div class="sn sn-n">e</div><span class="sarrow">W</span>
+              <div class="sn sn-n">d</div><span class="sarrow">W</span><div class="sn sn-n">c</div><span class="sh">H</span>
+              <div class="sn sn-n">b</div><span class="sarrow">W</span><div class="sn sn-r">a</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 五聲 -->
+    <div class="panel" id="panel-pentatonic">
+      <div class="card">
+        <div class="ctitle">五聲音階 — 宮商角徵羽（點擊音符互動）</div>
+        <div id="pent-list"></div>
+        <div class="info"><strong>五音對應：</strong>宮=1、商=2、角=3、徵=5、羽=6（省略4和7）</div>
+      </div>
+      <div class="card">
+        <div class="ctitle">七聲音階 — 五聲加兩個偏音</div>
+        <div style="overflow-x:auto;">
+        <table class="mtable">
+          <tr><th>系統</th><th>五聲基礎</th><th>偏音1（第4音）</th><th>偏音2（第7音）</th><th>說明</th></tr>
+          <tr><td><strong>雅樂音階</strong></td><td rowspan="3">宮C 商D 角E 徵G 羽A</td><td><strong style="color:#e11d48">變徵（F♯）</strong></td><td><strong>變宮（B）</strong></td><td>第4音升高為F♯（增四度），類似Lydian調式；莊嚴古典</td></tr>
+          <tr><td><strong>清樂音階</strong></td><td><strong style="color:#10b981">清角（F）</strong></td><td><strong>變宮（B）</strong></td><td>第4音為F自然音，最接近西洋自然大音階；常見民間</td></tr>
+          <tr><td><strong>燕樂音階</strong></td><td><strong style="color:#e11d48">變徵（F♯）</strong></td><td><strong style="color:#8b5cf6">閏（B♭）</strong></td><td>第4音升高F♯，第7音降低為B♭；含增四度，帶異域色彩</td></tr>
+        </table>
+        </div>
+        <div class="info" style="margin-top:14px;">
+          <strong>三種七聲音階比較（以宮C為主音）：</strong><br>
+          ・<strong>雅樂</strong>：C D E <span style="color:#e11d48;font-weight:700">F♯</span> G A B（變徵升高，類Lydian）<br>
+          ・<strong>清樂</strong>：C D E <span style="color:#10b981;font-weight:700">F</span> G A B（清角自然，≈大音階）<br>
+          ・<strong>燕樂</strong>：C D E <span style="color:#e11d48;font-weight:700">F♯</span> G A <span style="color:#8b5cf6;font-weight:700">B♭</span>（變徵升＋閏降，最特殊）<br>
+          <strong>關鍵記憶：</strong>雅樂第4音是「變徵（F♯）」而非清角（F）。三種音階都以五聲音階為基礎，差別僅在兩個偏音。
+        </div>
+      </div>
+    </div>
+
+    <!-- 調式 -->
+    <div class="panel" id="panel-mode">
+      <div class="card">
+        <div class="ctitle">七種教會調式 — 點擊查看色彩說明</div>
+        <div id="mode-list"></div>
+      </div>
+    </div>
+
+    <!-- 泛音 -->
+    <div class="panel" id="panel-overtone">
+      <div class="card">
+        <div class="ctitle">泛音列（基音 = C 大字組）— 點擊柱狀圖</div>
+        <div class="ot-wrap" id="ot-wrap"></div>
+        <div id="ot-info">點擊上方柱狀圖查看各泛音的絕對音名</div>
+        <div style="overflow-x:auto;margin-top:16px;">
+        <table class="mtable">
+          <tr><th>次數</th><th>絕對音名</th><th>八度組</th><th>頻率</th><th>音準偏差</th><th>音程（與基音）</th></tr>
+          <tr style="background:rgba(225,29,72,.05)"><td><strong>1</strong></td><td><strong style="color:#e11d48">C（基音）</strong></td><td>大字組</td><td>f</td><td>—</td><td>基音</td></tr>
+          <tr style="background:rgba(56,189,248,.05)"><td>2</td><td><strong>c</strong></td><td>小字組</td><td>2f</td><td>—</td><td>完全八度</td></tr>
+          <tr style="background:rgba(46,192,138,.05)"><td>3</td><td><strong>g</strong></td><td>小字組</td><td>3f</td><td style="color:#f59e0b">+2¢</td><td>完全五度＋八度</td></tr>
+          <tr style="background:rgba(56,189,248,.05)"><td>4</td><td><strong style="color:#e11d48">c¹（中央Do）</strong></td><td>小字一組</td><td>4f</td><td>—</td><td>兩個八度</td></tr>
+          <tr style="background:rgba(245,158,11,.05)"><td>5</td><td><strong>e¹</strong></td><td>小字一組</td><td>5f</td><td style="color:#e11d48">−14¢</td><td>大三度＋兩個八度</td></tr>
+          <tr style="background:rgba(46,192,138,.05)"><td>6</td><td><strong>g¹</strong></td><td>小字一組</td><td>6f</td><td>—</td><td>完全五度＋兩個八度　<strong style="color:var(--coral)">←大三和弦完成！</strong></td></tr>
+          <tr style="background:rgba(99,102,241,.05)"><td>7</td><td><strong>b♭¹≈</strong></td><td>小字一組</td><td>7f</td><td style="color:#e11d48">−31¢</td><td>小七度＋兩個八度</td></tr>
+          <tr style="background:rgba(56,189,248,.05)"><td>8</td><td><strong>c²</strong></td><td>小字二組</td><td>8f</td><td>—</td><td>三個八度</td></tr>
+          <tr style="background:rgba(167,139,250,.05)"><td>9</td><td><strong>d²</strong></td><td>小字二組</td><td>9f</td><td style="color:#f59e0b">+4¢</td><td>大二度＋三個八度</td></tr>
+          <tr style="background:rgba(245,158,11,.05)"><td>10</td><td><strong>e²</strong></td><td>小字二組</td><td>10f</td><td style="color:#e11d48">−14¢</td><td>大三度＋三個八度</td></tr>
+          <tr style="background:rgba(99,102,241,.05)"><td>11</td><td><strong>f♯²≈</strong></td><td>小字二組</td><td>11f</td><td style="color:#e11d48">−49¢</td><td>增四度＋三個八度</td></tr>
+          <tr style="background:rgba(46,192,138,.05)"><td>12</td><td><strong>g²</strong></td><td>小字二組</td><td>12f</td><td>—</td><td>完全五度＋三個八度</td></tr>
+          <tr style="background:rgba(167,139,250,.05)"><td>13</td><td><strong>a²≈</strong></td><td>小字二組</td><td>13f</td><td style="color:#e11d48">−41¢</td><td>短六度＋三個八度</td></tr>
+          <tr style="background:rgba(99,102,241,.05)"><td>14</td><td><strong>b♭²≈</strong></td><td>小字二組</td><td>14f</td><td style="color:#e11d48">−31¢</td><td>小七度＋三個八度</td></tr>
+          <tr style="background:rgba(245,158,11,.05)"><td>15</td><td><strong>b²≈</strong></td><td>小字二組</td><td>15f</td><td style="color:#e11d48">−12¢</td><td>大七度＋三個八度</td></tr>
+          <tr style="background:rgba(56,189,248,.08)"><td><strong>16</strong></td><td><strong style="color:#38bdf8">c³</strong></td><td>小字三組</td><td>16f</td><td>—</td><td>四個八度</td></tr>
+        </table>
+        </div>
+        <div class="warn">
+  <strong>★ 重點整理：</strong><br>
+  ・第 1–6 次諧波構成 <strong>C大三和弦</strong>（C–E–G）→ 大三和弦最和諧的物理依據<br>
+  ・第 7、14 次：b♭≈（−31¢）→ <strong>純律小七度</strong>，屬七和弦的自然來源<br>
+  ・第 11 次：f♯²≈（−49¢）→ 接近增四度，Lydian 調式色彩的物理基礎<br>
+  ・偏差以<strong>音分（¢）</strong>標示：100¢ = 1個半音；±50¢ = 相差四分之一音<br>
+  ・<span style="color:#38bdf8">●</span>藍=八度　<span style="color:#2ec08a">●</span>綠=五度　<span style="color:#f59e0b">●</span>橘=三度　<span style="color:#a78bfa">●</span>紫=其他
+</div>
+      </div>
+    </div>
+
+    <!-- 測驗 -->
+    <div class="panel" id="panel-quiz">
+      <div class="quiz-wrap" id="quiz-wrap"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const panelOrder=['interval','scale','pentatonic','mode','overtone','quiz'];
+function showPanel(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('act'));
+  document.querySelectorAll('.side-btn').forEach(b=>b.classList.remove('act'));
+  document.getElementById('panel-'+id).classList.add('act');
+  if(btn)btn.classList.add('act');
+  const idx=panelOrder.indexOf(id);
+  document.getElementById('prog').style.width=((idx+1)/panelOrder.length*100)+'%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function stab(btn,gid,tid){
+  document.getElementById(gid).querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('act'));
+  document.getElementById('tab-'+tid).classList.add('act');
+  btn.closest('.card').querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('act'));
+  btn.classList.add('act');
+}
+
+// INTERVAL
+(function(){
+  const data=[
+    {n:1,name:"同度/八度",semi:"0/12半音",detail:"完全同度（0半音）=同音。完全八度（12半音）頻率比2:1，最和諧。"},
+    {n:2,name:"二度",semi:"1~3半音",detail:"小二度（1半音）= 半音步進，如E→F。大二度（2半音）= 全音，如C→D。增二度（3半音）出現在和聲小音階。"},
+    {n:3,name:"三度",semi:"3~5半音",detail:"小三度（3半音）= 小調特徵，如A→C。大三度（4半音）= 大調特徵，如C→E。構成三和弦的基礎。"},
+    {n:4,name:"四度",semi:"5~6半音",detail:"完全四度（5半音）穩定。增四度（6半音）= 三全音，「魔鬼音程」。"},
+    {n:5,name:"五度",semi:"6~8半音",detail:"減五度（6半音）= 三全音。完全五度（7半音）頻率比3:2，五度圈物理基礎。"},
+    {n:6,name:"六度",semi:"8~10半音",detail:"小六度（8半音）= 大三度轉位。大六度（9半音）= 小三度轉位。溫暖美好。"},
+    {n:7,name:"七度",semi:"10~12半音",detail:"小七度（10半音）= 屬七和弦特徵，如G→F。大七度（11半音）強烈張力。"},
+    {n:8,name:"八度",semi:"12半音",detail:"完全八度，頻率精確加倍（2:1）。所有音樂系統最和諧的非同度音程。"},
+  ];
+  const grid=document.getElementById('int-grid');
+  const detail=document.getElementById('int-detail');
+  data.forEach(d=>{
+    const c=document.createElement('div');c.className='int-card';
+    c.innerHTML=`<div class="int-num">${d.n}</div><div class="int-name">${d.name}</div><div class="int-semi">${d.semi}</div>`;
+    c.onclick=()=>{
+      document.querySelectorAll('.int-card').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');
+      detail.style.display='block';
+      detail.innerHTML=`<strong style="color:var(--mint)">${d.n}度：</strong>${d.detail}`;
+      detail.style.animation='none';detail.offsetHeight;detail.style.animation='fu .3s ease';
+    };
+    grid.appendChild(c);
+  });
+})();
+
+// COF
+(function(){
+  const major=["C","G","D","A","E","B/C♭","F♯/G♭","D♭","A♭","E♭","B♭","F"];
+  const minor=["a","e","b","f♯","c♯","g♯","d♯","b♭","f","c","g","d"];
+  const acc=["0","1♯","2♯","3♯","4♯","5♯","6♯","5♭","4♭","3♭","2♭","1♭"];
+  const svg=document.getElementById('cof-svg');
+  const cx=220,cy=220;
+  major.forEach((k,i)=>{
+    const a=(i*30-90)*Math.PI/180;
+    const r1=165,x1=cx+r1*Math.cos(a),y1=cy+r1*Math.sin(a);
+    const r2=108,x2=cx+r2*Math.cos(a),y2=cy+r2*Math.sin(a);
+    const r3=198,x3=cx+r3*Math.cos(a),y3=cy+r3*Math.sin(a);
+    const c1=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c1.setAttribute('cx',x1);c1.setAttribute('cy',y1);c1.setAttribute('r','22');
+    c1.setAttribute('fill',i===0?'rgba(46,192,138,.25)':'rgba(255,255,255,.95)');
+    c1.setAttribute('stroke',i===0?'#2ec08a':'rgba(0,0,0,.1)');c1.setAttribute('stroke-width','1.5');
+    svg.appendChild(c1);
+    const t1=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t1.setAttribute('x',x1);t1.setAttribute('y',y1+5);t1.setAttribute('text-anchor','middle');
+    t1.setAttribute('font-size',k.length>2?'8.5':'13');t1.setAttribute('font-weight','700');
+    t1.setAttribute('fill',i===0?'#2ec08a':'#1d2d25');t1.setAttribute('font-family','DM Serif Display,serif');
+    t1.textContent=k;svg.appendChild(t1);
+    const c2=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c2.setAttribute('cx',x2);c2.setAttribute('cy',y2);c2.setAttribute('r','15');
+    c2.setAttribute('fill','rgba(167,139,250,.12)');c2.setAttribute('stroke','rgba(167,139,250,.35)');c2.setAttribute('stroke-width','1');
+    svg.appendChild(c2);
+    const t2=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t2.setAttribute('x',x2);t2.setAttribute('y',y2+4);t2.setAttribute('text-anchor','middle');
+    t2.setAttribute('font-size','9');t2.setAttribute('fill','#a78bfa');t2.setAttribute('font-family','Noto Sans TC,sans-serif');
+    t2.textContent=minor[i];svg.appendChild(t2);
+    const ta=document.createElementNS('http://www.w3.org/2000/svg','text');
+    ta.setAttribute('x',x3);ta.setAttribute('y',y3+4);ta.setAttribute('text-anchor','middle');
+    ta.setAttribute('font-size','8');ta.setAttribute('fill','rgba(46,192,138,.55)');ta.setAttribute('font-family','Noto Sans TC,sans-serif');
+    ta.textContent=acc[i];svg.appendChild(ta);
+  });
+  const bg=document.createElementNS('http://www.w3.org/2000/svg','circle');
+  bg.setAttribute('cx',cx);bg.setAttribute('cy',cy);bg.setAttribute('r','55');
+  bg.setAttribute('fill','rgba(255,255,255,.95)');bg.setAttribute('stroke','rgba(46,192,138,.2)');bg.setAttribute('stroke-width','1.5');
+  svg.insertBefore(bg,svg.firstChild);
+  ['大調','小調'].forEach((t,i)=>{const tx=document.createElementNS('http://www.w3.org/2000/svg','text');tx.setAttribute('x',cx);tx.setAttribute('y',cy+(i===0?-2:14));tx.setAttribute('text-anchor','middle');tx.setAttribute('font-size','11');tx.setAttribute('fill',i===0?'#2ec08a':'#a78bfa');tx.setAttribute('font-family','Noto Sans TC,sans-serif');tx.textContent=t;svg.appendChild(tx);});
+})();
+
+// PENT
+(function(){
+  const modes=[
+    {name:"宮調式",zh:"主音=C（類大調）",notes:[{t:"宮\nC",r:true},{t:"商\nD"},{t:"角\nE"},{t:"徵\nG"},{t:"羽\nA"}]},
+    {name:"商調式",zh:"主音=D",notes:[{t:"商\nD",r:true},{t:"角\nE"},{t:"徵\nG"},{t:"羽\nA"},{t:"宮\nC"}]},
+    {name:"角調式",zh:"主音=E",notes:[{t:"角\nE",r:true},{t:"徵\nG"},{t:"羽\nA"},{t:"宮\nC"},{t:"商\nD"}]},
+    {name:"徵調式",zh:"主音=G（類大調）",notes:[{t:"徵\nG",r:true},{t:"羽\nA"},{t:"宮\nC"},{t:"商\nD"},{t:"角\nE"}]},
+    {name:"羽調式",zh:"主音=A（類小調）",notes:[{t:"羽\nA",r:true},{t:"宮\nC"},{t:"商\nD"},{t:"角\nE"},{t:"徵\nG"}]},
+  ];
+  const list=document.getElementById('pent-list');
+  modes.forEach(m=>{
+    const row=document.createElement('div');row.className='pent-row';
+    let html=`<div class="pent-label">${m.name}</div><div class="pent-zh">${m.zh}</div><div style="display:flex;gap:6px;flex-wrap:wrap;">`;
+    m.notes.forEach(n=>{
+      const lines=n.t.split('\n');
+      html+=`<div class="pent-note ${n.r?'pent-root':'pent-n'}" onclick="this.style.transform=this.style.transform?'':'scale(1.15)'"><div>${lines[0]}</div><div style="font-size:.6rem;opacity:.8">${lines[1]}</div></div>`;
+    });
+    html+='</div>';row.innerHTML=html;list.appendChild(row);
+  });
+})();
+
+// MODES
+(function(){
+  const modes=[
+    {name:"Ionian",zh:"伊奧里安",notes:["C","D","E","F","G","A","B"],half:[2,6],char:"= 大調，明亮快樂"},
+    {name:"Dorian",zh:"多里安",notes:["D","E","F","G","A","B","C"],half:[1,5],char:"♭3 ♮6，帶希望的小調"},
+    {name:"Phrygian",zh:"弗里吉安",notes:["E","F","G","A","B","C","D"],half:[0,4],char:"♭2，神秘西班牙感"},
+    {name:"Lydian",zh:"呂底安",notes:["F","G","A","B","C","D","E"],half:[3,7],char:"♯4，夢幻飄浮"},
+    {name:"Mixolydian",zh:"混合利底安",notes:["G","A","B","C","D","E","F"],half:[2,6],char:"♭7，搖滾藍調"},
+    {name:"Aeolian",zh:"艾奧里安",notes:["A","B","C","D","E","F","G"],half:[1,5],char:"= 自然小調，憂鬱"},
+    {name:"Locrian",zh:"洛克里安",notes:["B","C","D","E","F","G","A"],half:[0,4],char:"♭2 ♭5，極度不穩"},
+  ];
+  const list=document.getElementById('mode-list');
+  modes.forEach(m=>{
+    const row=document.createElement('div');row.className='mode-row';
+    let html=`<div class="mode-name">${m.name}</div><div class="mode-zh">${m.zh}</div><div class="mode-notes">`;
+    m.notes.forEach((n,i)=>{
+      html+=`<div class="mode-note ${i===0?'mode-r':'mode-n'}">${n}</div>`;
+      if(i<6){const h=m.half.includes(i);html+=`<div style="font-size:.5rem;color:${h?'#ff6b6b':'#ccc'};padding:0 1px;display:flex;align-items:center;">${h?'½':'—'}</div>`;}
+    });
+    html+=`</div><div class="mode-char">${m.char}</div>`;
+    row.innerHTML=html;
+    list.appendChild(row);
+  });
+})();
+
+// OVERTONE
+(function(){
+  const data=[
+    {n:1, note:"C",     oct:"大字組",   h:95, freq:"f",    tune:"",       int:"基音",             grp:"base",  info:"<strong>基音 C（大字組）</strong>：頻率 = f。所有泛音的計算基準。"},
+    {n:2, note:"c",     oct:"小字組",   h:82, freq:"2f",   tune:"",       int:"完全八度",         grp:"oct",   info:"<strong>c（小字組）</strong>：頻率加倍（2f），完全八度。振動比 2:1，最和諧。"},
+    {n:3, note:"g",     oct:"小字組",   h:70, freq:"3f",   tune:"+2¢",    int:"完全五度＋八度",   grp:"fifth", info:"<strong>g（小字組）</strong>：比等溫律 g 略高 2 音分（¢）。振動比 3:2。五度圈的物理基礎。"},
+    {n:4, note:"c¹",    oct:"小字一組", h:60, freq:"4f",   tune:"",       int:"兩個八度",         grp:"oct",   info:"<strong>c¹（中央 Do）</strong>：頻率 = 4f，兩個八度。與基音C在音高上相差兩個八度。"},
+    {n:5, note:"e¹",    oct:"小字一組", h:51, freq:"5f",   tune:"−14¢",   int:"大三度＋兩個八度", grp:"third", info:"<strong>e¹（小字一組）</strong>：比等溫律 e¹ 低 14 音分，純律大三度（5:4）。1~5次諧波已含大三和弦雛形。"},
+    {n:6, note:"g¹",    oct:"小字一組", h:44, freq:"6f",   tune:"",       int:"完全五度＋兩個八度",grp:"fifth", info:"<strong>g¹</strong>：第 1、5、6 次諧波 → C、e¹、g¹ = <strong style='color:var(--coral)'>大三和弦！</strong>這是大三和弦最和諧的物理依據。"},
+    {n:7, note:"b♭¹≈",  oct:"小字一組", h:38, freq:"7f",   tune:"−31¢",   int:"小七度＋兩個八度", grp:"other", info:"<strong>≈ b♭¹（偏低 31¢）</strong>：不完全對應等溫律，是純律的「自然七度」，比 b♭¹ 低。屬七和弦的自然來源。"},
+    {n:8, note:"c²",    oct:"小字二組", h:32, freq:"8f",   tune:"",       int:"三個八度",         grp:"oct",   info:"<strong>c²（小字二組）</strong>：頻率 = 8f，三個八度。"},
+    {n:9, note:"d²",    oct:"小字二組", h:27, freq:"9f",   tune:"+4¢",    int:"大二度＋三個八度", grp:"other", info:"<strong>d²</strong>：純律大二度（9:8）比等溫律略高 4¢。大音階第二音的物理來源。"},
+    {n:10,note:"e²",    oct:"小字二組", h:23, freq:"10f",  tune:"−14¢",   int:"大三度＋三個八度", grp:"third", info:"<strong>e²</strong>：同第5次諧波，比等溫律低 14¢。純律大三度。"},
+    {n:11,note:"f♯²≈",  oct:"小字二組", h:19, freq:"11f",  tune:"−49¢",   int:"增四度＋三個八度", grp:"other", info:"<strong>≈ f♯²（偏低）</strong>：介於 f² 和 f♯² 之間，比等溫律 f♯² 低約 49¢。Lydian 調式增四度的自然來源。"},
+    {n:12,note:"g²",    oct:"小字二組", h:16, freq:"12f",  tune:"",       int:"完全五度＋三個八度",grp:"fifth", info:"<strong>g²</strong>：完全五度再加三個八度。"},
+    {n:13,note:"a²≈",   oct:"小字二組", h:14, freq:"13f",  tune:"−41¢",   int:"短六度＋三個八度", grp:"other", info:"<strong>≈ a²（偏低 41¢）</strong>：比等溫律 a² 低約 41¢，接近純律長六度。"},
+    {n:14,note:"b♭²≈",  oct:"小字二組", h:12, freq:"14f",  tune:"−31¢",   int:"小七度＋三個八度", grp:"other", info:"<strong>≈ b♭²（偏低 31¢）</strong>：第7次諧波的八度，同樣偏低。"},
+    {n:15,note:"b²≈",   oct:"小字二組", h:10, freq:"15f",  tune:"−12¢",   int:"大七度＋三個八度", grp:"other", info:"<strong>≈ b²（偏低 12¢）</strong>：比等溫律 b² 略低，純律大七度（15:8）。"},
+    {n:16,note:"c³",    oct:"小字三組", h:9,  freq:"16f",  tune:"",       int:"四個八度",         grp:"oct",   info:"<strong>c³（小字三組）</strong>：頻率 = 16f，四個八度。鋼琴高音區最高幾鍵的音域。"},
+  ];
+  const colors=["#2ec08a","#38bdf8","#a78bfa","#ff6b6b","#f59e0b","#2ec08a","#6366f1","#38bdf8","#a78bfa","#f59e0b","#6366f1","#2ec08a","#a78bfa","#6366f1","#f59e0b","#38bdf8"];
+  const wrap=document.getElementById('ot-wrap');
+  const info=document.getElementById('ot-info');
+  data.forEach((d,i)=>{
+    const bar=document.createElement('div');bar.className='ot-bar';
+    const grpColor = d.grp==='oct'?'#38bdf8':d.grp==='fifth'?'#2ec08a':d.grp==='third'?'#f59e0b':d.grp==='base'?'#e11d48':'#a78bfa';
+    bar.innerHTML=`<div class="ot-note" style="color:${grpColor};font-size:.58rem;font-weight:700;">${d.note}</div><div class="ot-fill" style="height:${d.h}px;background:linear-gradient(180deg,${grpColor}88,${grpColor});border:1.5px solid ${grpColor}33;"></div><div class="ot-num">${d.n}次</div>`;
+    bar.onclick=()=>{
+      info.innerHTML=`<strong style="color:${colors[i]}">第${d.n}次諧波 — ${d.note}：</strong>${d.info}`;
+      info.style.animation='none';info.offsetHeight;info.style.animation='fu .3s ease';
+    };
+    wrap.appendChild(bar);
+  });
+})();
+
+// QUIZ
+(function(){
+  const qs=[
+    {q:"完全五度的半音數？",opts:["5半音","6半音","7半音","8半音"],ans:2,exp:"完全五度 = 7半音，頻率比 3:2。減五度（三全音）= 6半音。"},
+    {q:"和聲小音階與自然小音階的差異？",opts:["升高Ⅵ級","降低Ⅴ級","升高Ⅶ級","降低Ⅲ級"],ans:2,exp:"和聲小音階 = 自然小音階 + 升高Ⅶ級，形成強導音。"},
+    {q:"五聲音階「羽調式」的主音？",opts:["C（宮）","E（角）","G（徵）","A（羽）"],ans:3,exp:"羽=La=A。宮=C，商=D，角=E，徵=G，羽=A。"},
+    {q:"Phrygian（弗里吉安）調式特徵？",opts:["增四度","小二度起音","大七度","升六度"],ans:1,exp:"弗里吉安從E起，E→F = 小二度，帶西班牙/神秘感。"},
+    {q:"泛音列1~6次諧波構成什麼和弦？",opts:["小三和弦","減三和弦","大三和弦","增三和弦"],ans:2,exp:"第1(C)、5(e¹)、6(g¹)次諧波 = C–E–G = 大三和弦。"},
+    {q:"增四度等音是？",opts:["大四度","減五度","完全五度","小五度"],ans:1,exp:"增四度 = 減五度 = 6半音，都稱為三全音（Tritone）。"},
+    {q:"D大調有幾個升號？",opts:["1個","2個","3個","4個"],ans:1,exp:"D大調有2個升號：F♯和C♯。C(0)→G(1♯)→D(2♯)。"},
+    {q:"Lydian（呂底安）調式的特徵音程？",opts:["小二度","增四度","小七度","大六度"],ans:1,exp:"Lydian從F起，F→B = 增四度（♯4），帶夢幻飄浮感。"},
+  ];
+  let cur=0,score=0,answered=false;
+  const wrap=document.getElementById('quiz-wrap');
+  function render(){
+    const q=qs[cur];
+    wrap.innerHTML=`<div class="qnum">第 ${cur+1} / ${qs.length} 題　<span class="qsc">✓ ${score}</span></div>
+      <div class="qq">${q.q}</div>
+      <div class="qopts">${q.opts.map((o,i)=>`<button class="qopt" onclick="ansQ(${i})">${o}</button>`).join('')}</div>
+      <div class="qexp" id="qexp">${q.exp}</div>
+      <div class="qnav"><button class="qbtn s" onclick="prevQ()" ${cur===0?'disabled':''}>← 上一題</button>
+      <button class="qbtn p" id="qnext" style="display:none" onclick="nextQ()">下一題 →</button>
+      <span class="qprog">${cur+1} / ${qs.length}</span></div>`;
+    answered=false;
+  }
+  window.ansQ=function(i){
+    if(answered)return;answered=true;
+    const q=qs[cur];
+    document.querySelectorAll('.qopt').forEach((o,j)=>{o.disabled=true;if(j===q.ans)o.classList.add('ok');else if(j===i&&i!==q.ans)o.classList.add('ng');});
+    if(i===q.ans)score++;
+    document.getElementById('qexp').classList.add('show');
+    const nb=document.getElementById('qnext');
+    if(cur<qs.length-1){nb.style.display='inline-block';}
+    else{nb.textContent='成績';nb.style.display='inline-block';nb.onclick=()=>{wrap.innerHTML=`<div style="text-align:center;padding:28px;"><div style="font-size:3rem;font-weight:900;color:var(--mint);">${score}/${qs.length}</div><div style="color:var(--text2);margin:10px 0 22px;">${score===qs.length?'🎉 全對！':'📖 再複習！'}</div><button class="qbtn p" onclick="restartQ()">再練一次</button></div>`;};}
+  };
+  window.nextQ=function(){if(cur<qs.length-1){cur++;render();}};
+  window.prevQ=function(){if(cur>0){cur--;render();}};
+  window.restartQ=function(){cur=0;score=0;render();};
+  render();
+})();
+</script>
+
+<div id="ai-messages"></div>
+    
+    
+  </div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="../assets/js/shared.js"></script>
+<script>window.UNIT_CONTEXT="樂理 — 音程與音階";</script>
+</body>
+</html>

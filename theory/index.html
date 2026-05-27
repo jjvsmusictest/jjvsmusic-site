@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>樂理 · 莊敬音樂科學習互動平台</title>
+<link rel="stylesheet" href="../assets/css/shared.css">
+<style>
+.page-hero{background:radial-gradient(ellipse at 20% 60%,rgba(124,58,237,.08) 0,transparent 55%),radial-gradient(ellipse at 80% 30%,rgba(6,182,212,.06) 0,transparent 55%);}
+.page-hero h1{color:var(--accent-theory);}
+/* STAFF DECORATION */
+.staff-deco{
+  text-align:center;padding:10px 20px 4px;opacity:.5;
+  font-size:1.2rem;letter-spacing:8px;color:var(--text3);
+  overflow:hidden;white-space:nowrap;
+}
+/* TEACHER BANNER */
+.teacher-banner{margin:0 20px 8px;padding:14px 20px;border-radius:var(--radius);background:linear-gradient(135deg,rgba(124,58,237,.08),rgba(6,182,212,.04));border:1.5px solid rgba(124,58,237,.25);display:flex;align-items:center;gap:12px;}
+.tb-btn{padding:7px 16px;border-radius:20px;background:#7c3aed;color:#fff;text-decoration:none;font-size:.76rem;font-weight:700;flex-shrink:0;transition:all .15s;}
+.tb-btn:hover{opacity:.85;}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="../index.html" class="nav-logo"><span>🎵</span>莊敬音樂科</a>
+  <div class="nav-links">
+    <a href="../index.html" class="nav-link home">首頁</a>
+    <a href="../history/index.html" class="nav-link">音樂史</a>
+    <a href="index.html" class="nav-link active-t">樂理</a>
+    <a href="teacher-resources.html" class="nav-link">教師資源</a>
+  </div>
+
+  <div id="nav-auth" style="margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+    <button id="login-btn" onclick="teacherLogin()" style="display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;border:1.5px solid var(--border,rgba(0,0,0,.12));background:#fff;cursor:pointer;font-size:.78rem;font-weight:700;font-family:inherit;">👤 教師登入</button>
+    <div id="user-info" style="display:none;align-items:center;gap:8px;">
+      <span style="font-size:.78rem;font-weight:700;">👋 <span id="user-name"></span></span>
+      <button onclick="teacherLogout()" style="padding:4px 10px;border-radius:12px;border:1.5px solid rgba(0,0,0,.12);background:transparent;cursor:pointer;font-size:.7rem;font-family:inherit;">登出</button>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb"><a href="../index.html">首頁</a><span>/</span>樂理</div>
+
+<div class="page-hero">
+  <div class="hero-tag theory">MUSIC THEORY</div>
+  <h1>樂理</h1>
+  <p>從基礎音名到和聲分析，建立完整的音樂理論知識</p>
+</div>
+
+<div class="staff-deco">𝄞 ♩ ♪ ♫ ♬ 𝄢 ♩ ♪ ♫ ♬ 𝄞</div>
+
+<!-- TEACHER BANNER -->
+<div class="teacher-banner">
+  <div style="font-size:1.6rem;">📁</div>
+  <div style="flex:1;">
+    <div style="font-weight:700;font-size:.88rem;color:var(--accent-theory);">樂理教師資料庫</div>
+    <div style="font-size:.74rem;color:var(--text2);margin-top:2px;">老師上傳的補充練習卷、講義與影片</div>
+  </div>
+  <a href="teacher-resources.html" class="tb-btn">查看資料 →</a>
+</div>
+
+<div class="section-title t">樂理單元</div>
+<div class="unit-grid max-w" style="padding-left:20px;padding-right:20px;">
+
+  <a href="basic-notes.html" class="unit-card theory-card" data-unit-id="basic-notes">
+    <div class="unit-icon">🎹</div>
+    <div class="unit-num">UNIT T-01</div>
+    <div class="unit-name">基礎音名與唱名</div>
+    <div class="unit-desc">互動鋼琴鍵盤、八度系統、升降記號、唱名比較與各式譜表</div>
+    <div class="unit-badge t">鋼琴互動 · 測驗</div>
+    <div class="unit-progress"><div class="up-dot"></div><div class="up-dot"></div><div class="up-dot"></div></div>
+  </a>
+
+  <a href="intervals-scales.html" class="unit-card theory-card" data-unit-id="intervals">
+    <div class="unit-icon">↕️</div>
+    <div class="unit-num">UNIT T-02</div>
+    <div class="unit-name">音程與音階</div>
+    <div class="unit-desc">音程度數與品質、大小音階、五聲七聲、教會調式與泛音列</div>
+    <div class="unit-badge t">互動音階 · 測驗</div>
+    <div class="unit-progress"><div class="up-dot"></div><div class="up-dot"></div><div class="up-dot"></div></div>
+  </a>
+
+  <a href="chords-tonality.html" class="unit-card theory-card" data-unit-id="chords">
+    <div class="unit-icon">♮</div>
+    <div class="unit-num">UNIT T-03</div>
+    <div class="unit-name">和弦與調性</div>
+    <div class="unit-desc">三和弦、七和弦、終止式、羅馬數字標記與近係調關係</div>
+    <div class="unit-badge t">和弦互動 · 測驗</div>
+    <div class="unit-progress"><div class="up-dot"></div><div class="up-dot"></div><div class="up-dot"></div></div>
+  </a>
+
+  <a href="transposing.html" class="unit-card theory-card" data-unit-id="transposing">
+    <div class="unit-icon">🎺</div>
+    <div class="unit-num">UNIT T-04</div>
+    <div class="unit-name">移調樂器</div>
+    <div class="unit-desc">記譜音與實際音換算、常見移調樂器與互動換算計算器</div>
+    <div class="unit-badge t">換算計算器 · 測驗</div>
+    <div class="unit-progress"><div class="up-dot"></div><div class="up-dot"></div><div class="up-dot"></div></div>
+  </a>
+
+  <a href="signs-terms.html" class="unit-card theory-card" data-unit-id="signs">
+    <div class="unit-icon">🎼</div>
+    <div class="unit-num">UNIT T-05</div>
+    <div class="unit-name">記號與術語</div>
+    <div class="unit-desc">反覆記號、裝飾音、和聲外音、力度記號與義大利語音樂術語</div>
+    <div class="unit-badge t">速度模擬 · 測驗</div>
+    <div class="unit-progress"><div class="up-dot"></div><div class="up-dot"></div><div class="up-dot"></div></div>
+  </a>
+
+  <a href="teacher-resources.html" class="unit-card theory-card" data-unit-id="teacher-t" style="border-style:dashed;opacity:.85;">
+    <div class="unit-icon">📁</div>
+    <div class="unit-num">資料庫</div>
+    <div class="unit-name">老師資料庫</div>
+    <div class="unit-desc">老師上傳的樂理補充練習卷、講義與參考資料</div>
+    <div class="unit-badge t">教師上傳</div>
+  </a>
+
+</div>
+
+<div id="ai-messages"></div>
+    
+    
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>window.UNIT_CONTEXT="樂理總覽";</script>
+<script src="../assets/js/shared.js"></script>
+</body>
+</html>
