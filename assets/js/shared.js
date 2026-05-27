@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //  教師登入（簡易密碼驗證，不需要 Firebase Auth）
 //  老師在 shared.js 這裡設定密碼即可
 // ═══════════════════════════════════════
-const TEACHER_PASSWORD = "music2025";  // ← 改成你要的教師密碼
+const TEACHER_PASSWORD = "jonghe2020";  // ← 改成你要的教師密碼
 
 function teacherLogin() {
   const pwd = prompt("請輸入教師密碼：");
